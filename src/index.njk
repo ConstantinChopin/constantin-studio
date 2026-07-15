@@ -1,0 +1,165 @@
+---
+layout: base.njk
+bodyClass: home
+title: constantin.studio
+description: "constantin.studio — a design studio led by Constantin Chopin, working with ambitious teams building AI-native products: consumer apps, enterprise intelligence layers, and cultural technologies."
+ogType: website
+ogTitle: constantin.studio
+ogDesc: "Creativity, craft, computation — a design studio for AI-native products."
+ogUrl: "https://constantin.studio"
+---
+  <div class="split">
+
+    <div class="pane-index">
+      <main class="page">
+
+        <header>
+          {% include "brand-mark.njk" %}
+          <h1 class="name">Creativity, Craft, Computation</h1>
+          <p class="bio-line">constantin.studio is a design studio led by <a href="https://www.linkedin.com/in/constantinchopin">Constantin Chopin</a>, founder of <a href="https://constantin.world">constantin.world</a>, teacher at <a href="https://www.artcenter.edu">ArtCenter College of Design</a>.</p>
+          <p class="bio-line">We work with ambitious teams building AI-native products from consumer apps, enterprise intelligence layers, and cultural technologies.</p>
+        </header>
+
+        {% for shelf in studio.shelves %}
+        <section class="shelf">
+          <h2 class="label">{{ glyphs[shelf.glyph] | safe }}<span class="label-text">{{ shelf.label }}</span></h2>
+          <ul class="index">
+            {% for e in shelf.entries %}
+            <li>
+              {% if e.href %}
+              <a class="row" href="{{ e.href }}"{% if e.id %} data-id="{{ e.id }}"{% endif %}>
+                <span class="row-body">
+                  <span class="row-title">{{ e.title }}</span>
+                  {% if e.desc %}<span class="row-desc">{{ e.desc }}</span>{% endif %}
+                </span>
+              </a>
+              {% else %}
+              <div class="row is-static">
+                <span class="row-body">
+                  <span class="row-title">{{ e.title }}</span>
+                  {% if e.desc %}<span class="row-desc">{{ e.desc }}</span>{% endif %}
+                </span>
+              </div>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endfor %}
+
+        <footer class="colophon">
+          <a href="mailto:constantinchopindesign@gmail.com">Write to the studio</a><span class="sep">·</span><a href="https://constantin.world">constantin.world</a>
+        </footer>
+
+      </main>
+    </div>
+
+    <aside class="pane-detail" aria-label="Selected project">
+      <div class="plate-scroll" id="plateScroll">
+        {% for shelf in studio.shelves %}{% for e in shelf.entries %}{% if e.plates %}
+        <div class="plate-set" data-id="{{ e.id }}" hidden>
+          {% if e.banner %}
+          <figure class="plate banner" style="--i: 0">
+            <img src="{{ e.banner.src }}" alt="{{ e.banner.alt }}" loading="lazy" />
+          </figure>
+          {% endif %}
+          {% if e.details or e.about %}
+          <div class="plate-notes">
+            {% if e.about %}
+            <div class="plate-about">
+              <span class="plate-about-label">Overview</span>
+              <p>{{ e.about }}</p>
+            </div>
+            {% endif %}
+            {% for d in e.details %}
+            <div class="plate-about">
+              <span class="plate-about-label">{{ d.label }}</span>
+              <p>{% if d.href %}<a href="{{ d.href }}">{{ d.text }}</a>{% else %}{{ d.text }}{% endif %}</p>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <div class="plates">
+            {% for p in e.plates %}
+            <figure class="plate {{ p.ratio }}" style="--i: {{ loop.index }}">
+              <img src="{{ p.src }}" alt="{{ p.alt }}" loading="lazy" />
+            </figure>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}{% endfor %}{% endfor %}
+      </div>
+    </aside>
+
+  </div>
+
+  {% raw %}<script>
+    (function () {
+      var mq = window.matchMedia('(min-width: 64rem)');
+      var scrollEl = document.getElementById('plateScroll');
+
+      // every project's plate set is rendered once and toggled — no fetch on switch
+      var sets = {};
+      Array.prototype.forEach.call(document.querySelectorAll('.plate-set'), function (s) {
+        sets[s.dataset.id] = s;
+      });
+      var rows = Array.prototype.slice.call(document.querySelectorAll('.index a.row'));
+      var byId = {};
+      rows.forEach(function (a) { if (a.dataset.id && sets[a.dataset.id]) byId[a.dataset.id] = a; });
+
+      // on desktop the panel is never empty: the first project with plates stands
+      // in as the default view on landing
+      var firstRow = rows.filter(function (a) { return a.dataset.id && sets[a.dataset.id]; })[0];
+      var defaultId = firstRow ? firstRow.dataset.id : null;
+
+      function setActive(a) { rows.forEach(function (l) { l.classList.toggle('is-active', l === a); }); }
+
+      function showSet(id) {
+        Object.keys(sets).forEach(function (k) {
+          var on = k === id;
+          sets[k].hidden = !on;
+          sets[k].classList.toggle('is-live', on);
+        });
+        if (scrollEl) scrollEl.scrollTop = 0;
+      }
+
+      function open(id) {
+        if (!byId[id]) return false;
+        showSet(id);
+        document.body.classList.add('detail-open');
+        setActive(byId[id]);
+        return true;
+      }
+      function clear() { document.body.classList.remove('detail-open'); setActive(null); }
+      function closeDetail() {
+        if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+        clear();
+      }
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && document.body.classList.contains('detail-open')) closeDetail();
+      });
+
+      rows.forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          if (!mq.matches) return;                       // mobile → navigate to href (case study / site)
+          if (!(a.dataset.id && byId[a.dataset.id])) return; // no plate set → normal navigation
+          e.preventDefault();                            // desktop → open the panel, never full-navigate
+          if (location.hash.slice(1) !== a.dataset.id) location.hash = a.dataset.id;
+        });
+      });
+
+      window.addEventListener('hashchange', function () {
+        if (!mq.matches) return;
+        var id = decodeURIComponent(location.hash.slice(1));
+        if (byId[id]) open(id);
+      });
+
+      function sync() {
+        if (!mq.matches) { document.body.classList.remove('detail-open'); return; }
+        var id = decodeURIComponent(location.hash.slice(1));
+        if (byId[id]) open(id); else if (defaultId) open(defaultId); else clear();
+      }
+      sync();
+      mq.addEventListener('change', sync);
+    })();
+  </script>{% endraw %}

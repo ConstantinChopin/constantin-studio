@@ -1,0 +1,109 @@
+{
+  "shelves": [
+    {
+      "label": "Projects",
+      "glyph": "projects",
+      "entries": [
+        {
+          "id": "replika",
+          "title": "Replika",
+          "desc": "Consumer AI companionship.",
+          "href": "/projects/replika/",
+          "plates": [
+            { "src": "/assets/work/replika/app.svg",     "ratio": "wide",   "alt": "Replika — app" },
+            { "src": "/assets/work/replika/persona.svg", "ratio": "square", "alt": "Replika — persona" },
+            { "src": "/assets/work/replika/system.svg",  "ratio": "square", "alt": "Replika — system" }
+          ]
+        },
+        {
+          "id": "parable",
+          "title": "Parable",
+          "desc": "An intelligence layer for the enterprise.",
+          "href": "/projects/parable/",
+          "plates": [
+            { "src": "/assets/work/parable/console.svg", "ratio": "wide",   "alt": "Parable — console" },
+            { "src": "/assets/work/parable/model.svg",   "ratio": "square", "alt": "Parable — model" },
+            { "src": "/assets/work/parable/signals.svg", "ratio": "square", "alt": "Parable — signals" }
+          ]
+        },
+        {
+          "id": "pendulum",
+          "title": "Pendulum",
+          "desc": "Multimodal asset search at enterprise scale.",
+          "href": "/projects/pendulum/",
+          "about": "An enterprise system for indexing, organizing, and retrieving multimodal assets at scale. Built to handle millions of assets across images and text, with flexibility for downstream generative workflows. Developed with R/GA, WPP, and Kering.",
+          "plates": [
+            { "src": "/assets/work/pendulum/search.svg", "ratio": "wide",   "alt": "pendulum — search" },
+            { "src": "/assets/work/pendulum/grid.svg",   "ratio": "square", "alt": "pendulum — grid" },
+            { "src": "/assets/work/pendulum/detail.svg", "ratio": "square", "alt": "pendulum — detail" }
+          ]
+        },
+        {
+          "id": "lightnote",
+          "title": "Lightnote",
+          "desc": "Composable creative workflows for generative media.",
+          "href": "/projects/lightnote/",
+          "banner": { "src": "/assets/work/lightnote/brand.png", "alt": "Lightnote — brand" },
+          "about": "Lightnote explores what creative software looks like when AI is native to the interface rather than layered on top. A canvas-based environment for composing fine-tuned generative models and AI tools into repeatable creative workflows.",
+          "details": [
+            { "label": "Context", "text": "Page Nineteen — an applied multimodal AI lab in London — had built a toolkit that could already see, tag, and train on images: CLIP embeddings, colour palettes, LoRA training, generation with Flux and Stability. All of it lived in the terminal — precise, scriptable, invisible. The work was to give a command-line grammar a spatial one." },
+            { "label": "Role", "text": "Lead product design, zero to one — shaping the canvas interface from first sketch to shipped code, working directly against the lab's Python engine." },
+            { "label": "Approach", "text": "Nothing was invented, only transcribed. Every verb the terminal knew becomes a room on the canvas: images gather into sets, sets feed processes, processes leave runs. What the CLI writes as flags, the canvas holds as fields — a trigger word travels unchanged from shell to node, and the pipeline reads left to right, the way it always executed." },
+            { "label": "Design language", "text": "A near-black field and one warm primary — the cream bar, reserved for the moment of decision. Selection is the primary gesture, so blue is kept only for what the hand is holding. A single grotesque at two weights; surfaces at one radius." },
+            { "label": "Findings", "text": "The interface was already present in the toolkit's grammar — the canvas only gave it somewhere to stand. Holding the UI and the CLI as two registers of one language kept every operation legible in both, and kept the design system as small as the product: one field, one primary, one gesture." },
+            { "label": "Stack", "text": "CLIP · Stability AI · Flux · SDXL · LoRA · FastAPI" },
+            { "label": "Source", "text": "Open source under MIT — github.com/pendulum-ai/lightnote", "href": "https://github.com/pendulum-ai/lightnote" }
+          ],
+          "plates": [
+            { "src": "/assets/work/lightnote/canvas.webp",   "ratio": "square", "alt": "Lightnote — canvas, image sets" },
+            { "src": "/assets/work/lightnote/workflow.webp", "ratio": "square", "alt": "Lightnote — LoRA training workflow" },
+            { "src": "/assets/work/lightnote/tool.webp",     "ratio": "square", "alt": "Lightnote — tool builder" },
+            { "src": "/assets/work/lightnote/terminal.svg",  "ratio": "square", "alt": "Lightnote — the first register: the CLI. lightnote train submit, then flux-generate with the trained LoRA." }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Writing",
+      "glyph": "writing",
+      "entries": [
+        {
+          "title": "Formscapes",
+          "desc": "Artificial mythologies in future interfaces.",
+          "href": "https://constantin.world/writing/formscapes/"
+        },
+        {
+          "title": "On Reading the Iliad",
+          "desc": "Honouring the beauty in timeless stories.",
+          "href": "https://constantin.world/writing/narrative-motifs-in-the-iliad/"
+        }
+      ]
+    },
+    {
+      "label": "Resources",
+      "glyph": "resources",
+      "entries": [
+        {
+          "title": "Volumetric Point Clouds",
+          "desc": "Luminous WebGL point-cloud figures for the browser.",
+          "href": "https://constantin.world/resources/skills/#volumetric-pointcloud-figure"
+        },
+        {
+          "title": "Text to Topology",
+          "desc": "A body of writing turned into a navigable map of its ideas.",
+          "href": "https://constantin.world/resources/skills/#text-to-topology"
+        },
+        {
+          "title": "Project Page System",
+          "desc": "One design language held across every page of a project.",
+          "href": "https://constantin.world/resources/skills/#project-page-system"
+        },
+        {
+          "title": "Prose to Reading Page",
+          "desc": "Long-form writing, set to be read on screen.",
+          "href": "https://constantin.world/resources/skills/#prose-to-reading-page"
+        }
+      ]
+    }
+  ]
+}

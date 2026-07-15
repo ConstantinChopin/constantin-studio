@@ -1,0 +1,940 @@
+/* =========================================================================
+   constantin.studio — the studio site
+   One stylesheet, forked from constantin.world and inverted: the same
+   tokens, base, and two surfaces (.home and .essay) set on light paper
+   with dark ink. Type system kept deliberately small: one family
+   (Newsreader) in four roles — display, body, label, meta.
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  /* the paper is the brand off-white of the monogram; the ink its near-black.
+     each derived tier mirrors the dark site's hierarchy: ink → muted → faint
+     → rule, in descending presence. */
+  --paper:  #fefaf8;
+  --ink:    rgba(17, 15, 15, 0.82);
+  --muted:  rgba(17, 15, 15, 0.60);
+  --faint:  rgba(17, 15, 15, 0.38);
+  --rule:   rgba(17, 15, 15, 0.12);
+  --mark:   rgb(143, 119, 54);
+
+  --serif:  "Newsreader", Georgia, "Times New Roman", serif;
+  /* the apparatus voice — catalogue notation (section labels, counts, entry
+     meta) and code, never prose. everything is one voice or the other. */
+  --mono:   "IBM Plex Mono", ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  /* one quiet title size (display), one body size, and one small tier for
+     labels, meta, and captions — set by the landing; nothing in between. */
+  --text:    1.0625rem;
+  --display: 1.5rem;
+  --small:   0.8rem;
+
+  /* case-study scroll system — two tiers above the base (a hero and a big
+     statement), and one section-title tier between display and title. all
+     fluid; the family stays Newsreader, restrained on purpose. */
+  --lede:       clamp(1.3rem, 2.2vw + 0.55rem, 1.95rem);
+  --case-title: clamp(1.7rem, 3.2vw + 0.5rem,  2.9rem);
+  --display-xl: clamp(2.3rem, 5vw   + 0.6rem,  3.8rem);
+  /* the shared frame a case page's bands align to, and their side gutter */
+  --frame: 64rem;
+  --frame-pad: clamp(1.6rem, 7vw, 3rem);
+
+  --reading: 39rem;
+  --index-w: 31rem;
+  --index-gutter: 1.5rem;
+  /* the gap between a type glyph and its title, and how far the title drops to
+     sit optically level with the glyph — shared by the index shelf labels and
+     the viewport toolbar so both read as the same component */
+  --glyph-gap: 0.3rem;
+  --glyph-title-drop: 1.5px;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* ---- Base --------------------------------------------------------------- */
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* scroll, but without the scrollbar chrome */
+html { scrollbar-width: none; }
+::-webkit-scrollbar { width: 0; height: 0; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-size: var(--text);
+  line-height: 1.6;
+  font-feature-settings: "kern", "liga", "calt";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection { background: rgba(143, 119, 54, 0.24); }
+
+a { color: inherit; text-decoration: none; }
+
+:focus-visible {
+  outline: 1.5px solid var(--mark);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* the one small utility role — section labels, eyebrows. set in the mono
+   apparatus voice everywhere so structure reads as catalogue notation,
+   never prose. */
+.label {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 0;
+}
+
+/* ---- Reveal ------------------------------------------------------------- */
+/* a page settles in on load: each marked block rises a little, fades up,
+   and sharpens from a soft blur. the cascade is set per element with an
+   inline --d delay. */
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+.reveal {
+  animation: reveal-rise 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { animation: none; }
+}
+
+/* =========================================================================
+   HOME — a quiet index
+   ========================================================================= */
+
+body.home { padding: 0; }
+
+/* master–detail: a persistent index on the left; entries open in the pane
+   on the right. below 64rem the pane is dropped and entries navigate to
+   their own pages instead. */
+.split { min-height: 100svh; }
+
+.page {
+  width: 100%;
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 9vh, 5rem) clamp(1.6rem, 7vw, 3rem) clamp(3rem, 8vh, 5rem);
+}
+
+/* phones: pull the frame in tight so the column gets the width */
+@media (max-width: 40rem) {
+  .page { padding: 20px 12px clamp(3rem, 8vh, 5rem); }
+}
+
+.pane-detail { display: none; }
+
+@media (min-width: 64rem) {
+  /* Idle: the index sits centred between two flexible gutters, the detail
+     track collapsed. On open the gutters close, the index slides left, and
+     the detail track grows — the column repositions and the panel reveals. */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr var(--index-w) 0fr 1fr;
+    height: 100svh;
+    transition: grid-template-columns 0.6s var(--ease);
+  }
+  .pane-index {
+    grid-column: 2;
+    height: 100svh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    border-right: 1px solid transparent;
+    transition: border-color 0.6s var(--ease);
+  }
+  /* even inset on every side — the top matches the left/right rather than
+     sitting on a taller vertical rhythm */
+  .page { margin: 0; padding: clamp(1.8rem, 3vw, 2.6rem); }
+
+  .pane-detail {
+    display: block;
+    grid-column: 3;
+    position: relative;
+    height: 100svh;
+    min-width: 0;
+    overflow: hidden;
+    /* the detail is an inset viewport, not an edge-to-edge pane: an even inset
+       on every side so the framed window floats in the right region */
+    padding: 12px;
+    opacity: 0;
+    filter: blur(8px);
+    pointer-events: none;
+    transition: opacity 0.6s var(--ease), filter 0.6s var(--ease);
+  }
+  /* the viewport — a floating window: on light paper its chrome is a shade
+     warmer and darker than the page, its shadow soft rather than deep */
+  .viewport {
+    position: relative;
+    height: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: #f6f0ec;
+    border: 1px solid rgba(17, 15, 15, 0.08);
+    /* a soft rounding — the window reads as a single floating card
+       rather than a chromed app frame */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px -28px rgba(43, 32, 24, 0.35);
+  }
+  /* the app-style toolbar (glyph, title, fullscreen/close) is hidden — the
+     preview reads as a bare floating window with no chrome. Its markup stays
+     in the DOM so the breadcrumb/close JS keeps its element references. */
+  .viewport-bar { display: none; }
+  /* the type glyph of the open entry, cloned from its shelf label and sized
+     to sit in the toolbar — same glyph, same gap to its title as the index
+     shelf labels */
+  .viewport-icon {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    margin-right: var(--glyph-gap);
+  }
+  .viewport-icon .glyph {
+    width: 19px;
+    height: 19px;
+    margin: 0;
+    vertical-align: middle;
+    color: var(--mark);
+    stroke-width: 1.6;
+  }
+  .viewport-title {
+    position: relative;
+    top: var(--glyph-title-drop);
+    justify-self: start;
+    max-width: 100%;
+    min-width: 0;
+    padding-right: 0.5rem;
+    font-size: var(--small);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  /* the title doubles as a breadcrumb when an embedded preview reports a
+     trail; links navigate back into the page */
+  .viewport-title .crumb { font: inherit; vertical-align: baseline; }
+  .viewport-title .crumb-link {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    color: var(--faint);
+    cursor: pointer;
+    transition: color 0.25s var(--ease);
+  }
+  .viewport-title .crumb-link:hover,
+  .viewport-title .crumb-link:focus-visible { color: var(--ink); }
+  .viewport-title .crumb-current { color: var(--ink); }
+  .viewport-title .crumb-sep { color: var(--faint); opacity: 0.55; margin: 0 0.4rem; }
+  .viewport-actions { justify-self: end; display: inline-flex; align-items: center; gap: 0.1rem; }
+  .viewport-btn {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    transition: color 0.2s var(--ease), background-color 0.2s var(--ease);
+  }
+  .viewport-btn:hover,
+  .viewport-btn:focus-visible { color: #110f0f; background: rgba(17, 15, 15, 0.05); }
+  .viewport-btn svg { width: 15px; height: 15px; display: block; stroke-width: 1.8; }
+  /* the fullscreen control swaps between an expand and a contract glyph */
+  .viewport-btn .ico-exit { display: none; }
+  body.viewport-fs .viewport-fullscreen .ico-enter { display: none; }
+  body.viewport-fs .viewport-fullscreen .ico-exit { display: block; }
+  /* in fullscreen the chrome fills the screen — drop its floating rounding */
+  .viewport:fullscreen { border-radius: 0; border: 0; }
+  .viewport:-webkit-full-screen { border-radius: 0; border: 0; }
+  /* the inner window — the page floats in its own rounded card inset from the
+     chrome, so the toolbar reads as a frame around a separate window */
+  .viewport-stage {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    padding: 0;
+  }
+  .viewport-window {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
+    background: var(--paper);
+    border: 0;
+    /* concentric with the viewport (10px outer − 1px frame) so the page clips
+       to the same smooth corner; overflow keeps the iframe rounded */
+    border-radius: 9px;
+    overflow: hidden;
+  }
+  .viewport-window iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+
+  /* ---- plate grid — the right panel is a mosaic of project stills, not a
+     live preview. wide plates are 16:9 presentation cards spanning the column;
+     square plates are 1:1 tiles that pair beneath them (dense auto-flow). ---- */
+  .plate-scroll {
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .plate-scroll::-webkit-scrollbar { width: 0; height: 0; }
+  .plates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: dense;
+    gap: 12px;
+    padding-bottom: 4px;
+  }
+  .plate {
+    margin: 0;
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: clamp(10px, 1.2vw, 15px);
+    overflow: hidden;
+    outline: 1px solid rgba(17, 15, 15, 0.10);
+    outline-offset: -1px;
+    box-shadow: 0 20px 50px -30px rgba(43, 32, 24, 0.4);
+    background: #0c100c;
+  }
+  .plate img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* the brand plate opens the set as a wide rectangle above the squares */
+  .plate.banner { aspect-ratio: 16 / 7; margin-bottom: 12px; }
+
+  /* the project notes — a stack of editorial spec rows between banner and
+     plates: a small context label in the left column, prose beside it from
+     the same first line. plain text on the pane, no card */
+  .plate-notes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin: 1.1rem 0 1.4rem;
+  }
+  .plate-about {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    column-gap: 1.2rem;
+    align-items: baseline;
+    margin: 0;
+  }
+  /* the context label speaks in the same voice as the index section titles */
+  .plate-about-label {
+    font-family: var(--serif);
+    font-size: 0.9375rem;
+    font-style: italic;
+    letter-spacing: 0;
+    text-transform: none;
+    color: rgba(17, 15, 15, 0.5);
+  }
+  .plate-about p {
+    margin: 0;
+    max-width: 58ch;
+    font-size: var(--text);
+    line-height: 1.6;
+    color: var(--muted);
+    text-wrap: pretty;
+  }
+  .plate-about a {
+    color: var(--ink);
+    box-shadow: inset 0 -1px 0 var(--rule);
+    transition: box-shadow 0.25s var(--ease);
+  }
+  .plate-about a:hover { box-shadow: inset 0 -1px 0 var(--ink); }
+
+  /* on set-switch the plates fade and rise in a gentle stagger — the panel's
+     one moment of motion */
+  .plate-set.is-live .plate {
+    animation: plate-in 0.5s var(--ease) both;
+    animation-delay: calc(var(--i, 0) * 55ms);
+  }
+  @keyframes plate-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .plate-set.is-live .plate { animation: none; }
+  }
+
+  body.detail-open .split { grid-template-columns: 0fr var(--index-w) 1fr 0fr; }
+  body.detail-open .pane-index { animation: index-shift 0.6s var(--ease); }
+  body.detail-open .pane-detail { opacity: 1; filter: blur(0); pointer-events: auto; }
+
+  @keyframes index-shift {
+    0%   { filter: blur(0); }
+    45%  { filter: blur(3px); }
+    100% { filter: blur(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .split, .pane-index, .pane-detail { transition: none; }
+    body.detail-open .pane-index { animation: none; }
+    .pane-detail { filter: none; }
+  }
+}
+
+/* the monogram sits above the name like a printer's device on a title page —
+   small, in the ink tone, part of the header rather than a graphic on it */
+.brand-mark {
+  display: block;
+  width: 25px;
+  height: 25px;
+  color: var(--ink);
+  margin-bottom: 0.9rem;
+}
+
+.name {
+  /* a display headline, fluid, holding two balanced lines */
+  font-size: clamp(1.25rem, 5vw, 1.8rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.bio-line {
+  font-size: var(--text);
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0.55rem 0 0;
+  text-wrap: pretty;
+}
+.name + .bio-line { margin-top: 0.35rem; }
+.bio-line a {
+  color: var(--ink);
+  box-shadow: inset 0 -1px 0 var(--rule);
+  transition: box-shadow 0.25s var(--ease);
+}
+.bio-line a:hover { box-shadow: inset 0 -1px 0 var(--ink); }
+
+/* small rubricated glyphs before each shelf label — the studio's instruments,
+   drawn in the muted tier: an armillary sphere, a pair of dividers, a letter */
+.glyph {
+  width: 19px;
+  height: 19px;
+  color: var(--muted);
+  stroke-width: 1.6;
+  vertical-align: middle;
+  margin-right: var(--glyph-gap);
+}
+
+.shelf {
+  margin-top: clamp(1.1rem, 2.6vh, 1.65rem);
+}
+
+/* the section header: a serif italic title in the same voice as the entry
+   subtitles, dimmed a step below the entries and led by a solid instrument.
+   no rule — sections separate by whitespace alone. */
+.shelf .label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.35rem;
+  font-family: var(--serif);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
+  color: rgba(17, 15, 15, 0.5);
+}
+
+/* the instrument at the title's tone, drawn as one opaque mark faded via group
+   opacity so overlapping strokes don't compound; pulled flush-left with the
+   entry titles below */
+.shelf .glyph {
+  color: #110f0f;
+  opacity: 0.42;
+  stroke-width: 1.3;
+  margin-left: -3px;
+}
+
+/* nudge the word down so it sits level with the glyph's optical centre */
+.shelf .label-text { transform: translateY(1px); }
+
+.index { list-style: none; margin: 0; padding: 0; }
+
+/* an index row: title and gloss form a single block flush to the left edge,
+   aligned under the section label's glyph — no date gutter. */
+.row {
+  position: relative;
+  display: block;
+  padding: 0.26rem 0;
+  color: var(--ink);
+}
+
+.row-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.row-title {
+  display: inline-block;
+  /* clean at rest — hierarchy comes from size and value now, and the
+     canonical hairline-to-ink underline arrives on hover instead */
+  line-height: 1;
+  color: var(--ink);
+  box-shadow: inset 0 -1px 0 transparent;
+  transition: box-shadow 0.25s var(--ease);
+}
+.row-meta {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.25s var(--ease);
+}
+.row:hover .row-title,
+.row:focus-visible .row-title { box-shadow: inset 0 -1px 0 var(--ink); }
+.row:hover .row-meta,
+.row:focus-visible .row-meta { color: var(--muted); }
+
+/* the entry currently open in the detail pane — the hover underline, held
+   at full ink so the current row reads as engaged */
+.row.is-active .row-title { box-shadow: inset 0 -1px 0 var(--ink); }
+.row.is-active .row-meta { color: var(--muted); }
+
+/* a static row — a service, not a destination: same ledger anatomy, but no
+   hover affordance, since there is nowhere to go */
+.row.is-static { cursor: default; }
+.row.is-static:hover .row-title { box-shadow: inset 0 -1px 0 transparent; }
+.row.is-static:hover .row-meta { color: var(--faint); }
+
+/* when a page is shown inside the detail viewport, drop its redundant chrome —
+   the back link and its own sticky bar; the viewport supplies both */
+.embedded .return { display: none; }
+
+/* the one-line gloss beneath each title — a step below the title in size so
+   the index scans by titles first. */
+.row-desc {
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.page .colophon { margin-top: clamp(3rem, 8vh, 5rem); }
+
+/* =========================================================================
+   ESSAY — a reading page (kept for future studio pages: notes, case texts)
+   ========================================================================= */
+
+body.essay {
+  padding: clamp(2.6rem, 8vh, 5rem) clamp(1.6rem, 7vw, 3rem) clamp(4rem, 12vh, 8rem);
+}
+
+.reading {
+  width: 100%;
+  max-width: var(--reading);
+  margin: 0 auto;
+}
+
+.return {
+  display: inline-block;
+  font-size: var(--small);
+  color: var(--muted);
+  margin-bottom: clamp(2.6rem, 8vh, 4.5rem);
+  transition: color 0.25s var(--ease);
+}
+.return:hover { color: var(--ink); }
+.return .arrow { display: inline-block; transition: transform 0.25s var(--ease); }
+.return:hover .arrow { transform: translateX(-3px); }
+
+.essay-head { margin-bottom: clamp(2rem, 6vh, 3rem); }
+.essay-head .label { margin-bottom: 0.9rem; }
+
+.essay-title {
+  font-size: var(--display);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.standfirst {
+  font-style: italic;
+  font-size: var(--text);
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 0.9rem 0 0;
+  max-width: 34ch;
+  text-wrap: pretty;
+}
+
+/* the dateline under the standfirst — the same mono notation as the home
+   index's entry meta */
+.essay-meta {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 1.2rem 0 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* prose */
+.prose {
+  font-size: var(--text);
+  line-height: 1.62;
+  color: var(--ink);
+}
+.prose > * { margin: 0; }
+.prose > p { text-wrap: pretty; }
+.prose > * + * { margin-top: 1.15em; }
+.prose > * + h2 { margin-top: 1.9em; }
+.prose > h2 + * { margin-top: 0.9em; }
+.prose > * + blockquote,
+.prose > blockquote + * { margin-top: 1.6em; }
+
+.prose a {
+  box-shadow: inset 0 -0.06em 0 rgba(17, 15, 15, 0.30);
+  transition: box-shadow 0.25s var(--ease);
+}
+.prose a:hover { box-shadow: inset 0 -0.06em 0 var(--ink); }
+
+.prose em { font-style: italic; }
+.prose strong { font-weight: 500; }
+
+.prose h2 {
+  font-size: 1em;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+.prose h3 {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1em;
+  color: var(--muted);
+}
+
+.prose blockquote {
+  padding-left: 1.4em;
+  border-left: 1px solid var(--rule);
+  color: var(--muted);
+  font-style: italic;
+}
+.prose blockquote p + p { margin-top: 0.8em; }
+
+/* citation under a quotation — small, quiet, not italic */
+.prose .attr {
+  font-style: normal;
+  font-size: var(--small);
+  color: var(--faint);
+}
+.prose blockquote .attr { margin-top: 0.8em; }
+
+/* section break — a small rubric diamond, the one ornament */
+.prose hr {
+  border: 0;
+  margin: 2.6em 0;
+  height: 6px;
+}
+.prose hr::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 6px;
+  margin: 0 auto;
+  background: var(--mark);
+  transform: rotate(45deg);
+}
+
+.prose figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  outline: 1px solid rgba(17, 15, 15, 0.12);
+  outline-offset: -1px;
+}
+.prose figcaption {
+  font-size: var(--small);
+  color: var(--muted);
+  margin-top: 0.7em;
+}
+
+/* colophon — the quiet signature at the foot of a page */
+.colophon {
+  font-size: var(--small);
+  line-height: 1.7;
+  color: var(--muted);
+}
+.colophon a {
+  color: var(--ink);
+  box-shadow: inset 0 -1px 0 var(--rule);
+  transition: box-shadow 0.25s var(--ease);
+}
+.colophon a:hover { box-shadow: inset 0 -1px 0 var(--ink); }
+.sep { color: var(--faint); margin: 0 0.6em; }
+
+.essay .colophon {
+  max-width: var(--reading);
+  margin: clamp(3.5rem, 10vh, 6rem) auto 0;
+  padding-top: 1.4em;
+  border-top: 1px solid var(--rule);
+}
+
+/* =========================================================================
+   PROJECT — a case page under its own sticky bar. The bar mirrors the
+   preview viewport toolbar, so the header reads the same whether the page
+   opens in the pane (wide) or as its own page (narrow).
+   ========================================================================= */
+
+.project-bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  height: 46px;
+  padding: 0 0.7rem 0 0.95rem;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+.project-glyph { justify-self: start; display: inline-flex; align-items: center; margin-right: var(--glyph-gap); }
+.project-glyph .glyph { width: 19px; height: 19px; margin: 0; vertical-align: middle; color: var(--mark); stroke-width: 1.6; }
+.project-name {
+  justify-self: start;
+  position: relative;
+  top: var(--glyph-title-drop);
+  min-width: 0;
+  padding-right: 0.5rem;
+  font: 500 var(--small) var(--serif);
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* right track: the return home — the standalone equivalent of the pane's
+   close. the essay .return carries a bottom margin; here it sits in the bar. */
+.project-bar .return { margin: 0; justify-self: end; }
+/* embedded in the studio's detail pane, the viewport supplies the chrome —
+   drop the page's own bar */
+.embedded .project-bar { display: none; }
+
+.project-colophon {
+  border-top: 1px solid var(--rule);
+  padding: clamp(2rem, 6vh, 3.5rem) clamp(1.6rem, 6vw, 3rem) clamp(3rem, 8vh, 5rem);
+  text-align: center;
+  font-size: var(--small);
+  color: var(--faint);
+}
+.project-colophon a {
+  color: var(--muted);
+  box-shadow: inset 0 -1px 0 var(--rule);
+  transition: box-shadow 0.25s var(--ease), color 0.25s var(--ease);
+}
+.project-colophon a:hover { color: var(--ink); box-shadow: inset 0 -1px 0 var(--ink); }
+
+/* scroll-revealed beats — rise and sharpen as they enter view */
+.rise {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(6px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease), filter 0.8s var(--ease);
+}
+.rise.is-in { opacity: 1; transform: none; filter: blur(0); }
+@media (prefers-reduced-motion: reduce) {
+  .rise { opacity: 1; transform: none; filter: none; transition: none; }
+}
+
+/* =========================================================================
+   CASE — the scroll view of a project. A project is assembled from a small,
+   closed set of blocks; every band shares one frame so their column edges
+   line up, and any band can break full-bleed for media. Inverted from the
+   .world case system: cream text becomes dark ink on the studio's paper.
+   ========================================================================= */
+
+.case { width: 100%; }
+
+.case .block { padding-block: clamp(3.2rem, 9vh, 7rem); }
+.case .block:first-child { padding-top: clamp(1.8rem, 6vh, 4rem); }
+.case .wrap { max-width: var(--frame); margin-inline: auto; padding-inline: var(--frame-pad); }
+.case .wrap-narrow { max-width: var(--reading); }
+.case .bleed { width: 100%; padding-inline: 0; }
+
+/* ---- type roles -------------------------------------------------------- */
+.eyebrow {
+  margin: 0 0 1.05rem;
+  font: 500 var(--small)/1 var(--serif);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mark);
+}
+.case-display {
+  margin: 0;
+  font: 500 var(--display-xl)/1.02 var(--serif);
+  letter-spacing: -0.022em;
+  color: rgba(17, 15, 15, 0.92);
+  text-wrap: balance;
+}
+.case-title {
+  margin: 0;
+  font: 500 var(--case-title)/1.08 var(--serif);
+  letter-spacing: -0.016em;
+  color: rgba(17, 15, 15, 0.88);
+  text-wrap: balance;
+}
+.lede {
+  margin: 0;
+  max-width: 30ch;
+  font: 400 var(--lede)/1.34 var(--serif);
+  letter-spacing: -0.01em;
+  color: rgba(17, 15, 15, 0.82);
+  text-wrap: pretty;
+}
+.case-body { font: 400 var(--text)/1.62 var(--serif); color: var(--muted); text-wrap: pretty; }
+.case-body p { margin: 0; max-width: 42ch; }
+.case-body p + p { margin-top: 1.1em; }
+.case-body a { color: var(--ink); box-shadow: inset 0 -1px 0 var(--rule); transition: box-shadow 0.25s var(--ease); }
+.case-body a:hover { box-shadow: inset 0 -1px 0 var(--ink); }
+.case-body em { font-style: italic; }
+
+/* ---- hero — title, a short line, then the metadata strip ---------------- */
+.block-hero .hero-line { margin: 1.2rem 0 0; max-width: 34ch; font: 400 var(--text)/1.5 var(--serif); color: var(--muted); text-wrap: pretty; }
+.case-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 2.6rem);
+  margin: clamp(2rem, 5vh, 3.4rem) 0 0;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--rule);
+  list-style: none;
+}
+.case-meta li { display: block; }
+.case-meta .k {
+  display: block;
+  margin: 0 0 0.4rem;
+  font: 500 var(--small)/1.2 var(--serif);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.case-meta .v { display: block; font: 400 var(--text)/1.45 var(--serif); color: var(--muted); text-wrap: pretty; }
+@media (max-width: 40rem) { .case-meta { grid-template-columns: 1fr 1fr; gap: 1.4rem 1rem; } }
+
+/* ---- lede — one big statement alone on the field ------------------------ */
+.block-lede .lede { max-width: 22ch; font-size: clamp(1.5rem, 3.4vw + 0.4rem, 2.5rem); line-height: 1.22; }
+
+/* ---- section — eyebrow + title + body. optional two-column (.cols) ------- */
+.block-section .case-title + .case-body { margin-top: clamp(1.1rem, 2.6vh, 1.7rem); }
+.block-section.cols .wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(1.6rem, 4vw, 4rem);
+  align-items: start;
+}
+.block-section.cols .case-body { margin-top: 0; }
+@media (max-width: 52rem) { .block-section.cols .wrap { grid-template-columns: 1fr; gap: 1.4rem; } }
+
+/* ---- figure — a media plate with a quiet caption ------------------------ */
+.case-fig { margin: 0; }
+.case-fig .frame {
+  position: relative;
+  border-radius: clamp(10px, 1.4vw, 18px);
+  overflow: hidden;
+  outline: 1px solid rgba(17, 15, 15, 0.10);
+  outline-offset: -1px;
+  box-shadow: 0 26px 64px -32px rgba(43, 32, 24, 0.35);
+}
+.case-fig .frame img,
+.case-fig .frame video { display: block; width: 100%; height: auto; }
+.case-fig figcaption,
+.case-cap { margin: 0.95rem 0 0; font: 400 var(--small)/1.55 var(--serif); color: var(--muted); text-wrap: pretty; }
+.case-fig.bleed .frame { border-radius: 0; outline: 0; }
+
+/* the ln-plate figures carry their own dark ground; give the contained ones
+   the same framed treatment as any media plate, and let bleed ones run clean */
+.case-fig .ln-plate {
+  border-radius: clamp(10px, 1.4vw, 18px);
+  outline: 1px solid rgba(17, 15, 15, 0.10);
+  outline-offset: -1px;
+  box-shadow: 0 26px 64px -32px rgba(43, 32, 24, 0.4);
+}
+.case-fig.bleed .ln-plate { border-radius: 0; outline: 0; box-shadow: none; }
+
+/* ---- plates — a 2–3-up grid of figures ---------------------------------- */
+.block-plates .grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
+  gap: clamp(0.9rem, 1.9vw, 1.7rem);
+}
+.block-plates .case-fig figcaption { margin-top: 0.7rem; }
+@media (max-width: 52rem) { .block-plates .grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 34rem) { .block-plates .grid { grid-template-columns: 1fr; } }
+
+/* ---- aside — a small offset note set beside its media ------------------- */
+.block-aside .wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  gap: clamp(1.6rem, 4vw, 3.6rem);
+  align-items: start;
+}
+.aside-note { font: 400 var(--text)/1.55 var(--serif); color: var(--muted); text-wrap: pretty; }
+.aside-note p { margin: 0; }
+.aside-note p + p { margin-top: 1em; }
+.block-aside .case-fig { min-width: 0; }
+@media (max-width: 52rem) { .block-aside .wrap { grid-template-columns: 1fr; gap: 1.4rem; } }
+
+/* ---- pull — a quotation lifted out of the prose ------------------------- */
+.block-pull .wrap { max-width: 46rem; }
+.case-pull { margin: 0; font: 400 clamp(1.5rem, 3vw + 0.3rem, 2.25rem)/1.26 var(--serif); font-style: italic; color: rgba(17, 15, 15, 0.82); text-wrap: balance; }
+.case-pull cite {
+  display: block;
+  margin-top: 1.2rem;
+  font: 500 var(--small)/1.3 var(--serif);
+  font-style: normal;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+/* ---- close — the colophon band ----------------------------------------- */
+.block-close { border-top: 1px solid var(--rule); }
+.block-close .case-body { color: var(--faint); }
+.block-close .case-body a { color: var(--muted); }
+
+/* embedded in the studio's detail pane: fold every multi-column band to one
+   column so the case reads in the narrower preview width */
+.embedded .case .block-section.cols .wrap,
+.embedded .case .block-aside .wrap { grid-template-columns: 1fr; gap: 1.4rem; }
+.embedded .case .block-plates .grid { grid-template-columns: 1fr; }

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Asterlogos — Reader (placeholder)">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c100c"/>
+      <stop offset="1" stop-color="#23241f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#g)"/>
+  <rect x="40" y="40" width="1520" height="820" fill="none" stroke="rgba(247,244,236,0.10)" stroke-width="1.5"/>
+  <circle cx="800" cy="378" r="108" fill="none" stroke="rgba(143,119,54,0.55)" stroke-width="1.5"/>
+  <circle cx="800" cy="378" r="108" fill="none" stroke="rgba(247,244,236,0.14)" stroke-width="1.5" transform="rotate(-16 800 378)" stroke-dasharray="3 6"/>
+  <text x="80" y="780" font-family="Newsreader, Georgia, serif" font-style="italic" font-size="72" fill="rgba(247,244,236,0.94)">Asterlogos</text>
+  <text x="80" y="844" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="26" letter-spacing="3.12" fill="rgba(143,119,54,0.92)">READER · PLACEHOLDER</text>
+</svg>

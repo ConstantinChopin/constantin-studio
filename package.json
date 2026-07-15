@@ -1,0 +1,14 @@
+{
+  "name": "constantin-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "constantin.studio — the design engineering studio of Constantin Chopin.",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "clean": "rimraf _site"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}
