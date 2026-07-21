@@ -1,7 +1,0 @@
-# Kept out of the built site — dev-only tile previews and internal design notes.
-# Delete a line to publish that file again.
-src/zz-parable-preview.njk
-src/zz-pendulum-preview.njk
-src/projects/lightnote/DESIGN_DNA.md
-src/projects/pendulum/DESIGN_DNA.md
-src/projects/parable/DESIGN_DNA.md
