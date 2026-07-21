@@ -55,36 +55,44 @@ ogUrl: "https://constantin.studio"
     </div>
 
     <aside class="pane-detail" aria-label="Selected project">
-      <div class="plate-scroll" id="plateScroll">
-        {% for shelf in studio.shelves %}{% for e in shelf.entries %}{% if e.plates %}
-        <div class="plate-set" data-id="{{ e.id }}" hidden>
-          {% if e.banner %}
-          <figure class="plate banner" style="--i: 0">
-            <img src="{{ e.banner.src }}" alt="{{ e.banner.alt }}" loading="lazy" />
-          </figure>
-          {% endif %}
-          {% if e.details or e.about %}
-          <div class="plate-notes">
-            {% if e.about %}
-            <div class="plate-about">
-              <span class="plate-about-label">Overview</span>
-              <p>{{ e.about }}</p>
-            </div>
-            {% endif %}
-            {% for d in e.details %}
-            <div class="plate-about">
-              <span class="plate-about-label">{{ d.label }}</span>
-              <p>{% if d.href %}<a href="{{ d.href }}">{{ d.text }}</a>{% else %}{{ d.text }}{% endif %}</p>
-            </div>
-            {% endfor %}
+      <div class="viewport">
+        <header class="viewport-bar">
+          <span class="viewport-title" data-vp-title></span>
+          <nav class="viewport-actions" aria-label="Projects">
+            <button class="viewport-btn" type="button" data-vp-prev aria-label="Previous project">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg>
+            </button>
+            <button class="viewport-btn" type="button" data-vp-next aria-label="Next project">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+            </button>
+          </nav>
+        </header>
+        {% for shelf in studio.shelves %}{% for e in shelf.entries %}{% if e.rail %}
+        <div class="canvas-set" data-id="{{ e.id }}" data-title="{{ e.title }}" data-category="{{ shelf.label }}" hidden>
+
+          {# the stills — a row anchored to the foot of the canvas. each square
+             runs taller than the gap left beneath the copy, so its head passes
+             behind the copy plate. flush at left and bottom, 4px between. #}
+          {# a project shows its real stills once `railReady` is set in studio.json;
+             until its square assets land it holds flat grey placeholders, which
+             are inert — with no image there is nothing to open. #}
+          <div class="canvas-rail" role="list" aria-label="{{ e.title }} — stills">
+            {% if e.railReady %}{% for a in e.rail %}
+            <button class="rail-item" type="button" role="listitem" data-full="{{ a.src }}" data-cap="{{ a.alt }}">
+              <img src="{{ a.src }}" alt="{{ a.alt }}" loading="lazy" />
+            </button>
+            {% endfor %}{% else %}{% for i in range(0, 6) %}
+            <span class="rail-item is-ph" role="listitem" aria-hidden="true"></span>
+            {% endfor %}{% endif %}
           </div>
-          {% endif %}
-          <div class="plates">
-            {% for p in e.plates %}
-            <figure class="plate {{ p.ratio }}" style="--i: {{ loop.index }}">
-              <img src="{{ p.src }}" alt="{{ p.alt }}" loading="lazy" />
-            </figure>
-            {% endfor %}
+
+          {# the copy plate — paper across the head of the canvas, over the stills #}
+          <div class="canvas-copy">
+            {% if e.intro %}<p class="canvas-intro">{{ e.intro | safe }}</p>{% endif %}
+            {% if e.meta %}
+            {# stack is too long for the tag line, and an em-dash is a placeholder, not a value #}
+            <p class="canvas-tags">{% for m in e.meta %}{% if m.label != "Stack" %}{% for t in m.tags %}{% if t != "—" %}<span>{{ t }}</span>{% endif %}{% endfor %}{% endif %}{% endfor %}</p>
+            {% endif %}
           </div>
         </div>
         {% endif %}{% endfor %}{% endfor %}
@@ -93,16 +101,43 @@ ogUrl: "https://constantin.studio"
 
   </div>
 
+  {# the lightbox — the still at full size, uncropped, over the page #}
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Still at full size" hidden>
+    <button class="lightbox-close" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+    </button>
+    <figure class="lightbox-fig">
+      <img id="lightboxImg" src="" alt="" />
+      <figcaption id="lightboxCap"></figcaption>
+    </figure>
+  </div>
+
   {% raw %}<script>
     (function () {
       var mq = window.matchMedia('(min-width: 64rem)');
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       var scrollEl = document.getElementById('plateScroll');
+      var titleEl = document.querySelector('[data-vp-title]');
+      var prevBtn = document.querySelector('[data-vp-prev]');
+      var nextBtn = document.querySelector('[data-vp-next]');
+      var liveId = null;
+
+      // each image fades in the moment it decodes (they lazy-load when a set is
+      // shown), so nothing pops in
+      Array.prototype.forEach.call(document.querySelectorAll('.plate img, .rail-item img'), function (img) {
+        if (img.complete && img.naturalWidth) { img.classList.add('is-decoded'); return; }
+        var mark = function () { img.classList.add('is-decoded'); };
+        img.addEventListener('load', mark, { once: true });
+        img.addEventListener('error', mark, { once: true });
+      });
 
       // every project's plate set is rendered once and toggled — no fetch on switch
       var sets = {};
-      Array.prototype.forEach.call(document.querySelectorAll('.plate-set'), function (s) {
+      Array.prototype.forEach.call(document.querySelectorAll('.canvas-set'), function (s) {
         sets[s.dataset.id] = s;
       });
+      // the header nav cycles through the projects in DOM order
+      var order = Array.prototype.map.call(document.querySelectorAll('.canvas-set'), function (s) { return s.dataset.id; });
       var rows = Array.prototype.slice.call(document.querySelectorAll('.index a.row'));
       var byId = {};
       rows.forEach(function (a) { if (a.dataset.id && sets[a.dataset.id]) byId[a.dataset.id] = a; });
@@ -120,16 +155,64 @@ ogUrl: "https://constantin.studio"
           sets[k].hidden = !on;
           sets[k].classList.toggle('is-live', on);
         });
-        if (scrollEl) scrollEl.scrollTop = 0;
+        // the row rewinds, so each project opens on its first still
+        var liveRail = sets[id] && sets[id].querySelector('.canvas-rail');
+        if (liveRail) liveRail.scrollLeft = 0;
+      }
+
+      function buildCrumb(id) {
+        if (!titleEl) return;
+        var d = sets[id] ? sets[id].dataset : {};
+        titleEl.textContent = '';
+        if (d.category) {
+          var parent = document.createElement('span');
+          parent.className = 'crumb-parent';
+          parent.textContent = d.category;
+          var sep = document.createElement('span');
+          sep.className = 'crumb-sep';
+          sep.textContent = '/';
+          titleEl.appendChild(parent);
+          titleEl.appendChild(sep);
+        }
+        var cur = document.createElement('span');
+        cur.className = 'crumb-current';
+        cur.textContent = d.title || '';
+        titleEl.appendChild(cur);
       }
 
       function open(id) {
         if (!byId[id]) return false;
-        showSet(id);
         document.body.classList.add('detail-open');
         setActive(byId[id]);
+        // switching between projects: soften the outgoing one out, crossfade the
+        // breadcrumb, then swap and let the new one cascade in
+        if (liveId && liveId !== id && !reduce) {
+          var out = sets[liveId];
+          if (out) out.classList.add('is-exiting');
+          if (titleEl) titleEl.classList.add('is-swapping');
+          window.setTimeout(function () {
+            if (out) out.classList.remove('is-exiting');
+            if (titleEl) titleEl.classList.remove('is-swapping');
+            buildCrumb(id);
+            showSet(id);
+          }, 150);
+        } else {
+          buildCrumb(id);
+          showSet(id);
+        }
+        liveId = id;
         return true;
       }
+      // step to the previous / next project in the header nav
+      function go(delta) {
+        var cur = decodeURIComponent(location.hash.slice(1));
+        var i = order.indexOf(cur);
+        if (i < 0) i = order.indexOf(defaultId);
+        if (i < 0) i = 0;
+        location.hash = order[(i + delta + order.length) % order.length];
+      }
+      if (prevBtn) prevBtn.addEventListener('click', function () { go(-1); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { go(1); });
       function clear() { document.body.classList.remove('detail-open'); setActive(null); }
       function closeDetail() {
         if (location.hash) history.replaceState(null, '', location.pathname + location.search);
@@ -159,6 +242,53 @@ ogUrl: "https://constantin.studio"
         var id = decodeURIComponent(location.hash.slice(1));
         if (byId[id]) open(id); else if (defaultId) open(defaultId); else clear();
       }
+      // ---- the rail: a vertical wheel over the row reads as horizontal travel,
+      // since the row is the only thing that scrolls at the panel's foot
+      Array.prototype.forEach.call(document.querySelectorAll('.canvas-rail'), function (r) {
+        r.addEventListener('wheel', function (e) {
+          if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;  // already a lateral gesture
+          if (r.scrollWidth <= r.clientWidth) return;            // nothing to travel
+          e.preventDefault();
+          r.scrollLeft += e.deltaY;
+        }, { passive: false });
+      });
+
+      // ---- the lightbox: the square is a crop, so opening restores the full shot
+      var lb = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lightboxImg');
+      var lbCap = document.getElementById('lightboxCap');
+      var lbClose = lb ? lb.querySelector('.lightbox-close') : null;
+      var lbReturn = null;
+
+      function openLightbox(btn) {
+        if (!lb) return;
+        lbImg.src = btn.dataset.full;
+        lbImg.alt = btn.dataset.cap || '';
+        lbCap.textContent = btn.dataset.cap || '';
+        lb.hidden = false;
+        document.body.classList.add('lightbox-open');
+        lbReturn = btn;                       // so focus returns to the still it came from
+        if (lbClose) lbClose.focus();
+      }
+      function closeLightbox() {
+        if (!lb || lb.hidden) return;
+        lb.hidden = true;
+        document.body.classList.remove('lightbox-open');
+        lbImg.removeAttribute('src');
+        if (lbReturn) { lbReturn.focus(); lbReturn = null; }
+      }
+      document.addEventListener('click', function (e) {
+        var item = e.target.closest && e.target.closest('.rail-item');
+        if (item) { openLightbox(item); return; }
+        if (!lb || lb.hidden) return;
+        // the backdrop and the close control dismiss; the figure itself does not
+        if (e.target === lb || (lbClose && lbClose.contains(e.target))) closeLightbox();
+      });
+      // capture, so Escape closes the lightbox without also closing the panel beneath
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lb && !lb.hidden) { e.stopPropagation(); closeLightbox(); }
+      }, true);
+
       sync();
       mq.addEventListener('change', sync);
     })();

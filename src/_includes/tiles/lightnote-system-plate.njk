@@ -1,0 +1,175 @@
+<!-- Slot 3 · System board · Lightnote — the system as anatomy, not a specimen
+     sheet. A fixed 1920x1080 canvas scaled to fit by the .ln-plate-canvas
+     container transform (no JS), laid out atoms -> molecules -> organisms ->
+     system. Every value verbatim from DESIGN_DNA.md; motion in the product's
+     own easing, ambient loops gated by prefers-reduced-motion. All styling is
+     in styles.css under the .lp- prefix. -->
+<div class="ln-plate-wrap">
+  <div class="ln-plate-canvas" style="background:#151515;position:relative;overflow:hidden;font-family:'Libre Franklin',sans-serif;font-weight:500">
+    <div class="lp-grid">
+
+      <!-- ORGANISM · HERO — node card + category pill + marquee -->
+      <div class="lp-cell lp-hero">
+        <div class="lp-herocenter">
+          <div class="lp-mqwrap">
+            <div class="lp-cardscaled">
+              <div class="lp-node lp-herocard">
+                <div class="lp-nodehead"><span class="lp-pill">Load</span><div class="lp-kebab"><i></i><i></i><i></i></div></div>
+                <div class="lp-nodetitle">Checkpoint</div>
+                <div class="lp-fields">
+                  <div><div class="lp-flabel">model</div><div class="lp-input"><span class="lp-val">flux-dev</span><span class="lp-chev">&#9662;</span></div></div>
+                  <div><div class="lp-flabel">precision</div><div class="lp-input"><span class="lp-val">fp16</span><span class="lp-chev">&#9662;</span></div></div>
+                </div>
+              </div>
+              <div class="lp-marquee"></div>
+              <div class="lp-handle lp-tl"></div><div class="lp-handle lp-tr"></div><div class="lp-handle lp-bl"></div><div class="lp-handle lp-br"></div>
+            </div>
+          </div>
+        </div>
+        <div class="lp-cap">organism &middot; node card &middot; category pill + marquee</div>
+      </div>
+
+      <!-- SYSTEM · WIRE — two nodes joined by a bezier with port dots -->
+      <div class="lp-cell lp-wire">
+        <div class="lp-wirestage">
+          <div class="lp-wnode lp-a lp-node">
+            <div class="lp-nodehead"><span class="lp-pill">Load</span><div class="lp-kebab"><i></i><i></i><i></i></div></div>
+            <div class="lp-fields" style="margin-top:12px"><div class="lp-input"><span class="lp-val">flux-dev</span><span class="lp-chev">&#9662;</span></div></div>
+          </div>
+          <div class="lp-wnode lp-b lp-node">
+            <div class="lp-nodehead"><span class="lp-pill">Process</span><div class="lp-kebab"><i></i><i></i><i></i></div></div>
+            <div class="lp-fields" style="margin-top:12px"><div class="lp-input"><span class="lp-val">upscale ×2</span><span class="lp-chev">&#9662;</span></div></div>
+          </div>
+          <svg class="lp-wiresvg" viewBox="0 0 753 386" preserveAspectRatio="none">
+            <path class="lp-glow2" d="M222,82 C376,82 377,292 531,292"></path>
+            <path class="lp-glow1" d="M222,82 C376,82 377,292 531,292"></path>
+            <path class="lp-core"  d="M222,82 C376,82 377,292 531,292"></path>
+            <circle class="lp-port" cx="222" cy="82" r="5"></circle>
+            <circle class="lp-port" cx="531" cy="292" r="5"></circle>
+          </svg>
+          <div class="lp-pulse"></div>
+        </div>
+        <div class="lp-cap">system &middot; bezier wire &middot; port dots &middot; cream on dark</div>
+      </div>
+
+      <!-- ORGANISM · IMAGE SET 2×2 -->
+      <div class="lp-cell lp-imgs">
+        <div class="lp-setgrid">
+          <div class="lp-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+          <div class="lp-tile"></div>
+          <div class="lp-tile"></div>
+          <div class="lp-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+        </div>
+        <div class="lp-cap">organism &middot; image set &middot; 2×2 @ 125.5 &middot; "4 images"</div>
+      </div>
+
+      <!-- ORGANISM · PREVIEW — light-surface variant + Run LoRA -->
+      <div class="lp-cell lp-prev">
+        <div class="lp-prevwrap">
+          <div class="lp-prevcard">
+            <div class="lp-prevhead"><span class="lp-pill">Preview</span><div class="lp-kebab"><i></i><i></i><i></i></div></div>
+            <div class="lp-prevthumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+            <div class="lp-prevfoot"><span class="lp-prevmeta">1024 × 1024 · seed 40217</span><div class="lp-btndark"><span class="lp-spk"><svg viewBox="0 0 24 24" fill="none" stroke="#ECE6D9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/></svg></span>Run LoRA</div></div>
+          </div>
+        </div>
+        <div class="lp-cap">organism &middot; light node #F6F5F1 on #151515 &middot; run lora</div>
+      </div>
+
+      <!-- ATOM · ICONS (Lucide) -->
+      <div class="lp-cell lp-icons">
+        <div class="lp-icongrid">
+          <div class="lp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/></svg></div>
+          <div class="lp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg></div>
+          <div class="lp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg></div>
+          <div class="lp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
+          <div class="lp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg></div>
+          <div class="lp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></div>
+          <div class="lp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></div>
+          <div class="lp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+        </div>
+        <div class="lp-cap">atom &middot; icon set &middot; lucide &middot; 24 grid &middot; 1.6 stroke</div>
+      </div>
+
+      <!-- ATOM · TYPE -->
+      <div class="lp-cell lp-type">
+        <div class="lp-aa">Aa</div>
+        <div class="lp-cap">atom &middot; libre franklin &middot; 500</div>
+      </div>
+
+      <!-- ATOM · SURFACE — cream + dark -->
+      <div class="lp-cell lp-surf">
+        <div class="lp-surfwrap">
+          <div class="lp-planestack lp-cream"><div class="lp-plane"></div><div class="lp-plane"></div><div class="lp-plane"></div><div class="lp-plane"></div></div>
+          <div class="lp-planestack lp-dark"><div class="lp-plane"></div><div class="lp-plane"></div><div class="lp-plane"></div><div class="lp-plane"></div></div>
+        </div>
+        <div class="lp-cap">atom &middot; surface &middot; cream family + dark family</div>
+      </div>
+
+      <!-- MOLECULE · SEGMENTED TRAY -->
+      <div class="lp-cell lp-segt">
+        <div class="lp-segcenter">
+          <div class="lp-segtray">
+            <div class="lp-seg lp-on">Load</div><div class="lp-seg">Image</div><div class="lp-seg">Set</div><div class="lp-seg">LoRA</div><div class="lp-seg">Process</div>
+          </div>
+        </div>
+        <div class="lp-cap">molecule &middot; segmented tray &middot; cream</div>
+      </div>
+
+      <!-- MOLECULE · FIELD group -->
+      <div class="lp-cell lp-field">
+        <div class="lp-fieldwrap">
+          <div class="lp-flabel">sampler</div>
+          <div class="lp-input"><span class="lp-val">euler-a</span><span class="lp-chev">&#9662;</span></div>
+        </div>
+        <div class="lp-cap">molecule &middot; field &middot; 19+4+28=51</div>
+      </div>
+
+      <!-- MOLECULE · SLIDER + value chip -->
+      <div class="lp-cell lp-slid">
+        <div class="lp-sliderwrap">
+          <div class="lp-strack"><div class="lp-sfill"></div><div class="lp-shandle"></div><div class="lp-chip">1500</div></div>
+        </div>
+        <div class="lp-cap">molecule &middot; slider &middot; chip 1500</div>
+      </div>
+
+      <!-- ORGANISM · TABS -->
+      <div class="lp-cell lp-tabs">
+        <div class="lp-tabrow">
+          <div class="lp-tab">Canvas</div><div class="lp-tab lp-on">Workflow</div><div class="lp-tab">Runs</div>
+        </div>
+        <div class="lp-cap">organism &middot; tab bar &middot; workflow selected</div>
+      </div>
+
+      <!-- MOLECULE · CHECKBOX -->
+      <div class="lp-cell lp-check">
+        <div class="lp-checkwrap">
+          <div class="lp-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <span class="lp-lbl">Tiled VAE</span>
+        </div>
+        <div class="lp-cap">molecule &middot; checkbox</div>
+      </div>
+
+      <!-- ATOM · STROKES -->
+      <div class="lp-cell lp-strk">
+        <div class="lp-strkwrap">
+          <div class="lp-strkrow"><div class="lp-line lp-l1"></div><div class="lp-t">0.5 @.24 hairline</div></div>
+          <div class="lp-strkrow"><div class="lp-line lp-l2"></div><div class="lp-t">0.5 @.6 strong</div></div>
+          <div class="lp-strkrow"><div class="lp-line lp-l3"></div><div class="lp-t">2 &middot; selection</div></div>
+        </div>
+        <div class="lp-cap">atom &middot; stroke &middot; blue = selection only</div>
+      </div>
+
+      <!-- SYSTEM · COLOPHON -->
+      <div class="lp-cell lp-colo">
+        <div class="lp-coloinner">
+          <div class="lp-wordmark">Lightnote — System</div>
+          <div class="lp-prov">studio-documentation</div>
+          <div class="lp-prov">Vro7W61Zrv2DjExmzsuxDR</div>
+          <div class="lp-prov">frames 2:122 &middot; 3:615 &middot; dev mode mcp</div>
+          <div class="lp-prov lp-dim" style="margin-top:14px">2026-07-16 &middot; zero approximated values</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

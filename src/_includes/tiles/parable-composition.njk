@@ -1,0 +1,93 @@
+<!-- Slot 6 · Schematic · Parable — the AI-composition target architecture (the
+     page's lead, drawn). Solid nodes exist today; dashed nodes are the proposed
+     enforcement layer, deliberately not built. Rendered in the site's own voice —
+     ink on paper, hairline strokes, serif labels, mono apparatus — so it reads as
+     a drawing about the work, never as fake UI. Self-contained SVG, no JS. -->
+<div class="pbc">
+  <svg class="pbc-svg" viewBox="0 0 1280 660" role="img"
+       aria-label="Parable target architecture: authored rules and the component library feed an agent that composes a spec; a proposed codegen pass and constraint engine validate it before it ships, and violations feed back to tighten the contract.">
+    <defs>
+      <marker id="pbcArrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" class="pbc-ah"/>
+      </marker>
+    </defs>
+
+    <!-- legend -->
+    <g class="pbc-legend" transform="translate(812,40)">
+      <line x1="0" y1="0" x2="34" y2="0" class="pbc-edge"/>
+      <text x="42" y="4" class="pbc-leg">exists today</text>
+      <line x1="188" y1="0" x2="222" y2="0" class="pbc-edge pbc-dash"/>
+      <text x="230" y="4" class="pbc-leg">proposed</text>
+    </g>
+
+    <!-- edges (drawn first, under the nodes) -->
+    <path class="pbc-edge" marker-end="url(#pbcArrow)" d="M290,200 C330,200 330,300 360,300"/>
+    <path class="pbc-edge" marker-end="url(#pbcArrow)" d="M290,455 C330,455 330,360 360,360"/>
+    <line class="pbc-edge" marker-end="url(#pbcArrow)" x1="560" y1="330" x2="612" y2="330"/>
+    <line class="pbc-edge pbc-dash" marker-end="url(#pbcArrow)" x1="812" y1="330" x2="864" y2="330"/>
+    <line class="pbc-edge pbc-dash" marker-end="url(#pbcArrow)" x1="1064" y1="330" x2="1116" y2="330"/>
+    <!-- feedback loop -->
+    <path class="pbc-edge pbc-dash" marker-end="url(#pbcArrow)" d="M940,412 C940,588 940,588 165,588 C120,588 120,588 120,512"/>
+    <text class="pbc-feed" x="540" y="612">violations feed back → the contract tightens</text>
+
+    <!-- sources (solid) -->
+    <g class="pbc-node" transform="translate(60,150)">
+      <rect width="230" height="104" rx="12"/>
+      <text class="pbc-t" x="20" y="42">Authored rule layers</text>
+      <text class="pbc-s" x="20" y="72">philosophy → tokens</text>
+    </g>
+    <g class="pbc-node" transform="translate(60,404)">
+      <rect width="230" height="104" rx="12"/>
+      <text class="pbc-t" x="20" y="42">Component library</text>
+      <text class="pbc-s" x="20" y="72">atoms → organisms</text>
+    </g>
+
+    <!-- agent (solid) -->
+    <g class="pbc-node pbc-key" transform="translate(360,255)">
+      <rect width="200" height="150" rx="12"/>
+      <text class="pbc-t" x="20" y="60">Ponder · agent</text>
+      <text class="pbc-s" x="20" y="90">declares intent,</text>
+      <text class="pbc-s" x="20" y="112">composes a spec</text>
+    </g>
+
+    <!-- proposed enforcement (dashed) -->
+    <g class="pbc-node pbc-prop" transform="translate(612,270)">
+      <rect width="200" height="120" rx="12"/>
+      <text class="pbc-tag" x="20" y="34">PROPOSED</text>
+      <text class="pbc-t" x="20" y="72">Codegen pass</text>
+      <text class="pbc-s" x="20" y="100">tokens · types</text>
+    </g>
+    <g class="pbc-node pbc-prop" transform="translate(864,270)">
+      <rect width="200" height="120" rx="12"/>
+      <text class="pbc-tag" x="20" y="34">PROPOSED</text>
+      <text class="pbc-t" x="20" y="72">Constraint engine</text>
+      <text class="pbc-s" x="20" y="100">validate · entropy</text>
+    </g>
+
+    <!-- outcome (solid) -->
+    <g class="pbc-node pbc-out" transform="translate(1116,278)">
+      <rect width="104" height="104" rx="12"/>
+      <text class="pbc-t2" x="20" y="46">Coherent</text>
+      <text class="pbc-t2" x="20" y="70">UI ships</text>
+    </g>
+  </svg>
+</div>
+
+<style>
+  .pbc{ width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+    padding:clamp(14px,3cqw,34px); background:var(--paper); container-type:inline-size; }
+  .pbc-svg{ width:100%; height:auto; }
+  .pbc-node rect{ fill:var(--paper); stroke:var(--ink); stroke-width:1; }
+  .pbc-node.pbc-key rect{ fill:rgba(139,92,246,0.05); stroke-width:1.4; }
+  .pbc-node.pbc-prop rect{ fill:none; stroke:var(--faint); stroke-dasharray:5 5; }
+  .pbc-node.pbc-out rect{ fill:rgba(17,15,15,0.03); }
+  .pbc-t{ font-family:var(--serif); font-size:22px; fill:var(--ink); }
+  .pbc-t2{ font-family:var(--serif); font-size:18px; fill:var(--ink); }
+  .pbc-s{ font-family:var(--mono); font-size:12px; letter-spacing:.02em; fill:var(--muted); }
+  .pbc-tag{ font-family:var(--mono); font-size:10px; letter-spacing:.14em; fill:var(--faint); }
+  .pbc-leg{ font-family:var(--mono); font-size:12px; fill:var(--muted); }
+  .pbc-feed{ font-family:var(--serif); font-style:italic; font-size:15px; fill:var(--muted); text-anchor:middle; }
+  .pbc-edge{ fill:none; stroke:var(--ink); stroke-width:1.2; }
+  .pbc-dash{ stroke-dasharray:5 5; stroke:var(--faint); }
+  .pbc-ah{ fill:var(--ink); }
+</style>

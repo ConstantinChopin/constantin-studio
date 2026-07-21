@@ -1,0 +1,334 @@
+<!-- Slot 3 · System board · Parable — the design system as anatomy, not a
+     specimen sheet. Fixed 1920x1080 canvas scaled to fit by the .ln-plate-canvas
+     container transform (no JS), laid out atoms -> molecules -> organisms ->
+     system. Every value from DESIGN_DNA.md (Threshold palette); type is a
+     self-hostable stand-in for the PP faces, flagged in the colophon. Restrained
+     ambient state-motion only; no view-source (that is Slot 4). All styling in
+     styles.css under the .pb- prefix. -->
+<div class="ln-plate-wrap">
+  <div class="pb-plate-canvas ln-plate-canvas">
+    <div class="pb-grid">
+
+      <!-- ORGANISM · money cell — costed recommendation banner -->
+      <div class="pb-cell pb-reco">
+        <div class="pb-reco-inner">
+          <div class="pb-reco-eyebrow">Recommended action</div>
+          <div class="pb-reco-title">Automate Sales Team Permit Approval Process</div>
+          <div class="pb-reco-figblock">
+            <div class="pb-reco-lab">Potential<br>Savings</div>
+            <div class="pb-reco-fig">$1.2M</div>
+          </div>
+        </div>
+        <div class="pb-cap">organism · recommendation · costed</div>
+      </div>
+
+      <!-- ORGANISM · work-report donut — register-aware ring -->
+      <div class="pb-cell pb-donut">
+        <div class="pb-donut-stage">
+          <svg class="pb-ring" viewBox="0 0 220 220" aria-hidden="true">
+            <circle class="pb-ring-track" cx="110" cy="110" r="86" />
+            <circle class="pb-ring-fill" cx="110" cy="110" r="86" />
+          </svg>
+          <div class="pb-donut-center">
+            <div class="pb-donut-title">Maintenance</div>
+            <div class="pb-donut-rows">
+              <div><span class="pb-num">30%</span><span class="pb-k">est. time</span></div>
+              <div><span class="pb-num">$9,885</span><span class="pb-k">total payroll</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="pb-cap">organism · work report · donut</div>
+      </div>
+
+      <!-- ORGANISM · Ponder ask surface -->
+      <div class="pb-cell pb-ask">
+        <div class="pb-ask-q">
+          <span class="pb-ask-cc">cc</span>
+          What has my Sales team worked on during Q3?
+        </div>
+        <div class="pb-ask-think">
+          <span class="pb-chev">&#9662;</span> Show thinking · 10 sources
+        </div>
+        <div class="pb-ask-srcs">
+          <span class="pb-src"><i class="pb-dot"></i>SALES-2847</span>
+          <span class="pb-src"><i class="pb-dot"></i>Sprint 23 Retro</span>
+          <span class="pb-src"><i class="pb-dot"></i>sales_hours_Q3.csv</span>
+        </div>
+        <div class="pb-ask-bar"><span>Ask anything…</span><span class="pb-ask-send">&#8593;</span></div>
+        <div class="pb-cap">organism · ponder · ask + provenance</div>
+      </div>
+
+      <!-- MOLECULE/ORGANISM · density posture card — one metric, three postures -->
+      <div class="pb-cell pb-post">
+        <div class="pb-post-row">
+          <div class="pb-post-card" data-density="sparse">
+            <div class="pb-pc-k">CX time on manual work</div>
+            <div class="pb-pc-fig">42%</div>
+          </div>
+          <div class="pb-post-card" data-density="comfortable">
+            <div class="pb-pc-k">CX time on manual work</div>
+            <div class="pb-pc-fig">42%</div>
+            <div class="pb-pc-sub">1,847 hrs · 23 members</div>
+          </div>
+          <div class="pb-post-card" data-density="compact">
+            <div class="pb-pc-k">CX manual</div>
+            <div class="pb-pc-fig">42%</div>
+            <div class="pb-pc-sub">1,847 hrs</div>
+            <div class="pb-pc-sub">23 members · +3 wk</div>
+          </div>
+        </div>
+        <div class="pb-cap">organism · same metric · three postures (sparse → compact)</div>
+      </div>
+
+      <!-- MOLECULE · metric card with delta -->
+      <div class="pb-cell pb-metr">
+        <div class="pb-metr-k">Executive</div>
+        <div class="pb-metr-deltas">
+          <span class="pb-up">+3.5%</span>
+          <span class="pb-down">−1.2%</span>
+        </div>
+        <div class="pb-cap">molecule · metric · delta</div>
+      </div>
+
+      <!-- MOLECULE · connector-status chips (signature) -->
+      <div class="pb-cell pb-conn">
+        <div class="pb-conn-grid">
+          <span class="pb-chip"><i class="pb-dot ok"></i>Slack</span>
+          <span class="pb-chip"><i class="pb-dot ok"></i>Salesforce</span>
+          <span class="pb-chip"><i class="pb-dot ok"></i>Workday</span>
+          <span class="pb-chip"><i class="pb-dot ok"></i>GitHub</span>
+          <span class="pb-chip"><i class="pb-dot warn"></i>Jira</span>
+        </div>
+        <div class="pb-cap">molecule · connectors · status</div>
+      </div>
+
+      <!-- MOLECULE · filter row -->
+      <div class="pb-cell pb-filt">
+        <div class="pb-filt-row">
+          <span class="pb-fchip">Q3 2025 <b>&times;</b></span>
+          <span class="pb-fchip">Sales team <b>&times;</b></span>
+        </div>
+        <div class="pb-cap">molecule · filter row</div>
+      </div>
+
+      <!-- ATOM · type specimen -->
+      <div class="pb-cell pb-type">
+        <div class="pb-aa">Aa</div>
+        <div class="pb-cap">atom · serif display · stand-in</div>
+      </div>
+
+      <!-- ATOM · surface family — layered planes, light emerging -->
+      <div class="pb-cell pb-surf">
+        <div class="pb-surf-stack">
+          <div class="pb-plane" style="background:#120612"></div>
+          <div class="pb-plane" style="background:#1c0f1b"></div>
+          <div class="pb-plane" style="background:#261823"></div>
+          <div class="pb-plane" style="background:#44333b"></div>
+        </div>
+        <div class="pb-cap">atom · field · deep → raised</div>
+      </div>
+
+      <!-- ATOM · accent + status set -->
+      <div class="pb-cell pb-stat">
+        <div class="pb-swatches">
+          <span class="pb-sw" style="background:#8B5CF6"></span>
+          <span class="pb-sw" style="background:#8f9e79"></span>
+          <span class="pb-sw" style="background:#d8a85c"></span>
+          <span class="pb-sw" style="background:#d98a72"></span>
+        </div>
+        <div class="pb-stat-note">violet = action only</div>
+        <div class="pb-cap">atom · accent + status</div>
+      </div>
+
+      <!-- ATOM · icon set (Lucide, 1.6 stroke) -->
+      <div class="pb-cell pb-icon">
+        <div class="pb-icongrid">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="4" x2="14" y2="4"/><line x1="10" y1="4" x2="3" y2="4"/><line x1="21" y1="12" x2="12" y2="12"/><line x1="8" y1="12" x2="3" y2="12"/><line x1="21" y1="20" x2="16" y2="20"/><line x1="12" y1="20" x2="3" y2="20"/><line x1="14" y1="2" x2="14" y2="6"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="16" y1="18" x2="16" y2="22"/></svg>
+        </div>
+        <div class="pb-cap">atom · icons · lucide · 1.6</div>
+      </div>
+
+      <!-- SYSTEM · Threshold statement -->
+      <div class="pb-cell pb-thresh">
+        <div class="pb-thresh-field"></div>
+        <div class="pb-thresh-copy">
+          <div class="pb-thresh-h">The Threshold</div>
+          <div class="pb-thresh-p">light emerges from darkness — a dark field, content emerging through luminosity</div>
+        </div>
+        <div class="pb-cap">system · palette philosophy</div>
+      </div>
+
+      <!-- SYSTEM · density axis atom -->
+      <div class="pb-cell pb-dens">
+        <div class="pb-dens-rows">
+          <div class="pb-dens-r"><span class="pb-dens-bar s1"></span><span class="pb-dens-l">sparse ≥55%</span></div>
+          <div class="pb-dens-r"><span class="pb-dens-bar s2"></span><span class="pb-dens-l">comfortable ≥40%</span></div>
+          <div class="pb-dens-r"><span class="pb-dens-bar s3"></span><span class="pb-dens-l">compact ≥35%</span></div>
+        </div>
+        <div class="pb-cap">atom · density · decoupled axis</div>
+      </div>
+
+      <!-- SYSTEM · colophon -->
+      <div class="pb-cell pb-colo">
+        <div class="pb-colo-inner">
+          <div class="pb-wordmark">Parable — System</div>
+          <div class="pb-prov">tokens.css · Threshold palette</div>
+          <div class="pb-prov">type: Fraunces / InterVar stand-ins</div>
+          <div class="pb-prov pb-dim">for PP Editorial New / PP Neue Montreal</div>
+          <div class="pb-prov pb-dim" style="margin-top:12px">2026-07-17 · values from copy</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style id="pb-style">
+  /* Self-contained board CSS — kept in the tile (not styles.css) so a concurrent
+     edit to the shared sheet can't drop it. Threshold palette from DESIGN_DNA.md;
+     Fraunces is a self-hostable stand-in for PP Editorial New (flagged in the
+     colophon). Reuses only the stable shared .ln-plate-canvas / .ln-plate-wrap
+     scaler. Restrained ambient state-motion only; no view-source (that is Slot 4). */
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap');
+  .pb-plate-canvas { background:#120612; position:relative; overflow:hidden;
+    font-family:"InterVar","Inter",system-ui,sans-serif;
+    --emg1:#f3f0e0; --emg3:#b8b198; --fbase:#1c0f1b; --fraised:#261823; --fborder:#44333b; --accent:#8B5CF6; }
+  .pb-grid {
+    position:absolute; inset:48px; display:grid;
+    grid-template-columns:repeat(12,1fr); grid-template-rows:repeat(5,1fr); gap:12px;
+    grid-template-areas:
+      "reco reco reco reco reco donut donut donut ask ask ask ask"
+      "reco reco reco reco reco donut donut donut ask ask ask ask"
+      "post post post post metr metr conn conn conn filt filt filt"
+      "post post post post type type surf surf stat stat icon icon"
+      "thresh thresh thresh thresh thresh dens dens dens colo colo colo colo"; }
+  .pb-cell { position:relative; background:var(--fbase); border:0.5px solid var(--fborder);
+    border-radius:10px; overflow:hidden; color:var(--emg1);
+    animation:pbEnter 220ms cubic-bezier(0.2,0,0,1) both; }
+  @keyframes pbEnter { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+  .pb-reco{grid-area:reco;animation-delay:0ms}   .pb-donut{grid-area:donut;animation-delay:70ms}
+  .pb-ask{grid-area:ask;animation-delay:140ms}   .pb-post{grid-area:post;animation-delay:210ms}
+  .pb-metr{grid-area:metr;animation-delay:280ms} .pb-conn{grid-area:conn;animation-delay:350ms}
+  .pb-filt{grid-area:filt;animation-delay:420ms} .pb-type{grid-area:type;animation-delay:490ms}
+  .pb-surf{grid-area:surf;animation-delay:560ms} .pb-stat{grid-area:stat;animation-delay:630ms}
+  .pb-icon{grid-area:icon;animation-delay:700ms} .pb-thresh{grid-area:thresh;animation-delay:770ms}
+  .pb-dens{grid-area:dens;animation-delay:840ms} .pb-colo{grid-area:colo;animation-delay:910ms}
+  @media (prefers-reduced-motion: reduce){ .pb-cell{ animation:none; } }
+
+  .pb-cap { position:absolute; left:18px; bottom:14px; font:500 11px/16px "IBM Plex Mono",monospace;
+    color:var(--emg3); font-variant-caps:small-caps; letter-spacing:0.06em; white-space:nowrap; opacity:.72; }
+
+  .pb-reco-inner { position:absolute; inset:26px; display:flex; flex-direction:column; }
+  .pb-reco-eyebrow { font:500 12px/1 "InterVar",sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--emg3); }
+  .pb-reco-title { font-family:"Fraunces",Georgia,serif; font-weight:500; font-size:30px; line-height:1.15;
+    color:var(--emg1); margin-top:14px; max-width:62%; }
+  .pb-reco-figblock { margin-top:auto; display:flex; align-items:center; gap:20px;
+    background:linear-gradient(90deg,#3a1730,#8e2f6b,#c23b86); border-radius:12px; padding:22px 28px; }
+  .pb-reco-lab { font:500 13px/1.25 "InterVar",sans-serif; color:rgba(255,255,255,.82); text-transform:uppercase; letter-spacing:.06em; }
+  .pb-reco-fig { font-family:"Fraunces",serif; font-weight:500; font-size:76px; line-height:.9; color:#fff; margin-left:auto; }
+
+  .pb-donut-stage { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding-bottom:16px; }
+  .pb-ring { position:absolute; width:210px; height:210px; transform:rotate(-90deg); }
+  .pb-ring-track { fill:none; stroke:var(--fborder); stroke-width:16; }
+  .pb-ring-fill { fill:none; stroke:var(--accent); stroke-width:16; stroke-linecap:round; stroke-dasharray:300 240; }
+  .pb-donut-center { position:relative; text-align:center; }
+  .pb-donut-title { font-family:"Fraunces",serif; font-size:24px; color:var(--emg1); }
+  .pb-donut-rows { margin-top:10px; display:flex; flex-direction:column; gap:4px; }
+  .pb-donut-rows div { display:flex; align-items:baseline; justify-content:center; gap:8px; }
+  .pb-num { font:600 15px/1 "InterVar",sans-serif; color:var(--emg1); font-variant-numeric:tabular-nums; }
+  .pb-k { font:400 11px/1 "IBM Plex Mono",monospace; color:var(--emg3); text-transform:uppercase; letter-spacing:.06em; }
+
+  .pb-ask { padding:26px 24px; }
+  .pb-ask-q { background:var(--fraised); border:0.5px solid var(--fborder); border-radius:10px;
+    padding:14px 16px; font-size:17px; line-height:1.3; color:var(--emg1); display:flex; gap:10px; }
+  .pb-ask-cc { flex:0 0 auto; width:24px; height:20px; border-radius:5px; background:#3a2440; color:var(--emg3);
+    font:500 11px/20px "IBM Plex Mono",monospace; text-align:center; text-transform:uppercase; }
+  .pb-ask-think { margin-top:14px; font-size:13px; color:var(--emg3); display:flex; align-items:center; gap:7px; }
+  .pb-ask-think .pb-chev { color:var(--accent); }
+  .pb-ask-srcs { margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; }
+  .pb-src { display:inline-flex; align-items:center; gap:6px; height:24px; padding:0 10px;
+    border-radius:1000px; background:var(--fraised); border:0.5px solid var(--fborder); font-size:11.5px; color:var(--emg1); }
+  .pb-dot { width:6px; height:6px; border-radius:1000px; background:var(--emg3); }
+  .pb-dot.ok { background:#8f9e79; } .pb-dot.warn { background:#d8a85c; }
+  .pb-ask-bar { margin-top:16px; height:40px; border-radius:1000px; background:var(--fraised);
+    border:0.5px solid var(--fborder); display:flex; align-items:center; justify-content:space-between;
+    padding:0 6px 0 16px; color:var(--emg3); font-size:13px; }
+  .pb-ask-send { width:28px; height:28px; border-radius:1000px; background:var(--accent); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:14px; }
+
+  .pb-post { padding:28px 24px 40px; }
+  .pb-post-row { display:flex; gap:16px; height:calc(100% - 42px); align-items:stretch; }
+  .pb-post-card { flex:1; background:var(--fraised); border:0.5px solid var(--fborder); border-radius:10px;
+    display:flex; flex-direction:column; }
+  .pb-post-card[data-density="sparse"] { padding:26px; justify-content:center; }
+  .pb-post-card[data-density="comfortable"] { padding:18px; justify-content:center; gap:8px; }
+  .pb-post-card[data-density="compact"] { padding:12px; justify-content:flex-start; gap:5px; }
+  .pb-pc-k { font-size:12px; color:var(--emg3); text-transform:uppercase; letter-spacing:.05em; }
+  .pb-pc-fig { font-family:"Fraunces",serif; font-weight:500; color:var(--emg1); }
+  .pb-post-card[data-density="sparse"] .pb-pc-fig { font-size:64px; line-height:.9; margin-top:10px; }
+  .pb-post-card[data-density="comfortable"] .pb-pc-fig { font-size:48px; line-height:.9; }
+  .pb-post-card[data-density="compact"] .pb-pc-fig { font-size:34px; line-height:.9; }
+  .pb-pc-sub { font-size:12px; color:var(--emg3); font-variant-numeric:tabular-nums; }
+  .pb-post-legend { position:absolute; left:24px; right:24px; bottom:14px; display:flex; gap:16px; }
+  .pb-post-legend span { flex:1; font:500 10px/1 "IBM Plex Mono",monospace; text-transform:uppercase; letter-spacing:.1em; color:var(--emg3); opacity:.7; }
+
+  .pb-metr { display:flex; flex-direction:column; justify-content:center; padding:0 22px; gap:14px; }
+  .pb-metr-k { font-family:"Fraunces",serif; font-size:22px; color:var(--emg1); }
+  .pb-metr-deltas { display:flex; gap:12px; }
+  .pb-up, .pb-down { font:600 15px/1 "InterVar",sans-serif; padding:6px 10px; border-radius:8px; font-variant-numeric:tabular-nums; }
+  .pb-up { color:#8f9e79; background:rgba(143,158,121,.12); }
+  .pb-down { color:#d98a72; background:rgba(217,138,114,.12); }
+
+  .pb-conn { display:flex; align-items:center; padding:0 20px; }
+  .pb-conn-grid { display:flex; flex-wrap:wrap; gap:8px; }
+  .pb-chip { display:inline-flex; align-items:center; gap:7px; height:30px; padding:0 13px;
+    border-radius:1000px; background:var(--fraised); border:0.5px solid var(--fborder); font-size:13px; color:var(--emg1); }
+
+  .pb-filt { display:flex; align-items:center; padding:0 20px; }
+  .pb-filt-row { display:flex; gap:8px; }
+  .pb-fchip { display:inline-flex; align-items:center; gap:8px; height:30px; padding:0 12px; border-radius:8px;
+    background:var(--fraised); border:0.5px solid var(--fborder); font-size:13px; color:var(--emg1); }
+  .pb-fchip b { color:var(--emg3); font-weight:400; }
+
+  .pb-type { display:flex; align-items:center; justify-content:center; }
+  .pb-aa { font-family:"Fraunces",Georgia,serif; font-weight:500; font-size:96px; line-height:1; color:var(--emg1); margin-top:-6px; }
+
+  .pb-surf { display:flex; align-items:center; justify-content:center; }
+  .pb-surf-stack { display:flex; }
+  .pb-plane { width:34px; height:96px; border:0.5px solid var(--fborder); }
+  .pb-plane:not(:first-child) { margin-left:-8px; }
+
+  .pb-stat { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; }
+  .pb-swatches { display:flex; gap:8px; }
+  .pb-sw { width:28px; height:28px; border-radius:7px; }
+  .pb-stat-note { font:400 11px/1 "IBM Plex Mono",monospace; color:var(--emg3); }
+
+  .pb-icon { display:flex; align-items:center; justify-content:center; }
+  .pb-icongrid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px 22px; color:var(--emg1); }
+  .pb-icongrid svg { width:26px; height:26px; display:block; }
+
+  .pb-thresh { overflow:hidden; }
+  .pb-thresh-field { position:absolute; inset:0; background:linear-gradient(90deg,#120612 0%, #2a1226 55%, #7a2a5e 100%); }
+  .pb-thresh-copy { position:absolute; left:26px; right:26px; top:50%; transform:translateY(-56%); }
+  .pb-thresh-h { font-family:"Fraunces",serif; font-weight:500; font-size:30px; color:var(--emg1); }
+  .pb-thresh-p { margin-top:8px; font-size:14px; line-height:1.5; color:rgba(243,240,224,.82); max-width:78%; }
+
+  .pb-dens { padding:24px 22px; }
+  .pb-dens-rows { display:flex; flex-direction:column; gap:14px; margin-top:6px; }
+  .pb-dens-r { display:flex; align-items:center; gap:12px; }
+  .pb-dens-bar { height:12px; border-radius:3px; background:var(--accent); opacity:.85; }
+  .pb-dens-bar.s1 { width:78%; } .pb-dens-bar.s2 { width:56%; } .pb-dens-bar.s3 { width:36%; }
+  .pb-dens-l { font:400 12px/1 "IBM Plex Mono",monospace; color:var(--emg3); white-space:nowrap; }
+
+  .pb-colo-inner { position:absolute; left:22px; right:18px; top:50%; transform:translateY(-52%); }
+  .pb-wordmark { font-family:"Fraunces",serif; font-size:22px; color:var(--emg1); margin-bottom:10px; }
+  .pb-prov { font:400 12px/18px "IBM Plex Mono",monospace; color:var(--emg3); }
+  .pb-prov.pb-dim { color:#6f5e63; }
+</style>

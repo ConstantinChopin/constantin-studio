@@ -1,0 +1,233 @@
+<!-- Slot 4 · Live component · Parable — the density contract, running. One CX
+     work report re-posed across three postures by a single data-density
+     attribute. Executive→sparse, Operational→comfortable, Configuration→compact;
+     the cascade drives padding, gap, type-scale and which tiers emerge — the
+     conclusive number never moves, whitespace opens and closes around it.
+     Self-contained: inline style + script, no dependencies, transform/opacity/
+     grid-rows only. Autoplays in view, pauses on interaction, keyboard E/O/C,
+     reduced-motion settles on Operational. The page's one view-sourced piece. -->
+<div class="pbd" data-pbd>
+  <div class="pbd-frame" data-density="comfortable" data-frame>
+    <div class="pbd-crumb"><span data-crumb>SALES TEAM · Q3 REPORT · OPERATIONAL</span></div>
+
+    <div class="pbd-hero">
+      <div class="pbd-hero-lab">Automatable this quarter</div>
+      <div class="pbd-hero-fig">$1.2M</div>
+      <div class="pbd-hero-sub">across 1,847 hours logged by 23 members</div>
+    </div>
+
+    <!-- tier: operational and deeper -->
+    <div class="pbd-tier pbd-op">
+      <div class="pbd-op-in">
+        <div class="pbd-ring">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="pbd-rt" cx="60" cy="60" r="46"/><circle class="pbd-rf" cx="60" cy="60" r="46"/></svg>
+          <span class="pbd-ring-n">30%</span>
+        </div>
+        <div class="pbd-op-rows">
+          <div class="pbd-op-row"><span>Maintenance</span><b>30%</b><i>$9,885</i></div>
+          <div class="pbd-op-row"><span>Goal-oriented</span><b>30%</b><i>$5,000</i></div>
+          <div class="pbd-op-row"><span>Renewal ops</span><b>40%</b><i>$7,450</i></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- tier: configuration only -->
+    <div class="pbd-tier pbd-cfg">
+      <div class="pbd-cfg-in">
+        <div class="pbd-cfg-controls">
+          <span class="pbd-fchip">Q3 2025 <b>&times;</b></span>
+          <span class="pbd-fchip">Sales team <b>&times;</b></span>
+          <span class="pbd-fchip pbd-add">+ group by owner</span>
+        </div>
+        <div class="pbd-cfg-table">
+          <div class="pbd-cfg-r pbd-cfg-h"><span>Workstream</span><span>Time</span><span>Cost / yr</span><span>Source</span></div>
+          <div class="pbd-cfg-r"><span>Permit approval</span><span>18%</span><span>$4,120</span><span class="pbd-mono">SALES-2847</span></div>
+          <div class="pbd-cfg-r"><span>CRM cleanup</span><span>12%</span><span>$2,940</span><span class="pbd-mono">hours_Q3.csv</span></div>
+          <div class="pbd-cfg-r"><span>Renewal processing</span><span>10%</span><span>$2,825</span><span class="pbd-mono">Sprint 23</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pbd-controls">
+    <div class="pbd-seg" role="tablist" aria-label="Report posture">
+      <button type="button" role="tab" data-posture="sparse" aria-selected="false"><em>E</em>xecutive</button>
+      <button type="button" role="tab" data-posture="comfortable" aria-selected="true"><em>O</em>perational</button>
+      <button type="button" role="tab" data-posture="compact" aria-selected="false"><em>C</em>onfiguration</button>
+    </div>
+    <button type="button" class="pbd-srcbtn" data-srcbtn aria-expanded="false">View source</button>
+  </div>
+  <pre class="pbd-src" data-src hidden tabindex="0" aria-label="Component source"></pre>
+</div>
+
+<style id="pbd-style">
+  /* Parable density-postures — self-contained. Threshold palette from DESIGN_DNA.md.
+     Type: InterVar stand-in for PP Neue Montreal; Fraunces stand-in for PP Editorial New. */
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap');
+  .pbd { --ease: cubic-bezier(0.2, 0, 0, 1);
+    --field-deep:#120612; --field-base:#1c0f1b; --field-raised:#261823; --field-border:#44333b;
+    --emg-1:#f3f0e0; --emg-3:#b8b198; --accent:#8B5CF6;
+    font-family:"InterVar","Inter",system-ui,sans-serif; width:100%; height:100%;
+    display:flex; flex-direction:column; container-type:inline-size; }
+  .pbd *{ box-sizing:border-box; }
+
+  /* the frame — a fixed stage; posture changes the fill, not the canvas */
+  .pbd-frame{ position:relative; flex:1; min-height:0; overflow:hidden;
+    background:radial-gradient(120% 90% at 82% 8%, #2a1226 0%, var(--field-deep) 62%);
+    border:0.5px solid var(--field-border); border-radius:14px; color:var(--emg-1);
+    display:grid; align-content:start; gap:var(--pad-gap);
+    padding:var(--pad); transition:padding .42s var(--ease), gap .42s var(--ease); }
+  /* the density cascade — one attribute resolves the whole surface */
+  .pbd-frame[data-density="sparse"]      { --pad:6.2cqw; --pad-gap:3.4cqw; --fig:11cqw; --air:1; }
+  .pbd-frame[data-density="comfortable"] { --pad:4.2cqw; --pad-gap:2.1cqw; --fig:8.4cqw; --air:1; }
+  .pbd-frame[data-density="compact"]     { --pad:2.7cqw; --pad-gap:1.2cqw; --fig:6cqw;  --air:1; }
+
+  .pbd-crumb{ font:500 1.55cqw/1 "InterVar",sans-serif; letter-spacing:.14em;
+    color:var(--emg-3); text-transform:uppercase; opacity:.8; }
+
+  .pbd-hero{ display:grid; gap:.5cqw; }
+  .pbd-hero-lab{ font-size:1.9cqw; color:var(--emg-3); }
+  .pbd-hero-fig{ font-family:"Fraunces",Georgia,serif; font-weight:500; font-optical-sizing:auto;
+    font-size:var(--fig); line-height:.9; letter-spacing:-0.01em; color:var(--emg-1);
+    transition:font-size .42s var(--ease); }
+  .pbd-hero-sub{ font-size:1.7cqw; color:var(--emg-3);
+    max-height:4cqw; opacity:.9; overflow:hidden; transition:max-height .42s var(--ease), opacity .42s var(--ease); }
+  .pbd-frame[data-density="sparse"] .pbd-hero-sub,
+  .pbd-frame[data-density="compact"] .pbd-hero-sub{ max-height:0; opacity:0; }
+
+  /* tiers reveal via animatable grid rows (0fr -> 1fr) + opacity, no layout jank */
+  .pbd-tier{ display:grid; grid-template-rows:0fr; opacity:0;
+    transition:grid-template-rows .42s var(--ease), opacity .34s var(--ease); }
+  .pbd-tier > *{ min-height:0; overflow:hidden; }
+  .pbd-frame[data-density="comfortable"] .pbd-op{ grid-template-rows:1fr; opacity:1; }
+  .pbd-frame[data-density="compact"] .pbd-cfg{ grid-template-rows:1fr; opacity:1; }
+
+  /* operational tier */
+  .pbd-op-in{ display:flex; gap:3cqw; align-items:center; padding-top:1cqw; }
+  .pbd-ring{ position:relative; width:12cqw; height:12cqw; flex:0 0 auto; }
+  .pbd-ring svg{ width:100%; height:100%; transform:rotate(-90deg); }
+  .pbd-rt{ fill:none; stroke:var(--field-border); stroke-width:9; }
+  .pbd-rf{ fill:none; stroke:var(--accent); stroke-width:9; stroke-linecap:round;
+    stroke-dasharray:289; stroke-dashoffset:202; }
+  .pbd-ring-n{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:"Fraunces",serif; font-size:3cqw; color:var(--emg-1); }
+  .pbd-op-rows{ flex:1; display:grid; gap:.9cqw; }
+  .pbd-op-row{ display:grid; grid-template-columns:1fr auto auto; gap:1.6cqw; align-items:baseline;
+    font-size:1.75cqw; color:var(--emg-1); border-bottom:0.5px solid var(--field-border); padding-bottom:.7cqw; }
+  .pbd-op-row span{ color:var(--emg-3); }
+  .pbd-op-row b{ font-weight:600; }
+  .pbd-op-row i{ font-style:normal; color:var(--emg-3); font-variant-numeric:tabular-nums; }
+
+  /* configuration tier */
+  .pbd-cfg-in{ display:grid; gap:1.4cqw; padding-top:1.2cqw; }
+  .pbd-cfg-controls{ display:flex; gap:.8cqw; flex-wrap:wrap; }
+  .pbd-fchip{ display:inline-flex; align-items:center; gap:.5cqw; height:2.6cqw; padding:0 1cqw;
+    border-radius:1000px; background:var(--field-raised); border:0.5px solid var(--field-border);
+    color:var(--emg-1); font-size:1.5cqw; }
+  .pbd-fchip b{ color:var(--emg-3); font-weight:400; }
+  .pbd-fchip.pbd-add{ background:transparent; color:var(--accent); border-color:rgba(139,92,246,.4); }
+  .pbd-cfg-table{ display:grid; gap:0; border:0.5px solid var(--field-border); border-radius:8px; overflow:hidden; }
+  .pbd-cfg-r{ display:grid; grid-template-columns:2fr 1fr 1fr 1.4fr; gap:1cqw; padding:.9cqw 1.2cqw;
+    font-size:1.55cqw; color:var(--emg-1); border-bottom:0.5px solid var(--field-border); }
+  .pbd-cfg-r:last-child{ border-bottom:0; }
+  .pbd-cfg-h{ background:var(--field-base); color:var(--emg-3); font-size:1.35cqw;
+    letter-spacing:.06em; text-transform:uppercase; }
+  .pbd-cfg-r i, .pbd-mono{ font-family:"IBM Plex Mono",monospace; font-style:normal;
+    font-size:1.3cqw; color:var(--emg-3); }
+
+  /* controls */
+  .pbd-controls{ display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding-top:12px; flex-wrap:wrap; }
+  .pbd-seg{ display:inline-flex; gap:2px; padding:3px; background:var(--surface,rgba(17,15,15,.05));
+    border-radius:1000px; }
+  .pbd-seg button{ font:500 12px/1 "InterVar",sans-serif; color:var(--muted,#6b6b6b);
+    background:transparent; border:0; padding:7px 13px; border-radius:1000px; cursor:pointer;
+    transition:color .16s var(--ease), background .16s var(--ease); }
+  .pbd-seg button em{ font-style:normal; text-decoration:underline; text-underline-offset:2px;
+    text-decoration-color:rgba(139,92,246,.55); }
+  .pbd-seg button[aria-selected="true"]{ background:#241326; color:#f3f0e0; }
+  .pbd-seg button:hover[aria-selected="false"]{ color:var(--ink,#111); }
+  .pbd-srcbtn{ font:400 11px/1 "IBM Plex Mono",monospace; letter-spacing:.04em;
+    color:var(--faint,#8a8a8a); background:transparent; border:0; cursor:pointer; padding:6px 4px;
+    text-transform:uppercase; }
+  .pbd-srcbtn:hover{ color:var(--ink,#111); }
+  .pbd-srcbtn[aria-expanded="true"]{ color:var(--accent); }
+  .pbd-src{ margin:10px 0 0; max-height:320px; overflow:auto; background:#120612; color:#cfc8d8;
+    border:0.5px solid var(--field-border); border-radius:10px; padding:16px 18px;
+    font:400 11.5px/1.7 "IBM Plex Mono",monospace; white-space:pre; }
+
+  @media (prefers-reduced-motion: reduce){
+    .pbd-frame, .pbd-hero-fig, .pbd-hero-sub, .pbd-tier, .pbd-seg button{ transition:none; }
+  }
+</style>
+
+<script>
+  // Parable density postures — one attribute re-poses the surface. Self-contained,
+  // no dependencies. Autoplays while in view, yields to the visitor on interaction,
+  // keyboard E/O/C, reduced-motion settles on Operational.
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var thisScript = document.currentScript; // capture now; null inside later handlers
+    Array.prototype.forEach.call(document.querySelectorAll('[data-pbd]'), function (root) {
+      var frame = root.querySelector('[data-frame]');
+      var crumb = root.querySelector('[data-crumb]');
+      var btns = Array.prototype.slice.call(root.querySelectorAll('.pbd-seg button'));
+      var order = ['sparse', 'comfortable', 'compact'];
+      var names = { sparse: 'EXECUTIVE', comfortable: 'OPERATIONAL', compact: 'CONFIGURATION' };
+      var touched = false, timer = null, i = 1;
+
+      function apply(density) {
+        frame.setAttribute('data-density', density);
+        crumb.textContent = 'SALES TEAM · Q3 REPORT · ' + names[density];
+        btns.forEach(function (b) {
+          b.setAttribute('aria-selected', b.dataset.posture === density ? 'true' : 'false');
+        });
+        i = order.indexOf(density);
+      }
+
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () { touched = true; stop(); apply(b.dataset.posture); });
+      });
+      root.addEventListener('keydown', function (e) {
+        var map = { e: 'sparse', o: 'comfortable', c: 'compact' };
+        var d = map[e.key.toLowerCase()];
+        if (d) { touched = true; stop(); apply(d); }
+      });
+
+      // view source — reads the component's own live style + script nodes, so it
+      // can never drift from what is actually running on the page
+      var srcBtn = root.querySelector('[data-srcbtn]');
+      var srcPre = root.querySelector('[data-src]');
+      srcBtn.addEventListener('click', function () {
+        var open = srcBtn.getAttribute('aria-expanded') === 'true';
+        if (!open && !srcPre.textContent) {
+          var css = document.getElementById('pbd-style').textContent;
+          var js = (thisScript && thisScript.textContent) || '';
+          srcPre.textContent = '<style>' + css + '\n</style>\n\n<script>' + js + '\n<\/script>';
+        }
+        srcPre.hidden = open;
+        srcBtn.setAttribute('aria-expanded', open ? 'false' : 'true');
+        srcBtn.textContent = open ? 'View source' : 'Hide source';
+      });
+
+      function stop() { if (timer) { clearTimeout(timer); timer = null; } }
+      function tick() {
+        if (touched) return;
+        i = (i + 1) % order.length;
+        apply(order[i]);
+        timer = setTimeout(tick, 2200);
+      }
+
+      if (reduce) { apply('comfortable'); return; }
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (touched) return;
+            if (e.isIntersecting && !timer) { timer = setTimeout(tick, 2000); }
+            else if (!e.isIntersecting) { stop(); }
+          });
+        }, { threshold: 0.4 }).observe(root);
+      } else { timer = setTimeout(tick, 2000); }
+    });
+  })();
+</script>

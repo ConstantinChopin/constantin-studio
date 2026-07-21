@@ -8,17 +8,24 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap');
+/* Lightnote's voice — used only inside .lnt stage tiles, never by the site itself */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@500&display=swap');
+/* Parable's display serif — a self-hostable STAND-IN for PP Editorial New, used
+   only inside .pb-/.pbd/.pbc Parable stage tiles, never by the site itself */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap');
 
 :root {
   /* the paper is the brand off-white of the monogram; the ink its near-black.
      each derived tier mirrors the dark site's hierarchy: ink → muted → faint
      → rule, in descending presence. */
-  --paper:  #fefaf8;
+  --paper:  #ffffff;
   --ink:    rgba(17, 15, 15, 0.82);
   --muted:  rgba(17, 15, 15, 0.60);
   --faint:  rgba(17, 15, 15, 0.38);
   --rule:   rgba(17, 15, 15, 0.12);
   --mark:   rgb(143, 119, 54);
+  /* a very light lifted surface — the header's small button containers */
+  --surface: rgba(17, 15, 15, 0.05);
 
   --serif:  "Newsreader", Georgia, "Times New Roman", serif;
   /* the apparatus voice — catalogue notation (section labels, counts, entry
@@ -30,6 +37,9 @@
   --text:    1.0625rem;
   --display: 1.5rem;
   --small:   0.8rem;
+  /* a third tier between display and body — the reading size for the detail
+     panel's section copy, larger than the body but below the hero title */
+  --mid:     1.22rem;
 
   /* case-study scroll system — two tiers above the base (a hero and a big
      statement), and one section-title tier between display and title. all
@@ -43,6 +53,9 @@
 
   --reading: 39rem;
   --index-w: 31rem;
+  /* the content measure INSIDE the window — centred, so text and images sit
+     within the frame with margin rather than snug to its edge */
+  --detail-max: 50rem;
   --index-gutter: 1.5rem;
   /* the gap between a type glyph and its title, and how far the title drops to
      sit optically level with the glyph — shared by the index shelf labels and
@@ -167,6 +180,10 @@ body.home { padding: 0; }
     scrollbar-width: none;
     border-right: 1px solid transparent;
     transition: border-color 0.6s var(--ease);
+    /* sits beneath the detail window so the window's shadow casts over it
+       rather than being cut at the column seam */
+    position: relative;
+    z-index: 1;
   }
   /* even inset on every side — the top matches the left/right rather than
      sitting on a taller vertical rhythm */
@@ -176,9 +193,12 @@ body.home { padding: 0; }
     display: block;
     grid-column: 3;
     position: relative;
+    /* above the index so the window's shadow lands over it, not clipped */
+    z-index: 2;
     height: 100svh;
     min-width: 0;
-    overflow: hidden;
+    /* visible, so the window's soft shadow spills past the pane seam */
+    overflow: visible;
     /* the detail is an inset viewport, not an edge-to-edge pane: an even inset
        on every side so the framed window floats in the right region */
     padding: 12px;
@@ -193,20 +213,35 @@ body.home { padding: 0; }
     position: relative;
     height: 100%;
     min-width: 0;
+    /* always fills the detail region; the window card wraps the header and the
+       content together, framed and rounded */
+    width: 100%;
     display: flex;
     flex-direction: column;
-    background: #f6f0ec;
-    border: 1px solid rgba(17, 15, 15, 0.08);
-    /* a soft rounding — the window reads as a single floating card
-       rather than a chromed app frame */
-    border-radius: 10px;
+    background: var(--paper);
+    border: 0;
+    /* the corner shape only reads if there is arc enough to shape it — at the
+       old 10px no curvature was legible at this size. on the scale
+       bevel(0) → round(1) → squircle(2) → … → square(∞), a HIGHER value is
+       squarer, so the Apple corner is squircle, not a larger exponent. */
+    border-radius: 22px;
+    corner-shape: squircle;
     overflow: hidden;
+    /* the frame carries no border, so the shadow alone has to seat the panel */
     box-shadow: 0 24px 60px -28px rgba(43, 32, 24, 0.35);
   }
-  /* the app-style toolbar (glyph, title, fullscreen/close) is hidden — the
-     preview reads as a bare floating window with no chrome. Its markup stays
-     in the DOM so the breadcrumb/close JS keeps its element references. */
-  .viewport-bar { display: none; }
+  /* the window header — project name at left, project nav at right, a shade
+     warmer than the paper body so it reads as chrome */
+  .viewport-bar {
+    /* sits at the top of the scroll content and moves up with it as you scroll */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    background: transparent;
+    border-bottom: 0;
+  }
   /* the type glyph of the open entry, cloned from its shelf label and sized
      to sit in the toolbar — same glyph, same gap to its title as the index
      shelf labels */
@@ -226,15 +261,13 @@ body.home { padding: 0; }
   }
   .viewport-title {
     position: relative;
-    top: var(--glyph-title-drop);
-    justify-self: start;
-    max-width: 100%;
     min-width: 0;
-    padding-right: 0.5rem;
-    font-size: var(--small);
-    font-weight: 500;
+    /* italic serif, like the left column title */
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95rem;
     letter-spacing: 0.01em;
-    color: var(--ink);
+    color: var(--muted);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -253,23 +286,35 @@ body.home { padding: 0; }
   .viewport-title .crumb-link:hover,
   .viewport-title .crumb-link:focus-visible { color: var(--ink); }
   .viewport-title .crumb-current { color: var(--ink); }
+  .viewport-title .crumb-parent { color: var(--muted); }
   .viewport-title .crumb-sep { color: var(--faint); opacity: 0.55; margin: 0 0.4rem; }
-  .viewport-actions { justify-self: end; display: inline-flex; align-items: center; gap: 0.1rem; }
+  /* both arrows share one fully-round outline pill, no fill, no divider */
+  .viewport-actions {
+    justify-self: end;
+    display: inline-flex;
+    align-items: stretch;
+    background: transparent;
+    border: 0.5px solid var(--rule);
+    border-radius: 999px;
+    overflow: hidden;
+  }
   .viewport-btn {
     flex: 0 0 auto;
     width: 30px;
-    height: 30px;
+    height: 27px;
     display: grid;
     place-items: center;
     border: 0;
-    border-radius: 7px;
     background: transparent;
-    color: var(--ink);
+    color: var(--muted);
     cursor: pointer;
-    transition: color 0.2s var(--ease), background-color 0.2s var(--ease);
+    transition: color 0.2s var(--ease), background-color 0.2s var(--ease), transform 0.12s var(--ease);
   }
   .viewport-btn:hover,
-  .viewport-btn:focus-visible { color: #110f0f; background: rgba(17, 15, 15, 0.05); }
+  .viewport-btn:focus-visible { color: #110f0f; background: rgba(17, 15, 15, 0.06); }
+  /* a small tactile press */
+  .viewport-btn:active { transform: scale(0.96); }
+  @media (prefers-reduced-motion: reduce) { .viewport-btn:active { transform: none; } }
   .viewport-btn svg { width: 15px; height: 15px; display: block; stroke-width: 1.8; }
   /* the fullscreen control swaps between an expand and a contract glyph */
   .viewport-btn .ico-exit { display: none; }
@@ -304,11 +349,136 @@ body.home { padding: 0; }
      live preview. wide plates are 16:9 presentation cards spanning the column;
      square plates are 1:1 tiles that pair beneath them (dense auto-flow). ---- */
   .plate-scroll {
-    height: 100%;
+    /* fills the whole window and scrolls; content passes under the overlaid
+       header and stays visible right up to the window's top edge. the top
+       padding clears the header so nothing sits under it at rest */
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 1.6rem clamp(2rem, 4vw, 3.5rem) clamp(1.8rem, 3vw, 2.6rem);
     overflow-y: auto;
     scrollbar-width: none;
   }
+  /* the content column — capped and centred WITHIN the window, so the window
+     outline is the panel frame and the content sits inside it with margin */
+  .plate-set { max-width: var(--detail-max); margin-inline: auto; }
   .plate-scroll::-webkit-scrollbar { width: 0; height: 0; }
+
+  /* ---- the canvas — a fixed frame, never a scroller. the stills are anchored
+     to its foot and run tall; the copy plate covers the head, so the heads of
+     the stills pass behind it. flush at left and bottom, 4px between. ---- */
+  .viewport { display: block; }
+  /* one number governs the split: where the row of stills starts. the copy plate
+     ends on the same line, so the two meet flush and can never drift apart.
+     lower it for larger squares, raise it for smaller. */
+  .canvas-set { position: absolute; inset: 0; --rail-top: 42%; }
+  .canvas-set[hidden] { display: none; }
+
+  .canvas-rail {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* this also sets the square size: a still is as tall as the row, so a lower
+       start means smaller squares */
+    top: var(--rail-top);
+    display: flex;
+    gap: 4px;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    /* the row is its own scroll world — the page behind never rubber-bands */
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+  }
+  .canvas-rail::-webkit-scrollbar { width: 0; height: 0; }
+  .rail-item {
+    flex: 0 0 auto;
+    height: 100%;
+    width: auto;
+    /* squares only — the source is cropped to 1:1 whatever its own ratio */
+    aspect-ratio: 1 / 1;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: rgba(17, 15, 15, 0.04);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    scroll-snap-align: start;
+  }
+  /* the placeholder square — a flat grey block standing in for a still */
+  .rail-item.is-ph {
+    background: #e4e2dd;
+    cursor: default;
+  }
+  .rail-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.45s var(--ease), transform 0.35s var(--ease);
+  }
+  .rail-item img.is-decoded { opacity: 1; }
+  .rail-item:hover img { transform: scale(1.04); }
+  /* inset, so the ring is never clipped by the row's overflow */
+  .rail-item:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; z-index: 1; }
+  @media (prefers-reduced-motion: reduce) {
+    .rail-item img { opacity: 1; transition: none; }
+    .rail-item:hover img { transform: none; }
+  }
+
+  /* the copy plate — paper across the head of the canvas. it ends exactly where
+     the row of stills begins, so the squares sit flush beneath it and no part of
+     a frame is covered, however short the copy runs. */
+  .canvas-copy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    min-height: var(--rail-top);
+    background: var(--paper);
+    /* the top pad clears the floating header row */
+    padding: clamp(3.4rem, 8vh, 5rem) clamp(1.4rem, 3vw, 2.4rem) clamp(1.1rem, 2.4vh, 1.8rem);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .canvas-intro {
+    margin: 0;
+    max-width: 34rem;
+    font-family: var(--serif);
+    font-size: clamp(0.94rem, 1.1vw, 1.1rem);
+    line-height: 1.5;
+    color: var(--ink);
+    text-wrap: pretty;
+  }
+  .canvas-intro strong { font-weight: 500; }
+  .canvas-tags {
+    margin: 0;
+    flex: 0 0 auto;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--faint);
+    text-align: right;
+  }
+  .canvas-tags span + span::before { content: ", "; }
+
+  /* the header floats over the copy plate rather than sitting in its flow */
+  .viewport-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    margin-bottom: 0;
+    padding: 0.85rem clamp(1.4rem, 3vw, 2.4rem);
+  }
   .plates {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -320,38 +490,169 @@ body.home { padding: 0; }
     margin: 0;
     position: relative;
     aspect-ratio: 1 / 1;
-    border-radius: clamp(10px, 1.2vw, 15px);
+    /* the same corner radius as the viewport window frame */
+    border-radius: 10px;
     overflow: hidden;
-    outline: 1px solid rgba(17, 15, 15, 0.10);
-    outline-offset: -1px;
-    box-shadow: 0 20px 50px -30px rgba(43, 32, 24, 0.4);
-    background: #0c100c;
+    /* no dark fill — it was peeking through the anti-aliased corners */
+    background: transparent;
+    /* the hairline as an outside ring, so it never seams against the clipped
+       image at the rounded corners the way a border does */
+    box-shadow: 0 0 0 0.5px #e8e8e8;
   }
-  .plate img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .plate img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* fade in the moment the image decodes, rather than popping in */
+    opacity: 0;
+    transition: opacity 0.45s var(--ease);
+  }
+  .plate img.is-decoded { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) {
+    .plate img { opacity: 1; transition: none; }
+  }
 
   /* the brand plate opens the set as a wide rectangle above the squares */
   .plate.banner { aspect-ratio: 16 / 7; margin-bottom: 12px; }
 
+  /* figures bound to a notes section — each tile sits directly under the prose
+     it argues for. two types only: a STAGE holds the full source shot uncropped
+     (the shot is a finished composition — never crop it), a REBUILD is a coded
+     component. ratios exist for rebuilds; stages take the shot's own ratio. */
+  .plate.note-fig { container-type: inline-size; margin: 0.35rem 0 0.55rem; }
+  .plate.note-fig.wide { aspect-ratio: 16 / 9; }
+  .plate.note-fig.band { aspect-ratio: 16 / 6; }
+  .plate.note-fig.demo { aspect-ratio: 16 / 8; }
+  .plate.note-fig.paper { background: var(--paper); }
+  /* a SCREEN — the source shot full-bleed at its own ratio: edge-to-edge in the
+     plate frame (rounded, hairline ring), no paper matte and no padding. the
+     ratio matches the shot (1728x1117) so cover fills without cropping. */
+  .plate.note-fig.screen { aspect-ratio: 1728 / 1117; }
+  /* a FIT — the shot full-bleed at its own intrinsic height: fills the column
+     width edge-to-edge and lets the image set its own height, so a UI capture
+     of any ratio is never cropped. no matte, no padding. */
+  .plate.note-fig.fit { aspect-ratio: auto; }
+  .plate.note-fig.fit img { width: 100%; height: auto; object-fit: fill; }
+
+  /* the STAGE — a source shot matted on paper: even generous padding, a hairline
+     around the shot, the plate's own soft shadow. a dark screenshot floats in
+     the light site instead of fighting it, and spans the column so it never
+     reads as an orphan square. */
+  .plate.note-fig.stage {
+    aspect-ratio: auto;
+    background: var(--paper);
+    padding: clamp(20px, 5cqw, 52px);
+  }
+  .plate.note-fig.stage img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: clamp(6px, 1.2cqw, 14px);
+    box-shadow: 0 0 0 0.5px rgba(17, 15, 15, 0.10);
+  }
+
+  /* the shipped screens — a 2-up grid of the source shots directly under the
+     hero; the text sections follow below. each shot is a framed screenshot
+     (rounded, hairline, soft shadow via the base plate), never cropped. */
+  .shots {
+    margin: 1.1rem 0 0.2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  /* a shot is a figure: the framed media, then a mono caption below it. the
+     media carries the plate frame; the figure itself doesn't clip, so the
+     caption sits outside the rounded corners. */
+  .shot { margin: 0; }
+  .shot.wide { grid-column: 1 / -1; }
+  .shot-media { display: block; aspect-ratio: 1 / 1; }
+  .shot.wide .shot-media { aspect-ratio: 1728 / 1117; }
+  /* a rebuilt plate (slot 3) is composed at 16:9; container-type lets a
+     fixed 1920x1080 canvas scale to fit via cqw, no JS required */
+  .shot-plate.wide .shot-media { aspect-ratio: 16 / 9; container-type: inline-size; }
+  .shot-media.plate > svg { display: block; width: 100%; height: 100%; }
+  .ln-plate-wrap { position: relative; width: 100%; height: 100%; overflow: hidden; }
+  .ln-plate-canvas { width: 1920px; height: 1080px; transform-origin: top left; transform: scale(calc(100cqw / 1920px)); }
+  .shot-cap {
+    margin-top: 0.55rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.02em;
+    line-height: 1.45;
+    color: var(--faint);
+    text-wrap: pretty;
+  }
+
+  /* the intro lede — a grey line under the hero, before the meta and shots */
+  /* the text blocks read at a narrower centred measure; the banner and shots
+     keep the full content width */
+  .plate-intro {
+    max-width: var(--reading);
+    margin: 1.2rem auto 1.1rem;
+    font-family: var(--serif);
+    font-size: var(--text);
+    line-height: 1.6;
+    color: var(--muted);
+    text-wrap: pretty;
+  }
+
+  /* the meta block under the intro — labelled rows of mono tag pills */
+  .plate-meta {
+    max-width: var(--reading);
+    margin: 0 auto 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .meta-row { display: flex; gap: 1rem; align-items: baseline; }
+  .meta-label {
+    flex: 0 0 4rem;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .meta-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; min-width: 0; }
+
+  /* provenance line under a rebuilt or drawn figure — the apparatus voice */
+  .note-cap {
+    margin: -0.1rem 0 0.25rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: var(--faint);
+  }
+
   /* the project notes — a stack of editorial spec rows between banner and
      plates: a small context label in the left column, prose beside it from
      the same first line. plain text on the pane, no card */
+  /* the notes column spans the full hero width so bound figures match the
+     banner edge-to-edge; the prose and captions inside are re-capped to the
+     reading measure below, centred on the same axis */
   .plate-notes {
+    max-width: var(--detail-max);
+    margin: 1.4rem auto 1.8rem;
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
-    margin: 1.1rem 0 1.4rem;
+    gap: 1.7rem;
   }
-  .plate-about {
-    display: grid;
-    grid-template-columns: 7rem 1fr;
-    column-gap: 1.2rem;
-    align-items: baseline;
-    margin: 0;
-  }
-  /* the context label speaks in the same voice as the index section titles */
+  /* each section stacks: a quiet label on top, the copy below at the mid size.
+     text stays at the reading measure while sibling figures run full width */
+  .plate-about { display: block; width: 100%; max-width: var(--reading); margin: 0 auto; }
+  /* the caption belongs to the figure, not the prose: it runs the figure's full
+     width so its text aligns to the image's left edge, and it sits tight under
+     the figure rather than a full section-gap away */
+  .plate-notes > .note-cap { width: 100%; max-width: var(--detail-max); margin-inline: auto; }
+  .plate-notes > figure.note-fig + .note-cap { margin-top: -1.85rem; }
+  /* the label stays at body weight — the copy, not the title, carries the size */
   .plate-about-label {
+    display: block;
+    margin-bottom: 0.5rem;
     font-family: var(--serif);
-    font-size: 0.9375rem;
+    font-size: var(--text);
+    font-weight: 400;
     font-style: italic;
     letter-spacing: 0;
     text-transform: none;
@@ -359,7 +660,6 @@ body.home { padding: 0; }
   }
   .plate-about p {
     margin: 0;
-    max-width: 58ch;
     font-size: var(--text);
     line-height: 1.6;
     color: var(--muted);
@@ -371,19 +671,66 @@ body.home { padding: 0; }
     transition: box-shadow 0.25s var(--ease);
   }
   .plate-about a:hover { box-shadow: inset 0 -1px 0 var(--ink); }
-
-  /* on set-switch the plates fade and rise in a gentle stagger — the panel's
-     one moment of motion */
-  .plate-set.is-live .plate {
-    animation: plate-in 0.5s var(--ease) both;
-    animation-delay: calc(var(--i, 0) * 55ms);
+  /* the black accent — meaningful phrases lifted out of the muted body */
+  .plate-about strong { font-weight: 500; color: var(--ink); }
+  /* technical tokens carry the apparatus (mono) voice, set in a quiet chip */
+  .plate-about code {
+    font-family: var(--mono);
+    font-size: 0.82em;
+    color: var(--ink);
+    background: rgba(17, 15, 15, 0.05);
+    padding: 0.08em 0.38em;
+    border-radius: 4px;
+    white-space: nowrap;
   }
+  /* a discreet pill — meta tags (service, year, stack) and enumerated facts */
+  .pill {
+    display: inline-block;
+    font-family: var(--mono);
+    /* the chip treatment of inline <code>, set a little smaller */
+    font-size: 0.78rem;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    background: var(--surface);
+    padding: 0.08em 0.38em;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  /* on open/switch, the panel's chunks rise in reading order — a staggered
+     cascade (banner, intro, meta, shots, sections) rather than one container */
+  .plate-set.is-live > * {
+    animation: plate-in 0.5s var(--ease) both;
+  }
+  .plate-set.is-live > *:nth-child(1) { animation-delay: 0ms; }
+  .plate-set.is-live > *:nth-child(2) { animation-delay: 65ms; }
+  .plate-set.is-live > *:nth-child(3) { animation-delay: 130ms; }
+  .plate-set.is-live > *:nth-child(4) { animation-delay: 195ms; }
+  .plate-set.is-live > *:nth-child(5) { animation-delay: 260ms; }
+  .plate-set.is-live > *:nth-child(n+6) { animation-delay: 325ms; }
   @keyframes plate-in {
     from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: none; }
   }
+
+  /* the outgoing project softens down and out before the next enters —
+     exits are quicker and subtler than enters */
+  .plate-set.is-exiting {
+    animation: plate-out 0.15s var(--ease) both;
+  }
+  @keyframes plate-out {
+    from { opacity: 1; transform: none; }
+    to   { opacity: 0; transform: translateY(-6px); }
+  }
+
+  /* the breadcrumb crossfades in sync with the content swap */
+  .viewport-title { transition: opacity 0.2s var(--ease), transform 0.2s var(--ease); }
+  .viewport-title.is-swapping { opacity: 0; transform: translateY(3px); }
+
   @media (prefers-reduced-motion: reduce) {
-    .plate-set.is-live .plate { animation: none; }
+    .plate-set.is-live > *,
+    .plate-set.is-exiting { animation: none; }
+    .viewport-title { transition: none; }
   }
 
   body.detail-open .split { grid-template-columns: 0fr var(--index-w) 1fr 0fr; }
@@ -402,6 +749,65 @@ body.home { padding: 0; }
     .pane-detail { filter: none; }
   }
 }
+
+/* ---- the lightbox — the rail square is a crop, so opening restores the shot
+   whole: contained, never cropped, over a dimmed page. ---- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: clamp(16px, 5vmin, 64px);
+  background: rgba(17, 15, 15, 0.88);
+  animation: lb-in 0.2s var(--ease) both;
+}
+.lightbox[hidden] { display: none; }
+/* the page behind must not scroll under the open lightbox */
+body.lightbox-open { overflow: hidden; }
+.lightbox-fig {
+  margin: 0;
+  min-height: 0;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.lightbox-fig img {
+  display: block;
+  max-width: 100%;
+  min-height: 0;
+  max-height: calc(100svh - 9rem);
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--paper);
+}
+.lightbox-fig figcaption {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.lightbox-close {
+  position: absolute;
+  top: clamp(12px, 3vmin, 28px);
+  right: clamp(12px, 3vmin, 28px);
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 1000px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease);
+}
+.lightbox-close:hover,
+.lightbox-close:focus-visible { background: rgba(255, 255, 255, 0.22); }
+.lightbox-close svg { width: 16px; height: 16px; stroke-width: 1.8; display: block; }
+@keyframes lb-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .lightbox { animation: none; } }
 
 /* the monogram sits above the name like a printer's device on a title page —
    small, in the ink tone, part of the header rather than a graphic on it */
@@ -938,3 +1344,500 @@ body.essay {
 .embedded .case .block-section.cols .wrap,
 .embedded .case .block-aside .wrap { grid-template-columns: 1fr; gap: 1.4rem; }
 .embedded .case .block-plates .grid { grid-template-columns: 1fr; }
+
+/* ---- lightnote stage tiles — the product's language, quoted ------------- */
+/* Values from the project's DESIGN_DNA (Figma-recovered, 2026-07). Scoped to
+   .lnt so site tokens never leak in and project tokens never leak out; the
+   surrounding .plate frame stays in the site's voice. Flat by decree: the
+   product's hierarchy is fill steps and 0.5px hairlines, never shadows. */
+.lnt {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #151515;
+  font-family: "Libre Franklin", "Segoe UI", system-ui, sans-serif;
+  font-weight: 500;
+  color: #ece6d9;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* the token board — five swatches over a type specimen, the system on one board */
+.lnt-board { justify-content: space-between; padding: clamp(14px, 5.5cqw, 30px); }
+.lnt-swrow { display: flex; gap: 0.7em; font-size: clamp(8px, 1.5cqw, 12px); }
+.lnt-sw { flex: 1; min-width: 0; }
+.lnt-sw i { display: block; height: 4.6em; border-radius: 6px; box-shadow: inset 0 0 0 0.5px rgba(153, 153, 153, 0.24); }
+.lnt-sw span { display: block; margin-top: 0.6em; font-family: var(--mono); font-size: 0.82em; color: #999; white-space: nowrap; }
+.lnt-spec .big { margin: 0; font-size: clamp(15px, 3.2cqw, 25px); letter-spacing: -0.01em; }
+.lnt-spec .dim { margin: 0.35em 0 0; font-size: clamp(9px, 1.7cqw, 13px); color: #999; }
+
+/* the action bar — cream tray, light pills, one dark decision */
+.lnt-barstage { align-items: center; justify-content: center; }
+.lnt-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: clamp(10px, 2.2cqw, 15px);
+  background: #c7c4bd;
+  color: #23221f;
+  border: 0.5px solid #ece6d9;
+  border-radius: 8px;
+  padding: 0.55em 0.75em;
+}
+.lnt-bar .txt { padding: 0 0.5em; }
+.lnt-bar .pill { background: #f3f0eb; border-radius: 6px; padding: 0.42em 0.8em; white-space: nowrap; }
+.lnt-bar .pill .caret { opacity: 0.55; }
+.lnt-bar .pill.primary { background: #23221f; color: #f3f0eb; }
+
+/* the live selection demo — the bar exists only while something is selected.
+   the one behavior that proves the design claim and the engineering claim in
+   the same gesture. motion values are the DNA's decided set: enter 200ms,
+   exit 160ms, cubic-bezier(0.25,0,0,1), transform+opacity only (no layout
+   shift — the bar is absolutely positioned). */
+.lnt-demo { justify-content: center; }
+.lnt-demo .lnt-demo-field {
+  display: flex;
+  justify-content: center;
+  gap: 3.2%;
+  /* leave air under the thumbs for the bar to surface into */
+  margin-bottom: 11%;
+}
+.lnt-ph {
+  width: 19%;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: #212120;
+  border: 0.5px solid rgba(153, 153, 153, 0.24);
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;
+  transition: box-shadow 0.16s cubic-bezier(0.25, 0, 0, 1);
+}
+.lnt-ph.lt { background: #dcdad5; }
+.lnt-ph svg { width: 72%; height: 72%; fill: none; opacity: 0.4; transition: opacity 0.16s cubic-bezier(0.25, 0, 0, 1); }
+.lnt-ph.lt svg { stroke: rgba(20, 20, 20, 0.6); }
+.lnt-ph.dk svg { stroke: rgba(255, 255, 255, 0.55); }
+.lnt-ph[aria-pressed="true"] { box-shadow: 0 0 0 2px #3580c6; }
+.lnt-ph[aria-pressed="true"] svg { opacity: 1; }
+.lnt-ph:focus-visible { outline: 1px dashed #ece6d9; outline-offset: 3px; }
+.lnt-demo .lnt-bar {
+  position: absolute;
+  left: 50%;
+  bottom: 8.5%;
+  /* max-content frees the bar from the 50%-of-plate width cap that left:50%
+     imposes on an auto-width absolute box — otherwise it wraps to two lines */
+  width: max-content;
+  white-space: nowrap;
+  transform: translate(-50%, 8px);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    transform 0.16s cubic-bezier(0.25, 0, 0, 1),
+    opacity 0.16s cubic-bezier(0.25, 0, 0, 1),
+    visibility 0s linear 0.16s;
+}
+.lnt-demo .lnt-bar.is-on {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    transform 0.2s cubic-bezier(0.25, 0, 0, 1),
+    opacity 0.2s cubic-bezier(0.25, 0, 0, 1),
+    visibility 0s;
+}
+/* reduced motion: the poster frame — everything at rest, still operable */
+@media (prefers-reduced-motion: reduce) {
+  .lnt-demo .lnt-bar, .lnt-demo .lnt-bar.is-on, .lnt-ph, .lnt-ph svg { transition: none; }
+}
+
+/* ==== lightnote system plate — atomic anatomy board (slot 3) ============== */
+/* Replaces the specimen sheet. A fixed 1920x1080 canvas (scaled by the
+   .ln-plate-canvas container transform, no JS) laid out atoms -> molecules ->
+   organisms -> system. Values verbatim from DESIGN_DNA.md; motion in the
+   system's own easing, all ambient loops gated by prefers-reduced-motion.
+   Everything prefixed .lp- so nothing leaks to or from the site. */
+@font-face {
+  font-family: "Libre Franklin";
+  font-style: normal; font-weight: 500; font-display: swap;
+  src: url("/assets/work/lightnote/libre-franklin-500.woff2") format("woff2");
+}
+.lp-grid {
+  position: absolute; inset: 48px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 12px;
+  font-family: "Libre Franklin", "Segoe UI", system-ui, sans-serif; font-weight: 500;
+  grid-template-areas:
+    "hero hero hero hero wire  wire  wire  wire  wire  imgs  imgs  imgs"
+    "hero hero hero hero wire  wire  wire  wire  wire  imgs  imgs  imgs"
+    "prev prev prev prev icons icons icons type  type  surf  surf  surf"
+    "prev prev prev prev segt  segt  segt  segt  field field slid  slid"
+    "tabs tabs tabs tabs tabs  check check strk  strk  colo  colo  colo";
+}
+.lp-cell {
+  position: relative; background: rgba(35,34,31,0.24);
+  border: 0.5px solid rgba(153,153,153,0.24); border-radius: 6px; overflow: hidden;
+  animation: lpEnter 200ms cubic-bezier(0.25,0,0,1) both;
+}
+@keyframes lpEnter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.lp-hero{grid-area:hero;animation-delay:0ms}   .lp-wire{grid-area:wire;animation-delay:60ms}
+.lp-imgs{grid-area:imgs;animation-delay:120ms} .lp-prev{grid-area:prev;animation-delay:180ms}
+.lp-icons{grid-area:icons;animation-delay:240ms} .lp-type{grid-area:type;animation-delay:300ms}
+.lp-surf{grid-area:surf;animation-delay:360ms} .lp-segt{grid-area:segt;animation-delay:420ms}
+.lp-field{grid-area:field;animation-delay:480ms} .lp-slid{grid-area:slid;animation-delay:540ms}
+.lp-tabs{grid-area:tabs;animation-delay:600ms} .lp-check{grid-area:check;animation-delay:660ms}
+.lp-strk{grid-area:strk;animation-delay:720ms} .lp-colo{grid-area:colo;animation-delay:780ms}
+
+.lp-cap {
+  position: absolute; left: 18px; bottom: 15px;
+  font: 500 11px/16px var(--mono);
+  color: #999999; font-variant-caps: small-caps; letter-spacing: 0.06em; white-space: nowrap;
+}
+
+/* node card primitives */
+.lp-node { background: #212120; border: 0.5px solid rgba(153,153,153,0.24); border-radius: 6px; padding: 12px; box-sizing: border-box; }
+.lp-node.lp-light { background: #F6F5F1; border-color: rgba(21,21,21,0.14); }
+.lp-nodehead { display: flex; align-items: center; justify-content: space-between; }
+.lp-pill { display: inline-flex; align-items: center; height: 20px; padding: 0 9px; border-radius: 1000px; background: #3A3A38; color: #ECE6D9; font-size: 11px; line-height: 19px; letter-spacing: 0.02em; }
+.lp-node.lp-light .lp-pill { background: #E8DDC4; color: #574131; }
+.lp-kebab { width: 20px; height: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+.lp-kebab i { width: 2px; height: 2px; border-radius: 1000px; background: #999999; }
+.lp-nodetitle { color: #ECE6D9; font-size: 13px; line-height: 22px; margin-top: 8px; }
+.lp-node.lp-light .lp-nodetitle { color: #23221F; }
+.lp-fields { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+.lp-flabel { color: #999999; font-size: 11px; line-height: 19px; margin-bottom: 4px; }
+.lp-node.lp-light .lp-flabel { color: #565859; }
+.lp-input { height: 28px; border-radius: 4px; background: #3A3A38; display: flex; align-items: center; justify-content: space-between; padding: 3px 8px 4px; box-sizing: border-box; }
+.lp-node.lp-light .lp-input { background: #ECE6D9; }
+.lp-input .lp-val { color: #ECE6D9; font-size: 13px; line-height: 22px; }
+.lp-node.lp-light .lp-input .lp-val { color: #23221F; }
+.lp-chev { color: #999999; font-size: 11px; line-height: 1; display: flex; }
+
+/* organism · hero — node card + badge + marquee */
+.lp-herocenter { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding-bottom: 18px; box-sizing: border-box; }
+.lp-mqwrap { position: relative; }
+/* marquee + handles live INSIDE the scaled card, so they scale with it and hug its true boundary at any height */
+.lp-cardscaled { position: relative; display: inline-block; transform: scale(1.54); transform-origin: center center; }
+.lp-herocard { width: 244px; }
+.lp-marquee { position: absolute; inset: -4.5px; border: 1.3px solid #3580C6; pointer-events: none; }
+.lp-handle { position: absolute; width: 5.2px; height: 5.2px; background: #3580C6; }
+.lp-handle.lp-tl{left:-7.1px;top:-7.1px}   .lp-handle.lp-tr{right:-7.1px;top:-7.1px}
+.lp-handle.lp-bl{left:-7.1px;bottom:-7.1px} .lp-handle.lp-br{right:-7.1px;bottom:-7.1px}
+@media (prefers-reduced-motion: no-preference){ .lp-handle { animation: lpBreathe 2.6s cubic-bezier(0.25,0,0,1) infinite; } }
+@keyframes lpBreathe { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+/* system · wire — two nodes joined by a bezier with port dots */
+.lp-wirestage { position: absolute; inset: 0; }
+.lp-wnode { position: absolute; width: 196px; height: 84px; box-sizing: border-box; }
+.lp-wnode.lp-a { left: 26px; top: 40px; }
+.lp-wnode.lp-b { left: 531px; top: 250px; }
+.lp-wiresvg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.lp-wiresvg .lp-glow2 { fill: none; stroke: #ECE6D9; stroke-width: 14; opacity: 0.05; filter: blur(9px); }
+.lp-wiresvg .lp-glow1 { fill: none; stroke: #ECE6D9; stroke-width: 5; opacity: 0.15; filter: blur(3px); }
+.lp-wiresvg .lp-core  { fill: none; stroke: #ECE6D9; stroke-width: 2; }
+.lp-wiresvg .lp-port { fill: #151515; stroke: #ECE6D9; stroke-width: 1.5; }
+.lp-pulse {
+  position: absolute; width: 7px; height: 7px; border-radius: 1000px; background: #ECE6D9;
+  box-shadow: 0 0 7px 2px rgba(236,230,217,0.55);
+  offset-path: path("M222,82 C376,82 377,292 531,292"); offset-rotate: 0deg; opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference){ .lp-pulse { animation: lpPulse 3.4s cubic-bezier(0.25,0,0,1) infinite; } }
+@keyframes lpPulse {
+  0% { offset-distance: 0%; opacity: 0; }
+  9% { opacity: 1; }
+  46% { offset-distance: 100%; opacity: 1; }
+  53% { offset-distance: 100%; opacity: 0; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+/* organism · image set 2x2 */
+.lp-setgrid { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-54%); width: 300px; height: 300px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2px; }
+.lp-tile { border-radius: 4px; border: 0.5px solid rgba(153,153,153,0.24); background: repeating-linear-gradient(45deg, rgba(153,153,153,0.07) 0 7px, transparent 7px 14px); display: flex; align-items: center; justify-content: center; color: rgba(153,153,153,0.5); }
+.lp-tile svg { width: 30px; height: 30px; }
+
+/* organism · preview — light-surface variant + Run LoRA */
+.lp-prevwrap { position: absolute; left: 24px; right: 24px; top: 32px; }
+.lp-prevcard { background: #F6F5F1; border: 0.5px solid rgba(21,21,21,0.12); border-radius: 6px; padding: 12px; box-sizing: border-box; }
+.lp-prevhead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.lp-prevthumb { height: 168px; border-radius: 4px; border: 0.5px solid rgba(21,21,21,0.10); background: repeating-linear-gradient(45deg, rgba(87,65,49,0.06) 0 7px, transparent 7px 14px), #ECE6D9; display: flex; align-items: center; justify-content: center; color: rgba(87,65,49,0.4); }
+.lp-prevthumb svg { width: 40px; height: 40px; }
+.lp-prevfoot { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+.lp-btndark { height: 28px; border-radius: 6px; background: #23221F; color: #ECE6D9; font-size: 13px; line-height: 22px; display: inline-flex; align-items: center; gap: 6px; padding: 3px 12px 4px; box-sizing: border-box; }
+.lp-btndark .lp-spk { width: 14px; height: 14px; display: flex; }
+.lp-btndark .lp-spk svg { width: 100%; height: 100%; }
+.lp-prevmeta { color: #565859; font-size: 11px; line-height: 19px; }
+
+/* atom · icons (Lucide) */
+.lp-icongrid { position: absolute; left: 50%; top: 46%; transform: translate(-50%,-50%); display: grid; grid-template-columns: repeat(4,1fr); grid-template-rows: repeat(2,1fr); gap: 22px 30px; }
+.lp-ico { width: 40px; height: 40px; color: #ECE6D9; }
+.lp-ico svg { display: block; width: 100%; height: 100%; }
+
+/* atom · type */
+.lp-aa { position: absolute; left: 24px; top: 50%; transform: translateY(-58%); font-size: 128px; line-height: 1; color: #ECE6D9; letter-spacing: -0.01em; }
+
+/* atom · surface — cream + dark planes */
+.lp-surfwrap { position: absolute; left: 32px; top: 30px; display: flex; gap: 40px; }
+.lp-planestack { position: relative; width: 148px; height: 108px; }
+.lp-plane { position: absolute; width: 96px; height: 60px; border-radius: 6px; border: 0.5px solid rgba(153,153,153,0.24); }
+.lp-cream .lp-plane:nth-child(1){left:0;top:0;background:#F6F5F1}
+.lp-cream .lp-plane:nth-child(2){left:16px;top:14px;background:#F3F0EB}
+.lp-cream .lp-plane:nth-child(3){left:32px;top:28px;background:#ECE6D9}
+.lp-cream .lp-plane:nth-child(4){left:48px;top:42px;background:#E8DDC4}
+.lp-dark .lp-plane:nth-child(1){left:0;top:0;background:#3A3A38}
+.lp-dark .lp-plane:nth-child(2){left:16px;top:14px;background:#23221F}
+.lp-dark .lp-plane:nth-child(3){left:32px;top:28px;background:#212120}
+.lp-dark .lp-plane:nth-child(4){left:48px;top:42px;background:#151515}
+
+/* molecule · segmented tray (cream) */
+.lp-segcenter { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding-bottom: 16px; box-sizing: border-box; }
+.lp-segtray { display: flex; align-items: center; gap: 2px; background: #C7C4BD; border-radius: 8px; border: 0.5px solid rgba(153,153,153,0.24); padding: 4px; box-sizing: border-box; }
+.lp-seg { height: 28px; display: flex; align-items: center; padding: 3px 14px 4px; box-sizing: border-box; border-radius: 5px; color: #565859; font-size: 13px; line-height: 22px; }
+.lp-seg.lp-on { background: #F6F5F1; color: #23221F; }
+
+/* molecule · field group */
+.lp-fieldwrap { position: absolute; left: 20px; right: 20px; top: 34px; }
+
+/* molecule · slider + value chip */
+.lp-sliderwrap { position: absolute; left: 20px; right: 20px; top: 50%; transform: translateY(-58%); }
+.lp-strack { position: relative; height: 4px; border-radius: 1000px; background: #3A3A38; }
+.lp-sfill { position: absolute; left: 0; top: 0; height: 4px; width: 62%; border-radius: 1000px; background: #ECE6D9; }
+.lp-shandle { position: absolute; left: 62%; top: 50%; width: 14px; height: 14px; border-radius: 1000px; background: #ECE6D9; transform: translate(-50%,-50%); box-shadow: 0 0 0 4px #151515; }
+.lp-chip { position: absolute; left: 62%; top: -30px; transform: translateX(-50%); height: 20px; padding: 0 8px; border-radius: 4px; background: #3A3A38; color: #ECE6D9; font-size: 11px; line-height: 19px; display: flex; align-items: center; font-variant-numeric: tabular-nums; }
+
+/* organism · tabs */
+.lp-tabrow { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 8px; padding-bottom: 16px; box-sizing: border-box; }
+.lp-tab { height: 28px; display: flex; align-items: center; padding: 3px 16px 4px; box-sizing: border-box; border-radius: 6px; color: #999999; font-size: 13px; line-height: 22px; }
+.lp-tab.lp-on { background: #23221F; border: 0.5px solid rgba(153,153,153,0.24); color: #ECE6D9; }
+
+/* molecule · checkbox */
+.lp-checkwrap { position: absolute; left: 20px; top: 50%; transform: translateY(-58%); display: flex; align-items: center; gap: 10px; }
+.lp-box { width: 20px; height: 20px; border-radius: 4px; background: #ECE6D9; border: 0.5px solid transparent; box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
+.lp-box svg { width: 13px; height: 13px; color: #23221F; }
+.lp-box svg path { stroke-dasharray: 22; stroke-dashoffset: 0; }
+.lp-lbl { color: #ECE6D9; font-size: 13px; line-height: 22px; }
+@media (prefers-reduced-motion: no-preference){
+  .lp-box { animation: lpBoxCycle 4s cubic-bezier(0.25,0,0,1) infinite; }
+  .lp-box svg path { animation: lpCheckDraw 4s cubic-bezier(0.25,0,0,1) infinite; }
+}
+@keyframes lpBoxCycle {
+  0%,10% { background:#212120; border-color:rgba(153,153,153,0.6); }
+  22%,60% { background:#ECE6D9; border-color:#ECE6D9; }
+  72%,100% { background:#212120; border-color:rgba(153,153,153,0.6); }
+}
+@keyframes lpCheckDraw {
+  0%,10% { stroke-dashoffset:22; }
+  24%,60% { stroke-dashoffset:0; }
+  72%,100% { stroke-dashoffset:22; }
+}
+
+/* atom · strokes */
+.lp-strkwrap { position: absolute; left: 20px; right: 20px; top: 32px; display: flex; flex-direction: column; gap: 14px; }
+.lp-strkrow { display: flex; align-items: center; gap: 10px; height: 12px; }
+.lp-strkrow .lp-line { flex: 1; }
+.lp-strkrow .lp-l1 { border-top: 0.5px solid rgba(153,153,153,0.24); }
+.lp-strkrow .lp-l2 { border-top: 0.5px solid rgba(153,153,153,0.6); }
+.lp-strkrow .lp-l3 { border-top: 2px solid #3580C6; }
+.lp-strkrow .lp-t { color: #999999; font: 500 11px/16px var(--mono); font-variant-caps: small-caps; letter-spacing: 0.04em; white-space: nowrap; }
+
+/* system · colophon */
+.lp-coloinner { position: absolute; left: 18px; right: 18px; top: 30px; }
+.lp-wordmark { color: #ECE6D9; font-size: 13px; line-height: 22px; letter-spacing: 0.04em; margin-bottom: 18px; }
+.lp-prov { font: 500 11px/18px var(--mono); color: #999999; font-variant-caps: small-caps; letter-spacing: 0.05em; }
+.lp-prov.lp-dim { color: #565859; }
+
+/* micro-interactions · states on demand */
+.lp-btndark, .lp-input, .lp-tab, .lp-seg, .lp-shandle, .lp-chev { transition: all 160ms cubic-bezier(0.25,0,0,1); }
+.lp-btndark { cursor: pointer; }
+.lp-btndark:hover { transform: translateY(-1px); background: #2c2a26; }
+.lp-input:hover { box-shadow: inset 0 0 0 0.5px rgba(153,153,153,0.6); cursor: pointer; }
+.lp-node.lp-light .lp-input:hover, .lp-prevcard .lp-input:hover { box-shadow: inset 0 0 0 0.5px rgba(21,21,21,0.28); }
+.lp-input:hover .lp-chev { transform: translateY(1px); }
+.lp-tab { cursor: pointer; }
+.lp-tab:not(.lp-on):hover { color: #ECE6D9; background: rgba(153,153,153,0.08); }
+.lp-seg { cursor: pointer; }
+.lp-seg:not(.lp-on):hover { color: #23221F; background: rgba(246,245,241,0.45); }
+.lp-strack { cursor: pointer; }
+.lp-strack:hover .lp-shandle { width: 16px; height: 16px; }
+
+/* reduced motion: the poster frame — everything at rest, still operable */
+@media (prefers-reduced-motion: reduce) {
+  .lp-cell, .lp-handle, .lp-box, .lp-box svg path, .lp-pulse { animation: none; }
+  .lp-btndark, .lp-input, .lp-tab, .lp-seg, .lp-shandle, .lp-chev { transition: none; }
+}
+
+/* ==== pendulum system plate — deconstruction, not gallery (slot 3) ======= */
+/* A print specimen sheet on a paper ground: the retrieval interface taken apart
+   into its parts, each re-rendered live at token scale. Hero = the artifact card
+   in its selected state; the thesis cell = one card grammar across six artifact
+   types. Values verbatim from projects/pendulum/DESIGN_DNA.md (Figma 2018:590 via
+   Dev Mode MCP). Cardo serif + Inter labels; cool ink on warm paper; periwinkle
+   #DADAF5 held / violet #8B83D6 selection. One canonical artwork (string-art
+   pendulum, ink line-art, ≤2 uses); one placeholder language (dotted grain).
+   Fixed 1920x1080 canvas scaled by the .ln-plate-canvas transform. Captions are
+   mono spec annotations carrying measured values. Prefixed .pen-. */
+@font-face { font-family: "Cardo"; font-style: normal; font-weight: 400; font-display: swap; src: url("/assets/work/pendulum/cardo-400.woff2") format("woff2"); }
+@font-face { font-family: "Cardo"; font-style: italic; font-weight: 400; font-display: swap; src: url("/assets/work/pendulum/cardo-400.woff2") format("woff2"); }
+@font-face { font-family: "Cardo"; font-style: normal; font-weight: 700; font-display: swap; src: url("/assets/work/pendulum/cardo-700.woff2") format("woff2"); }
+@font-face { font-family: "InterVar"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("/assets/work/pendulum/inter-var.woff2") format("woff2"); }
+
+.pen-plate-canvas {
+  background: #fcfbf9; position: relative; overflow: hidden;
+  font-family: "InterVar","Inter",system-ui,sans-serif;
+  --paper:#fcfbf9; --card:#ffffff; --field:#f5f5f8; --ink:#31313b; --ink2:#4f4f58;
+  --label:#8d8d96; --line:rgba(0,0,0,0.12); --line2:rgba(0,0,0,0.20);
+  --accent:#dadaf5; --violet:#8b83d6; --avatar:#574131;
+}
+.pen-grid {
+  position: absolute; inset: 48px;
+  display: grid; grid-template-columns: repeat(12,1fr); grid-template-rows: repeat(5,1fr); gap: 12px;
+  grid-template-areas:
+    "hero hero hero hero hero fam  fam  fam  fam  fam  fam  fam"
+    "hero hero hero hero hero retr retr retr comp comp comp comp"
+    "conv conv conv conv conv retr retr retr comp comp comp comp"
+    "conv conv conv conv conv sel  sel  sel  quot quot quot quot"
+    "type type surf surf ctrl ctrl icon icon icon colo colo colo";
+}
+.pen-cell { position: relative; background: var(--card); border: 0.5px solid var(--line); border-radius: 4px; overflow: hidden; animation: penEnter 240ms cubic-bezier(0.25,0,0,1) both; }
+@keyframes penEnter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.pen-hero{grid-area:hero;animation-delay:0ms} .pen-fam{grid-area:fam;animation-delay:60ms}
+.pen-retr{grid-area:retr;animation-delay:120ms} .pen-comp{grid-area:comp;animation-delay:180ms}
+.pen-conv{grid-area:conv;animation-delay:240ms} .pen-sel{grid-area:sel;animation-delay:300ms}
+.pen-quot{grid-area:quot;animation-delay:360ms} .pen-type{grid-area:type;animation-delay:420ms}
+.pen-surf{grid-area:surf;animation-delay:480ms} .pen-ctrl{grid-area:ctrl;animation-delay:540ms}
+.pen-icons{grid-area:icon;animation-delay:600ms} .pen-colo{grid-area:colo;animation-delay:660ms}
+
+.pen-cap { position: absolute; left: 16px; bottom: 12px; font: 500 11px/15px var(--mono); color: var(--label); font-variant-caps: small-caps; letter-spacing: 0.055em; white-space: nowrap; opacity: 0.75; }
+
+/* one placeholder language: dotted grain on warm gray */
+.pen-ph { background: radial-gradient(rgba(49,49,59,0.11) 0.8px, transparent 0.9px) 0 0 / 8px 8px, #efece6; }
+.pen-serif { font-family: "Cardo", Georgia, serif; }
+
+/* ---------- HERO · artifact card, selected ------------------------------ */
+.pen-hero { outline: 2px solid var(--violet); outline-offset: 3px; overflow: visible; }
+.pen-hero .pen-cap { bottom: -26px; left: 2px; }
+.pen-art { position: absolute; inset: 0; display: flex; flex-direction: column; border-radius: 4px; overflow: hidden; }
+.pen-art-media { flex: 1; position: relative; }
+.pen-art-media svg { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); height: 78%; }
+.pen-art-foot { flex: 0 0 auto; padding: 16px 18px 18px; border-top: 0.5px solid var(--line); }
+.pen-art-t { font-family: "Cardo", Georgia, serif; font-weight: 700; font-size: 24px; line-height: 28px; color: var(--ink); }
+.pen-art-m { margin-top: 4px; font: 500 11px/16px var(--mono); letter-spacing: 0.05em; color: var(--label); font-variant-caps: small-caps; }
+.pen-check { position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; border-radius: 1000px; background: var(--violet); border: 1.5px solid #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px -2px rgba(49,49,59,0.4); z-index: 3; }
+.pen-check svg { width: 14px; height: 14px; color: #fff; }
+.pen-kebab { position: absolute; top: 14px; left: 14px; width: 22px; height: 22px; border-radius: 1000px; background: rgba(255,255,255,0.86); display: flex; align-items: center; justify-content: center; gap: 2px; z-index: 3; }
+.pen-kebab i { width: 3px; height: 3px; border-radius: 1000px; background: var(--ink2); display: block; }
+
+/* ---------- FAM · card-family lineup (one grammar, six types) ------------ */
+.pen-fam { background: var(--paper); }
+.pen-fam-row { position: absolute; left: 16px; right: 16px; top: 14px; bottom: 32px; display: flex; gap: 10px; }
+.pen-fc { flex: 1; background: var(--card); border: 0.5px solid var(--line); border-radius: 3px; overflow: hidden; display: flex; flex-direction: column; }
+.pen-fc-media { flex: 1; position: relative; overflow: hidden; }
+.pen-fc-lab { flex: 0 0 auto; padding: 6px 8px 7px; font: 500 9.5px/12px var(--mono); letter-spacing: 0.06em; color: var(--label); text-transform: uppercase; border-top: 0.5px solid var(--line); }
+.pen-fc-doc { padding: 10px; display: flex; flex-direction: column; gap: 5px; }
+.pen-fc-doc i { display: block; height: 3px; border-radius: 2px; background: rgba(49,49,59,0.13); }
+.pen-fc-doc i:nth-child(1){width:70%} .pen-fc-doc i:nth-child(2){width:100%} .pen-fc-doc i:nth-child(3){width:92%} .pen-fc-doc i:nth-child(4){width:60%}
+.pen-fc-art svg { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); height: 88%; }
+.pen-fc-fold { position: relative; }
+.pen-fc-fold i { position: absolute; width: 40%; height: 62%; border-radius: 2px; border: 0.5px solid var(--line); background: #eceaf2; }
+.pen-fc-fold i:nth-child(1){left:16%;top:22%} .pen-fc-fold i:nth-child(2){left:30%;top:16%;background:#e2e0ec} .pen-fc-fold i:nth-child(3){left:44%;top:10%;background:#d7d5e6}
+.pen-fc-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 26px; height: 26px; border-radius: 1000px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; }
+.pen-fc-play svg { width: 12px; height: 12px; color: var(--ink); margin-left: 1px; }
+.pen-fc-glyph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--label); }
+.pen-fc-glyph svg { width: 26px; height: 26px; }
+
+/* ---------- RETR · semantic-retrieval schematic (secondary hero) -------- */
+.pen-retr { background: var(--paper); }
+.pen-retrStage { position: absolute; inset: 0; }
+.pen-retrSvg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pen-retrSvg .pen-link { fill: none; stroke: var(--violet); }
+.pen-retrSvg .pen-halo { fill: var(--accent); opacity: 0.5; }
+.pen-node { position: absolute; transform: translate(-50%,-50%); }
+.pen-node .pen-dot { width: 30px; height: 30px; border-radius: 6px; background: var(--card); border: 0.5px solid var(--line); display: flex; align-items: center; justify-content: center; color: var(--ink2); }
+.pen-node .pen-dot svg { width: 15px; height: 15px; }
+.pen-qnode { position: absolute; transform: translate(-50%,-50%); width: 46px; height: 46px; border-radius: 1000px; background: var(--accent); border: 1px solid var(--violet); display: flex; align-items: center; justify-content: center; }
+.pen-qnode svg { width: 20px; height: 20px; color: var(--ink); }
+.pen-pulse2 { position: absolute; width: 7px; height: 7px; border-radius: 1000px; background: var(--violet); box-shadow: 0 0 8px 2px rgba(139,131,214,0.5); opacity: 0; }
+@media (prefers-reduced-motion: no-preference){ .pen-pulse2 { animation: penPulse 3.6s cubic-bezier(0.25,0,0,1) infinite; } }
+@keyframes penPulse { 0%{offset-distance:0%;opacity:0} 10%{opacity:1} 46%{offset-distance:100%;opacity:1} 54%{offset-distance:100%;opacity:0} 100%{offset-distance:100%;opacity:0} }
+
+/* ---------- COMP · composer anatomy ------------------------------------- */
+.pen-comp { padding: 0; }
+.pen-compWrap { position: absolute; left: 22px; right: 22px; top: 26px; }
+.pen-compLbl { font: 500 11px/16px var(--mono); letter-spacing: 0.06em; color: var(--label); font-variant-caps: small-caps; margin-bottom: 12px; }
+.pen-artchip { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px 0 7px; border-radius: 1000px; background: #eeedf9; border: 0.5px solid #c6c3ea; font-size: 13px; color: var(--ink); }
+.pen-artchip .pen-k { font: 500 9px/1 var(--mono); letter-spacing: 0.06em; color: #6a63b8; background: #fff; border-radius: 2px; padding: 3px 5px; }
+.pen-artchip .pen-x { color: var(--label); font-size: 15px; margin-left: 2px; }
+.pen-ask { margin-top: 14px; display: flex; align-items: center; gap: 10px; height: 46px; border-radius: 1000px; background: #fff; border: 1px solid #c6c3ea; padding: 0 8px 0 18px; }
+.pen-ask .pen-ph2 { flex: 1; font-family: "Cardo", Georgia, serif; font-size: 16px; color: var(--label); }
+.pen-ask .pen-clip { width: 18px; height: 18px; color: var(--label); }
+.pen-ask .pen-clip svg { width: 100%; height: 100%; }
+.pen-ask .pen-send { width: 32px; height: 32px; border-radius: 1000px; background: var(--ink); color: #fff; display: inline-flex; align-items: center; justify-content: center; }
+.pen-ask .pen-send svg { width: 15px; height: 15px; }
+
+/* ---------- CONV · conversation rhythm (trimmed) ------------------------ */
+.pen-conv { background: #f7f7f9; }
+.pen-convWrap { position: absolute; left: 22px; right: 22px; top: 24px; }
+.pen-bubble { display: inline-flex; align-items: center; gap: 9px; background: var(--accent); border-radius: 15px; padding: 8px 13px; margin-bottom: 18px; }
+.pen-bubble .pen-q { font-family: "Cardo", Georgia, serif; font-size: 16px; line-height: 22px; color: var(--ink); }
+.pen-av { width: 26px; height: 26px; border-radius: 1000px; background: var(--avatar); color: #f2f2f2; display: inline-flex; align-items: center; justify-content: center; font-family: "Cardo", Georgia, serif; font-size: 14px; flex: 0 0 auto; }
+.pen-ansLead { font-family: "Cardo", Georgia, serif; font-size: 16px; line-height: 23px; color: var(--ink); margin-bottom: 14px; }
+.pen-grp h4 { margin: 0 0 2px; font-family: "Cardo", Georgia, serif; font-weight: 700; font-size: 15px; color: var(--ink); }
+.pen-grp ol { margin: 0 0 10px; padding: 0; list-style: none; }
+.pen-grp li { font-family: "Cardo", Georgia, serif; font-size: 14px; line-height: 22px; color: var(--ink2); }
+.pen-grp li span { color: #b9b9bc; margin-right: 8px; }
+.pen-grp li.pen-dim { color: #b9b9bc; }
+
+/* ---------- SEL · selector (filter + select) ---------------------------- */
+.pen-selWrap { position: absolute; left: 20px; right: 20px; top: 50%; transform: translateY(-62%); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.pen-seg2 { display: inline-flex; gap: 2px; background: var(--field); border: 0.5px solid var(--line); border-radius: 1000px; padding: 3px; }
+.pen-seg2 span { font-family: "InterVar","Inter",system-ui,sans-serif; font-size: 12px; color: var(--label); padding: 3px 11px; border-radius: 1000px; }
+.pen-seg2 span.on { background: #fff; color: var(--ink); }
+.pen-seldemo { display: inline-flex; gap: 8px; }
+.pen-seldot { width: 20px; height: 20px; border-radius: 1000px; border: 0.5px solid var(--line2); background: #fff; display: flex; align-items: center; justify-content: center; }
+.pen-seldot.on { background: var(--violet); border-color: var(--violet); }
+.pen-seldot svg { width: 12px; height: 12px; color: #fff; opacity: 0; }
+.pen-seldot.on svg { opacity: 1; }
+
+/* ---------- QUOT · Cardo italic quote ----------------------------------- */
+.pen-quotWrap { position: absolute; left: 22px; right: 22px; top: 50%; transform: translateY(-54%); }
+.pen-quotText { font-family: "Cardo", Georgia, serif; font-style: italic; font-weight: 400; font-size: 20px; line-height: 27px; color: var(--ink); }
+.pen-quotCite { margin-top: 8px; font: 500 11px/16px var(--mono); letter-spacing: 0.05em; color: var(--label); font-variant-caps: small-caps; }
+
+/* ---------- TYPE atom --------------------------------------------------- */
+.pen-aa { position: absolute; left: 18px; top: 50%; transform: translateY(-60%); font-family: "Cardo", Georgia, serif; font-size: 84px; line-height: 1; color: var(--ink); }
+.pen-typetag { position: absolute; left: 20px; bottom: 36px; font-family: "InterVar","Inter",system-ui,sans-serif; font-size: 13px; color: var(--label); }
+
+/* ---------- SURF atom · surfaces + accent ------------------------------- */
+.pen-surfWrap { position: absolute; left: 20px; top: 26px; display: flex; gap: 7px; }
+.pen-sw { width: 34px; height: 44px; border-radius: 3px; border: 0.5px solid var(--line); }
+
+/* ---------- CTRL atom · small controls ---------------------------------- */
+.pen-ctrlWrap { position: absolute; left: 18px; right: 14px; top: 50%; transform: translateY(-60%); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.pen-mchip { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px 0 5px; border-radius: 1000px; background: #eeedf9; border: 0.5px solid #c6c3ea; font-size: 11px; color: var(--ink); }
+.pen-mchip .pen-k { font: 500 8px/1 var(--mono); color: #6a63b8; background: #fff; border-radius: 2px; padding: 2px 4px; }
+.pen-mcheck { width: 22px; height: 22px; border-radius: 1000px; background: var(--violet); display: flex; align-items: center; justify-content: center; }
+.pen-mcheck svg { width: 12px; height: 12px; color: #fff; }
+.pen-mav { width: 24px; height: 24px; border-radius: 1000px; background: var(--avatar); color: #f2f2f2; display: flex; align-items: center; justify-content: center; font-family: "Cardo",serif; font-size: 13px; }
+.pen-mdisc { display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 10px; border-radius: 1000px; border: 0.5px solid var(--line); font-size: 12px; color: var(--ink); }
+.pen-mdisc svg { width: 11px; height: 11px; color: var(--label); }
+
+/* ---------- ICON atom --------------------------------------------------- */
+.pen-icons-grid { position: absolute; left: 20px; right: 20px; top: 50%; transform: translateY(-58%); display: flex; align-items: center; justify-content: space-between; }
+.pen-ico { width: 26px; height: 26px; color: var(--ink); }
+.pen-ico svg { display: block; width: 100%; height: 100%; }
+
+/* ---------- COLOPHON ---------------------------------------------------- */
+.pen-colo { background: var(--paper); }
+.pen-coloInner { position: absolute; left: 18px; right: 14px; top: 50%; transform: translateY(-54%); }
+.pen-wordmark { font-family: "Cardo", Georgia, serif; font-size: 18px; color: var(--ink); margin-bottom: 8px; }
+.pen-prov { font: 400 11px/16px var(--mono); color: var(--label); }
+.pen-prov.dim { color: #b9b9bc; }
+.pen-flourish { margin-top: 12px; font: 500 11px/15px var(--mono); letter-spacing: 0.07em; color: var(--violet); font-variant-caps: small-caps; }
+
+/* micro-interactions */
+.pen-ask, .pen-send, .pen-seg2 span { transition: all 160ms cubic-bezier(0.25,0,0,1); }
+.pen-send:hover { transform: scale(1.06); }
+.pen-seg2 span:not(.on):hover { color: var(--ink); cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .pen-cell, .pen-pulse2 { animation: none; } .pen-ask, .pen-send, .pen-seg2 span { transition: none; } }

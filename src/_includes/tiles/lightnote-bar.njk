@@ -1,0 +1,91 @@
+<div class="lnt lnt-demo" data-lnt-demo>
+  <div class="lnt-demo-field">
+    <button class="lnt-ph lt" type="button" aria-pressed="false" aria-label="Select image 1 of 3">
+      <svg viewBox="0 0 100 100" stroke-width="0.7" aria-hidden="true"><path d="M50 10 L20 72 M50 10 L26 74 M50 10 L32 76 M50 10 L38 78 M50 10 L44 79 M50 10 L50 80 M50 10 L56 79 M50 10 L62 78 M50 10 L68 76 M50 10 L74 74 M50 10 L80 72 M20 72 Q50 88 80 72" /></svg>
+    </button>
+    <button class="lnt-ph dk" type="button" aria-pressed="false" aria-label="Select image 2 of 3">
+      <svg viewBox="0 0 100 100" stroke-width="0.7" aria-hidden="true"><path d="M50 14 Q22 40 18 64 M50 14 Q28 42 26 66 M50 14 Q34 44 34 68 M50 14 Q42 46 42 69 M50 14 Q50 48 50 70 M50 14 Q58 46 58 69 M50 14 Q66 44 66 68 M50 14 Q72 42 74 66 M50 14 Q78 40 82 64 M18 64 Q50 78 82 64" /></svg>
+    </button>
+    <button class="lnt-ph dk" type="button" aria-pressed="false" aria-label="Select image 3 of 3">
+      <svg viewBox="0 0 100 100" stroke-width="0.7" aria-hidden="true"><path d="M50 12 L30 60 M50 12 L36 63 M50 12 L43 65 M50 12 L50 66 M50 12 L57 65 M50 12 L64 63 M50 12 L70 60 M30 60 Q50 74 70 60 M50 66 L50 84" /></svg>
+    </button>
+  </div>
+  <div class="lnt-bar">
+    <span class="txt" data-lnt-count>1 image</span>
+    <span class="pill">Arrange <span class="caret">▾</span></span>
+    <span class="pill">Delete</span>
+    <span class="pill primary">✦ Create set</span>
+  </div>
+</div>
+<script>
+  // Lightnote selection demo — the bar exists only while something is selected.
+  // Self-contained: no dependencies, transform/opacity only, reduced-motion
+  // renders the resting state with everything selected.
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-lnt-demo]'), function (demo) {
+      var thumbs = Array.prototype.slice.call(demo.querySelectorAll('.lnt-ph'));
+      var bar = demo.querySelector('.lnt-bar');
+      var count = demo.querySelector('[data-lnt-count]');
+      var touched = false;
+      var timer = null;
+
+      function selected() {
+        return thumbs.filter(function (t) { return t.getAttribute('aria-pressed') === 'true'; }).length;
+      }
+      function render() {
+        var n = selected();
+        if (n > 0) count.textContent = n + (n > 1 ? ' images' : ' image');
+        bar.classList.toggle('is-on', n > 0);
+      }
+      function set(t, on) { t.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+
+      thumbs.forEach(function (t) {
+        t.addEventListener('click', function () {
+          touched = true;
+          if (timer) { clearTimeout(timer); timer = null; }
+          set(t, t.getAttribute('aria-pressed') !== 'true');
+          render();
+        });
+      });
+
+      if (reduce) {
+        // poster frame: the moment the copy describes, at rest but still operable
+        thumbs.forEach(function (t) { set(t, true); });
+        render();
+        return;
+      }
+
+      // a quiet loop demonstrates the behavior until the visitor takes over
+      var script = [
+        function () { set(thumbs[0], true); },
+        function () { set(thumbs[1], true); },
+        function () { set(thumbs[2], true); },
+        function () {},                                        /* hold the full selection */
+        function () { thumbs.forEach(function (t) { set(t, false); }); }
+      ];
+      var step = 0;
+      var playing = false;
+      function tick() {
+        if (touched || !playing) return;
+        script[step % script.length]();
+        render();
+        var delay = (step % script.length === 3) ? 1600 : (step % script.length === 4) ? 1400 : 700;
+        step += 1;
+        timer = setTimeout(tick, delay);
+      }
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (touched) return;
+            if (e.isIntersecting && !playing) { playing = true; timer = setTimeout(tick, 600); }
+            if (!e.isIntersecting && playing) { playing = false; if (timer) { clearTimeout(timer); timer = null; } }
+          });
+        }, { threshold: 0.4 }).observe(demo);
+      } else {
+        playing = true;
+        timer = setTimeout(tick, 600);
+      }
+    });
+  })();
+</script>

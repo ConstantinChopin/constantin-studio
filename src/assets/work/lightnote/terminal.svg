@@ -1,25 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Lightnote CLI — train a LoRA style, then generate with it">
   <!-- the toolkit's first register: the terminal. palette and transcript from
-       the Lightnote design language: field #131313, cream #ECE5D3, ink #E6E4DF,
-       selection #5F8FD0 -->
-  <rect width="800" height="800" fill="#131313"/>
+       the Lightnote design language: field #151515, cream #F3F0EB, ink #ECE6D9,
+       selection #3580C6 -->
+  <rect width="800" height="800" fill="#151515"/>
 
   <g font-family="'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace" font-size="21">
-    <text x="64" y="118"><tspan fill="#ECE5D3">$</tspan><tspan fill="#E6E4DF" dx="12">lightnote train submit</tspan></text>
+    <text x="64" y="118"><tspan fill="#F3F0EB">$</tspan><tspan fill="#ECE6D9" dx="12">lightnote train submit</tspan></text>
     <text x="64" y="156" fill="rgba(230,228,223,0.55)">    --images fixture-01.jpg fixture-02.jpg</text>
     <text x="64" y="194" fill="rgba(230,228,223,0.55)">             fixture-03.jpg fixture-04.jpg</text>
     <text x="64" y="232" fill="rgba(230,228,223,0.55)">    --trigger "TOK" --name "modern-fixtures"</text>
     <text x="64" y="270" fill="rgba(230,228,223,0.55)">    --wait</text>
 
-    <text x="64" y="330" fill="#ECE5D3">✓ 4 images uploaded</text>
-    <text x="64" y="368" fill="#ECE5D3">✓ training queued · 1500 steps</text>
-    <text x="64" y="406"><tspan fill="#5F8FD0">→</tspan><tspan fill="rgba(230,228,223,0.55)" dx="12">LoRA URL: v3.fal.media/…/</tspan></text>
+    <text x="64" y="330" fill="#F3F0EB">✓ 4 images uploaded</text>
+    <text x="64" y="368" fill="#F3F0EB">✓ training queued · 1500 steps</text>
+    <text x="64" y="406"><tspan fill="#3580C6">→</tspan><tspan fill="rgba(230,228,223,0.55)" dx="12">LoRA URL: v3.fal.media/…/</tspan></text>
     <text x="64" y="444" fill="rgba(230,228,223,0.55)">    modern-fixtures.safetensors</text>
 
-    <text x="64" y="528"><tspan fill="#ECE5D3">$</tspan><tspan fill="#E6E4DF" dx="12">lightnote flux-generate</tspan></text>
+    <text x="64" y="528"><tspan fill="#F3F0EB">$</tspan><tspan fill="#ECE6D9" dx="12">lightnote flux-generate</tspan></text>
     <text x="64" y="566" fill="rgba(230,228,223,0.55)">    --prompt "a hanging lamp in TOK style"</text>
     <text x="64" y="604" fill="rgba(230,228,223,0.55)">    --lora modern-fixtures</text>
   </g>
 
-  <rect x="64" y="646" width="12" height="26" fill="#ECE5D3"/>
+  <rect x="64" y="646" width="12" height="26" fill="#F3F0EB"/>
 </svg>
