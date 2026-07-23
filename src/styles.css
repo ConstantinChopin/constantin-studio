@@ -219,7 +219,9 @@ body.home { padding: 0; }
     display: flex;
     flex-direction: column;
     background: var(--paper);
-    border: 0;
+    /* a hairline seats the frame against the paper page — the soft shadow
+       alone was too diffuse to draw the panel's edge */
+    border: 1px solid rgba(17, 15, 15, 0.08);
     /* the corner shape only reads if there is arc enough to shape it — at the
        old 10px no curvature was legible at this size. on the scale
        bevel(0) → round(1) → squircle(2) → … → square(∞), a HIGHER value is
@@ -227,7 +229,6 @@ body.home { padding: 0; }
     border-radius: 22px;
     corner-shape: squircle;
     overflow: hidden;
-    /* the frame carries no border, so the shadow alone has to seat the panel */
     box-shadow: 0 24px 60px -28px rgba(43, 32, 24, 0.35);
   }
   /* the window header — project name at left, project nav at right, a shade
@@ -375,12 +376,15 @@ body.home { padding: 0; }
     inset: 0;
     display: flex;
     flex-direction: column;
+    /* one inset shared by every band, so text, pills and the first still all
+       hang from the same left edge */
+    --canvas-pad: clamp(1.4rem, 3vw, 2.4rem);
     /* the top pad clears the floating header row */
     padding-top: 3.1rem;
   }
   .canvas-set[hidden] { display: none; }
 
-  /* the metadata row — capability pills at left, service · year at right */
+  /* the metadata row — capability pills at left, the year at right */
   .canvas-meta {
     flex: 0 0 auto;
     display: flex;
@@ -388,7 +392,7 @@ body.home { padding: 0; }
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 0.6rem 1.2rem;
-    padding: 0 clamp(1.4rem, 3vw, 2.4rem) 0.85rem;
+    padding: 0 var(--canvas-pad) 0.85rem;
   }
 
   .canvas-rail {
@@ -396,7 +400,9 @@ body.home { padding: 0; }
     min-height: 0;
     display: flex;
     gap: 4px;
-    padding: 0;
+    /* the row starts on the shared left edge and still bleeds off the right */
+    padding: 0 0 0 var(--canvas-pad);
+    scroll-padding-left: var(--canvas-pad);
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
@@ -445,7 +451,7 @@ body.home { padding: 0; }
   /* the body — the whole story as prose, seated beneath the stills */
   .canvas-body {
     flex: 0 0 auto;
-    padding: 1rem clamp(1.4rem, 3vw, 2.4rem) clamp(1.1rem, 2.4vh, 1.7rem);
+    padding: 1rem var(--canvas-pad) clamp(1.1rem, 2.4vh, 1.7rem);
   }
   .canvas-intro {
     margin: 0;

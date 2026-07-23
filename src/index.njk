@@ -74,14 +74,15 @@ ogUrl: "https://constantin.studio"
              service · year right), the stills, then the body text beneath. the
              rail is the flexible band — it absorbs whatever height the text
              doesn't need, so copy and image can never collide. #}
+          {# one metadata row: the capability pills ARE the service line, so only
+             the year joins them — no restating the same words in caps #}
           <div class="canvas-meta">
             {% if e.skills %}
             <p class="canvas-skills">{% for s in e.skills %}<span class="pill">{{ s }}</span>{% endfor %}</p>
             {% endif %}
-            {% if e.meta %}
-            {# stack is too long for the tag line, and an em-dash is a placeholder, not a value #}
-            <p class="canvas-tags">{% for m in e.meta %}{% if m.label != "Stack" %}{% for t in m.tags %}{% if t != "—" %}<span>{{ t }}</span>{% endif %}{% endfor %}{% endif %}{% endfor %}</p>
-            {% endif %}
+            {% for m in e.meta %}{% if m.label == "Year" and m.tags[0] != "—" %}
+            <p class="canvas-tags"><span>{{ m.tags[0] }}</span></p>
+            {% endif %}{% endfor %}
           </div>
 
           {# a project shows its real stills once `railReady` is set in studio.json;
