@@ -70,9 +70,20 @@ ogUrl: "https://constantin.studio"
         {% for shelf in studio.shelves %}{% for e in shelf.entries %}{% if e.rail %}
         <div class="canvas-set" data-id="{{ e.id }}" data-title="{{ e.title }}" data-category="{{ shelf.label }}" hidden>
 
-          {# the stills — a row anchored to the foot of the canvas. each square
-             runs taller than the gap left beneath the copy, so its head passes
-             behind the copy plate. flush at left and bottom, 4px between. #}
+          {# the canvas stacks three bands: a metadata row (capability pills left,
+             service · year right), the stills, then the body text beneath. the
+             rail is the flexible band — it absorbs whatever height the text
+             doesn't need, so copy and image can never collide. #}
+          <div class="canvas-meta">
+            {% if e.skills %}
+            <p class="canvas-skills">{% for s in e.skills %}<span class="pill">{{ s }}</span>{% endfor %}</p>
+            {% endif %}
+            {% if e.meta %}
+            {# stack is too long for the tag line, and an em-dash is a placeholder, not a value #}
+            <p class="canvas-tags">{% for m in e.meta %}{% if m.label != "Stack" %}{% for t in m.tags %}{% if t != "—" %}<span>{{ t }}</span>{% endif %}{% endfor %}{% endif %}{% endfor %}</p>
+            {% endif %}
+          </div>
+
           {# a project shows its real stills once `railReady` is set in studio.json;
              until its square assets land it holds flat grey placeholders, which
              are inert — with no image there is nothing to open. #}
@@ -86,13 +97,8 @@ ogUrl: "https://constantin.studio"
             {% endfor %}{% endif %}
           </div>
 
-          {# the copy plate — paper across the head of the canvas, over the stills #}
-          <div class="canvas-copy">
+          <div class="canvas-body">
             {% if e.intro %}<p class="canvas-intro">{{ e.intro | safe }}</p>{% endif %}
-            {% if e.meta %}
-            {# stack is too long for the tag line, and an em-dash is a placeholder, not a value #}
-            <p class="canvas-tags">{% for m in e.meta %}{% if m.label != "Stack" %}{% for t in m.tags %}{% if t != "—" %}<span>{{ t }}</span>{% endif %}{% endfor %}{% endif %}{% endfor %}</p>
-            {% endif %}
           </div>
         </div>
         {% endif %}{% endfor %}{% endfor %}

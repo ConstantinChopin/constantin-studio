@@ -10,12 +10,13 @@
           "desc": "Consumer AI companionship.",
           "href": "/projects/replika/",
           "banner": { "src": "/assets/work/replika/R1.png", "alt": "Replika — brand mark" },
-          "intro": "Replika is consumer AI companionship — the AI friend millions return to each day. The work was <strong>leading product design across mobile and web</strong> — onboarding through daily conversation — at the most consequential moment in the product's life. It carries deeply personal talk, so the craft is <strong>trust</strong>: an interface polished and attentive enough to be confided in, one that visibly remembers what matters.",
+          "intro": "Replika is the AI companion — <strong>42 million users worldwide</strong> — mid-way through a full rebrand: new CEO, evolved vision, a product to redefine. <strong>Design engineering on a flat team of twenty</strong> across iOS, web, brand and system: the brand book grown into the <strong>2026 design system</strong>, a 40-screen onboarding recast as a <strong>six-act narrative</strong>, and <strong>Memory V2</strong> — Portraits, Life Arcs, People Cards — the retention surface built on memory drawn from conversation, shipped directly with the lead iOS developer.",
           "meta": [
-            { "label": "Service", "tags": ["Product Design"] },
-            { "label": "Year", "tags": ["—"] },
+            { "label": "Service", "tags": ["Design Engineering"] },
+            { "label": "Year", "tags": ["2026"] },
             { "label": "Stack", "tags": ["—"] }
           ],
+          "skills": ["Design engineering", "Design systems", "Consumer mobile", "Memory interfaces"],
           "details": [
             { "label": "Context", "text": "Placeholder — this section will be written as the case study is filled in." },
             { "label": "Problem", "text": "Placeholder — this section will be written as the case study is filled in." },
@@ -43,12 +44,13 @@
           "desc": "An intelligence layer for the enterprise.",
           "href": "/projects/parable/",
           "banner": { "src": "/assets/work/parable/PA1.png", "alt": "Parable — brand mark" },
-          "intro": "Parable is the intelligence layer for enterprise operations — it reads the whole company (Slack, Salesforce, Workday, GitHub, Jira) and surfaces where the work, the waste, and the automation hide. It had a visual language but no system beneath it. As the product turns conversational, the system — not the screen — is what holds quality, so the mandate was to build the <strong>constraint layer an LLM can compose trustworthy screens from</strong>.",
+          "intro": "Parable is the intelligence layer for enterprise operations — it reads the whole company and surfaces where the work, the waste, and the automation hide. <strong>Sole product designer</strong> — founders and engineers, no product director — materializing a loose direction into an <strong>end-to-end journey</strong>, then a <strong>Claude-operable design system</strong>: ~53% of the token set cut so an AI composes from a named space of valid output, design and code in lockstep. The foundation shipped, and all budget moved to engineering to build from the platform as delivered.",
           "meta": [
             { "label": "Service", "tags": ["Principal Design Systems", "Design Engineering"] },
-            { "label": "Year", "tags": ["2026"] },
+            { "label": "Year", "tags": ["2025 — 2026"] },
             { "label": "Stack", "tags": ["Design tokens", "Component library", "Authored rules", "Studio pipeline"] }
           ],
+          "skills": ["Design systems", "Design engineering", "AI-operable components", "Enterprise UX"],
           "details": [
             { "label": "Context", "text": "Enterprise UX is bad because the org chart leaks into the product. Every team ships its own UI dialect, so <strong>fragmented APIs become fragmented UX</strong>. Parable's bet is the opposite — composability as the future of software, with PMs and AI assembling experiences from shared building blocks rather than designers hand-drawing every flow. That only pays off if the blocks are <strong>real</strong> — and when this work opened, they weren't." },
             { "label": "Problem", "text": "The inheritance was a visual language with <strong>no system beneath it</strong> — no token architecture, no component taxonomy, no progressive-disclosure model. With no designer on staff, engineering filled every gap ad-hoc, and each sprint widened the distance between what shipped and what cohered. The audit quantified the bloat: <strong>~53% of the token set was redundant</strong> — colour palettes <code>5→3</code> (~60→18 tokens), spacing <code>24→13</code>, chart tokens <code>50+→12</code>." },
@@ -71,12 +73,13 @@
           "desc": "Multimodal asset search at enterprise scale.",
           "href": "/projects/pendulum/",
           "banner": { "src": "/assets/work/pendulum/P1.png", "alt": "Pendulum — brand mark" },
-          "intro": "An enterprise system for indexing, organizing, and retrieving multimodal assets at scale. Built to handle millions of assets across images and text, with flexibility for downstream generative workflows. Developed with R/GA, WPP, and Kering.",
+          "intro": "An enterprise system for indexing, organizing and retrieving multimodal assets at scale — millions of images and documents, with flexibility for downstream generative workflows. Developed with R/GA, WPP, and Kering. <strong>Zero-to-one at Page Nineteen</strong>, an applied-AI studio out of South Park Commons: <strong>prototype first</strong>, working demos in front of users within weeks, validation calls drawn from a personal network. The direction was set down cheaply when the evidence fell short — <strong>the function of zero-to-one, not its failure</strong> — and later went public when the lab took its work to market.",
           "meta": [
             { "label": "Service", "tags": ["Product Design"] },
-            { "label": "Year", "tags": ["—"] },
+            { "label": "Year", "tags": ["2024"] },
             { "label": "Stack", "tags": ["pgvector", "CLIP", "Voyage", "Vision API", "Modal"] }
           ],
+          "skills": ["Zero to one", "Rapid prototyping", "Multimodal search", "Retrieval interfaces"],
           "details": [
             { "label": "Context", "text": "Placeholder — this section will be written as the case study is filled in." },
             { "label": "Problem", "text": "Placeholder — this section will be written as the case study is filled in." },
@@ -101,12 +104,13 @@
           "desc": "Composable creative workflows for generative media.",
           "href": "#lightnote",
           "banner": { "src": "/assets/work/lightnote/L1.png", "alt": "Lightnote — brand" },
-          "intro": "A creative AI toolkit that lived in the terminal, given a canvas — sets, processes, and runs arranged as rooms rather than commands.",
+          "intro": "A creative AI toolkit that lived in the terminal, given a canvas — <strong>sets, processes, and runs</strong> arranged as rooms rather than commands, for assembling image sets, composing workflows, and <strong>training LoRAs</strong>. Built in the weeks after the Pendulum pivot as the lab's fine-tuning tooling; internal operations paused at the investors' call, and in 2026 Page Nineteen <strong>released it publicly, open source under <code>MIT</code></strong>, as it repositioned itself as an AI lab.",
           "meta": [
             { "label": "Service", "tags": ["Product Design"] },
-            { "label": "Year", "tags": ["2026"] },
+            { "label": "Year", "tags": ["2024"] },
             { "label": "Stack", "tags": ["CLIP", "Stability AI", "Flux", "SDXL", "LoRA", "FastAPI"] }
           ],
+          "skills": ["Creative tooling", "Canvas interfaces", "Rapid prototyping", "Fine-tuning workflows"],
           "details": [
             { "label": "Context", "text": "Page Nineteen is an applied multimodal AI lab in London — a founding team of six, fresh from a South Park Commons residency. We led <strong>product design zero to one</strong>, working directly with the founders. Their Python toolkit could already <strong>see, tag, train, and generate</strong>; at stake was whether that engine became a product." },
             { "label": "Problem", "text": "The brief arrived as a UI problem: put panels over the model calls. We reframed it — Lightnote was a <strong>grammar problem</strong>. The <code>CLI</code> already spoke a complete language of <strong>sets, processes, and runs</strong>; an interface that invented its own vocabulary would have forked the product in two." },

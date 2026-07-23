@@ -367,20 +367,33 @@ body.home { padding: 0; }
      to its foot and run tall; the copy plate covers the head, so the heads of
      the stills pass behind it. flush at left and bottom, 4px between. ---- */
   .viewport { display: block; }
-  /* one number governs the split: where the row of stills starts. the copy plate
-     ends on the same line, so the two meet flush and can never drift apart.
-     lower it for larger squares, raise it for smaller. */
-  .canvas-set { position: absolute; inset: 0; --rail-top: 42%; }
+  /* the canvas stacks three bands — metadata row, stills, body text — and the
+     rail is the flexible one: it absorbs whatever height the text doesn't need,
+     so the bands can never collide. no scroll, no overlap, by construction. */
+  .canvas-set {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    /* the top pad clears the floating header row */
+    padding-top: 3.1rem;
+  }
   .canvas-set[hidden] { display: none; }
 
+  /* the metadata row — capability pills at left, service · year at right */
+  .canvas-meta {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.2rem;
+    padding: 0 clamp(1.4rem, 3vw, 2.4rem) 0.85rem;
+  }
+
   .canvas-rail {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /* this also sets the square size: a still is as tall as the row, so a lower
-       start means smaller squares */
-    top: var(--rail-top);
+    flex: 1 1 auto;
+    min-height: 0;
     display: flex;
     gap: 4px;
     padding: 0;
@@ -429,37 +442,28 @@ body.home { padding: 0; }
     .rail-item:hover img { transform: none; }
   }
 
-  /* the copy plate — paper across the head of the canvas. it ends exactly where
-     the row of stills begins, so the squares sit flush beneath it and no part of
-     a frame is covered, however short the copy runs. */
-  .canvas-copy {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    min-height: var(--rail-top);
-    background: var(--paper);
-    /* the top pad clears the floating header row */
-    padding: clamp(3.4rem, 8vh, 5rem) clamp(1.4rem, 3vw, 2.4rem) clamp(1.1rem, 2.4vh, 1.8rem);
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 1.5rem;
+  /* the body — the whole story as prose, seated beneath the stills */
+  .canvas-body {
+    flex: 0 0 auto;
+    padding: 1rem clamp(1.4rem, 3vw, 2.4rem) clamp(1.1rem, 2.4vh, 1.7rem);
   }
   .canvas-intro {
     margin: 0;
-    max-width: 34rem;
+    max-width: var(--reading);
     font-family: var(--serif);
-    font-size: clamp(0.94rem, 1.1vw, 1.1rem);
-    line-height: 1.5;
+    font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+    line-height: 1.55;
     color: var(--ink);
     text-wrap: pretty;
   }
   .canvas-intro strong { font-weight: 500; }
+  .canvas-intro code {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    color: var(--ink);
+  }
   .canvas-tags {
     margin: 0;
-    flex: 0 0 auto;
     font-family: var(--mono);
     font-size: 0.68rem;
     letter-spacing: 0.09em;
@@ -468,6 +472,14 @@ body.home { padding: 0; }
     text-align: right;
   }
   .canvas-tags span + span::before { content: ", "; }
+  /* the capability pills — the register the prose implies, named once, quietly */
+  .canvas-skills {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+  .canvas-skills .pill { font-size: 0.68rem; }
 
   /* the header floats over the copy plate rather than sitting in its flow */
   .viewport-bar {
