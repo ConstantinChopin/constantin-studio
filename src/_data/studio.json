@@ -10,9 +10,9 @@
           "desc": "Consumer AI companionship.",
           "href": "/projects/replika/",
           "banner": { "src": "/assets/work/replika/R1.png", "alt": "Replika — brand mark" },
-          "intro": "Replika is the AI companion — <strong>42 million users worldwide</strong> — mid-way through a full rebrand: new CEO, evolved vision, a product to redefine. <strong>Design engineering on a flat team of twenty</strong> (four designers, ten engineers) across iOS, web, brand, and the design system.",
+          "intro": "Replika is the AI companion — <strong>42 million users worldwide</strong>. In 2026, mid-way through a full rebrand — new CEO, evolved vision — they brought us in for <strong>design engineering on a flat team of twenty</strong>, across iOS, web, brand, and the design system.",
           "body": [
-            "The brand book grew into the <strong>2026 design system</strong> and visual northstar; a 40-screen onboarding became a <strong>six-act narrative</strong>; and <strong>Memory V2</strong> — Portraits, Life Arcs, People Cards — became the retention surface built on memory drawn from conversation. Around them, identity, expression, and a <strong>dual-currency economy</strong> — shipped directly with the lead iOS developer, <strong>direction to spec to build</strong>."
+            "The opportunity was defining the flagship features of the product's next era. The approach: ship directly with the lead iOS developer — <strong>direction to spec to build</strong> — with feature definition fed by the community's own channels. We learned that <strong>memory is the product</strong>: Memory V2 became Portraits, Life Arcs, and People Cards, built on structured memory drawn from conversation. We delivered the <strong>2026 design system</strong> grown from the brand book, a 40-screen onboarding recast as a <strong>six-act narrative</strong>, and the <strong>dual-currency economy</strong> through which users shape the relationship."
           ],
           "meta": [
             { "label": "Service", "tags": ["Design Engineering"] },
@@ -47,9 +47,9 @@
           "desc": "An intelligence layer for the enterprise.",
           "href": "/projects/parable/",
           "banner": { "src": "/assets/work/parable/PA1.png", "alt": "Parable — brand mark" },
-          "intro": "Parable is the intelligence layer for enterprise operations — it reads the whole company and surfaces where the work, the waste, and the automation hide. <strong>Sole product designer</strong> across web, brand, and system — founders and engineers, no product director.",
+          "intro": "Parable is the <strong>intelligence layer for enterprise operations</strong> — it reads the whole company and surfaces where the work, the waste, and the automation hide.",
           "body": [
-            "Phase one materialized a loose direction into an <strong>end-to-end journey</strong> and the first buildable interface — Figma, then increasingly <strong>in code beside the front-end engineer</strong>. The extension took the harder problem: a design system an AI operates in with <strong>near-zero drift</strong> — <strong>~53% of the token set cut</strong> so a model composes from a named space of valid output. The foundation shipped, and all budget moved to engineering to build from it."
+            "In September 2025 the founders brought us in as <strong>sole product designer</strong> — engineers on staff, no product director, a loose direction to materialize. The approach was an <strong>end-to-end journey</strong> for the ideal customer, prototyped in Figma and then in code beside the front-end engineer. We learned the real problem was drift: for an AI to operate the system, taste had to become rules — so the audit cut <strong>~53% of the token set</strong> until a model composes from a <strong>named space of valid output</strong>. We delivered the foundation; all budget moved to engineering to build from it."
           ],
           "meta": [
             { "label": "Service", "tags": ["Principal Design Systems", "Design Engineering"] },
@@ -79,9 +79,9 @@
           "desc": "Multimodal asset search at enterprise scale.",
           "href": "/projects/pendulum/",
           "banner": { "src": "/assets/work/pendulum/P1.png", "alt": "Pendulum — brand mark" },
-          "intro": "An enterprise system for indexing, organizing, and retrieving multimodal assets at scale — millions of images and documents, with flexibility for downstream generative workflows. Developed with R/GA, WPP, and Kering. <strong>Zero-to-one at Page Nineteen</strong>, an applied-AI studio out of South Park Commons.",
+          "intro": "Pendulum is a <strong>multimodal semantic-search platform</strong> — indexing, organizing, and retrieving millions of images and documents for downstream generative workflows. Built at Page Nineteen, an applied-AI studio out of South Park Commons, with R/GA, WPP, and Kering.",
           "body": [
-            "September 2024 — the practice hadn't shifted yet: wireframes in Figma, systems built by hand, validation calls drawn from a <strong>personal network</strong>. The work made the founders' vision tangible fast enough to test — <strong>demos in front of users within weeks</strong>. Investors wanted more evidence, and the direction was set down before engineering capital was spent — <strong>the function of zero-to-one, not its failure</strong> — later going public when the lab took its work to market."
+            "In September 2024 the founders brought us in to take the product <strong>zero-to-one</strong>: a thesis, and no interface yet. The approach was <strong>prototype first</strong> — wireframes to working demos within weeks, validated in calls drawn from a personal network. We learned that users leaned in but the evidence wouldn't carry investors — so the direction was set down before engineering capital was spent. What we delivered was the decision itself, <strong>the function of zero-to-one</strong>; the work later went public when the lab took its projects to market."
           ],
           "meta": [
             { "label": "Service", "tags": ["Product Design"] },
@@ -113,10 +113,9 @@
           "desc": "Composable creative workflows for generative media.",
           "href": "#lightnote",
           "banner": { "src": "/assets/work/lightnote/L1.png", "alt": "Lightnote — brand" },
-          "intro": "A creative AI toolkit that lived in the terminal, given a canvas — <strong>sets, processes, and runs</strong> arranged as rooms rather than commands, for assembling image sets, composing workflows, and <strong>training LoRAs</strong>.",
+          "intro": "Lightnote is a creative AI toolkit that lived in the terminal, given a canvas — <strong>sets, processes, and runs</strong> arranged as rooms rather than commands, for assembling image sets, composing workflows, and <strong>training LoRAs</strong>.",
           "body": [
-            "Built in the weeks after the Pendulum pivot, as the lab's own fine-tuning tooling. The canvas was a <strong>running prototype against the live engine</strong> — sketch became code and stayed there. Selection as the primary gesture: gather four images and the bar offers to fold them into a set; a trigger word typed into a node lands in the same call as its <code>--trigger</code> flag, so <strong>nothing drifts</strong>.",
-            "Internal operations paused at the investors' call — and in 2026 Page Nineteen <strong>released Lightnote publicly, open source under <code>MIT</code></strong>, as it repositioned itself as an AI lab."
+            "It began weeks after the Pendulum pivot, when the lab needed its own fine-tuning tooling. The approach was a <strong>running prototype against the live engine</strong> — sketch became code and stayed there. We learned to keep the grammar small: <strong>selection as the primary gesture</strong>, a trigger word landing in the same call as its <code>--trigger</code> flag, so nothing drifts. We delivered the canvas the lab itself worked in; operations paused at the investors' call, and in 2026 Page Nineteen <strong>released it publicly, open source under <code>MIT</code></strong>."
           ],
           "meta": [
             { "label": "Service", "tags": ["Product Design"] },
