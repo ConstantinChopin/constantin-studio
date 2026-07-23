@@ -20,7 +20,9 @@ ogUrl: "https://constantin.studio"
           <p class="bio-line">We work with ambitious teams building AI-native products from consumer apps, enterprise intelligence layers, and cultural technologies.</p>
         </header>
 
-        {% for shelf in studio.shelves %}
+        {# a shelf with `hidden: true` stays in the data but off the page —
+           flip the flag in studio.json when its entries are ready to show #}
+        {% for shelf in studio.shelves %}{% if not shelf.hidden %}
         <section class="shelf">
           <h2 class="label">{{ glyphs[shelf.glyph] | safe }}<span class="label-text">{{ shelf.label }}</span></h2>
           <ul class="index">
@@ -45,7 +47,7 @@ ogUrl: "https://constantin.studio"
             {% endfor %}
           </ul>
         </section>
-        {% endfor %}
+        {% endif %}{% endfor %}
 
         <footer class="colophon">
           <a href="mailto:constantinchopindesign@gmail.com">Write to the studio</a><span class="sep">·</span><a href="https://constantin.world">constantin.world</a>
@@ -74,12 +76,6 @@ ogUrl: "https://constantin.studio"
              service · year right), the stills, then the body text beneath. the
              rail is the flexible band — it absorbs whatever height the text
              doesn't need, so copy and image can never collide. #}
-          {# one metadata row — a single string of pills: the capabilities, then
-             the year closing the run #}
-          <div class="canvas-meta">
-            <p class="canvas-skills">{% for s in e.skills %}<span class="pill">{{ s }}</span>{% endfor %}{% for m in e.meta %}{% if m.label == "Year" and m.tags[0] != "—" %}<span class="pill pill-year">{{ m.tags[0] }}</span>{% endif %}{% endfor %}</p>
-          </div>
-
           {# a project shows its real stills once `railReady` is set in studio.json;
              until its square assets land it holds flat grey placeholders, which
              are inert — with no image there is nothing to open. #}
@@ -91,6 +87,12 @@ ogUrl: "https://constantin.studio"
             {% endfor %}{% else %}{% for i in range(0, 6) %}
             <span class="rail-item is-ph" role="listitem" aria-hidden="true"></span>
             {% endfor %}{% endif %}
+          </div>
+
+          {# one metadata row between the stills and the story — a single string
+             of pills: the capabilities, then the year closing the run #}
+          <div class="canvas-meta">
+            <p class="canvas-skills">{% for s in e.skills %}<span class="pill">{{ s }}</span>{% endfor %}{% for m in e.meta %}{% if m.label == "Year" and m.tags[0] != "—" %}<span class="pill pill-year">{{ m.tags[0] }}</span>{% endif %}{% endfor %}</p>
           </div>
 
           <div class="canvas-body">

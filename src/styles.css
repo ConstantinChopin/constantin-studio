@@ -384,7 +384,7 @@ body.home { padding: 0; }
   }
   .canvas-set[hidden] { display: none; }
 
-  /* the metadata row — capability pills at left, the year at right */
+  /* the metadata row — the pill run, seated between the stills and the story */
   .canvas-meta {
     flex: 0 0 auto;
     display: flex;
@@ -392,7 +392,7 @@ body.home { padding: 0; }
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 0.6rem 1.2rem;
-    padding: 0 var(--canvas-pad) 0.85rem;
+    padding: 0.9rem var(--canvas-pad) 0;
   }
 
   .canvas-rail {
@@ -460,7 +460,7 @@ body.home { padding: 0; }
     overflow-y: auto;
     scrollbar-width: none;
     overscroll-behavior: contain;
-    padding: 1rem var(--canvas-pad) clamp(1.1rem, 2.4vh, 1.7rem);
+    padding: 0.7rem var(--canvas-pad) clamp(1.1rem, 2.4vh, 1.7rem);
   }
   .canvas-body::-webkit-scrollbar { width: 0; height: 0; }
   /* paragraphs after the lede step back to the muted body voice */

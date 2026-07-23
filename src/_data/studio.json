@@ -146,6 +146,7 @@
     },
     {
       "label": "Writing",
+      "hidden": true,
       "glyph": "writing",
       "entries": [
         {
@@ -162,6 +163,7 @@
     },
     {
       "label": "Resources",
+      "hidden": true,
       "glyph": "resources",
       "entries": [
         {
