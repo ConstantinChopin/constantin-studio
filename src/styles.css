@@ -378,7 +378,7 @@ body.home { padding: 0; }
     flex-direction: column;
     /* one inset shared by every band, so text, pills and the first still all
        hang from the same left edge */
-    --canvas-pad: clamp(1.4rem, 3vw, 2.4rem);
+    --canvas-pad: clamp(1rem, 2.2vw, 1.7rem);
     /* the top pad clears the floating header row */
     padding-top: 3.1rem;
   }
@@ -494,8 +494,8 @@ body.home { padding: 0; }
     font-size: 0.85em;
     color: var(--ink);
   }
-  /* the year closes the pill run, a shade quieter than the capabilities */
-  .canvas-skills .pill-year { color: var(--muted); }
+  /* the year closes the pill run, quieter still */
+  .canvas-skills .pill-year { color: var(--faint); box-shadow: inset 0 0 0 1px rgba(17, 15, 15, 0.1); }
   /* the capability pills — the register the prose implies, named once, quietly */
   .canvas-skills {
     margin: 0;
@@ -503,7 +503,16 @@ body.home { padding: 0; }
     flex-wrap: wrap;
     gap: 0.3rem;
   }
-  .canvas-skills .pill { font-size: 0.68rem; }
+  /* fully-rounded capsules — the Apple pill: more horizontal room, a hairline
+     ring instead of a hard fill, so the run reads as tags rather than chips */
+  .canvas-skills .pill {
+    font-size: 0.68rem;
+    padding: 0.34em 0.78em;
+    border-radius: 999px;
+    background: transparent;
+    box-shadow: inset 0 0 0 1px rgba(17, 15, 15, 0.14);
+    color: var(--muted);
+  }
 
   /* the header floats over the copy plate rather than sitting in its flow */
   .viewport-bar {
@@ -513,7 +522,7 @@ body.home { padding: 0; }
     right: 0;
     z-index: 3;
     margin-bottom: 0;
-    padding: 0.85rem clamp(1.4rem, 3vw, 2.4rem);
+    padding: 0.85rem clamp(1rem, 2.2vw, 1.7rem);
   }
   .plates {
     display: grid;
