@@ -1876,3 +1876,130 @@ body.essay {
 .pen-send:hover { transform: scale(1.06); }
 .pen-seg2 span:not(.on):hover { color: var(--ink); cursor: pointer; }
 @media (prefers-reduced-motion: reduce) { .pen-cell, .pen-pulse2 { animation: none; } .pen-ask, .pen-send, .pen-seg2 span { transition: none; } }
+
+/* ===========================================================================
+   MOBILE — below the split's 64rem breakpoint the detail becomes its own page:
+   a full-screen view slid in over the index when a project is tapped, with the
+   stills stacked vertically and the story flowing beneath. All the desktop
+   canvas rules live in the min-width query, so this defines the panel afresh.
+   =========================================================================== */
+
+/* the back control only exists on the mobile page */
+.viewport-back { display: none; }
+
+@media (max-width: 63.999rem) {
+  .split { display: block; }
+
+  /* the detail — a fixed page over the index, slid in on open */
+  .pane-detail {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: var(--paper);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 0.28s var(--ease), visibility 0s linear 0.28s;
+  }
+  body.detail-open .pane-detail {
+    transform: none;
+    visibility: visible;
+    transition: transform 0.28s var(--ease);
+  }
+  /* with the page open the index sits still behind it */
+  body.detail-open { overflow: hidden; }
+  @media (prefers-reduced-motion: reduce) {
+    .pane-detail { transition: none; }
+  }
+
+  .viewport {
+    --canvas-pad: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background: var(--paper);
+  }
+
+  /* the header pins to the top of the scrolling page */
+  .viewport-bar {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem var(--canvas-pad);
+    background: var(--paper);
+    border-bottom: 1px solid rgba(17, 15, 15, 0.08);
+  }
+  .viewport-back {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    margin-left: -6px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .viewport-back svg { width: 18px; height: 18px; stroke-width: 1.8; display: block; }
+  .viewport-title { flex: 1 1 auto; min-width: 0; }
+  .viewport-actions { flex: 0 0 auto; display: flex; gap: 0.15rem; }
+  .viewport-btn {
+    width: 30px; height: 30px;
+    display: grid; place-items: center;
+    border: 0; background: transparent; color: var(--muted);
+    cursor: pointer; padding: 0;
+  }
+  .viewport-btn svg { width: 15px; height: 15px; stroke-width: 1.8; }
+
+  /* only the open project renders, and it flows as a page — not the absolute,
+     no-scroll canvas of the desktop panel */
+  .canvas-set { position: static; inset: auto; padding: 0 0 2.5rem; display: none; }
+  .canvas-set.is-live { display: block; }
+  .canvas-set[hidden] { display: none; }
+
+  /* the stills stack: full-width squares, inset to the text margin */
+  .canvas-rail {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 1rem var(--canvas-pad) 0;
+    overflow: visible;
+    min-height: 0;
+  }
+  .rail-item {
+    position: relative;
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    background: rgba(17, 15, 15, 0.04);
+    border-radius: 16px;
+    corner-shape: squircle;
+    cursor: pointer;
+  }
+  .rail-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .rail-item.is-ph { background: #e4e2dd; cursor: default; }
+
+  /* the story flows below the stills — prose, then the pill run */
+  .canvas-body {
+    display: block;
+    max-height: none;
+    overflow: visible;
+    padding: 1.2rem var(--canvas-pad) 0;
+  }
+  .canvas-prose { max-width: none; }
+  .canvas-intro { font-size: 1.02rem; }
+  .canvas-aside { width: auto; padding-top: 1.1rem; }
+  .canvas-skills { gap: 0.35rem; }
+}

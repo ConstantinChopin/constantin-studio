@@ -55,6 +55,9 @@ ogUrl: "https://constantin.studio"
     <aside class="pane-detail" aria-label="Selected project">
       <div class="viewport">
         <header class="viewport-bar">
+          <button class="viewport-back" type="button" data-vp-back aria-label="Back to projects">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg>
+          </button>
           <span class="viewport-title" data-vp-title></span>
           <nav class="viewport-actions" aria-label="Projects">
             <button class="viewport-btn" type="button" data-vp-prev aria-label="Previous project">
@@ -122,6 +125,7 @@ ogUrl: "https://constantin.studio"
       var titleEl = document.querySelector('[data-vp-title]');
       var prevBtn = document.querySelector('[data-vp-prev]');
       var nextBtn = document.querySelector('[data-vp-next]');
+      var backBtn = document.querySelector('[data-vp-back]');
       var liveId = null;
 
       // each image fades in the moment it decodes (they lazy-load when a set is
@@ -215,34 +219,40 @@ ogUrl: "https://constantin.studio"
       }
       if (prevBtn) prevBtn.addEventListener('click', function () { go(-1); });
       if (nextBtn) nextBtn.addEventListener('click', function () { go(1); });
-      function clear() { document.body.classList.remove('detail-open'); setActive(null); }
+      function clear() { document.body.classList.remove('detail-open'); setActive(null); liveId = null; }
       function closeDetail() {
         if (location.hash) history.replaceState(null, '', location.pathname + location.search);
         clear();
       }
+      if (backBtn) backBtn.addEventListener('click', closeDetail);
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && document.body.classList.contains('detail-open')) closeDetail();
       });
 
+      // a project row opens the panel at every width — on desktop it fills the
+      // right pane, on mobile it slides in as a full page. rows without a plate
+      // set (external links) navigate normally.
       rows.forEach(function (a) {
         a.addEventListener('click', function (e) {
-          if (!mq.matches) return;                       // mobile → navigate to href (case study / site)
-          if (!(a.dataset.id && byId[a.dataset.id])) return; // no plate set → normal navigation
-          e.preventDefault();                            // desktop → open the panel, never full-navigate
+          if (!(a.dataset.id && byId[a.dataset.id])) return;
+          e.preventDefault();
           if (location.hash.slice(1) !== a.dataset.id) location.hash = a.dataset.id;
+          else open(a.dataset.id);                       // same hash, panel closed → reopen
         });
       });
 
       window.addEventListener('hashchange', function () {
-        if (!mq.matches) return;
         var id = decodeURIComponent(location.hash.slice(1));
-        if (byId[id]) open(id);
+        if (byId[id]) { open(id); return; }
+        // no project in the hash: desktop keeps its default open, mobile closes
+        if (mq.matches) { if (defaultId) open(defaultId); } else clear();
       });
 
       function sync() {
-        if (!mq.matches) { document.body.classList.remove('detail-open'); return; }
         var id = decodeURIComponent(location.hash.slice(1));
-        if (byId[id]) open(id); else if (defaultId) open(defaultId); else clear();
+        if (byId[id]) { open(id); return; }
+        // desktop is never empty; mobile lands on the index
+        if (mq.matches) { if (defaultId) open(defaultId); else clear(); } else clear();
       }
       // ---- the rail: a vertical wheel over the row reads as horizontal travel,
       // since the row is the only thing that scrolls at the panel's foot
