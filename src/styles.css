@@ -494,16 +494,8 @@ body.home { padding: 0; }
     font-size: 0.85em;
     color: var(--ink);
   }
-  .canvas-tags {
-    margin: 0;
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--faint);
-    text-align: right;
-  }
-  .canvas-tags span + span::before { content: ", "; }
+  /* the year closes the pill run, a shade quieter than the capabilities */
+  .canvas-skills .pill-year { color: var(--muted); }
   /* the capability pills — the register the prose implies, named once, quietly */
   .canvas-skills {
     margin: 0;
