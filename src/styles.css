@@ -27,6 +27,13 @@
   /* a very light lifted surface — the header's small button containers */
   --surface: rgba(17, 15, 15, 0.05);
 
+  /* the glass contract — one material for every floating control. the tint
+     floor (58% paper) is a contrast guarantee: text on glass must pass on the
+     worst-case backdrop, so the pane never goes clearer than this. */
+  --glass-blur: 16px;
+  --glass-tint: color-mix(in srgb, var(--paper) 58%, transparent);
+  --glass-tint-fallback: color-mix(in srgb, var(--paper) 88%, transparent);
+
   --serif:  "Newsreader", Georgia, "Times New Roman", serif;
   /* the apparatus voice — catalogue notation (section labels, counts, entry
      meta) and code, never prose. everything is one voice or the other. */
@@ -263,23 +270,21 @@ body.home { padding: 0; }
   .viewport-title {
     position: relative;
     min-width: 0;
-    /* a frosted capsule, twin to the arrows' pill — the page scrolls beneath
-       it rather than under a white band */
+    /* a capsule twin to the arrows' pill — material comes from the glass
+       contract; only layout lives here */
     display: inline-flex;
     align-items: center;
     /* both header capsules share one height */
     height: 34px;
     padding: 0 0.9em;
-    border: 0.5px solid var(--rule);
     border-radius: 999px;
-    background: color-mix(in srgb, var(--paper) 72%, transparent);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    /* set as the left panel's body copy — same face, same size, no italic */
+    /* set EXACTLY as the left panel's body copy — same face, size, tracking,
+       and leading; nothing of the old italic register remains */
     font-family: var(--serif);
     font-style: normal;
     font-size: var(--text);
-    letter-spacing: 0.01em;
+    line-height: 1.5;
+    letter-spacing: normal;
     color: var(--muted);
     white-space: nowrap;
     overflow: hidden;
@@ -301,33 +306,15 @@ body.home { padding: 0; }
   .viewport-title .crumb-current { color: var(--ink); }
   .viewport-title .crumb-parent { color: var(--muted); }
   .viewport-title .crumb-sep { color: var(--faint); opacity: 0.55; margin: 0 0.4rem; }
-  /* both arrows share one fully-round pill — frosted like the breadcrumb's,
-     and at the same height */
+  /* both arrows share one fully-round pill at the capsule height — material
+     comes from the glass contract; only layout lives here */
   .viewport-actions {
     justify-self: end;
     display: inline-flex;
     align-items: stretch;
     height: 34px;
-    background: color-mix(in srgb, var(--paper) 72%, transparent);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 0.5px solid var(--rule);
     border-radius: 999px;
     overflow: hidden;
-  }
-  /* the glass — both capsules share one material: a thin translucent pane,
-     strong blur with a saturation lift so imagery glows through, a light-catch
-     on the top edge and the faintest outer ring to hold it on pale ground */
-  .viewport-title,
-  .viewport-actions {
-    background: color-mix(in srgb, var(--paper) 45%, transparent);
-    backdrop-filter: blur(18px) saturate(1.6);
-    -webkit-backdrop-filter: blur(18px) saturate(1.6);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow:
-      0 0 0 0.5px rgba(17, 15, 15, 0.08),
-      0 6px 18px -8px rgba(17, 15, 15, 0.22),
-      inset 0 1px 0 rgba(255, 255, 255, 0.6);
   }
   .viewport-btn {
     flex: 0 0 auto;
@@ -800,6 +787,33 @@ body.home { padding: 0; }
     body.detail-open .pane-index { animation: none; }
     .pane-detail { filter: none; }
   }
+}
+
+/* ---- the glass chrome ----------------------------------------------------
+   The rule of the site: content is paper, chrome is glass. Navigation that
+   floats above the work — breadcrumb, pager, back — consumes ONE material
+   contract (the --glass-* tokens): translucent paper over a saturating blur,
+   an ASYMMETRIC edge (bright catch on top, faint shade below — a uniform
+   border reads as a sticker), and a soft lift. The work itself is never glass. */
+.viewport-back,
+.viewport-title,
+.viewport-actions {
+  background: var(--glass-tint);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.5);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.5);
+  border: 0;
+  border-radius: 999px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(20, 20, 60, 0.12),
+    0 0 0 0.5px rgba(17, 15, 15, 0.08),
+    0 4px 16px rgba(10, 10, 40, 0.14);
+}
+/* browsers that drop backdrop-filter silently get a near-opaque pane instead */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .viewport-back,
+  .viewport-title,
+  .viewport-actions { background: var(--glass-tint-fallback); }
 }
 
 /* ---- the lightbox — the rail square is a crop, so opening restores the shot
@@ -1964,7 +1978,8 @@ body.essay {
     background: var(--paper);
   }
 
-  /* the header pins to the top of the scrolling page */
+  /* the header pins to the top of the scrolling page — no band of its own:
+     the page passes beneath, and each control floats as its own glass capsule */
   .viewport-bar {
     position: sticky;
     top: 0;
@@ -1973,27 +1988,47 @@ body.essay {
     align-items: center;
     gap: 0.6rem;
     padding: 0.8rem var(--canvas-pad);
-    background: var(--paper);
-    border-bottom: 1px solid rgba(17, 15, 15, 0.08);
+    background: transparent;
+    pointer-events: none;
   }
+  .viewport-bar > * { pointer-events: auto; }
+  /* material comes from the global glass contract; only layout lives here */
   .viewport-back {
     display: grid;
     place-items: center;
     flex: 0 0 auto;
-    width: 30px;
-    height: 30px;
-    margin-left: -6px;
+    width: 34px;
+    height: 34px;
     padding: 0;
     border: 0;
-    background: transparent;
     color: var(--muted);
     cursor: pointer;
   }
   .viewport-back svg { width: 18px; height: 18px; stroke-width: 1.8; display: block; }
-  .viewport-title { flex: 1 1 auto; min-width: 0; }
-  .viewport-actions { flex: 0 0 auto; display: flex; gap: 0.15rem; }
+  .viewport-title {
+    flex: 0 1 auto;
+    min-width: 0;
+    margin-right: auto;
+    display: inline-flex;
+    align-items: center;
+    height: 34px;
+    padding: 0 0.9em;
+    font-family: var(--serif);
+    font-size: var(--text);
+    white-space: nowrap;
+  }
+  .viewport-title .crumb-parent { color: var(--muted); }
+  .viewport-title .crumb-sep { color: var(--faint); opacity: 0.55; margin: 0 0.4rem; }
+  .viewport-title .crumb-current { color: var(--ink); }
+  .viewport-actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: stretch;
+    height: 34px;
+    overflow: hidden;
+  }
   .viewport-btn {
-    width: 30px; height: 30px;
+    width: 34px; height: 100%;
     display: grid; place-items: center;
     border: 0; background: transparent; color: var(--muted);
     cursor: pointer; padding: 0;
