@@ -193,26 +193,43 @@ body.home { padding: 0; }
     display: block;
     grid-column: 3;
     position: relative;
+    /* above the index so the window's shadow lands over it, not clipped */
     z-index: 2;
     height: 100svh;
     min-width: 0;
-    overflow: hidden;
-    /* no inset — the content sits on the page itself, met at the seam by a
-       hairline rule against the index */
-    padding: 0;
-    border-left: 1px solid rgba(17, 15, 15, 0.1);
+    /* visible, so the window's soft shadow spills past the pane seam */
+    overflow: visible;
+    /* the detail is an inset viewport, not an edge-to-edge pane: an even inset
+       on every side so the framed window floats in the right region */
+    padding: 12px;
     opacity: 0;
     filter: blur(8px);
     pointer-events: none;
     transition: opacity 0.6s var(--ease), filter 0.6s var(--ease);
   }
-  /* the viewport — no longer a floating window: an unframed region of the
-     page, full-bleed to the pane */
+  /* the viewport — a floating window: on light paper its chrome is a shade
+     warmer and darker than the page, its shadow soft rather than deep */
   .viewport {
     position: relative;
     height: 100%;
     min-width: 0;
+    /* always fills the detail region; the window card wraps the header and the
+       content together, framed and rounded */
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--paper);
+    /* a hairline seats the frame against the paper page — the soft shadow
+       alone was too diffuse to draw the panel's edge */
+    border: 1px solid rgba(17, 15, 15, 0.08);
+    /* the corner shape only reads if there is arc enough to shape it — at the
+       old 10px no curvature was legible at this size. on the scale
+       bevel(0) → round(1) → squircle(2) → … → square(∞), a HIGHER value is
+       squarer, so the Apple corner is squircle, not a larger exponent. */
+    border-radius: 22px;
+    corner-shape: squircle;
+    overflow: hidden;
+    box-shadow: 0 24px 60px -28px rgba(43, 32, 24, 0.35);
   }
   /* the window header — project name at left, project nav at right, a shade
      warmer than the paper body so it reads as chrome */
@@ -414,13 +431,13 @@ body.home { padding: 0; }
     .rail-item:hover img { transform: none; }
   }
 
-  /* the body — the story leads, above the gallery, the pill column at its
-     right. no caps: the panel itself scrolls, the copy takes what it needs. */
+  /* the body — the story beneath the gallery, the pill column at its right.
+     no caps: the panel itself scrolls, so the copy takes the room it needs. */
   .canvas-body {
     display: flex;
     align-items: flex-start;
     gap: clamp(1.2rem, 3vw, 2.4rem);
-    padding: 0.2rem 0 1.2rem;
+    padding: 1.1rem 0 0;
   }
   .canvas-prose { flex: 1 1 auto; min-width: 0; max-width: var(--reading); }
   /* the pill column — a narrow band the run wraps within */
@@ -434,9 +451,8 @@ body.home { padding: 0; }
     margin: 0.55rem 0 0;
     max-width: var(--reading);
     font-family: var(--serif);
-    /* a middle voice — larger than the index body, smaller than the site header */
-    font-size: clamp(1.05rem, 1.5vw, 1.3rem);
-    line-height: 1.5;
+    font-size: clamp(0.88rem, 1vw, 1rem);
+    line-height: 1.58;
     color: var(--muted);
     text-wrap: pretty;
   }
@@ -450,9 +466,8 @@ body.home { padding: 0; }
     margin: 0;
     max-width: var(--reading);
     font-family: var(--serif);
-    /* a middle voice — larger than the index body, smaller than the site header */
-    font-size: clamp(1.05rem, 1.5vw, 1.3rem);
-    line-height: 1.5;
+    font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+    line-height: 1.55;
     color: var(--ink);
     text-wrap: pretty;
   }
