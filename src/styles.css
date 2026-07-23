@@ -872,12 +872,25 @@ body.lightbox-open { overflow: hidden; }
   text-wrap: pretty;
 }
 .name + .bio-line { margin-top: 0.35rem; }
-.bio-line a {
+/* the prose link — underlined at rest, materializing into a pill on hover.
+   padding is carved from negative margins so the pill appears without moving
+   a single glyph; a project's link holds its pill while that project is open */
+.lnk {
   color: var(--ink);
+  border-radius: 6px;
+  padding: 0.08em 0.3em;
+  margin: -0.08em -0.3em;
   box-shadow: inset 0 -1px 0 var(--rule);
-  transition: box-shadow 0.25s var(--ease);
+  transition: box-shadow 0.22s var(--ease), background-color 0.22s var(--ease);
 }
-.bio-line a:hover { box-shadow: inset 0 -1px 0 var(--ink); }
+.lnk:hover,
+.lnk:focus-visible,
+.lnk.is-active {
+  background: var(--surface);
+  box-shadow: inset 0 0 0 transparent;
+}
+/* the extra breath between the index's prose movements */
+.prose-block { margin-top: 1.5rem; }
 
 /* small rubricated glyphs before each shelf label — the studio's instruments,
    drawn in the muted tier: an armillary sphere, a pair of dividers, a letter */

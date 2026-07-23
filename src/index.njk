@@ -13,41 +13,23 @@ ogUrl: "https://constantin.studio"
     <div class="pane-index">
       <main class="page">
 
+        {# the index speaks in prose — navigation is woven into the sentences.
+           links with data-id open the project panel in place; the rest leave
+           for their own pages. every link is underlined at rest and
+           materializes into a pill on hover — held while its project is open. #}
         <header>
           {% include "brand-mark.njk" %}
           <h1 class="name">Creativity, Craft, Computation</h1>
-          <p class="bio-line">constantin.studio is a design studio led by <a href="https://www.linkedin.com/in/constantinchopin">Constantin Chopin</a>, founder of <a href="https://constantin.world">constantin.world</a>, teacher at <a href="https://www.artcenter.edu">ArtCenter College of Design</a>.</p>
-          <p class="bio-line">We work with ambitious teams building AI-native products across consumer apps, enterprise intelligence layers, and cultural technologies.</p>
+          <p class="bio-line">constantin.studio is a design studio led by <a class="lnk" href="https://www.linkedin.com/in/constantinchopin">Constantin Chopin</a> — founder of <a class="lnk" href="https://constantin.world">constantin.world</a>, faculty at <a class="lnk" href="https://www.artcenter.edu">ArtCenter College of Design</a>.</p>
+          <p class="bio-line">We work with ambitious teams building AI-native products — across consumer apps: <a class="lnk" data-id="replika" href="#replika">Replika</a>, enterprise intelligence layers: <a class="lnk" data-id="parable" href="#parable">Parable</a>, <a class="lnk" data-id="pendulum" href="#pendulum">Pendulum</a>, and cultural technologies: <a class="lnk" data-id="lightnote" href="#lightnote">Lightnote</a>.</p>
         </header>
 
-        {# a shelf with `hidden: true` stays in the data but off the page —
-           flip the flag in studio.json when its entries are ready to show #}
-        {% for shelf in studio.shelves %}{% if not shelf.hidden %}
-        <section class="shelf">
-          <h2 class="label">{{ glyphs[shelf.glyph] | safe }}<span class="label-text">{{ shelf.label }}</span></h2>
-          <ul class="index">
-            {% for e in shelf.entries %}
-            <li>
-              {% if e.href %}
-              <a class="row" href="{{ e.href }}"{% if e.id %} data-id="{{ e.id }}"{% endif %}>
-                <span class="row-body">
-                  <span class="row-title">{{ e.title }}</span>
-                  {% if e.desc %}<span class="row-desc">{{ e.desc }}</span>{% endif %}
-                </span>
-              </a>
-              {% else %}
-              <div class="row is-static">
-                <span class="row-body">
-                  <span class="row-title">{{ e.title }}</span>
-                  {% if e.desc %}<span class="row-desc">{{ e.desc }}</span>{% endif %}
-                </span>
-              </div>
-              {% endif %}
-            </li>
-            {% endfor %}
-          </ul>
-        </section>
-        {% endif %}{% endfor %}
+        {# how we work — the linkable phrases here become process pages; they
+           stay plain prose until each page actually exists #}
+        <p class="bio-line prose-block">We design in the medium itself — sketches become running prototypes, and prototypes become the shipped surface. We build design systems that hold without us — lately, systems an AI can operate in — and we move fast enough that a direction can be tested before it gets expensive.</p>
+
+        {# what we share — drawn from practice, published on constantin.world #}
+        <p class="bio-line prose-block">What the work teaches us, we share — skills and components drawn from practice: <a class="lnk" href="https://constantin.world/resources/skills/#volumetric-pointcloud-figure">Volumetric Point Clouds</a>, <a class="lnk" href="https://constantin.world/resources/skills/#text-to-topology">Text to Topology</a>, <a class="lnk" href="https://constantin.world/resources/skills/#project-page-system">Project Page System</a>, and <a class="lnk" href="https://constantin.world/resources/skills/#prose-to-reading-page">Prose to Reading Page</a>.</p>
 
       </main>
     </div>
@@ -144,7 +126,8 @@ ogUrl: "https://constantin.studio"
       });
       // the header nav cycles through the projects in DOM order
       var order = Array.prototype.map.call(document.querySelectorAll('.canvas-set'), function (s) { return s.dataset.id; });
-      var rows = Array.prototype.slice.call(document.querySelectorAll('.index a.row'));
+      // the "rows" are now the project links woven into the index prose
+      var rows = Array.prototype.slice.call(document.querySelectorAll('.pane-index a[data-id]'));
       var byId = {};
       rows.forEach(function (a) { if (a.dataset.id && sets[a.dataset.id]) byId[a.dataset.id] = a; });
 
