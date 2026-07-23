@@ -900,8 +900,9 @@ body.lightbox-open { overflow: hidden; }
 .lnk[data-id="parable"].is-active { color: #7a2e56; }
 .lnk[data-id="pendulum"].is-active { color: #6f66c8; }
 .lnk[data-id="lightnote"].is-active { color: #23221f; }
-/* the extra breath between the index's prose movements */
-.prose-block { margin-top: 1.5rem; }
+/* every paragraph in the index keeps the same breath — the header stack's
+   0.55rem is the reference */
+.prose-block { margin-top: 0.55rem; }
 
 /* small rubricated glyphs before each shelf label — the studio's instruments,
    drawn in the muted tier: an armillary sphere, a pair of dividers, a letter */
