@@ -137,8 +137,7 @@
             { "src": "/assets/work/lightnote/L1.png", "alt": "Lightnote — the wordmark on the near-black field." },
             { "src": "/assets/work/lightnote/L2.png", "alt": "The canvas — four images gathered under a live selection, the cream bar offering to fold them into a set." },
             { "src": "/assets/work/lightnote/L3.png", "alt": "The sets panel — Modern fixtures, Hieros and Aratea, a set's context menu open over the selection." },
-            { "src": "/assets/work/lightnote/L4.png", "alt": "The workflow graph — a set loaded into Train LoRA, its trigger word typed into the node as a field." },
-            { "src": "/assets/work/lightnote/L5.png", "alt": "A tool in composition — its layers, and a Load LoRA node carrying trigger word and weight as fields." }
+            { "src": "/assets/work/lightnote/L4.png", "alt": "The workflow graph — a set loaded into Train LoRA, its trigger word typed into the node as a field." }
           ]
         }
       ]
