@@ -263,10 +263,20 @@ body.home { padding: 0; }
   .viewport-title {
     position: relative;
     min-width: 0;
-    /* italic serif, like the left column title */
+    /* a frosted capsule, twin to the arrows' pill — the page scrolls beneath
+       it rather than under a white band */
+    display: inline-flex;
+    align-items: baseline;
+    padding: 0.34em 0.9em;
+    border: 0.5px solid var(--rule);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--paper) 72%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* set as the left panel's body copy — same face, same size, no italic */
     font-family: var(--serif);
-    font-style: italic;
-    font-size: 0.95rem;
+    font-style: normal;
+    font-size: var(--text);
     letter-spacing: 0.01em;
     color: var(--muted);
     white-space: nowrap;
@@ -289,12 +299,14 @@ body.home { padding: 0; }
   .viewport-title .crumb-current { color: var(--ink); }
   .viewport-title .crumb-parent { color: var(--muted); }
   .viewport-title .crumb-sep { color: var(--faint); opacity: 0.55; margin: 0 0.4rem; }
-  /* both arrows share one fully-round outline pill, no fill, no divider */
+  /* both arrows share one fully-round pill — frosted like the breadcrumb's */
   .viewport-actions {
     justify-self: end;
     display: inline-flex;
     align-items: stretch;
-    background: transparent;
+    background: color-mix(in srgb, var(--paper) 72%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 0.5px solid var(--rule);
     border-radius: 999px;
     overflow: hidden;
@@ -488,16 +500,19 @@ body.home { padding: 0; }
   }
   .canvas-skills .pill { font-size: 0.68rem; }
 
-  /* the header rides the top of the scroll — paper-backed so the gallery
-     passes beneath it cleanly */
+  /* the header rides the top of the scroll with no band of its own — the two
+     capsules float, and the page passes beneath them in the open */
   .viewport-bar {
     position: sticky;
     top: 0;
     z-index: 5;
     margin-bottom: 0;
     padding: 0.85rem clamp(1rem, 2.2vw, 1.7rem);
-    background: var(--paper);
+    background: transparent;
+    /* the empty middle of the bar lets clicks through to the page */
+    pointer-events: none;
   }
+  .viewport-bar > * { pointer-events: auto; }
   .plates {
     display: grid;
     grid-template-columns: 1fr 1fr;
