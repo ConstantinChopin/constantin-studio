@@ -60,7 +60,7 @@ ogUrl: "https://constantin.studio"
           {# a project shows its real stills once `railReady` is set in studio.json;
              until its square assets land it holds flat grey placeholders, which
              are inert — with no image there is nothing to open. #}
-          <div class="canvas-rail" role="list" aria-label="{{ e.title }} — stills">
+          <div class="canvas-gallery" role="list" aria-label="{{ e.title }} — stills">
             {% if e.railReady %}{% for a in e.rail %}
             <button class="rail-item" type="button" role="listitem" data-full="{{ a.src }}" data-cap="{{ a.alt }}">
               <img src="{{ a.src }}" alt="{{ a.alt }}" loading="lazy" />
@@ -144,9 +144,11 @@ ogUrl: "https://constantin.studio"
           sets[k].hidden = !on;
           sets[k].classList.toggle('is-live', on);
         });
-        // the row rewinds, so each project opens on its first still
-        var liveRail = sets[id] && sets[id].querySelector('.canvas-rail');
-        if (liveRail) liveRail.scrollLeft = 0;
+        // each project opens from the top of the panel's scroll
+        var vp = document.querySelector('.viewport');
+        if (vp) vp.scrollTop = 0;
+        var pd = document.querySelector('.pane-detail');
+        if (pd) pd.scrollTop = 0;
       }
 
       function buildCrumb(id) {
@@ -237,17 +239,6 @@ ogUrl: "https://constantin.studio"
         // desktop is never empty; mobile lands on the index
         if (mq.matches) { if (defaultId) open(defaultId); else clear(); } else clear();
       }
-      // ---- the rail: a vertical wheel over the row reads as horizontal travel,
-      // since the row is the only thing that scrolls at the panel's foot
-      Array.prototype.forEach.call(document.querySelectorAll('.canvas-rail'), function (r) {
-        r.addEventListener('wheel', function (e) {
-          if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;  // already a lateral gesture
-          if (r.scrollWidth <= r.clientWidth) return;            // nothing to travel
-          e.preventDefault();
-          r.scrollLeft += e.deltaY;
-        }, { passive: false });
-      });
-
       // ---- the lightbox: the square is a crop, so opening restores the full shot
       var lb = document.getElementById('lightbox');
       var lbImg = document.getElementById('lightboxImg');

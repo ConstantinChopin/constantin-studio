@@ -367,43 +367,35 @@ body.home { padding: 0; }
   /* ---- the canvas — a fixed frame, never a scroller. the stills are anchored
      to its foot and run tall; the copy plate covers the head, so the heads of
      the stills pass behind it. flush at left and bottom, 4px between. ---- */
-  .viewport { display: block; }
-  /* the canvas stacks three bands — metadata row, stills, body text — and the
-     rail is the flexible one: it absorbs whatever height the text doesn't need,
-     so the bands can never collide. no scroll, no overlap, by construction. */
+  /* the panel is a vertical scroll: the gallery of stills first, the story
+     beneath, the whole page moving as one under a sticky breadcrumb bar */
+  .viewport {
+    display: block;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .viewport::-webkit-scrollbar { width: 0; height: 0; }
   .canvas-set {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    /* one inset shared by every band, so text, pills and the first still all
-       hang from the same left edge */
+    /* one inset shared by every band, so text, pills and the stills all hang
+       from the same left edge */
     --canvas-pad: clamp(1rem, 2.2vw, 1.7rem);
-    /* the top pad clears the floating header row */
-    padding-top: 3.1rem;
+    padding: 0.4rem var(--canvas-pad) 2.4rem;
   }
   .canvas-set[hidden] { display: none; }
 
-  .canvas-rail {
-    flex: 1 1 auto;
-    min-height: 0;
-    display: flex;
+  /* the gallery — stills paired in two columns. an odd count opens with the
+     first still (the brand card) across both columns as a wide hero. */
+  .canvas-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 4px;
-    /* the row starts on the shared left edge and still bleeds off the right */
-    padding: 0 0 0 var(--canvas-pad);
-    scroll-padding-left: var(--canvas-pad);
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: none;
-    /* the row is its own scroll world — the page behind never rubber-bands */
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x proximity;
   }
-  .canvas-rail::-webkit-scrollbar { width: 0; height: 0; }
+  .canvas-gallery .rail-item:first-child:nth-last-child(odd) {
+    grid-column: 1 / -1;
+    aspect-ratio: 2 / 1;
+  }
   .rail-item {
-    flex: 0 0 auto;
-    height: 100%;
-    width: auto;
+    width: 100%;
     /* squares only — the source is cropped to 1:1 whatever its own ratio */
     aspect-ratio: 1 / 1;
     margin: 0;
@@ -413,7 +405,6 @@ body.home { padding: 0; }
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    scroll-snap-align: start;
     /* the same continuous corner as the panel frame, at the still's own scale */
     border-radius: 16px;
     corner-shape: squircle;
@@ -440,21 +431,14 @@ body.home { padding: 0; }
     .rail-item:hover img { transform: none; }
   }
 
-  /* the body — the story beneath the stills, with the pill column at its right.
-     it keeps its seat at its former depth: longer copy scrolls within the band
-     rather than growing it, so the stills hold their size. */
+  /* the body — the story beneath the gallery, the pill column at its right.
+     no caps: the panel itself scrolls, so the copy takes the room it needs. */
   .canvas-body {
-    flex: 0 0 auto;
-    max-height: 34%;
-    overflow-y: auto;
-    scrollbar-width: none;
-    overscroll-behavior: contain;
     display: flex;
     align-items: flex-start;
     gap: clamp(1.2rem, 3vw, 2.4rem);
-    padding: 0.9rem var(--canvas-pad) clamp(1.1rem, 2.4vh, 1.7rem);
+    padding: 1.1rem 0 0;
   }
-  .canvas-body::-webkit-scrollbar { width: 0; height: 0; }
   .canvas-prose { flex: 1 1 auto; min-width: 0; max-width: var(--reading); }
   /* the pill column — a narrow band the run wraps within */
   .canvas-aside {
@@ -504,15 +488,15 @@ body.home { padding: 0; }
   }
   .canvas-skills .pill { font-size: 0.68rem; }
 
-  /* the header floats over the copy plate rather than sitting in its flow */
+  /* the header rides the top of the scroll — paper-backed so the gallery
+     passes beneath it cleanly */
   .viewport-bar {
-    position: absolute;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    z-index: 3;
+    z-index: 5;
     margin-bottom: 0;
     padding: 0.85rem clamp(1rem, 2.2vw, 1.7rem);
+    background: var(--paper);
   }
   .plates {
     display: grid;
@@ -1990,7 +1974,7 @@ body.essay {
   .canvas-set[hidden] { display: none; }
 
   /* the stills stack: full-width squares, inset to the text margin */
-  .canvas-rail {
+  .canvas-gallery {
     display: flex;
     flex-direction: column;
     gap: 10px;
