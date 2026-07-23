@@ -10,7 +10,11 @@
           "desc": "Consumer AI companionship.",
           "href": "/projects/replika/",
           "banner": { "src": "/assets/work/replika/R1.png", "alt": "Replika — brand mark" },
-          "intro": "Replika is the AI companion — <strong>42 million users worldwide</strong> — mid-way through a full rebrand: new CEO, evolved vision, a product to redefine. <strong>Design engineering on a flat team of twenty</strong> across iOS, web, brand and system: the brand book grown into the <strong>2026 design system</strong>, a 40-screen onboarding recast as a <strong>six-act narrative</strong>, and <strong>Memory V2</strong> — Portraits, Life Arcs, People Cards — the retention surface built on memory drawn from conversation, shipped directly with the lead iOS developer.",
+          "intro": "Replika is the AI companion — <strong>42 million users worldwide</strong> — mid-way through a full rebrand: new CEO, evolved vision, a product to redefine. <strong>Design engineering on a flat team of twenty</strong> (four designers, ten engineers) across iOS, web, brand, and the design system.",
+          "body": [
+            "The brand book grew into the <strong>2026 design system</strong> and the visual northstar for the product's next era. A 40-screen onboarding was recast as a <strong>six-act narrative</strong> that introduces life with a companion. And <strong>Memory V2</strong> — the product's primary retention surface — became Portraits, Life Arcs, and People Cards: interfaces built on structured memory extracted from conversation.",
+            "Around them, the identity, expression, and economy systems through which users shape the relationship — a <strong>dual-currency economy</strong> — with feature definition fed by the community's own channels. Everything shipped directly with the lead iOS developer: <strong>direction to spec to build, no layer between</strong>."
+          ],
           "meta": [
             { "label": "Service", "tags": ["Design Engineering"] },
             { "label": "Year", "tags": ["2026"] },
@@ -44,7 +48,11 @@
           "desc": "An intelligence layer for the enterprise.",
           "href": "/projects/parable/",
           "banner": { "src": "/assets/work/parable/PA1.png", "alt": "Parable — brand mark" },
-          "intro": "Parable is the intelligence layer for enterprise operations — it reads the whole company and surfaces where the work, the waste, and the automation hide. <strong>Sole product designer</strong> — founders and engineers, no product director — materializing a loose direction into an <strong>end-to-end journey</strong>, then a <strong>Claude-operable design system</strong>: ~53% of the token set cut so an AI composes from a named space of valid output, design and code in lockstep. The foundation shipped, and all budget moved to engineering to build from the platform as delivered.",
+          "intro": "Parable is the intelligence layer for enterprise operations — it reads the whole company and surfaces where the work, the waste, and the automation hide. <strong>Sole product designer</strong> across web, brand, and system — founders and engineers, no product director.",
+          "body": [
+            "The first phase materialized a loose direction into an <strong>end-to-end journey</strong> for the ideal customer and the first buildable interface — prototyped in Figma, then increasingly <strong>in code beside the front-end engineer</strong>. The extension took on the harder problem: a design system an AI could operate in with <strong>near-zero drift</strong> — a singular editorial aesthetic, poetic expression against mathematical precision, encoded as rules a model can follow.",
+            "The audit cut <strong>~53% of the token set</strong> — colours 60→18, spacing 24→13, chart tokens 50+→12 — so an AI composes from a <strong>named space of valid output</strong>, design and code in lockstep. The foundation shipped, and all budget moved to engineering to build from the platform as delivered."
+          ],
           "meta": [
             { "label": "Service", "tags": ["Principal Design Systems", "Design Engineering"] },
             { "label": "Year", "tags": ["2025 — 2026"] },
@@ -73,7 +81,11 @@
           "desc": "Multimodal asset search at enterprise scale.",
           "href": "/projects/pendulum/",
           "banner": { "src": "/assets/work/pendulum/P1.png", "alt": "Pendulum — brand mark" },
-          "intro": "An enterprise system for indexing, organizing and retrieving multimodal assets at scale — millions of images and documents, with flexibility for downstream generative workflows. Developed with R/GA, WPP, and Kering. <strong>Zero-to-one at Page Nineteen</strong>, an applied-AI studio out of South Park Commons: <strong>prototype first</strong>, working demos in front of users within weeks, validation calls drawn from a personal network. The direction was set down cheaply when the evidence fell short — <strong>the function of zero-to-one, not its failure</strong> — and later went public when the lab took its work to market.",
+          "intro": "An enterprise system for indexing, organizing, and retrieving multimodal assets at scale — millions of images and documents, with flexibility for downstream generative workflows. Developed with R/GA, WPP, and Kering. <strong>Zero-to-one at Page Nineteen</strong>, an applied-AI studio out of South Park Commons.",
+          "body": [
+            "September 2024: conversational AI existed, but the practice hadn't shifted yet — wireframes in Figma, a design system built by hand, research and validation calls scheduled from a <strong>personal network</strong>. The work was making the founders' vision tangible fast enough to test: <strong>working demos in front of users within weeks</strong>, sentiment gathered while the direction was still cheap to change.",
+            "Users leaned in; investors asked for more evidence. The direction was set down before engineering capital was spent — <strong>the function of zero-to-one, not its failure</strong> — and the work later went public when the lab took its projects to market."
+          ],
           "meta": [
             { "label": "Service", "tags": ["Product Design"] },
             { "label": "Year", "tags": ["2024"] },
@@ -104,7 +116,11 @@
           "desc": "Composable creative workflows for generative media.",
           "href": "#lightnote",
           "banner": { "src": "/assets/work/lightnote/L1.png", "alt": "Lightnote — brand" },
-          "intro": "A creative AI toolkit that lived in the terminal, given a canvas — <strong>sets, processes, and runs</strong> arranged as rooms rather than commands, for assembling image sets, composing workflows, and <strong>training LoRAs</strong>. Built in the weeks after the Pendulum pivot as the lab's fine-tuning tooling; internal operations paused at the investors' call, and in 2026 Page Nineteen <strong>released it publicly, open source under <code>MIT</code></strong>, as it repositioned itself as an AI lab.",
+          "intro": "A creative AI toolkit that lived in the terminal, given a canvas — <strong>sets, processes, and runs</strong> arranged as rooms rather than commands, for assembling image sets, composing workflows, and <strong>training LoRAs</strong>.",
+          "body": [
+            "Built in the weeks after the Pendulum pivot, as the lab's own fine-tuning tooling. The canvas was a <strong>running prototype against the live engine</strong> — sketch became code and stayed there. Selection as the primary gesture: gather four images and the bar offers to fold them into a set; a trigger word typed into a node lands in the same call as its <code>--trigger</code> flag, so <strong>nothing drifts</strong>.",
+            "Internal operations paused at the investors' call — and in 2026 Page Nineteen <strong>released Lightnote publicly, open source under <code>MIT</code></strong>, as it repositioned itself as an AI lab."
+          ],
           "meta": [
             { "label": "Service", "tags": ["Product Design"] },
             { "label": "Year", "tags": ["2024"] },

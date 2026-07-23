@@ -425,6 +425,9 @@ body.home { padding: 0; }
     position: relative;
     cursor: pointer;
     scroll-snap-align: start;
+    /* the same continuous corner as the panel frame, at the still's own scale */
+    border-radius: 16px;
+    corner-shape: squircle;
   }
   /* the placeholder square — a flat grey block standing in for a still */
   .rail-item.is-ph {
@@ -448,10 +451,33 @@ body.home { padding: 0; }
     .rail-item:hover img { transform: none; }
   }
 
-  /* the body — the whole story as prose, seated beneath the stills */
+  /* the body — the whole story as prose, seated beneath the stills. it keeps
+     its seat at its former depth: longer copy scrolls quietly within the band
+     rather than growing it, so the stills hold their size. */
   .canvas-body {
     flex: 0 0 auto;
+    max-height: 34%;
+    overflow-y: auto;
+    scrollbar-width: none;
+    overscroll-behavior: contain;
     padding: 1rem var(--canvas-pad) clamp(1.1rem, 2.4vh, 1.7rem);
+  }
+  .canvas-body::-webkit-scrollbar { width: 0; height: 0; }
+  /* paragraphs after the lede step back to the muted body voice */
+  .canvas-para {
+    margin: 0.55rem 0 0;
+    max-width: var(--reading);
+    font-family: var(--serif);
+    font-size: clamp(0.88rem, 1vw, 1rem);
+    line-height: 1.58;
+    color: var(--muted);
+    text-wrap: pretty;
+  }
+  .canvas-para strong { font-weight: 500; color: var(--ink); }
+  .canvas-para code {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    color: var(--ink);
   }
   .canvas-intro {
     margin: 0;
