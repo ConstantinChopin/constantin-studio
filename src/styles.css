@@ -384,17 +384,6 @@ body.home { padding: 0; }
   }
   .canvas-set[hidden] { display: none; }
 
-  /* the metadata row — the pill run, seated between the stills and the story */
-  .canvas-meta {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.6rem 1.2rem;
-    padding: 0.9rem var(--canvas-pad) 0;
-  }
-
   .canvas-rail {
     flex: 1 1 auto;
     min-height: 0;
@@ -451,8 +440,8 @@ body.home { padding: 0; }
     .rail-item:hover img { transform: none; }
   }
 
-  /* the body — the whole story as prose, seated beneath the stills. it keeps
-     its seat at its former depth: longer copy scrolls quietly within the band
+  /* the body — the story beneath the stills, with the pill column at its right.
+     it keeps its seat at its former depth: longer copy scrolls within the band
      rather than growing it, so the stills hold their size. */
   .canvas-body {
     flex: 0 0 auto;
@@ -460,9 +449,19 @@ body.home { padding: 0; }
     overflow-y: auto;
     scrollbar-width: none;
     overscroll-behavior: contain;
-    padding: 0.7rem var(--canvas-pad) clamp(1.1rem, 2.4vh, 1.7rem);
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(1.2rem, 3vw, 2.4rem);
+    padding: 0.9rem var(--canvas-pad) clamp(1.1rem, 2.4vh, 1.7rem);
   }
   .canvas-body::-webkit-scrollbar { width: 0; height: 0; }
+  .canvas-prose { flex: 1 1 auto; min-width: 0; max-width: var(--reading); }
+  /* the pill column — a narrow band the run wraps within */
+  .canvas-aside {
+    flex: 0 0 auto;
+    width: clamp(8.5rem, 16vw, 12rem);
+    padding-top: 0.12rem;
+  }
   /* paragraphs after the lede step back to the muted body voice */
   .canvas-para {
     margin: 0.55rem 0 0;
@@ -494,8 +493,8 @@ body.home { padding: 0; }
     font-size: 0.85em;
     color: var(--ink);
   }
-  /* the year closes the pill run, quieter still */
-  .canvas-skills .pill-year { color: var(--faint); box-shadow: inset 0 0 0 1px rgba(17, 15, 15, 0.1); }
+  /* the year closes the pill run, a shade quieter than the capabilities */
+  .canvas-skills .pill-year { color: var(--muted); }
   /* the capability pills — the register the prose implies, named once, quietly */
   .canvas-skills {
     margin: 0;
@@ -503,16 +502,7 @@ body.home { padding: 0; }
     flex-wrap: wrap;
     gap: 0.3rem;
   }
-  /* fully-rounded capsules — the Apple pill: more horizontal room, a hairline
-     ring instead of a hard fill, so the run reads as tags rather than chips */
-  .canvas-skills .pill {
-    font-size: 0.68rem;
-    padding: 0.34em 0.78em;
-    border-radius: 999px;
-    background: transparent;
-    box-shadow: inset 0 0 0 1px rgba(17, 15, 15, 0.14);
-    color: var(--muted);
-  }
+  .canvas-skills .pill { font-size: 0.68rem; }
 
   /* the header floats over the copy plate rather than sitting in its flow */
   .viewport-bar {
