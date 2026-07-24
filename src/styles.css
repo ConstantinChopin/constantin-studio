@@ -429,10 +429,11 @@ body.home { padding: 0; }
     /* one inset shared by every band, so text, pills and the stills all hang
        from the same left edge — set to match the left column's .page padding so
        the two panels' content share one side margin */
-    --canvas-pad: clamp(1.8rem, 3vw, 2.6rem);
-    /* the whole project column is capped to one fixed measure and centred in
-       the panel: the gallery, the fact row and the prose all share this width */
-    --content-max: 46rem;
+    --canvas-pad: 1.7rem;
+    /* the column is capped to one fixed measure and centred in the panel; the
+       width is calibrated so that, centred, its left edge lands under the
+       project title (after the "/") in the breadcrumb at the desktop width */
+    --content-max: 46.5rem;
     max-width: calc(var(--content-max) + 2 * var(--canvas-pad));
     margin-inline: auto;
     padding: 0.4rem var(--canvas-pad) 2.4rem;
@@ -807,7 +808,7 @@ body.home { padding: 0; }
   gap: 0.3rem;
 }
 .canvas-keywords .pill { font-size: 0.72rem; }
-.canvas-keywords .pill-year { color: var(--muted); }
+.canvas-keywords .pill-year { color: var(--ink); }
 
 /* a discreet pill — meta tags (service, year, stack) and enumerated facts */
 .pill {
@@ -871,9 +872,10 @@ body.home { padding: 0; }
 .margin-value {
   margin: 0.42rem 0 0;
   font-family: var(--serif);
-  font-size: 0.95rem;
-  line-height: 1.4;
-  color: var(--ink);
+  /* the breadcrumb's exact size (0.72rem), in the muted grey — a quiet note */
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: var(--muted);
   text-wrap: pretty;
 }
 .margin-value code { font-family: var(--mono); font-size: 0.85em; }
