@@ -449,7 +449,7 @@ body.home { padding: 0; }
   .canvas-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4px;
+    gap: 12px;
   }
   .canvas-gallery .rail-item:first-child:nth-last-child(odd) {
     grid-column: 1 / -1;
@@ -853,7 +853,9 @@ body.home { padding: 0; }
    imagery by a hairline, wrapping to the content width. shared across both
    breakpoints. each cell is a mono eyebrow over a serif value. */
 .canvas-margin {
-  margin: clamp(1.1rem, 2.4vh, 1.6rem) 0 0;
+  margin: clamp(0.9rem, 2vh, 1.3rem) 0 0;
+  padding-top: clamp(0.9rem, 2vh, 1.3rem);
+  border-top: 1px solid var(--rule);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
   gap: clamp(0.9rem, 1.8vh, 1.2rem) clamp(1rem, 2.4vw, 1.9rem);
