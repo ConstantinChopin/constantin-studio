@@ -320,6 +320,10 @@ body.home { padding: 0; }
   .viewport-title .crumb-current { color: var(--ink); }
   .viewport-title .crumb-parent { color: var(--muted); }
   .viewport-title .crumb-sep { color: var(--faint); opacity: 0.55; margin: 0 0.4rem; }
+  /* optical: the serif crumbs centre high on the capsule's line box — settle
+     the text (only the text, never the pill) half a pixel down onto its true
+     optical centre */
+  .viewport-title > * { position: relative; top: 0.5px; }
   /* both arrows share one fully-round pill at the capsule height — material
      comes from the glass contract; only layout lives here */
   .viewport-actions {
@@ -564,7 +568,9 @@ body.home { padding: 0; }
     top: 0;
     z-index: 5;
     margin-bottom: 0;
-    padding: 0.85rem clamp(1rem, 2.2vw, 1.7rem);
+    /* the capsules are inset from the top by the same distance as from the
+       left edge — one even corner gap */
+    padding: clamp(1rem, 2.2vw, 1.7rem);
     background: transparent;
     /* the empty middle of the bar lets clicks through to the page */
     pointer-events: none;
@@ -2069,6 +2075,8 @@ body.essay {
   .viewport-title .crumb-parent { color: var(--muted); }
   .viewport-title .crumb-sep { color: var(--faint); opacity: 0.55; margin: 0 0.4rem; }
   .viewport-title .crumb-current { color: var(--ink); }
+  /* optical nudge onto the true centre — matches the desktop capsule */
+  .viewport-title > * { position: relative; top: 0.5px; }
   .viewport-actions {
     flex: 0 0 auto;
     display: flex;
@@ -2089,6 +2097,15 @@ body.essay {
   .canvas-set { position: static; inset: auto; padding: 0 0 2.5rem; display: none; }
   .canvas-set.is-live { display: block; }
   .canvas-set[hidden] { display: none; }
+
+  /* the head band hangs from the same text inset as the stills below it, and
+     keeps the title over its keyword run as they stack on the narrow measure */
+  .canvas-head {
+    padding: 0.9rem var(--canvas-pad) 0;
+    margin-bottom: 0;
+    gap: 0.5rem;
+  }
+  .canvas-keywords { justify-content: flex-start; transform: none; }
 
   /* the stills stack: full-width squares, inset to the text margin */
   .canvas-gallery {
