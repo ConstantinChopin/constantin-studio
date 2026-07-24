@@ -79,13 +79,16 @@ ogUrl: "https://constantin.studio"
             {% endfor %}{% endif %}
           </div>
 
-          {# the story sits beneath the stills; its register is named once up top
-             in the head band, so the prose runs the full reading measure here #}
+          {# the story as a spec ledger — each section a serif-italic label in a
+             narrow left rail, the prose in the wide column beside it. the rail
+             hangs from the same left inset as the stills above. #}
           <div class="canvas-body">
-            <div class="canvas-prose">
-              {% if e.intro %}<p class="canvas-intro">{{ e.intro | safe }}</p>{% endif %}
-              {% for p in e.body %}<p class="canvas-para">{{ p | safe }}</p>{% endfor %}
+            {% for s in e.sections %}
+            <div class="canvas-section">
+              <p class="canvas-section-label">{{ s.label }}</p>
+              <p class="canvas-section-text">{{ s.text | safe }}</p>
             </div>
+            {% endfor %}
           </div>
         </div>
         {% endif %}{% endfor %}{% endfor %}

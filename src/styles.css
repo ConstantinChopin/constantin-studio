@@ -165,10 +165,15 @@ a { color: inherit; text-decoration: none; }
 
 body.home { padding: 0; }
 
+/* the ambient PixelWave background — a fixed canvas painted behind everything.
+   the wave itself dissolves over the left reading column (fadeLeft in
+   pixelwave.js), so the greyscale texture lives on the open right side. */
+#pixel-wave { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
 /* master–detail: a persistent index on the left; entries open in the pane
    on the right. below 64rem the pane is dropped and entries navigate to
-   their own pages instead. */
-.split { min-height: 100svh; }
+   their own pages instead. the content sits above the wave canvas. */
+.split { min-height: 100svh; position: relative; z-index: 1; }
 
 .page {
   width: 100%;
@@ -488,17 +493,16 @@ body.home { padding: 0; }
 
   /* the body — the story beneath the gallery, the pill column at its right.
      no caps: the panel itself scrolls, so the copy takes the room it needs. */
-  .canvas-body {
-    display: flex;
-    align-items: flex-start;
-    gap: clamp(1.2rem, 3vw, 2.4rem);
-    padding: 1.1rem 0 0;
+  .canvas-body { padding: 1.2rem 0 0; }
+  /* each section is a spec-ledger row: a narrow serif-italic label rail, the
+     prose in the wide column, the label baseline-aligned to its first line */
+  .canvas-section {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, var(--reading));
+    gap: clamp(1.1rem, 2.6vw, 2.2rem);
+    align-items: baseline;
   }
-  .canvas-prose { flex: 1 1 auto; min-width: 0; max-width: var(--reading); }
-  /* on the desktop panel the prose holds a reading measure; its type is shared
-     with mobile in the global content-block section below */
-  .canvas-intro,
-  .canvas-para { max-width: var(--reading); }
+  .canvas-section + .canvas-section { margin-top: clamp(1.4rem, 2.8vh, 2.2rem); }
 
   /* the header rides the top of the scroll with no band of its own — the two
      capsules float, and the page passes beneath them in the open */
@@ -828,28 +832,28 @@ body.home { padding: 0; }
   white-space: nowrap;
 }
 
-/* the lede sits at full ink; paragraphs after it step back to the muted body
-   voice. the reading measure (max-width) is layout, so it lives in the queries. */
-.canvas-intro {
+/* the section label — a quiet serif italic in the faint tier, reading as a
+   marginal note rather than prose; the body sits at the muted body voice with
+   its accents lifted to ink. (layout — the columns, the measure — is in the
+   queries; only type lives here, shared across both breakpoints.) */
+.canvas-section-label {
   margin: 0;
   font-family: var(--serif);
+  font-style: italic;
   font-size: clamp(0.92rem, 1.05vw, 1.05rem);
   line-height: 1.55;
-  color: var(--ink);
-  text-wrap: pretty;
+  color: var(--faint);
 }
-.canvas-intro strong { font-weight: 500; }
-.canvas-intro code { font-family: var(--mono); font-size: 0.85em; color: var(--ink); }
-.canvas-para {
-  margin: 0.55rem 0 0;
+.canvas-section-text {
+  margin: 0;
   font-family: var(--serif);
   font-size: clamp(0.88rem, 1vw, 1rem);
   line-height: 1.58;
   color: var(--muted);
   text-wrap: pretty;
 }
-.canvas-para strong { font-weight: 500; color: var(--ink); }
-.canvas-para code { font-family: var(--mono); font-size: 0.85em; color: var(--ink); }
+.canvas-section-text strong { font-weight: 500; color: var(--ink); }
+.canvas-section-text code { font-family: var(--mono); font-size: 0.85em; color: var(--ink); }
 
 /* ---- the glass chrome ----------------------------------------------------
    The rule of the site: content is paper, chrome is glass. Navigation that
@@ -2172,5 +2176,8 @@ body.essay {
     overflow: visible;
     padding: 1.2rem var(--canvas-pad) 0;
   }
-  .canvas-prose { max-width: none; }
+  /* the ledger stacks on the narrow measure: label above its paragraph */
+  .canvas-section { display: block; }
+  .canvas-section + .canvas-section { margin-top: 1.5rem; }
+  .canvas-section-label { margin-bottom: 0.3rem; }
 }
