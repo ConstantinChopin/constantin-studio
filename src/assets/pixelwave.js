@@ -1,9 +1,12 @@
 /* PixelClouds — rounded volumetric greyscale clouds in non-overlapping lanes.
- * Rules honoured: (1) no two clouds overlap — each lane spaces clouds wider than
- * themselves, and lanes are vertically separated; (2) no flat edges and (3) no flat
- * bottom — every silhouette is an all-circle rounded blob (top, bottom, and ends).
- * Clouds are shaded (light top, dark under-belly) and breathe as they drift.
- * Settings locked. Self-contained, no dependencies.
+ * Rules honoured: (1) no two clouds overlap — each lane reserves a slot wider than
+ * its widest possible cloud, so per-cloud size spread and horizontal jitter (bounded
+ * to under half the gap) can never close a gap; lanes stay vertically separated;
+ * (2) no flat edges and (3) no flat bottom — every silhouette is an all-circle rounded
+ * blob (top, bottom, and ends). Clouds are shaded (light top, dark under-belly) and
+ * breathe as they drift. Distribution is organic: sizes vary (skewed small), positions
+ * jitter within their slot, some slots stay empty, and each cloud scatters within its
+ * lane band — so no two neighbours read as the same stamp. Self-contained, no deps.
  *
  * Usage:
  *   1. <canvas id="pixel-wave" aria-hidden="true"></canvas> as the first element in <body>.
@@ -27,10 +30,12 @@
   // ————— LOCKED SETTINGS —————
   const CONFIG = {
     tones: ['204, 203, 200', '148, 148, 145', '74, 74, 71'], // light · mid · dark
-    lanes: [
-      { yc: 0.12, thickness: 0.20, width: 300, gap: 130, speed: 4,  maxTone: 1 }, // high, soft
-      { yc: 0.42, thickness: 0.24, width: 400, gap: 160, speed: 9,  maxTone: 2 }, // mid
-      { yc: 0.73, thickness: 0.28, width: 520, gap: 200, speed: 15, maxTone: 2 }  // low
+    lanes: [ // centres tile the full height (~0.08 → ~0.88); bands stay vertically separated
+      { yc: 0.08, thickness: 0.15, width: 280, gap: 100, speed: 4,  maxTone: 1 }, // highest, softest, slowest
+      { yc: 0.28, thickness: 0.16, width: 340, gap: 118, speed: 7,  maxTone: 1 },
+      { yc: 0.48, thickness: 0.16, width: 400, gap: 132, speed: 10, maxTone: 2 }, // mid
+      { yc: 0.68, thickness: 0.17, width: 470, gap: 150, speed: 13, maxTone: 2 },
+      { yc: 0.88, thickness: 0.17, width: 540, gap: 170, speed: 16, maxTone: 2 }  // lowest, biggest, darkest, fastest
     ],
     pixelSize: 6,     // css px per cell — minimal, fine grain
     intensity: 0.30,  // 0..1 opacity of the tones — keep low behind text
@@ -103,24 +108,35 @@
       { wMul: 1.12, hMul: 0.90, main: 11, round: 0.46, tower: 0.35, top: 6, bot: 3 }  // bank — wide & lumpy
     ];
 
+    // per-cloud size spread — big and small clouds share a lane, so no two
+    // neighbours read as the same stamp. skew<1 biases toward smaller clouds.
+    const SIZE_MIN = 0.60, SIZE_MAX = 1.18, SIZE_SKEW = 1.35;
+
     for (let li = 0; li < LANES.length; li++) {
       const ln  = LANES[li];
       const off = t * ln.speed * DPR;
       const cwBase = ln.width * DPR;
-      const cwMax  = cwBase * 1.15;
-      const per    = cwMax + ln.gap * DPR;       // spacing > cloud width -> no same-lane overlap
+      const cwMax  = cwBase * 1.12 * SIZE_MAX;   // widest archetype × widest size = the true maximum
+      const gapPx  = ln.gap * DPR;
+      const per    = cwMax + gapPx;              // spacing accounts for the widest cloud -> no same-lane overlap
+      const jMax   = gapPx * 0.42;               // horizontal jitter; 2·jMax < gap so a gap can never close
       const chhCap = ln.thickness * H * 0.30;    // keep cloud inside its lane band
-      const i0 = Math.floor((off - cwMax) / per), i1 = Math.ceil((off + W) / per);
+      const vScat  = ln.thickness * H * 0.18;    // vertical scatter within the band (bands stay separated)
+      const i0 = Math.floor((off - cwMax - jMax) / per), i1 = Math.ceil((off + W + jMax) / per);
 
       for (let i = i0; i <= i1; i++) {
+        // leave some slots empty so the sky clumps and clears rather than marching
+        if (hash(i * 1.93 + 5.1, li * 6.7 + 2.3) < 0.12) continue;
         const r1 = hash(i * 7.3,        li * 13.1 + 1.7);
         const r3 = hash(i * 11.3 + 9.1, li * 5.3  + 3.9);
         const T = TYPES[Math.min(TYPES.length - 1, Math.floor(hash(i * 2.13 + 0.7, li * 3.9 + 0.3) * TYPES.length))];
-        const cw  = cwBase * T.wMul * (0.90 + 0.10 * r1); // <= cwBase*1.15 = cwMax
+        const size = SIZE_MIN + (SIZE_MAX - SIZE_MIN) * Math.pow(r1, SIZE_SKEW); // more small, few large
+        const cw  = cwBase * T.wMul * size;            // <= cwMax
         const chh = Math.min(cw * 0.34, chhCap) * T.hMul;
-        const x0  = i * per - off;                     // no horizontal jitter -> gap guaranteed
+        const jx  = (hash(i * 3.7 + 0.2, li * 8.3 + 1.1) - 0.5) * 2 * jMax; // break the regular spacing
+        const x0  = i * per - off + jx;
         if (x0 > W || x0 + cw < 0) continue;
-        const cy  = ln.yc * H + (r3 - 0.5) * chh * 0.5;
+        const cy  = ln.yc * H + (r3 - 0.5) * vScat;
 
         // all-circle silhouette centred on cy: rounded top AND bottom, rounded ends.
         // Shape driven by the chosen archetype T.
