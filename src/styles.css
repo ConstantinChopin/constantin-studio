@@ -27,12 +27,25 @@
   /* a very light lifted surface — the header's small button containers */
   --surface: rgba(17, 15, 15, 0.05);
 
-  /* the glass contract — one material for every floating control. the tint
-     floor (58% paper) is a contrast guarantee: text on glass must pass on the
-     worst-case backdrop, so the pane never goes clearer than this. */
-  --glass-blur: 16px;
+  /* the glass contract — one material for every floating control, ported from
+     the Sanctuaire Liquid Glass system: a saturating, brightening blur; a wet
+     specular edge (bright top rim, an inner glow below, an inner white hairline
+     all round, a cool outer hairline for definition); and a soft two-tier lift.
+     the tint stays paper-warm so the chrome belongs to this cream page rather
+     than reading cold. the tint floor (58% paper) is a contrast guarantee: text
+     on glass must pass on the worst-case backdrop, so it never goes clearer. */
+  --glass-blur: 18px;
+  --glass-filter: blur(var(--glass-blur)) saturate(1.8) brightness(1.04);
   --glass-tint: color-mix(in srgb, var(--paper) 58%, transparent);
   --glass-tint-fallback: color-mix(in srgb, var(--paper) 88%, transparent);
+  --glass-edge:
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.35),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.35),
+    0 0 0 0.5px rgba(17, 15, 15, 0.1);
+  --glass-shadow:
+    0 2px 8px rgba(24, 18, 12, 0.06),
+    0 10px 28px rgba(24, 18, 12, 0.07);
 
   --serif:  "Newsreader", Georgia, "Times New Roman", serif;
   /* the apparatus voice — catalogue notation (section labels, counts, entry
@@ -319,7 +332,8 @@ body.home { padding: 0; }
   .viewport-btn {
     flex: 0 0 auto;
     width: 30px;
-    height: 27px;
+    /* fill the capsule's height so the chevron centres on its true middle */
+    height: 100%;
     display: grid;
     place-items: center;
     border: 0;
@@ -792,22 +806,19 @@ body.home { padding: 0; }
 /* ---- the glass chrome ----------------------------------------------------
    The rule of the site: content is paper, chrome is glass. Navigation that
    floats above the work — breadcrumb, pager, back — consumes ONE material
-   contract (the --glass-* tokens): translucent paper over a saturating blur,
-   an ASYMMETRIC edge (bright catch on top, faint shade below — a uniform
-   border reads as a sticker), and a soft lift. The work itself is never glass. */
+   contract (the --glass-* tokens): translucent paper over a saturating,
+   brightening blur, a WET specular edge (bright catch on top, an inner glow
+   below, an inner white hairline all round, a cool outer hairline — a uniform
+   border reads as a sticker), and a soft two-tier lift. Never the work itself. */
 .viewport-back,
 .viewport-title,
 .viewport-actions {
   background: var(--glass-tint);
-  backdrop-filter: blur(var(--glass-blur)) saturate(1.5);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.5);
+  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--glass-filter);
   border: 0;
   border-radius: 999px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.55),
-    inset 0 -1px 0 rgba(20, 20, 60, 0.12),
-    0 0 0 0.5px rgba(17, 15, 15, 0.08),
-    0 4px 16px rgba(10, 10, 40, 0.14);
+  box-shadow: var(--glass-edge), var(--glass-shadow);
 }
 /* browsers that drop backdrop-filter silently get a near-opaque pane instead */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
