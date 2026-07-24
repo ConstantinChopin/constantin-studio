@@ -257,10 +257,9 @@ body.home { padding: 0; }
        old 10px no curvature was legible at this size. on the scale
        bevel(0) → round(1) → squircle(2) → … → square(∞), a HIGHER value is
        squarer, so the Apple corner is squircle, not a larger exponent. */
-    /* a generously rounded panel corner — past the 31px concentric point with
-       the capsules (34px pill inset 14px), so the frame reads soft and
-       window-like while the corner still cradles the pills */
-    border-radius: 38px;
+    /* a very softly rounded panel corner — well past the concentric point with
+       the capsules, for a soft, window-like frame */
+    border-radius: 46px;
     corner-shape: squircle;
     overflow: hidden;
     box-shadow: var(--glass-edge), var(--glass-shadow);
@@ -822,8 +821,10 @@ body.home { padding: 0; }
   letter-spacing: 0.01em;
   color: var(--ink);
   background: var(--surface);
-  padding: 0.12em 0.6em;
-  border-radius: 4px;
+  /* fuller chip padding, with a touch less above the mono caps than below and
+     room on the sides */
+  padding: 0.28em 0.9em 0.42em;
+  border-radius: 7px;
   white-space: nowrap;
 }
 
@@ -878,28 +879,27 @@ body.home { padding: 0; }
 }
 
 /* the "View site" capsule — a glass twin to the breadcrumb, sat to the right of
-   the pager. label + an up-right arrow; hidden until its project has a `site`. */
+   the pager. label only; hidden until its project has a `site`. its type is set
+   EXACTLY as the breadcrumb (serif, same size, ink) so the two read as one. */
 .viewport-site {
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
-  gap: 0.45em;
   height: 34px;
-  /* a touch more room on the label side than the arrow side — the light ↗ glyph
-     needs less breathing room than the text, so equal padding read left-tight */
-  padding: 0 0.95em 0 1.25em;
+  padding: 0 1.05em;
   font-family: var(--serif);
   font-size: 0.72rem;
-  color: var(--muted);
+  line-height: 1.5;
+  color: var(--ink);
   white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
   transition: color 0.2s var(--ease);
 }
-.viewport-site:hover,
-.viewport-site:focus-visible { color: var(--ink); }
+/* the same optical settle as the breadcrumb crumbs, so both capsules' text sits
+   on one baseline */
+.viewport-site span { position: relative; top: 0.5px; }
 .viewport-site:focus-visible { outline: none; box-shadow: var(--glass-edge), var(--glass-shadow), var(--focus-ring, 0 0 0 3px rgba(17,15,15,0.14)); }
-.viewport-site svg { width: 13px; height: 13px; stroke-width: 1.8; display: block; }
 /* the layout rule sets display, so the hidden attribute needs restating */
 .viewport-site[hidden] { display: none; }
 
