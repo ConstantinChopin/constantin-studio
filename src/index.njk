@@ -81,11 +81,24 @@ ogUrl: "https://constantin.studio"
 
           {# the story sits beneath the stills; its register is named once up top
              in the head band, so the prose runs the full reading measure here #}
-          <div class="canvas-body">
-            <div class="canvas-prose">
-              {% if e.intro %}<p class="canvas-intro">{{ e.intro | safe }}</p>{% endif %}
-              {% for p in e.body %}<p class="canvas-para">{{ p | safe }}</p>{% endfor %}
+          {# marginalia — a row of crystallized facts directly under the stills,
+             spanning the content column: a mono eyebrow over a serif value in
+             each cell. these supplement the prose, they don't restate it. #}
+          {% if e.margin %}
+          <dl class="canvas-margin">
+            {% for m in e.margin %}
+            <div class="margin-note">
+              <dt class="margin-label">{{ m.label }}</dt>
+              <dd class="margin-value">{{ m.value | safe }}</dd>
             </div>
+            {% endfor %}
+          </dl>
+          {% endif %}
+
+          {# the story, beneath the fact row — prose fills the content column #}
+          <div class="canvas-body">
+            {% if e.intro %}<p class="canvas-intro">{{ e.intro | safe }}</p>{% endif %}
+            {% for p in e.body %}<p class="canvas-para">{{ p | safe }}</p>{% endfor %}
           </div>
         </div>
         {% endif %}{% endfor %}{% endfor %}

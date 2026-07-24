@@ -10,35 +10,118 @@
           "desc": "Consumer AI companionship.",
           "href": "/projects/replika/",
           "site": "https://replika.com/",
-          "banner": { "src": "/assets/work/replika/R1.png", "alt": "Replika — brand mark" },
+          "banner": {
+            "src": "/assets/work/replika/R1.png",
+            "alt": "Replika — brand mark"
+          },
           "intro": "Replika is the AI companion — <strong>42 million users worldwide</strong>. In 2026, mid-way through a full rebrand — new CEO, evolved vision — they brought us in for <strong>design engineering on a flat team of twenty</strong>, across iOS, web, brand, and the design system.",
           "body": [
             "The opportunity was defining the flagship features of the product's next era. The approach: ship directly with the lead iOS developer — <strong>direction to spec to build</strong> — with feature definition fed by the community's own channels. We learned that <strong>memory is the product</strong>: Memory V2 became Portraits, Life Arcs, and People Cards, built on structured memory drawn from conversation. We delivered the <strong>2026 design system</strong> grown from the brand book, a 40-screen onboarding recast as a <strong>six-act narrative</strong>, and the <strong>dual-currency economy</strong> through which users shape the relationship."
           ],
           "meta": [
-            { "label": "Service", "tags": ["Design Engineering"] },
-            { "label": "Year", "tags": ["2026"] },
-            { "label": "Stack", "tags": ["—"] }
+            {
+              "label": "Service",
+              "tags": [
+                "Design Engineering"
+              ]
+            },
+            {
+              "label": "Year",
+              "tags": [
+                "2026"
+              ]
+            },
+            {
+              "label": "Stack",
+              "tags": [
+                "—"
+              ]
+            }
           ],
-          "skills": ["Design engineering", "Design systems", "Consumer mobile", "Memory interfaces"],
+          "skills": [
+            "Design engineering",
+            "Design systems",
+            "Consumer mobile",
+            "Memory interfaces"
+          ],
           "details": [
-            { "label": "Context", "text": "Placeholder — this section will be written as the case study is filled in." },
-            { "label": "Problem", "text": "Placeholder — this section will be written as the case study is filled in." },
-            { "label": "Approach", "text": "Placeholder — this section will be written as the case study is filled in." },
-            { "label": "Build", "text": "Placeholder — this section will be written as the case study is filled in." },
-            { "label": "System", "text": "Placeholder — this section will be written as the case study is filled in." },
-            { "label": "Detail", "text": "Placeholder — this section will be written as the case study is filled in." },
-            { "label": "Iteration", "text": "Placeholder — this section will be written as the case study is filled in." },
-            { "label": "Outcome", "text": "Placeholder — this section will be written as the case study is filled in." }
+            {
+              "label": "Context",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Problem",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Approach",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Build",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "System",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Detail",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Iteration",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Outcome",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            }
           ],
           "railReady": true,
           "rail": [
-            { "src": "/assets/work/replika/R1.png", "alt": "Replika — the wordmark on the cobalt field." },
-            { "src": "/assets/work/replika/R2.png", "alt": "One exchange — “Can we talk?” answered — carried across four of the brand's gradient palettes." },
-            { "src": "/assets/work/replika/R3.png", "alt": "The product site — “The AI friend to do life with”, a song passed into the conversation beside it." },
-            { "src": "/assets/work/replika/R4.png", "alt": "The memory section — the people, routines and interests a Rep holds, laid out as a field of stickers." },
-            { "src": "/assets/work/replika/R7.png", "alt": "The conversation itself — a Rep answering in the moment, and a suggested reply drawn from what it remembers." },
-            { "src": "/assets/work/replika/R5.png", "alt": "A profile screen — facts, a characterisation, and the memory arcs a Rep keeps about a person." }
+            {
+              "src": "/assets/work/replika/R1.png",
+              "alt": "Replika — the wordmark on the cobalt field."
+            },
+            {
+              "src": "/assets/work/replika/R2.png",
+              "alt": "One exchange — “Can we talk?” answered — carried across four of the brand's gradient palettes."
+            },
+            {
+              "src": "/assets/work/replika/R3.png",
+              "alt": "The product site — “The AI friend to do life with”, a song passed into the conversation beside it."
+            },
+            {
+              "src": "/assets/work/replika/R4.png",
+              "alt": "The memory section — the people, routines and interests a Rep holds, laid out as a field of stickers."
+            },
+            {
+              "src": "/assets/work/replika/R7.png",
+              "alt": "The conversation itself — a Rep answering in the moment, and a suggested reply drawn from what it remembers."
+            },
+            {
+              "src": "/assets/work/replika/R5.png",
+              "alt": "A profile screen — facts, a characterisation, and the memory arcs a Rep keeps about a person."
+            }
+          ],
+          "margin": [
+            {
+              "label": "Role",
+              "value": "Contract design engineer"
+            },
+            {
+              "label": "Team",
+              "value": "Flat 20 · 4 design, 10 eng"
+            },
+            {
+              "label": "Shipped",
+              "value": "Memory V2, onboarding"
+            },
+            {
+              "label": "Reach",
+              "value": "42M users"
+            }
           ]
         },
         {
@@ -47,31 +130,106 @@
           "desc": "An intelligence layer for the enterprise.",
           "href": "/projects/parable/",
           "site": "https://www.askparable.com/",
-          "banner": { "src": "/assets/work/parable/PA1.png", "alt": "Parable — brand mark" },
+          "banner": {
+            "src": "/assets/work/parable/PA1.png",
+            "alt": "Parable — brand mark"
+          },
           "intro": "Parable is the <strong>intelligence layer for enterprise operations</strong> — it reads the whole company and surfaces where the work, the waste, and the automation hide.",
           "body": [
             "In September 2025 the founders brought us in as <strong>sole product designer</strong> — engineers on staff, no product director, a loose direction to materialize. The approach was an <strong>end-to-end journey</strong> for the ideal customer, prototyped in Figma and then in code beside the front-end engineer. We learned the real problem was drift: for an AI to operate the system, taste had to become rules — so the audit cut <strong>~53% of the token set</strong> until a model composes from a <strong>named space of valid output</strong>. We delivered the foundation; all budget moved to engineering to build from it."
           ],
           "meta": [
-            { "label": "Service", "tags": ["Principal Design Systems", "Design Engineering"] },
-            { "label": "Year", "tags": ["2025 — 2026"] },
-            { "label": "Stack", "tags": ["Design tokens", "Component library", "Authored rules", "Studio pipeline"] }
+            {
+              "label": "Service",
+              "tags": [
+                "Principal Design Systems",
+                "Design Engineering"
+              ]
+            },
+            {
+              "label": "Year",
+              "tags": [
+                "2025 — 2026"
+              ]
+            },
+            {
+              "label": "Stack",
+              "tags": [
+                "Design tokens",
+                "Component library",
+                "Authored rules",
+                "Studio pipeline"
+              ]
+            }
           ],
-          "skills": ["Design systems", "Design engineering", "AI-operable components", "Enterprise UX"],
+          "skills": [
+            "Design systems",
+            "Design engineering",
+            "AI-operable components",
+            "Enterprise UX"
+          ],
           "details": [
-            { "label": "Context", "text": "Enterprise UX is bad because the org chart leaks into the product. Every team ships its own UI dialect, so <strong>fragmented APIs become fragmented UX</strong>. Parable's bet is the opposite — composability as the future of software, with PMs and AI assembling experiences from shared building blocks rather than designers hand-drawing every flow. That only pays off if the blocks are <strong>real</strong> — and when this work opened, they weren't." },
-            { "label": "Problem", "text": "The inheritance was a visual language with <strong>no system beneath it</strong> — no token architecture, no component taxonomy, no progressive-disclosure model. With no designer on staff, engineering filled every gap ad-hoc, and each sprint widened the distance between what shipped and what cohered. The audit quantified the bloat: <strong>~53% of the token set was redundant</strong> — colour palettes <code>5→3</code> (~60→18 tokens), spacing <code>24→13</code>, chart tokens <code>50+→12</code>." },
-            { "label": "Approach", "text": "The fix: reframe the design language as a <strong>Shared Capability</strong> inside Parable's own maturity pipeline (<code>dog food → Labs → Previews → Shared Capabilities</code>), built on one severe principle — <strong>design intent that cannot be computed cannot be enforced</strong>. So the system is authored as a contract: structured layers (philosophy → principles → form → vocabulary → tokens → components → composition), machine-checkable in principle rather than dependent on a reviewer in the room, on an atomic ladder that tightens <code>Labs → Preview → Stable</code>." },
-            { "label": "Build", "text": "The system's hardest problem: Parable serves an executive who wants <strong>one conclusive number</strong> and an engineer who wants <strong>the full grouping</strong> — the same data at two densities. Cosmetic token systems answer \"what colour / radius / spacing\"; they have no word for \"register-3, data-dense surface.\" So density became a <strong>first-class, decoupled axis</strong> — three tiers (Sparse / Comfortable / Compact) expressed as a contract, with hard whitespace floors: Executive ≥55%, Operational ≥40%, Configuration ≥35%." },
-            { "label": "System", "text": "The language is small enough to hold. The <strong>\"Threshold\"</strong> palette encodes the philosophy — <em>light emerges from darkness</em>: a dark field, content emerging through luminosity, one violet reserved for action, a serif display over a grotesque, one radius. The audit's cut is what makes it enforceable — a token set small enough that an agent composes from a <strong>named space of valid output</strong>, not an open canvas." },
-            { "label": "Detail", "text": "One <code>data-density</code> attribute re-poses an entire screen. The same CX work report meets an executive at <strong>Sparse</strong> — one number, almost alone on the field — an operator at <strong>Comfortable</strong> — the charts beneath it — and a configurator at <strong>Compact</strong> — the controls. Density (whitespace, type scale, elevation) <strong>follows from the posture</strong>, never set by hand." },
-            { "label": "Iteration", "text": "The first attempt was the obvious one: a <code>density</code> prop on every component, threaded down through context. It worked in isolation and fell apart in composition — a compact table inside a comfortable card had <strong>two sources of truth</strong>. So density moved out of the component tree and onto the DOM: one <code>data-density</code> on a container, resolved through a CSS attribute cascade. The prop was more flexible; the cascade was more <strong>composable</strong> — and in a system an AI recomposes, composability wins." },
-            { "label": "Outcome", "text": "Ponder composes interfaces; ask an LLM for the same screen twice and you get two layouts. So the design system becomes the <strong>constraint layer that makes generated output trustworthy</strong> — an agent declares intent (\"a register-3 report for an executive\") and the system resolves architecture, posture, voice and density. The enforcement layer — a codegen pass and a constraint engine — is <strong>designed but deliberately not built</strong>: two shipped primitives earned more than a validator would at twenty people. Foundation shipped — the entropy cut that closes KPI 1, priority components built in sync. From visual language to <strong>Shared Capability</strong>." }
+            {
+              "label": "Context",
+              "text": "Enterprise UX is bad because the org chart leaks into the product. Every team ships its own UI dialect, so <strong>fragmented APIs become fragmented UX</strong>. Parable's bet is the opposite — composability as the future of software, with PMs and AI assembling experiences from shared building blocks rather than designers hand-drawing every flow. That only pays off if the blocks are <strong>real</strong> — and when this work opened, they weren't."
+            },
+            {
+              "label": "Problem",
+              "text": "The inheritance was a visual language with <strong>no system beneath it</strong> — no token architecture, no component taxonomy, no progressive-disclosure model. With no designer on staff, engineering filled every gap ad-hoc, and each sprint widened the distance between what shipped and what cohered. The audit quantified the bloat: <strong>~53% of the token set was redundant</strong> — colour palettes <code>5→3</code> (~60→18 tokens), spacing <code>24→13</code>, chart tokens <code>50+→12</code>."
+            },
+            {
+              "label": "Approach",
+              "text": "The fix: reframe the design language as a <strong>Shared Capability</strong> inside Parable's own maturity pipeline (<code>dog food → Labs → Previews → Shared Capabilities</code>), built on one severe principle — <strong>design intent that cannot be computed cannot be enforced</strong>. So the system is authored as a contract: structured layers (philosophy → principles → form → vocabulary → tokens → components → composition), machine-checkable in principle rather than dependent on a reviewer in the room, on an atomic ladder that tightens <code>Labs → Preview → Stable</code>."
+            },
+            {
+              "label": "Build",
+              "text": "The system's hardest problem: Parable serves an executive who wants <strong>one conclusive number</strong> and an engineer who wants <strong>the full grouping</strong> — the same data at two densities. Cosmetic token systems answer \"what colour / radius / spacing\"; they have no word for \"register-3, data-dense surface.\" So density became a <strong>first-class, decoupled axis</strong> — three tiers (Sparse / Comfortable / Compact) expressed as a contract, with hard whitespace floors: Executive ≥55%, Operational ≥40%, Configuration ≥35%."
+            },
+            {
+              "label": "System",
+              "text": "The language is small enough to hold. The <strong>\"Threshold\"</strong> palette encodes the philosophy — <em>light emerges from darkness</em>: a dark field, content emerging through luminosity, one violet reserved for action, a serif display over a grotesque, one radius. The audit's cut is what makes it enforceable — a token set small enough that an agent composes from a <strong>named space of valid output</strong>, not an open canvas."
+            },
+            {
+              "label": "Detail",
+              "text": "One <code>data-density</code> attribute re-poses an entire screen. The same CX work report meets an executive at <strong>Sparse</strong> — one number, almost alone on the field — an operator at <strong>Comfortable</strong> — the charts beneath it — and a configurator at <strong>Compact</strong> — the controls. Density (whitespace, type scale, elevation) <strong>follows from the posture</strong>, never set by hand."
+            },
+            {
+              "label": "Iteration",
+              "text": "The first attempt was the obvious one: a <code>density</code> prop on every component, threaded down through context. It worked in isolation and fell apart in composition — a compact table inside a comfortable card had <strong>two sources of truth</strong>. So density moved out of the component tree and onto the DOM: one <code>data-density</code> on a container, resolved through a CSS attribute cascade. The prop was more flexible; the cascade was more <strong>composable</strong> — and in a system an AI recomposes, composability wins."
+            },
+            {
+              "label": "Outcome",
+              "text": "Ponder composes interfaces; ask an LLM for the same screen twice and you get two layouts. So the design system becomes the <strong>constraint layer that makes generated output trustworthy</strong> — an agent declares intent (\"a register-3 report for an executive\") and the system resolves architecture, posture, voice and density. The enforcement layer — a codegen pass and a constraint engine — is <strong>designed but deliberately not built</strong>: two shipped primitives earned more than a validator would at twenty people. Foundation shipped — the entropy cut that closes KPI 1, priority components built in sync. From visual language to <strong>Shared Capability</strong>."
+            }
           ],
           "railReady": true,
           "rail": [
-            { "src": "/assets/work/parable/PA1.png", "alt": "Parable — the wordmark on the plum field." },
-            { "src": "/assets/work/parable/PA2.png", "alt": "The product site — an analytics layer for operational observability, the ask on the left and a costed work analysis on the right." }
+            {
+              "src": "/assets/work/parable/PA1.png",
+              "alt": "Parable — the wordmark on the plum field."
+            },
+            {
+              "src": "/assets/work/parable/PA2.png",
+              "alt": "The product site — an analytics layer for operational observability, the ask on the left and a costed work analysis on the right."
+            }
+          ],
+          "margin": [
+            {
+              "label": "Role",
+              "value": "Sole product designer"
+            },
+            {
+              "label": "Method",
+              "value": "Figma → code"
+            },
+            {
+              "label": "The cut",
+              "value": "~53% of tokens"
+            },
+            {
+              "label": "Outcome",
+              "value": "A named space of valid output"
+            }
           ]
         },
         {
@@ -80,33 +238,114 @@
           "desc": "Multimodal asset search at enterprise scale.",
           "href": "/projects/pendulum/",
           "site": "https://pagenineteen.ai/",
-          "banner": { "src": "/assets/work/pendulum/P1.png", "alt": "Pendulum — brand mark" },
+          "banner": {
+            "src": "/assets/work/pendulum/P1.png",
+            "alt": "Pendulum — brand mark"
+          },
           "intro": "Pendulum is a <strong>multimodal semantic-search platform</strong> — indexing, organizing, and retrieving millions of images and documents for downstream generative workflows. Built at Page Nineteen, an applied-AI studio out of South Park Commons, with R/GA, WPP, and Kering.",
           "body": [
             "In September 2024 the founders brought us in to take the product <strong>zero-to-one</strong>: a thesis, and no interface yet. The approach was <strong>prototype first</strong> — wireframes to working demos within weeks, validated in calls drawn from a personal network. We learned that users leaned in but the evidence wouldn't carry investors — so the direction was set down before engineering capital was spent. What we delivered was the decision itself, <strong>the function of zero-to-one</strong>; the work later went public when the lab took its projects to market."
           ],
           "meta": [
-            { "label": "Service", "tags": ["Product Design"] },
-            { "label": "Year", "tags": ["2024"] },
-            { "label": "Stack", "tags": ["pgvector", "CLIP", "Voyage", "Vision API", "Modal"] }
+            {
+              "label": "Service",
+              "tags": [
+                "Product Design"
+              ]
+            },
+            {
+              "label": "Year",
+              "tags": [
+                "2024"
+              ]
+            },
+            {
+              "label": "Stack",
+              "tags": [
+                "pgvector",
+                "CLIP",
+                "Voyage",
+                "Vision API",
+                "Modal"
+              ]
+            }
           ],
-          "skills": ["Zero to one", "Rapid prototyping", "Multimodal search", "Retrieval interfaces"],
+          "skills": [
+            "Zero to one",
+            "Rapid prototyping",
+            "Multimodal search",
+            "Retrieval interfaces"
+          ],
           "details": [
-            { "label": "Context", "text": "Placeholder — this section will be written as the case study is filled in." },
-            { "label": "Problem", "text": "Placeholder — this section will be written as the case study is filled in." },
-            { "label": "Approach", "text": "Placeholder — this section will be written as the case study is filled in." },
-            { "label": "Build", "text": "Placeholder — this section will be written as the case study is filled in." },
-            { "label": "System", "text": "Placeholder — this section will be written as the case study is filled in." },
-            { "label": "Detail", "text": "Placeholder — this section will be written as the case study is filled in." },
-            { "label": "Iteration", "text": "Placeholder — this section will be written as the case study is filled in." },
-            { "label": "Outcome", "text": "Placeholder — this section will be written as the case study is filled in." }
+            {
+              "label": "Context",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Problem",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Approach",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Build",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "System",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Detail",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Iteration",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Outcome",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            }
           ],
           "railReady": true,
           "rail": [
-            { "src": "/assets/work/pendulum/P1.png", "alt": "Pendulum — the wordmark on a pale field." },
-            { "src": "/assets/work/pendulum/P2.png", "alt": "The home canvas — documents, folders, images and smart suggestions held in one multimodal field." },
-            { "src": "/assets/work/pendulum/P4.png", "alt": "A document open with its related assets alongside — shared, and annotated in place with an @mention." },
-            { "src": "/assets/work/pendulum/P5.png", "alt": "A natural-language query resolved across images, video and documents, with artifacts attached to the ask." }
+            {
+              "src": "/assets/work/pendulum/P1.png",
+              "alt": "Pendulum — the wordmark on a pale field."
+            },
+            {
+              "src": "/assets/work/pendulum/P2.png",
+              "alt": "The home canvas — documents, folders, images and smart suggestions held in one multimodal field."
+            },
+            {
+              "src": "/assets/work/pendulum/P4.png",
+              "alt": "A document open with its related assets alongside — shared, and annotated in place with an @mention."
+            },
+            {
+              "src": "/assets/work/pendulum/P5.png",
+              "alt": "A natural-language query resolved across images, video and documents, with artifacts attached to the ask."
+            }
+          ],
+          "margin": [
+            {
+              "label": "Role",
+              "value": "Product designer, 0→1"
+            },
+            {
+              "label": "Clients",
+              "value": "R/GA, WPP, Kering"
+            },
+            {
+              "label": "Method",
+              "value": "Prototype-first"
+            },
+            {
+              "label": "Outcome",
+              "value": "Direction set down, cheaply"
+            }
           ]
         },
         {
@@ -115,33 +354,115 @@
           "desc": "Composable creative workflows for generative media.",
           "href": "#lightnote",
           "site": "https://pagenineteen.ai/",
-          "banner": { "src": "/assets/work/lightnote/L1.png", "alt": "Lightnote — brand" },
+          "banner": {
+            "src": "/assets/work/lightnote/L1.png",
+            "alt": "Lightnote — brand"
+          },
           "intro": "Lightnote is a creative AI toolkit that lived in the terminal, given a canvas — <strong>sets, processes, and runs</strong> arranged as rooms rather than commands, for assembling image sets, composing workflows, and <strong>training LoRAs</strong>.",
           "body": [
             "It began weeks after the Pendulum pivot, when the lab needed its own fine-tuning tooling. The approach was a <strong>running prototype against the live engine</strong> — sketch became code and stayed there. We learned to keep the grammar small: <strong>selection as the primary gesture</strong>, a trigger word landing in the same call as its <code>--trigger</code> flag, so nothing drifts. We delivered the canvas the lab itself worked in; operations paused at the investors' call, and in 2026 Page Nineteen <strong>released it publicly, open source under <code>MIT</code></strong>."
           ],
           "meta": [
-            { "label": "Service", "tags": ["Product Design"] },
-            { "label": "Year", "tags": ["2024"] },
-            { "label": "Stack", "tags": ["CLIP", "Stability AI", "Flux", "SDXL", "LoRA", "FastAPI"] }
+            {
+              "label": "Service",
+              "tags": [
+                "Product Design"
+              ]
+            },
+            {
+              "label": "Year",
+              "tags": [
+                "2024"
+              ]
+            },
+            {
+              "label": "Stack",
+              "tags": [
+                "CLIP",
+                "Stability AI",
+                "Flux",
+                "SDXL",
+                "LoRA",
+                "FastAPI"
+              ]
+            }
           ],
-          "skills": ["Creative tooling", "Canvas interfaces", "Rapid prototyping", "Fine-tuning workflows"],
+          "skills": [
+            "Creative tooling",
+            "Canvas interfaces",
+            "Rapid prototyping",
+            "Fine-tuning workflows"
+          ],
           "details": [
-            { "label": "Context", "text": "Page Nineteen is an applied multimodal AI lab in London — a founding team of six, fresh from a South Park Commons residency. We led <strong>product design zero to one</strong>, working directly with the founders. Their Python toolkit could already <strong>see, tag, train, and generate</strong>; at stake was whether that engine became a product." },
-            { "label": "Problem", "text": "The brief arrived as a UI problem: put panels over the model calls. We reframed it — Lightnote was a <strong>grammar problem</strong>. The <code>CLI</code> already spoke a complete language of <strong>sets, processes, and runs</strong>; an interface that invented its own vocabulary would have forked the product in two." },
-            { "label": "Approach", "text": "The canvas was a <strong>running prototype</strong> against the live engine, never static frames — sketch became code and stayed there. <strong>Selection became the primary gesture</strong>: gather four images, and the bar offers to fold them into a set. One continuous artifact, first sketch to shipped surface." },
-            { "label": "Build", "text": "A canvas over the toolkit's <code>FastAPI</code> layer — the same endpoints the CLI wraps, so <strong>parity is enforced by the API, not by discipline</strong>. A trigger word typed into a node lands in the same call as its <code>--trigger</code> flag; nothing is duplicated, so <strong>nothing drifts</strong>." },
-            { "label": "System", "text": "The language is <strong>deliberately small</strong>: a near-black field, one warm cream primary reserved for action, blue only for live selection, one grotesque at one weight, every surface at one radius. <strong>Five tokens and one gesture</strong> — the whole system fits on a single board." },
-            { "label": "Detail", "text": "The cream action bar <strong>exists only while something is selected</strong> — the interface answers the hand rather than waiting to be configured. It is the toolkit's one warm move, kept for the moment of decision." },
-            { "label": "Iteration", "text": "An early direction gave each model family its own bespoke panel — richer on screen, but it broke the grammar: <strong>three models, three dialects</strong>. Rebuilt around <strong>one node form, flags as fields</strong>, letting models differ only in their parameters." },
-            { "label": "Outcome", "text": "Shipped and <strong>open source under <code>MIT</code></strong> — the engine and its canvas grammar are public at <a href=\"https://github.com/pendulum-ai/lightnote\">github.com/pendulum-ai/lightnote</a>, and the same grammar now carries the lab's LoRA training and generation end to end." }
+            {
+              "label": "Context",
+              "text": "Page Nineteen is an applied multimodal AI lab in London — a founding team of six, fresh from a South Park Commons residency. We led <strong>product design zero to one</strong>, working directly with the founders. Their Python toolkit could already <strong>see, tag, train, and generate</strong>; at stake was whether that engine became a product."
+            },
+            {
+              "label": "Problem",
+              "text": "The brief arrived as a UI problem: put panels over the model calls. We reframed it — Lightnote was a <strong>grammar problem</strong>. The <code>CLI</code> already spoke a complete language of <strong>sets, processes, and runs</strong>; an interface that invented its own vocabulary would have forked the product in two."
+            },
+            {
+              "label": "Approach",
+              "text": "The canvas was a <strong>running prototype</strong> against the live engine, never static frames — sketch became code and stayed there. <strong>Selection became the primary gesture</strong>: gather four images, and the bar offers to fold them into a set. One continuous artifact, first sketch to shipped surface."
+            },
+            {
+              "label": "Build",
+              "text": "A canvas over the toolkit's <code>FastAPI</code> layer — the same endpoints the CLI wraps, so <strong>parity is enforced by the API, not by discipline</strong>. A trigger word typed into a node lands in the same call as its <code>--trigger</code> flag; nothing is duplicated, so <strong>nothing drifts</strong>."
+            },
+            {
+              "label": "System",
+              "text": "The language is <strong>deliberately small</strong>: a near-black field, one warm cream primary reserved for action, blue only for live selection, one grotesque at one weight, every surface at one radius. <strong>Five tokens and one gesture</strong> — the whole system fits on a single board."
+            },
+            {
+              "label": "Detail",
+              "text": "The cream action bar <strong>exists only while something is selected</strong> — the interface answers the hand rather than waiting to be configured. It is the toolkit's one warm move, kept for the moment of decision."
+            },
+            {
+              "label": "Iteration",
+              "text": "An early direction gave each model family its own bespoke panel — richer on screen, but it broke the grammar: <strong>three models, three dialects</strong>. Rebuilt around <strong>one node form, flags as fields</strong>, letting models differ only in their parameters."
+            },
+            {
+              "label": "Outcome",
+              "text": "Shipped and <strong>open source under <code>MIT</code></strong> — the engine and its canvas grammar are public at <a href=\"https://github.com/pendulum-ai/lightnote\">github.com/pendulum-ai/lightnote</a>, and the same grammar now carries the lab's LoRA training and generation end to end."
+            }
           ],
           "railReady": true,
           "rail": [
-            { "src": "/assets/work/lightnote/L1.png", "alt": "Lightnote — the wordmark on the near-black field." },
-            { "src": "/assets/work/lightnote/L2.png", "alt": "The canvas — four images gathered under a live selection, the cream bar offering to fold them into a set." },
-            { "src": "/assets/work/lightnote/L3.png", "alt": "The sets panel — Modern fixtures, Hieros and Aratea, a set's context menu open over the selection." },
-            { "src": "/assets/work/lightnote/L4.png", "alt": "The workflow graph — a set loaded into Train LoRA, its trigger word typed into the node as a field." }
+            {
+              "src": "/assets/work/lightnote/L1.png",
+              "alt": "Lightnote — the wordmark on the near-black field."
+            },
+            {
+              "src": "/assets/work/lightnote/L2.png",
+              "alt": "The canvas — four images gathered under a live selection, the cream bar offering to fold them into a set."
+            },
+            {
+              "src": "/assets/work/lightnote/L3.png",
+              "alt": "The sets panel — Modern fixtures, Hieros and Aratea, a set's context menu open over the selection."
+            },
+            {
+              "src": "/assets/work/lightnote/L4.png",
+              "alt": "The workflow graph — a set loaded into Train LoRA, its trigger word typed into the node as a field."
+            }
+          ],
+          "margin": [
+            {
+              "label": "Role",
+              "value": "Product designer"
+            },
+            {
+              "label": "Context",
+              "value": "Post-pivot tooling"
+            },
+            {
+              "label": "Method",
+              "value": "Running prototype"
+            },
+            {
+              "label": "Outcome",
+              "value": "Open source, MIT"
+            }
           ]
         }
       ]
