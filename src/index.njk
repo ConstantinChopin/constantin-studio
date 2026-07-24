@@ -57,6 +57,13 @@ ogUrl: "https://constantin.studio"
              service · year right), the stills, then the body text beneath. the
              rail is the flexible band — it absorbs whatever height the text
              doesn't need, so copy and image can never collide. #}
+          {# the head band — the project title with its keyword run trailing on
+             the same line, hung from the shared left inset above the stills #}
+          <div class="canvas-head">
+            <h2 class="canvas-headline">{{ e.title }}</h2>
+            <p class="canvas-keywords">{% for s in e.skills %}<span class="pill">{{ s }}</span>{% endfor %}{% for m in e.meta %}{% if m.label == "Year" and m.tags[0] != "—" %}<span class="pill pill-year">{{ m.tags[0] }}</span>{% endif %}{% endfor %}</p>
+          </div>
+
           {# a project shows its real stills once `railReady` is set in studio.json;
              until its square assets land it holds flat grey placeholders, which
              are inert — with no image there is nothing to open. #}
@@ -70,15 +77,12 @@ ogUrl: "https://constantin.studio"
             {% endfor %}{% endif %}
           </div>
 
-          {# the story sits beneath the stills, with the pill run as a column on
-             its right — capabilities then the year, wrapping to fit that column #}
+          {# the story sits beneath the stills; its register is named once up top
+             in the head band, so the prose runs the full reading measure here #}
           <div class="canvas-body">
             <div class="canvas-prose">
               {% if e.intro %}<p class="canvas-intro">{{ e.intro | safe }}</p>{% endif %}
               {% for p in e.body %}<p class="canvas-para">{{ p | safe }}</p>{% endfor %}
-            </div>
-            <div class="canvas-aside">
-              <p class="canvas-skills">{% for s in e.skills %}<span class="pill">{{ s }}</span>{% endfor %}{% for m in e.meta %}{% if m.label == "Year" and m.tags[0] != "—" %}<span class="pill pill-year">{{ m.tags[0] }}</span>{% endif %}{% endfor %}</p>
             </div>
           </div>
         </div>

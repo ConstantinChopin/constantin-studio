@@ -31,13 +31,14 @@
      the Sanctuaire Liquid Glass system: a saturating, brightening blur; a wet
      specular edge (bright top rim, an inner glow below, an inner white hairline
      all round, a cool outer hairline for definition); and a soft two-tier lift.
-     the tint stays paper-warm so the chrome belongs to this cream page rather
-     than reading cold. the tint floor (58% paper) is a contrast guarantee: text
-     on glass must pass on the worst-case backdrop, so it never goes clearer. */
+     the tint is white-forward — the pill reads as milk glass — but carries a
+     whisper of paper so it never goes clinical against the cream page. the
+     opacity floor is a contrast guarantee: text on glass must pass on the
+     worst-case backdrop, so it never goes clearer than this. */
   --glass-blur: 18px;
   --glass-filter: blur(var(--glass-blur)) saturate(1.8) brightness(1.04);
-  --glass-tint: color-mix(in srgb, var(--paper) 58%, transparent);
-  --glass-tint-fallback: color-mix(in srgb, var(--paper) 88%, transparent);
+  --glass-tint: color-mix(in srgb, #ffffff 46%, color-mix(in srgb, var(--paper) 62%, transparent));
+  --glass-tint-fallback: color-mix(in srgb, #ffffff 55%, color-mix(in srgb, var(--paper) 90%, transparent));
   --glass-edge:
     inset 0 1px 1px rgba(255, 255, 255, 0.9),
     inset 0 -1px 1px rgba(255, 255, 255, 0.35),
@@ -413,6 +414,43 @@ body.home { padding: 0; }
     padding: 0.4rem var(--canvas-pad) 2.4rem;
   }
   .canvas-set[hidden] { display: none; }
+
+  /* the head band — the project title anchored left with its keyword run
+     trailing right, sharing one line above the stills. it hangs from the same
+     left inset as the gallery and body, and wraps the run beneath the title
+     only when the line runs out of room. */
+  .canvas-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.7rem clamp(1rem, 3vw, 2.2rem);
+    flex-wrap: wrap;
+    margin: 0 0 0.9rem;
+  }
+  .canvas-headline {
+    margin: 0;
+    flex: 0 1 auto;
+    min-width: 0;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.4rem, 2.4vw, 1.95rem);
+    line-height: 1.12;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+  }
+  .canvas-keywords {
+    margin: 0;
+    flex: 1 1 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.3rem;
+    /* keep the run bottom-aligned to the title's baseline block */
+    transform: translateY(-0.08em);
+  }
+  .canvas-keywords .pill { font-size: 0.68rem; }
+  .canvas-keywords .pill-year { color: var(--muted); }
 
   /* the gallery — stills paired in two columns. an odd count opens with the
      first still (the brand card) across both columns as a wide hero. */
