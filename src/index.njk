@@ -28,9 +28,6 @@ ogUrl: "https://constantin.studio"
            Surface, System); each noun phrase gets its link when its page exists #}
         <p class="bio-line prose-block">The studio works at the intersection of three crafts: the story a brand tells, the surfaces people interact with, and the systems beneath it all. We move fast across mediums, iterate often, and sweat over the details.</p>
 
-        {# what we share — drawn from practice, published on constantin.world #}
-        <p class="bio-line prose-block">What the work teaches us, we share — skills and components drawn from practice: <a class="lnk" href="https://constantin.world/resources/skills/#volumetric-pointcloud-figure">Volumetric Point Clouds</a>, <a class="lnk" href="https://constantin.world/resources/skills/#text-to-topology">Text to Topology</a>, <a class="lnk" href="https://constantin.world/resources/skills/#project-page-system">Project Page System</a>, and <a class="lnk" href="https://constantin.world/resources/skills/#prose-to-reading-page">Prose to Reading Page</a>.</p>
-
       </main>
     </div>
 
@@ -49,9 +46,15 @@ ogUrl: "https://constantin.studio"
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
             </button>
           </nav>
+          {# opens the live product site of the open project; shown only when the
+             entry carries a `site` URL in studio.json (wired by the panel script) #}
+          <a class="viewport-site" data-vp-site target="_blank" rel="noopener" hidden>
+            <span>View site</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10M7 17 17 7" /></svg>
+          </a>
         </header>
         {% for shelf in studio.shelves %}{% for e in shelf.entries %}{% if e.rail %}
-        <div class="canvas-set" data-id="{{ e.id }}" data-title="{{ e.title }}" data-category="{{ shelf.label }}" hidden>
+        <div class="canvas-set" data-id="{{ e.id }}" data-title="{{ e.title }}" data-category="{{ shelf.label }}" data-site="{{ e.site }}" hidden>
 
           {# the canvas stacks three bands: a metadata row (capability pills left,
              service · year right), the stills, then the body text beneath. the
@@ -112,6 +115,7 @@ ogUrl: "https://constantin.studio"
       var prevBtn = document.querySelector('[data-vp-prev]');
       var nextBtn = document.querySelector('[data-vp-next]');
       var backBtn = document.querySelector('[data-vp-back]');
+      var siteBtn = document.querySelector('[data-vp-site]');
       var liveId = null;
 
       // each image fades in the moment it decodes (they lazy-load when a set is
@@ -175,10 +179,20 @@ ogUrl: "https://constantin.studio"
         titleEl.appendChild(cur);
       }
 
+      // the "View site" capsule links to the open project's live site — shown
+      // only when the entry carries a `site` URL, hidden otherwise
+      function setSite(id) {
+        if (!siteBtn) return;
+        var url = (sets[id] && sets[id].dataset.site) || '';
+        if (url) { siteBtn.href = url; siteBtn.hidden = false; }
+        else { siteBtn.removeAttribute('href'); siteBtn.hidden = true; }
+      }
+
       function open(id) {
         if (!byId[id]) return false;
         document.body.classList.add('detail-open');
         setActive(byId[id]);
+        setSite(id);
         // switching between projects: soften the outgoing one out, crossfade the
         // breadcrumb, then swap and let the new one cascade in
         if (liveId && liveId !== id && !reduce) {

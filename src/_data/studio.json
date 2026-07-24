@@ -9,6 +9,7 @@
           "title": "Replika",
           "desc": "Consumer AI companionship.",
           "href": "/projects/replika/",
+          "site": "https://replika.com/",
           "banner": { "src": "/assets/work/replika/R1.png", "alt": "Replika — brand mark" },
           "intro": "Replika is the AI companion — <strong>42 million users worldwide</strong>. In 2026, mid-way through a full rebrand — new CEO, evolved vision — they brought us in for <strong>design engineering on a flat team of twenty</strong>, across iOS, web, brand, and the design system.",
           "body": [
@@ -45,6 +46,7 @@
           "title": "Parable",
           "desc": "An intelligence layer for the enterprise.",
           "href": "/projects/parable/",
+          "site": "https://www.askparable.com/",
           "banner": { "src": "/assets/work/parable/PA1.png", "alt": "Parable — brand mark" },
           "intro": "Parable is the <strong>intelligence layer for enterprise operations</strong> — it reads the whole company and surfaces where the work, the waste, and the automation hide.",
           "body": [
@@ -77,6 +79,7 @@
           "title": "Pendulum",
           "desc": "Multimodal asset search at enterprise scale.",
           "href": "/projects/pendulum/",
+          "site": "https://pagenineteen.ai/",
           "banner": { "src": "/assets/work/pendulum/P1.png", "alt": "Pendulum — brand mark" },
           "intro": "Pendulum is a <strong>multimodal semantic-search platform</strong> — indexing, organizing, and retrieving millions of images and documents for downstream generative workflows. Built at Page Nineteen, an applied-AI studio out of South Park Commons, with R/GA, WPP, and Kering.",
           "body": [
@@ -111,6 +114,7 @@
           "title": "Lightnote",
           "desc": "Composable creative workflows for generative media.",
           "href": "#lightnote",
+          "site": "https://pagenineteen.ai/",
           "banner": { "src": "/assets/work/lightnote/L1.png", "alt": "Lightnote — brand" },
           "intro": "Lightnote is a creative AI toolkit that lived in the terminal, given a canvas — <strong>sets, processes, and runs</strong> arranged as rooms rather than commands, for assembling image sets, composing workflows, and <strong>training LoRAs</strong>.",
           "body": [
