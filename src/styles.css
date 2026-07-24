@@ -493,13 +493,17 @@ body.home { padding: 0; }
 
   /* the body — the story beneath the gallery, the pill column at its right.
      no caps: the panel itself scrolls, so the copy takes the room it needs. */
-  .canvas-body { padding: 1.2rem 0 0; }
-  /* each section is a spec-ledger row: a narrow serif-italic label rail, the
-     prose in the wide column, the label baseline-aligned to its first line */
+  /* open air between the stills and the first label */
+  .canvas-body { padding: clamp(2.2rem, 5vh, 3.4rem) 0 0; }
+  /* each section is a spec-ledger row: the label rail sized to its own word
+     with a tight gap to the prose, the label baseline-aligned to its first line */
   .canvas-section {
     display: grid;
-    grid-template-columns: 7.5rem minmax(0, var(--reading));
-    gap: clamp(1.1rem, 2.6vw, 2.2rem);
+    /* a fixed narrow rail — snug to the widest label ("Approach" ~3.8rem) so
+       the gap is tight, and shared by every section so the prose columns align
+       (each section is its own grid, so a content-sized track would not) */
+    grid-template-columns: 4.25rem minmax(0, var(--reading));
+    gap: clamp(0.85rem, 1.5vw, 1.25rem);
     align-items: baseline;
   }
   .canvas-section + .canvas-section { margin-top: clamp(1.4rem, 2.8vh, 2.2rem); }
