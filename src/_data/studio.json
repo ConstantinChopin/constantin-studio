@@ -14,9 +14,11 @@
             "src": "/assets/work/replika/R1.png",
             "alt": "Replika — brand mark"
           },
-          "intro": "Replika is the AI companion — <strong>42 million users worldwide</strong>. In 2026, mid-way through a full rebrand — new CEO, evolved vision — they brought us in for <strong>design engineering on a flat team of twenty</strong>, across iOS, web, brand, and the design system.",
+          "intro": "Replika is the AI companion, with 42 million users worldwide. In 2026, mid-way through a full rebrand under a new CEO and an evolved vision, they brought us in to lead design engineering on a flat team of twenty, working across iOS, web, brand, and the design system.",
           "body": [
-            "The opportunity was defining the flagship features of the product's next era. The approach: ship directly with the lead iOS developer — <strong>direction to spec to build</strong> — with feature definition fed by the community's own channels. We learned that <strong>memory is the product</strong>: Memory V2 became Portraits, Life Arcs, and People Cards, built on structured memory drawn from conversation. We delivered the <strong>2026 design system</strong> grown from the brand book, a 40-screen onboarding recast as a <strong>six-act narrative</strong>, and the <strong>dual-currency economy</strong> through which users shape the relationship."
+            "The work was to define the flagship features of the product's next era, and we shipped directly with the lead iOS developer, carrying each feature from direction to spec to build.",
+            "The harder question was what that next era should be, decided in the middle of a live rebrand with the brand and its vision still in motion. Rather than start from features, we followed how people actually used the product back to a single reframe: memory is the product. That call set the direction for everything after it.",
+            "Memory V2 grew into Portraits, Life Arcs, and People Cards, all built on structured memory drawn from conversation. Alongside it we delivered the 2026 design system grown from the brand book, a 40-screen onboarding recast as a six-act narrative, and the dual-currency economy through which users shape the relationship."
           ],
           "meta": [
             {
@@ -134,9 +136,11 @@
             "src": "/assets/work/parable/PA1.png",
             "alt": "Parable — brand mark"
           },
-          "intro": "Parable is the <strong>intelligence layer for enterprise operations</strong> — it reads the whole company and surfaces where the work, the waste, and the automation hide.",
+          "intro": "Parable is the intelligence layer for enterprise operations. It reads the whole company and surfaces where the work, the waste, and the automation hide.",
           "body": [
-            "In September 2025 the founders brought us in as <strong>sole product designer</strong> — engineers on staff, no product director, a loose direction to materialize. The approach was an <strong>end-to-end journey</strong> for the ideal customer, prototyped in Figma and then in code beside the front-end engineer. We learned the real problem was drift: for an AI to operate the system, taste had to become rules — so the audit cut <strong>~53% of the token set</strong> until a model composes from a <strong>named space of valid output</strong>. We delivered the foundation; all budget moved to engineering to build from it."
+            "In September 2025 the founders brought us in as their sole product designer. They had engineers on staff but no product director, and only a loose direction to give shape to, so we designed an end-to-end journey for the ideal customer, prototyped first in Figma and then in code beside the front-end engineer.",
+            "The real problem turned out to be drift. With no system beneath the visual language, every sprint widened the gap between what shipped and what cohered, and for an AI to operate the product, taste had to become rules. So the audit cut roughly 53% of the token set, tightening it until a model could compose from a named space of valid output.",
+            "The hardest call was how to carry density. Our first attempt put a density prop on every component, which worked in isolation but fell apart in composition, where a compact table inside a comfortable card had two sources of truth. We moved density out of the component tree and onto the DOM, resolved through a single attribute cascade, because in a system an AI recomposes, composability wins. We delivered that foundation, and the remaining budget moved to engineering to build from it."
           ],
           "meta": [
             {
@@ -242,9 +246,11 @@
             "src": "/assets/work/pendulum/P1.png",
             "alt": "Pendulum — brand mark"
           },
-          "intro": "Pendulum is a <strong>multimodal semantic-search platform</strong> — indexing, organizing, and retrieving millions of images and documents for downstream generative workflows. Built at Page Nineteen, an applied-AI studio out of South Park Commons, with R/GA, WPP, and Kering.",
+          "intro": "Pendulum is a multimodal semantic-search platform that indexes, organizes, and retrieves millions of images and documents for downstream generative workflows. It was built at Page Nineteen, an applied-AI studio out of South Park Commons, working with R/GA, WPP, and Kering.",
           "body": [
-            "In September 2024 the founders brought us in to take the product <strong>zero-to-one</strong>: a thesis, and no interface yet. The approach was <strong>prototype first</strong> — wireframes to working demos within weeks, validated in calls drawn from a personal network. We learned that users leaned in but the evidence wouldn't carry investors — so the direction was set down before engineering capital was spent. What we delivered was the decision itself, <strong>the function of zero-to-one</strong>; the work later went public when the lab took its projects to market."
+            "In September 2024 the founders brought us in to take the product from zero to one, starting from a thesis with no interface yet. We prototyped first, moving from wireframes to working demos within weeks and validating them in calls drawn from a personal network.",
+            "Zero to one is rarely smooth, and here the obstacle was the evidence itself. Users leaned in, but the signal would not carry investors, and pushing on would have meant spending real engineering capital on a bet that had not yet proven out. The call was to set the direction down before that capital was spent.",
+            "What we delivered was that decision, which is the real function of zero to one. The work later went public when the lab took its projects to market."
           ],
           "meta": [
             {
@@ -358,9 +364,11 @@
             "src": "/assets/work/lightnote/L1.png",
             "alt": "Lightnote — brand"
           },
-          "intro": "Lightnote is a creative AI toolkit that lived in the terminal, given a canvas — <strong>sets, processes, and runs</strong> arranged as rooms rather than commands, for assembling image sets, composing workflows, and <strong>training LoRAs</strong>.",
+          "intro": "Lightnote is a creative AI toolkit that lived in the terminal and was given a canvas. Its sets, processes, and runs are arranged as rooms rather than commands, for assembling image sets, composing workflows, and training LoRAs.",
           "body": [
-            "It began weeks after the Pendulum pivot, when the lab needed its own fine-tuning tooling. The approach was a <strong>running prototype against the live engine</strong> — sketch became code and stayed there. We learned to keep the grammar small: <strong>selection as the primary gesture</strong>, a trigger word landing in the same call as its <code>--trigger</code> flag, so nothing drifts. We delivered the canvas the lab itself worked in; operations paused at the investors' call, and in 2026 Page Nineteen <strong>released it publicly, open source under <code>MIT</code></strong>."
+            "It began weeks after the Pendulum pivot, when the lab needed its own fine-tuning tooling. We built a running prototype against the live engine, so the sketch became code and stayed there.",
+            "The brief arrived as a UI problem, put panels over the model calls, but the real problem was grammar. The CLI already spoke a complete language of sets, processes, and runs, and an interface that invented its own vocabulary would have forked the product in two. An early direction gave each model family its own bespoke panel, which looked richer on screen but broke that grammar into three dialects.",
+            "We rebuilt around one node form with flags as fields, letting models differ only in their parameters, and kept parity enforced by the API rather than by discipline, so a trigger word lands in the same call as its <code>--trigger</code> flag and nothing drifts. We delivered the canvas the lab itself worked in. Operations later paused at the investors' call, and in 2026 Page Nineteen released it publicly, open source under <code>MIT</code>."
           ],
           "meta": [
             {
