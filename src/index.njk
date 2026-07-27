@@ -28,6 +28,26 @@ ogUrl: "https://constantin.studio"
            Surface, System); each noun phrase gets its link when its page exists #}
         <p class="bio-line prose-block">The studio operates at the intersection of three crafts: the stories brands tell, the products people use, and the systems that run beneath them both. We move fast across mediums, iterate often, and sweat over the details.</p>
 
+        {# mobile only — each project stands as a title card in a stack beneath
+           the prose: a product shot, the name, its one-line description, and a
+           few pills. a card is a threshold, not the presentation — tapping
+           opens the project's own page (plain hash links; the panel script
+           owns the hash, so no extra wiring is needed and desktop never sees
+           them). the shot is the second still — the first is the brand plate. #}
+        <nav class="card-stack" aria-label="Projects">
+          {% for shelf in studio.shelves %}{% for e in shelf.entries %}{% if e.rail %}
+          {% set shot = e.rail[1] or e.rail[0] %}
+          <a class="entry-card" href="#{{ e.id }}">
+            {% if e.railReady and shot %}<img class="entry-card-shot" src="{{ shot.src }}" alt="{{ shot.alt }}" loading="lazy" />{% endif %}
+            <span class="entry-card-text">
+              <span class="entry-card-name">{{ e.title }}</span>
+              <span class="entry-card-desc">{{ e.desc }}</span>
+              <span class="canvas-keywords">{% for s in e.skills %}{% if loop.index <= 2 %}<span class="pill">{{ s }}</span>{% endif %}{% endfor %}{% for m in e.meta %}{% if m.label == "Year" and m.tags[0] != "—" %}<span class="pill pill-year">{{ m.tags[0] }}</span>{% endif %}{% endfor %}</span>
+            </span>
+          </a>
+          {% endif %}{% endfor %}{% endfor %}
+        </nav>
+
       </main>
     </div>
 

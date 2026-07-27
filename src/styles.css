@@ -183,9 +183,10 @@ body.home { padding: 0; }
   padding: clamp(2.5rem, 9vh, 5rem) clamp(1.6rem, 7vw, 3rem) clamp(3rem, 8vh, 5rem);
 }
 
-/* phones: pull the frame in tight so the column gets the width */
+/* phones: a little more air at the top and sides while the column keeps most
+   of the width */
 @media (max-width: 40rem) {
-  .page { padding: 20px 12px clamp(3rem, 8vh, 5rem); }
+  .page { padding: 36px 22px clamp(3rem, 8vh, 5rem); }
 }
 
 .pane-detail { display: none; }
@@ -2073,8 +2074,60 @@ body.essay {
 /* the back control only exists on the mobile page */
 .viewport-back { display: none; }
 
+/* desktop never sees the title cards — the projects live in the prose and the
+   panel; the cards are the phone's shelf */
+.card-stack { display: none; }
+
 @media (max-width: 63.999rem) {
   .split { display: block; }
+
+  /* ---- the title cards — the phone's shelf beneath the index prose. each is
+     a milk-glass plate cut from the one --glass contract: crumb, headline, a
+     few pills, and the way in to the project's own page. ---- */
+  .card-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: clamp(1.8rem, 4.5vh, 2.6rem);
+  }
+  .entry-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--glass-tint-fallback);
+    border-radius: 24px;
+    corner-shape: squircle;
+    box-shadow: var(--glass-edge);
+    overflow: hidden;
+    text-decoration: none;
+  }
+  /* the shot bleeds to the card's edges; square, like the panel's stills,
+     so the source crops are shown whole */
+  .entry-card-shot {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+  .entry-card-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    padding: 1rem 1.25rem 1.3rem;
+  }
+  .entry-card-name {
+    font-family: var(--serif);
+    font-size: var(--text);
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .entry-card-desc {
+    font-family: var(--serif);
+    font-size: var(--text);
+    line-height: 1.5;
+    color: var(--muted);
+    text-wrap: pretty;
+  }
 
   /* the detail — a fixed page over the index, slid in on open */
   .pane-detail {
