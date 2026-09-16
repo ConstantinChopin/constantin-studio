@@ -139,7 +139,7 @@
           "intro": "Parable is the intelligence layer for enterprise operations. It reads the whole company and surfaces where the work, the waste, and the automation hide.",
           "body": [
             "In September 2025 the founders brought us in as their sole product designer. They had engineers on staff, no product director, and a loose direction. We gave it shape: an end-to-end journey for the ideal customer, prototyped first in Figma, then in code beside the front-end engineer.",
-            "The real problem was drift. The product had a visual language and no system beneath it, and every sprint widened the gap between what shipped and what cohered. For an AI to operate the product, taste had to become rules. Our audit cut roughly 53% of the token set, until a model could compose from a named space of valid output.",
+            "The real problem was drift. The product had a visual language and no system beneath it, and every sprint widened the gap between what shipped and what cohered. For an AI to operate the product, taste had to become rules. Our audit cut the colour set from roughly 60 tokens to 18, spacing from 24 to 13, and chart tokens from more than 50 to 12, until a model could compose from a named space of valid output.",
             "The hardest call was density. Our first attempt put a density prop on every component. It worked in isolation and fell apart in composition: a compact table inside a comfortable card had two sources of truth. We tore the prop out and moved density onto the DOM, one attribute on a container, resolved through the cascade. The prop was more flexible; the cascade was more composable, and in a system an AI recomposes, composability wins. We shipped that foundation, and the remaining budget moved to engineering to build from it."
           ],
           "meta": [
@@ -179,7 +179,7 @@
             },
             {
               "label": "Problem",
-              "text": "The inheritance was a visual language with <strong>no system beneath it</strong> — no token architecture, no component taxonomy, no progressive-disclosure model. With no designer on staff, engineering filled every gap ad-hoc, and each sprint widened the distance between what shipped and what cohered. The audit quantified the bloat: <strong>~53% of the token set was redundant</strong> — colour palettes <code>5→3</code> (~60→18 tokens), spacing <code>24→13</code>, chart tokens <code>50+→12</code>."
+              "text": "The inheritance was a visual language with <strong>no system beneath it</strong> — no token architecture, no component taxonomy, no progressive-disclosure model. With no designer on staff, engineering filled every gap ad-hoc, and each sprint widened the distance between what shipped and what cohered. The audit quantified the bloat — roughly <strong>two-thirds of the audited token categories, redundant</strong>: colour palettes <code>5→3</code> (~60→18 tokens), spacing <code>24→13</code>, chart tokens <code>50+→12</code>."
             },
             {
               "label": "Approach",
@@ -191,7 +191,7 @@
             },
             {
               "label": "System",
-              "text": "The language is small enough to hold. The <strong>\"Threshold\"</strong> palette encodes the philosophy — <em>light emerges from darkness</em>: a dark field, content emerging through luminosity, one violet reserved for action, a serif display over a grotesque, one radius. The audit's cut is what makes it enforceable — a token set small enough that an agent composes from a <strong>named space of valid output</strong>, not an open canvas."
+              "text": "The language is small enough to hold. The <strong>\"Threshold\"</strong> palette encodes the philosophy — <em>light emerges from darkness</em>: a dark field, content emerging through luminosity, one gradient reserved for action and rank, a serif display over a grotesque, one radius family. The audit's cut is what makes it enforceable — a token set small enough that an agent composes from a <strong>named space of valid output</strong>, not an open canvas."
             },
             {
               "label": "Detail",
@@ -228,7 +228,7 @@
             },
             {
               "label": "The cut",
-              "value": "~53% of tokens"
+              "value": "~2/3 of audited tokens"
             },
             {
               "label": "Outcome",
@@ -237,20 +237,21 @@
           ]
         },
         {
-          "id": "pendulum",
-          "title": "Pendulum",
-          "desc": "Multimodal asset search at enterprise scale.",
-          "href": "/projects/pendulum/",
+          "id": "pagenineteen",
+          "title": "PageNineteen",
+          "desc": "Two zero-to-one products for an applied multimodal lab.",
+          "href": "#pagenineteen",
           "site": "https://pagenineteen.ai/",
           "banner": {
             "src": "/assets/work/pendulum/P1.png",
-            "alt": "Pendulum — brand mark"
+            "alt": "PageNineteen — the lab's two products"
           },
-          "intro": "Pendulum is a multimodal semantic-search platform that indexes, organizes, and retrieves millions of images and documents for downstream generative workflows. It was built at Page Nineteen, an applied-AI studio out of South Park Commons, working with R/GA, WPP, and Kering.",
+          "intro": "Page Nineteen is an applied multimodal AI lab in London — a founding team of six out of a South Park Commons residency, working with R/GA, WPP and Kering. Their Python toolkit could already see, tag, train and generate; at stake was whether that engine became a product. We led product design zero to one on both of the lab's surfaces: Pendulum, a multimodal semantic-search platform, and Lightnote, the creative toolkit that followed it.",
           "body": [
-            "In September 2024 the founders brought us in to take the product from zero to one: a thesis, no interface. We prototyped first, moving from wireframes to working demos within weeks, and tested them in calls drawn from a personal network.",
-            "The obstacle was evidence. Users leaned in, but the signal would not carry investors, and to push on was to spend real engineering capital on an unproven bet. The call was to set the direction down before that capital was spent.",
-            "That decision was the deliverable: the real function of zero to one is to learn cheaply. The work went public when the lab took its projects to market."
+            "Pendulum came first. In September 2024 the founders brought us in to take it from a thesis with no interface to a working product: we prototyped early, moving from wireframes to working demos within weeks, and tested them in calls drawn from a personal network. It indexed, organized and retrieved millions of images and documents for downstream generative workflows.",
+            "The obstacle was evidence. Users leaned in, but the signal would not carry investors, and to push on was to spend real engineering capital on an unproven bet. The call was to set the direction down before that capital was spent — and that decision was the deliverable, because the real function of zero to one is to learn cheaply.",
+            "Lightnote began weeks after the pivot, when the lab needed its own fine-tuning tooling. The brief arrived as a UI problem: put panels over the model calls. The real problem was grammar. The <code>CLI</code> already spoke a complete language of sets, processes and runs, and an interface with a vocabulary of its own would have forked the product in two. An early direction gave each model family a bespoke panel — richer on screen, and three dialects of one language.",
+            "We rebuilt around one node form with flags as fields, so models differ only in their parameters. Parity is enforced by the API, not by discipline: a trigger word lands in the same call as its <code>--trigger</code> flag, and nothing drifts. The lab did its own work in the canvas we delivered. Operations later paused at the investors' call, and in 2026 Page Nineteen released the toolkit open source under <code>MIT</code>."
           ],
           "meta": [
             {
@@ -272,121 +273,7 @@
                 "CLIP",
                 "Voyage",
                 "Vision API",
-                "Modal"
-              ]
-            }
-          ],
-          "skills": [
-            "Zero to one",
-            "Rapid prototyping",
-            "Multimodal search",
-            "Retrieval interfaces"
-          ],
-          "details": [
-            {
-              "label": "Context",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            },
-            {
-              "label": "Problem",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            },
-            {
-              "label": "Approach",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            },
-            {
-              "label": "Build",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            },
-            {
-              "label": "System",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            },
-            {
-              "label": "Detail",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            },
-            {
-              "label": "Iteration",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            },
-            {
-              "label": "Outcome",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            }
-          ],
-          "railReady": true,
-          "rail": [
-            {
-              "src": "/assets/work/pendulum/P1.png",
-              "alt": "Pendulum — the wordmark on a pale field."
-            },
-            {
-              "src": "/assets/work/pendulum/P2.png",
-              "alt": "The home canvas — documents, folders, images and smart suggestions held in one multimodal field."
-            },
-            {
-              "src": "/assets/work/pendulum/P4.png",
-              "alt": "A document open with its related assets alongside — shared, and annotated in place with an @mention."
-            },
-            {
-              "src": "/assets/work/pendulum/P5.png",
-              "alt": "A natural-language query resolved across images, video and documents, with artifacts attached to the ask."
-            }
-          ],
-          "margin": [
-            {
-              "label": "Role",
-              "value": "Product designer, 0→1"
-            },
-            {
-              "label": "Clients",
-              "value": "R/GA, WPP, Kering"
-            },
-            {
-              "label": "Method",
-              "value": "Prototype-first"
-            },
-            {
-              "label": "Outcome",
-              "value": "Direction set down, cheaply"
-            }
-          ]
-        },
-        {
-          "id": "lightnote",
-          "title": "Lightnote",
-          "desc": "Composable creative workflows for generative media.",
-          "href": "#lightnote",
-          "site": "https://pagenineteen.ai/",
-          "banner": {
-            "src": "/assets/work/lightnote/L1.png",
-            "alt": "Lightnote — brand"
-          },
-          "intro": "Lightnote is a creative AI toolkit that lived in the terminal and was given a canvas. Sets, processes, and runs become rooms rather than commands: a surface for assembling image sets, composing workflows, and training LoRAs.",
-          "body": [
-            "It began weeks after the Pendulum pivot, when the lab needed its own fine-tuning tooling. We built the prototype against the live engine from the first day. The sketch became code and stayed code.",
-            "The brief arrived as a UI problem: put panels over the model calls. The real problem was grammar. The CLI already spoke a complete language of sets, processes, and runs, and an interface with a vocabulary of its own would have forked the product in two. An early direction gave each model family a bespoke panel. It looked richer on screen, and it broke the grammar into three dialects.",
-            "We rebuilt around one node form with flags as fields, so models differ only in their parameters. Parity is enforced by the API, not by discipline: a trigger word lands in the same call as its <code>--trigger</code> flag, and nothing drifts. The lab did its own work in the canvas we delivered. Operations later paused at the investors' call, and in 2026 Page Nineteen released the toolkit open source under <code>MIT</code>."
-          ],
-          "meta": [
-            {
-              "label": "Service",
-              "tags": [
-                "Product Design"
-              ]
-            },
-            {
-              "label": "Year",
-              "tags": [
-                "2024"
-              ]
-            },
-            {
-              "label": "Stack",
-              "tags": [
-                "CLIP",
+                "Modal",
                 "Stability AI",
                 "Flux",
                 "SDXL",
@@ -396,10 +283,10 @@
             }
           ],
           "skills": [
-            "Creative tooling",
-            "Canvas interfaces",
+            "Zero to one",
             "Rapid prototyping",
-            "Fine-tuning workflows"
+            "Multimodal search",
+            "Creative tooling"
           ],
           "details": [
             {
@@ -438,6 +325,22 @@
           "railReady": true,
           "rail": [
             {
+              "src": "/assets/work/pendulum/P1.png",
+              "alt": "Pendulum — the wordmark on a pale field."
+            },
+            {
+              "src": "/assets/work/pendulum/P2.png",
+              "alt": "The home canvas — documents, folders, images and smart suggestions held in one multimodal field."
+            },
+            {
+              "src": "/assets/work/pendulum/P4.png",
+              "alt": "A document open with its related assets alongside — shared, and annotated in place with an @mention."
+            },
+            {
+              "src": "/assets/work/pendulum/P5.png",
+              "alt": "A natural-language query resolved across images, video and documents, with artifacts attached to the ask."
+            },
+            {
               "src": "/assets/work/lightnote/L1.png",
               "alt": "Lightnote — the wordmark on the near-black field."
             },
@@ -457,21 +360,121 @@
           "margin": [
             {
               "label": "Role",
-              "value": "Product designer"
+              "value": "Product designer, 0→1"
             },
             {
-              "label": "Context",
-              "value": "Post-pivot tooling"
+              "label": "Clients",
+              "value": "R/GA, WPP, Kering"
             },
             {
-              "label": "Method",
-              "value": "Running prototype"
+              "label": "Products",
+              "value": "Pendulum, Lightnote"
             },
             {
               "label": "Outcome",
-              "value": "Open source, MIT"
+              "value": "Direction set down; toolkit open source"
             }
           ]
+        },
+        {
+          "id": "mountains",
+          "title": "Mountains",
+          "desc": "A micro design system for a luxury technology house.",
+          "href": "#mountains",
+          "site": "https://mountains-2kw.pages.dev/",
+          "intro": "Mountains is a luxury technology house: a studio that builds for the luxury industry, and a fund that invests in it. We gave it a micro design system, small enough to hold in one hand, and one surface to prove it on.",
+          "body": [
+            "The brief asked for a mountain in watercolour. Our first two builds followed every rule we had written and still read as vector art, because the rules described what a watercolour looks like, not what pigment does on paper.",
+            "We moved the painting into a WebGL shader. Shadow is not drawn: it is derived from the surface against a travelling sun, then laid down in a few wash bands. The faces that meet the sun are simply unpainted paper.",
+            "The system around it is deliberately small: one palette taken from the painting, two typefaces, one control height, one easing curve, and a mark built on a seven-row grid. Every square on this page is rendered by the landing's own code. The landing turns three moments, Mountains, Technology and Capital, on one canvas while the light moves beneath them."
+          ],
+          "meta": [
+            {
+              "label": "Service",
+              "tags": [
+                "Brand System",
+                "Design Engineering"
+              ]
+            },
+            {
+              "label": "Year",
+              "tags": [
+                "2026"
+              ]
+            },
+            {
+              "label": "Stack",
+              "tags": [
+                "WebGL2",
+                "GLSL",
+                "Vanilla JS"
+              ]
+            }
+          ],
+          "skills": [
+            "Micro design system",
+            "Painted WebGL",
+            "Brand identity",
+            "Motion"
+          ],
+          "railReady": true,
+          "rail": [
+            {
+              "src": "/assets/work/mountains/mark.png",
+              "video": "/assets/work/mountains/mark.mp4",
+              "poster": "/assets/work/mountains/mark-poster.jpg",
+              "alt": "The mark — a seven-row staircase in light inks, arriving square by square on the painting's sky."
+            },
+            {
+              "src": "/assets/work/mountains/statement.png",
+              "alt": "The type — the statement in its two voices, pigment and sky, with its door beneath."
+            },
+            {
+              "src": "/assets/work/mountains/painting.png",
+              "video": "/assets/work/mountains/painting.mp4",
+              "poster": "/assets/work/mountains/painting-poster.jpg",
+              "alt": "The painting — the massif rendered live, its shadow derived from a travelling sun and laid in wash bands."
+            },
+            {
+              "src": "/assets/work/mountains/instrument.png",
+              "video": "/assets/work/mountains/instrument.mp4",
+              "poster": "/assets/work/mountains/instrument-poster.jpg",
+              "alt": "The instrument — the segment control at poster scale, its glass thumb walking Mountains, Technology and Capital."
+            },
+            {
+              "src": "/assets/work/mountains/construction.png",
+              "video": "/assets/work/mountains/construction.mp4",
+              "poster": "/assets/work/mountains/construction-poster.jpg",
+              "alt": "The construction — the mark addressed cell by cell on an eleven-by-eleven lattice."
+            },
+            {
+              "src": "/assets/work/mountains/landing.png",
+              "video": "/assets/work/mountains/landing.mp4",
+              "poster": "/assets/work/mountains/landing-poster.jpg",
+              "wide": true,
+              "alt": "The landing, in use — walking the three moments, opening a page and returning to the painting."
+            }
+          ],
+          "margin": [
+            {
+              "label": "Palette",
+              "value": "Paper and Payne's indigo"
+            },
+            {
+              "label": "Type",
+              "value": "DM Sans · Space Mono"
+            },
+            {
+              "label": "Controls",
+              "value": "One height, 34 px"
+            },
+            {
+              "label": "Motion",
+              "value": "One easing curve"
+            }
+          ],
+          "cardShot": 0,
+          "cardOrder": -1
         }
       ]
     },

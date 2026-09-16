@@ -24,8 +24,13 @@
   --faint:  rgba(17, 15, 15, 0.38);
   --rule:   rgba(17, 15, 15, 0.12);
   --mark:   rgb(143, 119, 54);
-  /* a very light lifted surface — the header's small button containers */
-  --surface: rgba(17, 15, 15, 0.05);
+  /* a very light lifted surface — pills, and the prose links' held state.
+     2026-09-16: matched to the grey the stills are staged on. it was a warm 5%
+     ink landing on #f3f2f2, a shade lighter and warmer than the tiles beside
+     it; at 6% of a neutral ink it lands on #f1f1f1, inside the construction
+     tile's own field (#efefef washed top → #f3f3f1 corner). kept translucent
+     so the index's dotted texture still reads through a hovered link. */
+  --surface: rgba(17, 19, 22, 0.06);
 
   /* the glass contract — one material for every floating control, ported from
      the Sanctuaire Liquid Glass system: a saturating, brightening blur; a wet
@@ -477,8 +482,9 @@ body.home { padding: 0; }
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    /* the same continuous corner as the panel frame, at the still's own scale */
-    border-radius: 16px;
+    /* the same continuous corner as the panel frame and the phone's title
+       cards — one radius across every image tile on the site */
+    border-radius: 24px;
     corner-shape: squircle;
   }
   /* the placeholder square — a flat grey block standing in for a still */
@@ -1062,6 +1068,10 @@ body.lightbox-open { overflow: hidden; }
 .lnk[data-id="parable"].is-active { color: #7a2e56; }
 .lnk[data-id="pendulum"].is-active { color: #6f66c8; }
 .lnk[data-id="lightnote"].is-active { color: #23221f; }
+/* the lab keeps Pendulum's violet, now standing for both its products;
+   Mountains takes its own Payne's indigo */
+.lnk[data-id="pagenineteen"].is-active { color: #6f66c8; }
+.lnk[data-id="mountains"].is-active { color: #353d59; }
 /* every paragraph in the index keeps the same breath — the header stack's
    0.55rem is the reference */
 .prose-block { margin-top: 0.55rem; }
@@ -2222,7 +2232,19 @@ body.essay {
 
   /* only the open project renders, and it flows as a page — not the absolute,
      no-scroll canvas of the desktop panel */
-  .canvas-set { position: static; inset: auto; padding: 0 0 2.5rem; display: none; }
+  /* the column holds the same capped measure as the desktop panel, centred in
+     whatever pane it lands in. uncapped, every band grew with the window: past
+     a phone a single square stood taller than the screen, and the prose ran on
+     well beyond a readable line. */
+  .canvas-set {
+    position: static;
+    inset: auto;
+    --content-max: 46.5rem;
+    max-width: calc(var(--content-max) + 2 * var(--canvas-pad));
+    margin-inline: auto;
+    padding: 0 0 2.5rem;
+    display: none;
+  }
   .canvas-set.is-live { display: block; }
   .canvas-set[hidden] { display: none; }
 
@@ -2242,6 +2264,22 @@ body.essay {
     overflow: visible;
     min-height: 0;
   }
+  /* past a phone the stack pairs off into the panel's own tight cluster — two
+     columns at 4px. a full-bleed square is the right presentation on a phone,
+     where it fills the hand; on any wider pane it stands taller than the
+     window, so the stills halve and the gallery reads as it does in the panel. */
+  @media (min-width: 40rem) {
+    .canvas-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+    /* an odd count still opens with the brand card across both columns */
+    .canvas-gallery .rail-item:first-child:nth-last-child(odd) {
+      grid-column: 1 / -1;
+      aspect-ratio: 2 / 1;
+    }
+  }
   .rail-item {
     position: relative;
     flex: 0 0 auto;
@@ -2253,7 +2291,7 @@ body.essay {
     border: 0;
     overflow: hidden;
     background: rgba(17, 15, 15, 0.04);
-    border-radius: 16px;
+    border-radius: 24px;
     corner-shape: squircle;
     cursor: pointer;
   }
@@ -2270,3 +2308,64 @@ body.essay {
     padding: 1rem var(--canvas-pad) 0;
   }
 }
+
+/* ═══ RAILS (trial, 2026-09-15) ═════════════════════════════════════════════
+   The stills run as one horizontal rail of big squares instead of pairing in
+   two columns. The rail breaks out of the centred text column to the panel's
+   full width, and its first square hangs from exactly the same left edge as the
+   title and pills above it. It runs off the panel's right edge, so the next
+   square peeks in, and it snaps square by square.
+   The panel is the measuring container: the inset is the column's left edge in
+   the panel, max(padding, (panel − column) / 2), which holds at both
+   breakpoints. No percentages in the inset: scroll-padding would resolve them
+   against the rail itself rather than the column.
+   This block overrides the grid rules above at both breakpoints; delete it to
+   go back to the two-column gallery. */
+.viewport { container-type: inline-size; }
+.canvas-gallery {
+  align-items: flex-start;       /* items keep their own height: nothing is stretched to the tallest */
+  --rail-inset: max(var(--canvas-pad, 1.7rem), (100cqw - var(--content-max, 46.5rem)) / 2);
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100cqw;
+  margin-left: calc(50% - 50cqw);
+  padding-left: var(--rail-inset);
+  padding-right: var(--rail-inset);
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--rail-inset);
+  scrollbar-width: none;
+}
+.canvas-gallery::-webkit-scrollbar { display: none; }
+.canvas-gallery .rail-item,
+.canvas-gallery .rail-item:first-child:nth-last-child(odd) {
+  flex: 0 0 var(--rail-size);
+  width: var(--rail-size);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  grid-column: auto;
+  scroll-snap-align: start;
+}
+@media (min-width: 64rem) {
+  /* big, but the square always fits the window beneath the header */
+  .canvas-gallery { --rail-size: min(34rem, 62vh); }
+}
+@media (max-width: 63.999rem) {
+  /* on a phone the square nearly fills the hand, leaving the next one peeking */
+  .canvas-gallery { --rail-size: min(82cqw, 30rem); padding-top: 1rem; }
+}
+/* a still in motion: the loop fills its square as an image does, and eases on hover the same way */
+.rail-item video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s var(--ease); }
+.rail-item:hover video { transform: scale(1.04); }
+@media (prefers-reduced-motion: reduce) { .rail-item:hover video { transform: none; } }
+/* a wide still in the rail: the squares' height, three halves as wide — the
+   rail is not bound to the square, so a browser mockup can sit at its own shape */
+.canvas-gallery .rail-item.is-wide {
+  flex-basis: calc(var(--rail-size) * 1.5);
+  width: calc(var(--rail-size) * 1.5);
+  aspect-ratio: 3 / 2;
+}
+/* the wide tile keeps its 3:2 at the squares height at every width, and scrolls with them */

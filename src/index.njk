@@ -2,10 +2,10 @@
 layout: base.njk
 bodyClass: home
 title: constantin.studio
-description: "constantin.studio — a design studio led by Constantin Chopin, working with ambitious teams building AI-native products: consumer apps, enterprise intelligence layers, and cultural technologies."
+description: "constantin.studio — a product design studio led by Constantin Chopin, working with ambitious teams building AI-native products: consumer apps, operational software, and cultural technologies."
 ogType: website
 ogTitle: constantin.studio
-ogDesc: "Creativity, craft, computation — a design studio for AI-native products."
+ogDesc: "Creativity, craft, computation — a product design studio for AI-native software."
 ogUrl: "https://constantin.studio"
 ---
   <div class="split">
@@ -20,13 +20,17 @@ ogUrl: "https://constantin.studio"
         <header>
           {% include "brand-mark.njk" %}
           <h1 class="name">Creativity, Craft, Computation</h1>
-          <p class="bio-line">constantin.studio is a design studio led by <a class="lnk" href="https://www.linkedin.com/in/constantinchopin">Constantin Chopin</a> — founder of <a class="lnk" href="https://constantin.world">constantin.world</a>, faculty at <a class="lnk" href="https://www.artcenter.edu">ArtCenter College of Design</a>.</p>
-          <p class="bio-line">We work with ambitious teams building AI-native products across consumer apps: <a class="lnk" data-id="replika" href="#replika">Replika</a>, enterprise intelligence layers: <a class="lnk" data-id="parable" href="#parable">Parable</a>, <a class="lnk" data-id="pendulum" href="#pendulum">Pendulum</a>, and cultural technologies: <a class="lnk" data-id="lightnote" href="#lightnote">Lightnote</a>.</p>
+          <p class="bio-line">constantin.studio is a product design studio led by <a class="lnk" href="https://www.linkedin.com/in/constantinchopin">Constantin Chopin</a>, founder of <a class="lnk" href="https://constantin.world">constantin.world</a> and faculty at <a class="lnk" href="https://www.artcenter.edu">ArtCenter College of Design</a>.</p>
+          {# the client sentence names recent work rather than sorting it into
+             categories — the shelf grows faster than the taxonomy does. each
+             name opens one panel: PageNineteen is the parent of Pendulum and
+             Lightnote, so its panel carries both products' stills. #}
+          <p class="bio-line">We work with ambitious teams building AI-native products and brands. Recent work includes: <a class="lnk" data-id="mountains" href="#mountains">Mountains</a>, a Luxury Technology House; <a class="lnk" data-id="replika" href="#replika">Replika</a>, the AI companion app with 30M users; <a class="lnk" data-id="pagenineteen" href="#pagenineteen">PageNineteen</a>, an applied multimodal lab; <a class="lnk" data-id="parable" href="#parable">Parable</a>, the system of record for enterprise operations.</p>
         </header>
 
         {# how we work — the three crafts are the future process pages (Story,
            Surface, System); each noun phrase gets its link when its page exists #}
-        <p class="bio-line prose-block">The studio operates at the intersection of three crafts: the stories brands tell, the products people use, and the systems that run beneath them both. We move fast across mediums, iterate often, and sweat over the details.</p>
+        <p class="bio-line prose-block">The studio operates at the intersection of three crafts: the stories brands tell, the products people use, and the systems that run beneath them both. We are drawn to the work that is hardest, move fast across mediums, and sweat over the details. The resources we build along the way are shared at <a class="lnk" href="https://resources.constantin.studio">resources.constantin.studio</a>.</p>
 
         {# mobile only — each project stands as a title card in a stack beneath
            the prose: a product shot, the name, its one-line description, and a
@@ -36,8 +40,15 @@ ogUrl: "https://constantin.studio"
            them). the shot is the second still — the first is the brand plate. #}
         <nav class="card-stack" aria-label="Projects">
           {% for shelf in studio.shelves %}{% for e in shelf.entries %}{% if e.rail %}
-          {% set shot = e.rail[1] or e.rail[0] %}
-          <a class="entry-card" href="#{{ e.id }}">
+          {# the card's shot is the second still by default, the first being a
+             brand plate for most projects; an entry can name another index
+             with `cardShot` when its opening still is the better thumbnail #}
+          {% set shot = e.rail[e.cardShot] if e.cardShot is defined else (e.rail[1] or e.rail[0]) %}
+          {# `cardOrder` lifts an entry in the phone's stack without touching the
+             shelf: the stack is a column flexbox and exists only at mobile
+             width, so the desktop shelf and the panel's pager keep their own
+             order. negative values rise above the unordered cards. #}
+          <a class="entry-card" href="#{{ e.id }}"{% if e.cardOrder is defined %} style="order: {{ e.cardOrder }}"{% endif %}>
             {% if e.railReady and shot %}<img class="entry-card-shot" src="{{ shot.src }}" alt="{{ shot.alt }}" loading="lazy" />{% endif %}
             <span class="entry-card-text">
               <span class="entry-card-name">{{ e.title }}</span>
@@ -91,8 +102,8 @@ ogUrl: "https://constantin.studio"
              are inert — with no image there is nothing to open. #}
           <div class="canvas-gallery" role="list" aria-label="{{ e.title }} — stills">
             {% if e.railReady %}{% for a in e.rail %}
-            <button class="rail-item" type="button" role="listitem" data-full="{{ a.src }}" data-cap="{{ a.alt }}">
-              <img src="{{ a.src }}" alt="{{ a.alt }}" loading="lazy" />
+            <button class="rail-item{% if a.wide %} is-wide{% endif %}" type="button" role="listitem" data-full="{{ a.src }}" data-cap="{{ a.alt }}">
+              {% if a.video %}<video class="rail-video" src="{{ a.video }}" poster="{{ a.poster or a.src }}" muted loop playsinline autoplay preload="metadata" aria-label="{{ a.alt }}"></video>{% else %}<img src="{{ a.src }}" alt="{{ a.alt }}" loading="lazy" />{% endif %}
             </button>
             {% endfor %}{% else %}{% for i in range(0, 6) %}
             <span class="rail-item is-ph" role="listitem" aria-hidden="true"></span>
@@ -149,6 +160,8 @@ ogUrl: "https://constantin.studio"
       var backBtn = document.querySelector('[data-vp-back]');
       var siteBtn = document.querySelector('[data-vp-site]');
       var liveId = null;
+      // a still in motion is a muted loop; with reduced motion preferred it rests on its poster
+      if (reduce) Array.prototype.forEach.call(document.querySelectorAll('.rail-video'), function (v) { v.removeAttribute('autoplay'); v.pause(); });
 
       // each image fades in the moment it decodes (they lazy-load when a set is
       // shown), so nothing pops in
@@ -221,7 +234,7 @@ ogUrl: "https://constantin.studio"
       }
 
       function open(id) {
-        if (!byId[id]) return false;
+        if (!sets[id]) return false;             // any project with a plate set opens, whether or not the prose links it
         document.body.classList.add('detail-open');
         setActive(byId[id]);
         setSite(id);
@@ -278,14 +291,14 @@ ogUrl: "https://constantin.studio"
 
       window.addEventListener('hashchange', function () {
         var id = decodeURIComponent(location.hash.slice(1));
-        if (byId[id]) { open(id); return; }
+        if (sets[id]) { open(id); return; }
         // no project in the hash: desktop keeps its default open, mobile closes
         if (mq.matches) { if (defaultId) open(defaultId); } else clear();
       });
 
       function sync() {
         var id = decodeURIComponent(location.hash.slice(1));
-        if (byId[id]) { open(id); return; }
+        if (sets[id]) { open(id); return; }
         // desktop is never empty; mobile lands on the index
         if (mq.matches) { if (defaultId) open(defaultId); else clear(); } else clear();
       }
