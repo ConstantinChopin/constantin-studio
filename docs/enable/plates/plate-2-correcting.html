@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=block" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1440px; height:1200px; }
+  body {
+    background:#D8D6D2;
+    font-family: Inter, "Segoe UI", system-ui, sans-serif;
+    display:grid; place-items:center;
+    -webkit-font-smoothing:antialiased;
+  }
+  svg { display:block; }
+  .modal {
+    width:1360px; height:1128px;
+    background:#FBFAF7; border-radius:22px;
+    box-shadow:0 24px 80px rgba(31,29,26,.18);
+    display:flex; flex-direction:column; overflow:hidden;
+  }
+  header { padding:26px 36px 22px; display:flex; justify-content:space-between; align-items:flex-start; }
+  .h-title { font-size:18px; font-weight:600; color:#201D19; letter-spacing:-0.01em; }
+  .h-meta { font-size:14px; color:#8D8880; margin-top:7px; }
+  .h-right { display:flex; align-items:center; }
+  .search {
+    width:224px; height:38px; border:1px solid rgba(31,29,26,.12); border-radius:10px;
+    background:#fff; display:flex; align-items:center; gap:9px; padding:0 14px;
+    color:#A29C93; font-size:14px;
+  }
+  .search svg { color:#A29C93; }
+  .close { margin-left:20px; color:#6F6A62; padding-top:9px; }
+  .rule { height:1px; background:rgba(31,29,26,.08); }
+  .content { flex:1; padding:72px 120px 0; }
+  .question {
+    font-size:30px; font-weight:550; line-height:1.32; letter-spacing:-0.012em;
+    color:#201D19; max-width:1000px;
+  }
+  .claim {
+    margin-top:38px; background:#F4F0E8; border-radius:15px;
+    padding:26px 30px; position:relative;
+    border:1px solid #EAC0BA;
+  }
+  .claim-text { font-size:20px; line-height:1.42; color:#262219; opacity:.5; max-width:960px; }
+  .claim-src { margin-top:16px; display:flex; align-items:center; gap:10px; opacity:.75; }
+  .claim-src svg { color:#8D8880; flex:none; }
+  .claim-src span { font-size:14px; color:#8D8880; }
+  .claim-src em { font-style:italic; }
+  .tag {
+    position:absolute; top:16px; right:18px;
+    background:#FBEDEA; border:1px solid #F0CBC5; border-radius:999px;
+    padding:6px 13px; display:flex; align-items:center; gap:7px;
+    font-size:13px; font-weight:500; color:#C2443A;
+  }
+  .tag svg { color:#C2443A; }
+  .correct {
+    margin-top:28px; background:#fff;
+    border:1.5px solid #A5804A; border-radius:12px;
+    box-shadow:0 0 0 3px rgba(124,90,51,.10);
+    padding:18px 22px; display:flex; align-items:flex-start;
+  }
+  .entry { font-size:18px; line-height:1.5; color:#201D19; max-width:1020px; }
+  .caret { display:inline-block; width:2px; height:22px; background:#201D19; vertical-align:-4px; margin-left:2px; }
+  .dest { margin-top:16px; display:flex; align-items:center; gap:9px; }
+  .dest svg { color:#7C5A33; flex:none; }
+  .dest span { font-size:14px; color:#8D8880; }
+  .dest b { font-weight:600; color:#6E5230; }
+  .actions { margin-top:26px; display:flex; align-items:center; gap:16px; }
+  .btn-save {
+    height:48px; padding:0 26px; background:#7C5A33; color:#FBFAF7;
+    border-radius:11px; display:flex; align-items:center; gap:10px;
+    font-size:15px; font-weight:500;
+  }
+  .btn-save svg { color:#FBFAF7; }
+  .btn-ghost {
+    height:48px; padding:0 20px; border:1px solid rgba(31,29,26,.12);
+    border-radius:11px; display:flex; align-items:center;
+    font-size:15px; color:#8D8880; background:transparent;
+  }
+  footer {
+    border-top:1px solid rgba(31,29,26,.08);
+    padding:22px 36px; display:flex; justify-content:space-between; align-items:center;
+  }
+  .f-side { font-size:15px; color:#8D8880; display:flex; align-items:center; gap:9px; }
+  .f-mid { font-size:14px; color:#9A948B; }
+</style>
+</head>
+<body>
+  <div class="modal">
+    <header>
+      <div>
+        <div class="h-title">What this document says</div>
+        <div class="h-meta">Question 1 of 10 &middot; correcting</div>
+      </div>
+      <div class="h-right">
+        <div class="search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          Jump to...
+        </div>
+        <div class="close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </div>
+      </div>
+    </header>
+    <div class="rule"></div>
+    <div class="content">
+      <div class="question">What meal benefits are included (breakfast, half-board, dining credits)? For whom and how often?</div>
+      <div class="claim">
+        <div class="tag">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          Rejected
+        </div>
+        <div class="claim-text">Daily breakfast for two is included for guests at IHG Luxury Collection properties.</div>
+        <div class="claim-src">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+          <span><em>&ldquo;Breakfast included daily for two at hotel restaurant&rdquo;</em> &middot; p.1</span>
+        </div>
+      </div>
+      <div class="correct">
+        <div class="entry">Daily breakfast for two is included at Luxury Collection properties only; Lifestyle Collection stays receive a dining credit instead.<span class="caret"></span></div>
+      </div>
+      <div class="dest">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+        <span>Saves to <b>organization layer</b> &middot; visible to your agency</span>
+      </div>
+      <div class="actions">
+        <div class="btn-save">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Save correction
+        </div>
+        <div class="btn-ghost">Keep pending</div>
+      </div>
+    </div>
+    <footer>
+      <div class="f-side">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        Back
+      </div>
+      <div class="f-mid">Enter to save &middot; Esc to keep pending</div>
+      <div class="f-side" style="visibility:hidden">Skip</div>
+    </footer>
+  </div>
+</body>
+</html>

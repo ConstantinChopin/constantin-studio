@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=block" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1440px; height:1200px; }
+  body {
+    background:#D8D6D2;
+    font-family: Inter, "Segoe UI", system-ui, sans-serif;
+    display:grid; place-items:center;
+    -webkit-font-smoothing:antialiased;
+  }
+  svg { display:block; }
+  .modal {
+    width:1360px; height:1128px;
+    background:#FBFAF7; border-radius:22px;
+    box-shadow:0 24px 80px rgba(31,29,26,.18);
+    display:flex; flex-direction:column; overflow:hidden;
+  }
+  header { padding:26px 36px 22px; display:flex; justify-content:space-between; align-items:flex-start; }
+  .h-title { font-size:18px; font-weight:600; color:#201D19; letter-spacing:-0.01em; }
+  .h-meta { font-size:14px; color:#8D8880; margin-top:7px; }
+  .h-right { display:flex; align-items:center; }
+  .search {
+    width:224px; height:38px; border:1px solid rgba(31,29,26,.12); border-radius:10px;
+    background:#fff; display:flex; align-items:center; gap:9px; padding:0 14px;
+    color:#A29C93; font-size:14px;
+  }
+  .search svg { color:#A29C93; }
+  .close { margin-left:20px; color:#6F6A62; padding-top:9px; }
+  .rule { height:1px; background:rgba(31,29,26,.08); }
+  .content { flex:1; padding:88px 120px 0; }
+  .question {
+    font-size:30px; font-weight:550; line-height:1.32; letter-spacing:-0.012em;
+    color:#201D19; max-width:1000px;
+  }
+  .saved {
+    margin-top:44px; background:#EAF4EC; border:1px solid #C4DECB;
+    border-radius:15px; padding:28px 32px;
+  }
+  .saved-row { display:flex; align-items:flex-start; gap:16px; }
+  .saved-row > svg { color:#2E8B57; flex:none; margin-top:5px; }
+  .saved-text { font-size:22px; line-height:1.45; color:#23201B; max-width:960px; }
+  .attr {
+    margin-top:20px; padding-top:18px; border-top:1px solid rgba(46,139,87,.18);
+    display:flex; align-items:center; gap:9px;
+  }
+  .attr svg { color:#2E8B57; flex:none; }
+  .attr span { font-size:14px; color:#85837B; }
+  .attr b { font-weight:600; color:#2E7D51; }
+  .record {
+    margin-top:26px; border:1px solid rgba(31,29,26,.09);
+    border-radius:13px; padding:22px 28px;
+  }
+  .record-label {
+    font-size:11.5px; font-weight:600; letter-spacing:.08em;
+    text-transform:uppercase; color:#A29C93;
+  }
+  .record-text { font-size:16px; line-height:1.45; color:#8D8880; margin-top:11px; }
+  .record-src { margin-top:10px; display:flex; align-items:center; gap:8px; }
+  .record-src svg { color:#A29C93; flex:none; }
+  .record-src span { font-size:13.5px; color:#A29C93; }
+  .record-src em { font-style:italic; }
+  footer {
+    border-top:1px solid rgba(31,29,26,.08);
+    padding:22px 36px; display:flex; justify-content:space-between; align-items:center;
+  }
+  .f-side { font-size:15px; color:#8D8880; display:flex; align-items:center; gap:9px; }
+  .f-mid { font-size:14px; color:#9A948B; }
+  .f-next { font-size:15px; font-weight:500; color:#6E5230; display:flex; align-items:center; gap:9px; }
+  .f-next svg { color:#6E5230; }
+</style>
+</head>
+<body>
+  <div class="modal">
+    <header>
+      <div>
+        <div class="h-title">What this document says</div>
+        <div class="h-meta">Question 1 of 10 &middot; 1 of 10 answered &middot; 9 proposed</div>
+      </div>
+      <div class="h-right">
+        <div class="search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          Jump to...
+        </div>
+        <div class="close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </div>
+      </div>
+    </header>
+    <div class="rule"></div>
+    <div class="content">
+      <div class="question">What meal benefits are included (breakfast, half-board, dining credits)? For whom and how often?</div>
+      <div class="saved">
+        <div class="saved-row">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <div class="saved-text">Daily breakfast for two is included at Luxury Collection properties only; Lifestyle Collection stays receive a dining credit instead.</div>
+        </div>
+        <div class="attr">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+          <span><b>Organization layer</b> &middot; corrected by you &middot; today</span>
+        </div>
+      </div>
+      <div class="record">
+        <div class="record-label">Document&rsquo;s claim &middot; kept on record</div>
+        <div class="record-text">Daily breakfast for two is included for guests at IHG Luxury Collection properties.</div>
+        <div class="record-src">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+          <span><em>&ldquo;Breakfast included daily for two at hotel restaurant&rdquo;</em> &middot; p.1</span>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="f-side">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+        Back
+      </div>
+      <div class="f-mid">&rarr; to next question &middot; Esc to close</div>
+      <div class="f-next">
+        Next
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 5 7 7-7 7"/><path d="M5 12h14"/></svg>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

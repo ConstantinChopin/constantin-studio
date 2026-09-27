@@ -1,0 +1,112 @@
+---
+layout: base.njk
+title: Lab — Mountains brand plates
+permalink: /lab/mountains/index.html
+eleventyExcludeFromCollections: true
+---
+{# ─────────────────────────────────────────────────────────────────────────
+   LAB PAGE — NOT PART OF THE SITE. A shaping surface for the Mountains rail
+   squares, rendering them inside the real panel chrome (.viewport /
+   .canvas-set / .canvas-gallery) with the real styles.css, so what we judge
+   here is what would ship. It is excluded from collections, so nothing links
+   to it — but it DOES build, and the studio site is git-connected to
+   Cloudflare Pages. Delete this file before the next push, or the URL goes
+   public at /lab/mountains/.
+
+   Wiring to studio.json comes only once the direction is signed off; that is
+   the Parable precedent, where the rebuilt tiles sat unwired through several
+   rounds of iteration.
+   ───────────────────────────────────────────────────────────────────────── #}
+<style>
+  /* the lab shell only exists to hand the panel a realistic box — the panel's
+     own CSS lives in styles.css and is untouched */
+  .lab-shell{
+    height:100svh; padding:18px 18px 18px 0;
+    display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);
+    gap:18px; position:relative; z-index:2;
+  }
+  .lab-note{
+    align-self:center; padding:0 0 0 clamp(1.2rem,3vw,2.4rem);
+    font-family:var(--mono); font-size:11px; line-height:1.9;
+    color:var(--muted); letter-spacing:0.02em;
+  }
+  .lab-note b{ font-weight:400; color:var(--ink) }
+  .lab-note ul{ margin:0.7rem 0 0; padding-left:1rem }
+  /* on the real page the pane rests at opacity 0 and is revealed by the
+     split-grid open transition; the lab has no open state, so it is simply on */
+  .lab-shell .pane-detail{ min-width:0; opacity:1 }
+  .lab-shell .viewport{ height:100% }
+  .lab-shell .canvas-set{ overflow-y:auto; height:100% }
+</style>
+
+<div class="lab-shell">
+
+  <div class="lab-note">
+    <b>Lab · Mountains brand plates</b>
+    <ul>
+      <li>1 · the mark on its 11×11 field</li>
+      <li>2 · the two-voice type rule</li>
+      <li>3 · the palette as quantised bands</li>
+      <li>4 · the relief engine in miniature</li>
+    </ul>
+    <br />
+    hover a plate to run its motion.<br />
+    no canvas · no rAF · css only<br />
+    <br />
+    not wired to studio.json.<br />
+    delete before push.
+  </div>
+
+  <aside class="pane-detail" aria-label="Mountains">
+    <div class="viewport">
+      <header class="viewport-bar">
+        <span class="viewport-title">Mountains</span>
+        <a class="viewport-site" href="https://mountains-2kw.pages.dev/" target="_blank" rel="noopener">
+          <span>View site</span>
+        </a>
+      </header>
+
+      <div class="canvas-set" data-id="mountains" data-title="Mountains">
+        <div class="canvas-head">
+          <h2 class="canvas-headline">Mountains</h2>
+          <p class="canvas-keywords">
+            <span class="pill">Brand identity</span>
+            <span class="pill">Design engineering</span>
+            <span class="pill">WebGL</span>
+            <span class="pill pill-year">2026</span>
+          </p>
+        </div>
+
+        <div class="canvas-gallery" role="list" aria-label="Mountains — brand plates">
+          {% include "tiles/mountains-brand-plates.njk" %}
+        </div>
+
+        <dl class="canvas-margin">
+          <div class="margin-note">
+            <dt class="margin-label">Role</dt>
+            <dd class="margin-value">Identity &amp; build</dd>
+          </div>
+          <div class="margin-note">
+            <dt class="margin-label">The mark</dt>
+            <dd class="margin-value">Asterisk, quantised</dd>
+          </div>
+          <div class="margin-note">
+            <dt class="margin-label">Surface</dt>
+            <dd class="margin-value">WebGL2 relief engine</dd>
+          </div>
+          <div class="margin-note">
+            <dt class="margin-label">Sector</dt>
+            <dd class="margin-value">Luxury technology</dd>
+          </div>
+        </dl>
+
+        <div class="canvas-body">
+          <p class="canvas-intro">Mountains is a luxury technology house — a fund and a studio for an industry worth five point eight trillion dollars that runs almost entirely on software built for somebody else.</p>
+          <p class="canvas-para">Placeholder copy. The identity derives from one painting: a Payne's indigo massif whose shadows are not drawn but computed, from surface orientation against a travelling sun, then quantised into coarse wash bands. Sun-facing facets are unpainted paper — never lit, simply not covered.</p>
+          <p class="canvas-para">The mark follows the same logic. The studio asterisk is folded over its twenty-four-fold symmetry and quantised to an eleven-by-eleven field, at which point the twelve rays collapse into a plain diamond of twenty-five cells.</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+</div>

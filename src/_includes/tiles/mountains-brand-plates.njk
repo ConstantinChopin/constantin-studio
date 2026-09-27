@@ -1,0 +1,216 @@
+<!-- Mountains · brand plates — four rail squares that rebuild the identity in
+     its own medium rather than screenshotting it. Follows the Parable tile
+     precedent: all CSS inline under an `mt-` prefix (collision-proof against
+     styles.css), no studio.json wiring until the direction is signed off.
+
+     PERFORMANCE CONTRACT — the right panel is already a full-height
+     backdrop-filter surface sitting over pixelwave's 30fps fullscreen canvas,
+     so nothing here opens a second animation loop. There is no <canvas> and no
+     requestAnimationFrame: every moving part is a CSS mask or opacity keyframe,
+     which the compositor runs without repainting. Motion is also gated on
+     hover, so the resting panel costs exactly nothing.
+
+     TYPE IS A STAND-IN. Mountains sets in DM Sans; loading it here would add a
+     webfont request to the studio site for four squares. The system sans stack
+     stands in and is flagged in the plate's own caption, as the Parable board
+     flags its PP stand-ins. -->
+<style>
+  .mt-plate{
+    /* Mountains' own material, local to these four squares */
+    --mt-paper:#FBF9F4;
+    --mt-pigment:#353D59;
+    --mt-frost:rgba(53,61,89,0.72);
+    --mt-w1:#DCE3EC; --mt-w2:#C7D2E0; --mt-w3:#A3B6D4;
+    --mt-w4:#8FA7CC; --mt-w5:#7A93BE; --mt-w6:#6E86B2;
+    --mt-ease:cubic-bezier(0.22,1,0.36,1);
+    --mt-sans:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,sans-serif;
+
+    position:relative;
+    background:var(--mt-paper);
+    cursor:default;
+    overflow:hidden;
+    display:block;
+  }
+  /* the caption rides the foot of every plate, in the site's own mono so the
+     squares still read as part of this site rather than transplanted */
+  .mt-cap{
+    position:absolute; left:12px; right:12px; bottom:10px;
+    font-family:var(--mono);
+    font-size:9px; letter-spacing:0.06em;
+    color:rgba(53,61,89,0.45);
+    text-transform:lowercase;
+  }
+
+  /* ── 1 · THE MARK ────────────────────────────────────────────────────────
+     the diamond is not decoration: it is the studio asterisk folded over its
+     24-fold symmetry and quantised to 11x11, at which point the rays collapse
+     into 25 cells. so the plate shows the FIELD as well as the figure — the
+     grid is the argument — and a slow light crosses it the way the sun
+     crosses the massif. */
+  .mt-mark .mt-stage{ position:absolute; inset:0; display:grid; place-items:center }
+  .mt-mark .mt-field{
+    position:relative; width:62%; aspect-ratio:1;
+  }
+  .mt-mark .mt-grid{
+    position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(to right,  rgba(53,61,89,0.11) 0 1px, transparent 1px calc(100%/11)),
+      repeating-linear-gradient(to bottom, rgba(53,61,89,0.11) 0 1px, transparent 1px calc(100%/11));
+    background-size:calc(100%/11) 100%, 100% calc(100%/11);
+  }
+  .mt-mark svg{ position:absolute; inset:0; width:100%; height:100%; display:block }
+  .mt-mark .mt-dia{ color:var(--mt-pigment) }
+  /* the light: a second copy of the mark in the palest wash, revealed through
+     a travelling mask. one compositor property, no repaint. */
+  .mt-mark .mt-dia-lit{
+    color:var(--mt-w1);
+    -webkit-mask-image:linear-gradient(105deg,transparent 42%,#000 50%,transparent 58%);
+            mask-image:linear-gradient(105deg,transparent 42%,#000 50%,transparent 58%);
+    -webkit-mask-size:280% 100%; mask-size:280% 100%;
+    -webkit-mask-position:180% 0; mask-position:180% 0;
+  }
+  .mt-plate:hover .mt-dia-lit{ animation:mt-sweep 3.4s var(--mt-ease) infinite }
+  @keyframes mt-sweep{ from{ mask-position:180% 0; -webkit-mask-position:180% 0 }
+                         to{ mask-position:-80% 0; -webkit-mask-position:-80% 0 } }
+
+  /* ── 2 · THE TYPE ────────────────────────────────────────────────────────
+     not an "Aa" specimen — the system's actual rule. every statement rests in
+     frost and the accent words carry full pigment, so emphasis is colour and
+     material rather than weight. the lockup and the one surviving mono (the
+     altimeter numeral) sit beneath as the other two facts. */
+  .mt-type{ padding:16px 14px 30px; display:flex; flex-direction:column; justify-content:center }
+  .mt-type .mt-stmt{
+    margin:0; font-family:var(--mt-sans); font-weight:400;
+    font-size:clamp(15px,2.1vw,21px); line-height:1.2; letter-spacing:0.01em;
+    color:var(--mt-frost); text-wrap:balance;
+  }
+  .mt-type .mt-a{ color:var(--mt-pigment); transition:opacity 0.5s var(--mt-ease) }
+  .mt-plate:hover .mt-a{ animation:mt-voice 3.4s var(--mt-ease) infinite }
+  @keyframes mt-voice{ 0%,100%{ opacity:1 } 50%{ opacity:0.38 } }
+  .mt-type .mt-foot{
+    margin-top:auto; padding-top:14px;
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  .mt-type .mt-lockup{
+    display:inline-flex; align-items:center; gap:0.3em;
+    font-family:var(--mt-sans); font-size:13px; color:var(--mt-pigment);
+    white-space:nowrap;
+  }
+  /* the tile alone carries the iOS relief — Mountains' edge law v3: bare marks
+     stay bare, and exactly one object on the sheet is machined */
+  .mt-type .mt-tile{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:1.5em; height:1.5em; border-radius:26%;
+    background:rgba(251,249,244,0.9);
+    box-shadow:
+      inset 0 1px 1.5px rgba(255,255,255,0.8),
+      inset 0 -2px 3px rgba(53,61,89,0.16),
+      0 1px 2px rgba(53,61,89,0.07);
+  }
+  .mt-type .mt-tile svg{ width:58%; height:58%; display:block }
+  .mt-type .mt-alt{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.08em;
+    font-variant-numeric:tabular-nums; color:var(--mt-frost); white-space:nowrap;
+  }
+
+  /* ── 3 · THE PALETTE ─────────────────────────────────────────────────────
+     chips would misrepresent it. the engine QUANTISES a continuous light into
+     coarse bands, so the palette is shown as bands — paper reserve at the top
+     (never lit, simply not covered) descending to the committed pigment. */
+  .mt-pal{ display:flex; flex-direction:column; padding-bottom:26px }
+  .mt-pal .mt-band{
+    flex:1; background:var(--c); position:relative;
+    display:flex; align-items:center; padding:0 12px;
+  }
+  .mt-pal .mt-band b{
+    font-family:var(--mono); font-weight:400; font-size:9px; letter-spacing:0.07em;
+    color:var(--t); opacity:0; transition:opacity 0.4s var(--mt-ease);
+  }
+  .mt-plate:hover .mt-band b{ opacity:1 }
+  .mt-pal .mt-band:first-child{ box-shadow:inset 0 -1px 0 rgba(53,61,89,0.07) }
+
+  /* ── 4 · THE ENGINE ──────────────────────────────────────────────────────
+     the frontispiece's law in miniature: shadow is DERIVED from surface
+     orientation against a travelling sun and quantised to wash bands, and the
+     sun-facing facets are unpainted paper — never lit, simply not covered.
+     an SVG, not a canvas: the massif holds still and only the light moves. */
+  .mt-eng svg{ position:absolute; inset:0; width:100%; height:100%; display:block }
+  .mt-eng .mt-sun{
+    -webkit-mask-image:linear-gradient(100deg,#000 20%,transparent 46%);
+            mask-image:linear-gradient(100deg,#000 20%,transparent 46%);
+    -webkit-mask-size:260% 100%; mask-size:260% 100%;
+    -webkit-mask-position:0 0; mask-position:0 0;
+  }
+  .mt-plate:hover .mt-sun{ animation:mt-day 6s linear infinite alternate }
+  @keyframes mt-day{ from{ mask-position:0 0; -webkit-mask-position:0 0 }
+                       to{ mask-position:150% 0; -webkit-mask-position:150% 0 } }
+
+  /* the whole set holds its settled frame when motion is not wanted */
+  @media (prefers-reduced-motion: reduce){
+    .mt-plate:hover .mt-dia-lit,
+    .mt-plate:hover .mt-a,
+    .mt-plate:hover .mt-sun{ animation:none }
+    .mt-pal .mt-band b{ opacity:1 }
+  }
+</style>
+
+<!-- 1 · the mark, on its own field -->
+<div class="rail-item mt-plate mt-mark">
+  <div class="mt-stage">
+    <div class="mt-field">
+      <div class="mt-grid" aria-hidden="true"></div>
+      <svg class="mt-dia" viewBox="0 0 11 11" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="5" y="2" width="1" height="1"/><rect x="4" y="3" width="3" height="1"/><rect x="3" y="4" width="5" height="1"/><rect x="2" y="5" width="7" height="1"/><rect x="3" y="6" width="5" height="1"/><rect x="4" y="7" width="3" height="1"/><rect x="5" y="8" width="1" height="1"/></g></svg>
+      <svg class="mt-dia mt-dia-lit" viewBox="0 0 11 11" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="5" y="2" width="1" height="1"/><rect x="4" y="3" width="3" height="1"/><rect x="3" y="4" width="5" height="1"/><rect x="2" y="5" width="7" height="1"/><rect x="3" y="6" width="5" height="1"/><rect x="4" y="7" width="3" height="1"/><rect x="5" y="8" width="1" height="1"/></g></svg>
+    </div>
+  </div>
+  <span class="mt-cap">the mark · 11 × 11, 25 cells</span>
+</div>
+
+<!-- 2 · the type, showing the rule rather than the alphabet -->
+<div class="rail-item mt-plate mt-type">
+  <p class="mt-stmt">We believe in <span class="mt-a">mountains</span>.</p>
+  <div class="mt-foot">
+    <span class="mt-lockup"><i class="mt-tile"><svg viewBox="2 2 7 7" shape-rendering="crispEdges" aria-hidden="true"><g fill="currentColor"><rect x="5" y="2" width="1" height="1"/><rect x="4" y="3" width="3" height="1"/><rect x="3" y="4" width="5" height="1"/><rect x="2" y="5" width="7" height="1"/><rect x="3" y="6" width="5" height="1"/><rect x="4" y="7" width="3" height="1"/><rect x="5" y="8" width="1" height="1"/></g></svg></i>Mountains</span>
+    <span class="mt-alt">4 810 m</span>
+  </div>
+  <span class="mt-cap">two voices · frost 72% + pigment · sans is a stand-in</span>
+</div>
+
+<!-- 3 · the palette as the engine actually uses it -->
+<div class="rail-item mt-plate mt-pal">
+  <div class="mt-band" style="--c:#FBF9F4;--t:rgba(53,61,89,0.5)"><b>FBF9F4 · paper reserve</b></div>
+  <div class="mt-band" style="--c:#DCE3EC;--t:rgba(53,61,89,0.55)"><b>DCE3EC</b></div>
+  <div class="mt-band" style="--c:#A3B6D4;--t:rgba(53,61,89,0.7)"><b>A3B6D4 · mid shadow</b></div>
+  <div class="mt-band" style="--c:#7A93BE;--t:rgba(251,249,244,0.85)"><b>7A93BE</b></div>
+  <div class="mt-band" style="--c:#6E86B2;--t:rgba(251,249,244,0.85)"><b>6E86B2</b></div>
+  <div class="mt-band" style="--c:#353D59;--t:rgba(251,249,244,0.8)"><b>353D59 · pigment</b></div>
+  <span class="mt-cap" style="color:rgba(251,249,244,0.55)">the wash, quantised</span>
+</div>
+
+<!-- 4 · the relief engine in miniature -->
+<div class="rail-item mt-plate mt-eng">
+  <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <linearGradient id="mtSky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#6E86B2"/>
+        <stop offset="0.62" stop-color="#C7D2E0"/>
+        <stop offset="1" stop-color="#FBF9F4"/>
+      </linearGradient>
+      <clipPath id="mtMassif">
+        <path d="M0,100 L0,74 L13,60 L23,67 L37,42 L50,27 L61,46 L73,37 L88,62 L100,71 L100,100 Z"/>
+      </clipPath>
+    </defs>
+    <rect width="100" height="100" fill="url(#mtSky)"/>
+    <!-- the massif: unpainted paper is the ground, shadow is added in bands -->
+    <g clip-path="url(#mtMassif)">
+      <rect width="100" height="100" fill="#FBF9F4"/>
+      <g class="mt-sun">
+        <path d="M50,27 L61,46 L73,37 L73,100 L50,100 Z" fill="#A3B6D4" opacity="0.9"/>
+        <path d="M37,42 L50,27 L50,100 L37,100 Z" fill="#C7D2E0" opacity="0.85"/>
+        <path d="M88,62 L100,71 L100,100 L88,100 Z" fill="#8FA7CC" opacity="0.8"/>
+        <path d="M13,60 L23,67 L23,100 L13,100 Z" fill="#C7D2E0" opacity="0.7"/>
+      </g>
+    </g>
+  </svg>
+  <span class="mt-cap">relief engine · shadow derived, then quantised</span>
+</div>

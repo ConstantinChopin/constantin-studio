@@ -1,0 +1,79 @@
+{
+ "_DRAFT_NOTE": "NOT WIRED INTO studio.json. Client-anonymised. Gated on contract review — see review flags at the bottom of this file before publishing anything here.",
+
+ "id": "enable",
+ "title": "Enable",
+ "desc": "A trusted knowledge layer for a fragmented industry.",
+ "href": "/projects/enable/",
+ "site": "https://enablevic.com",
+ "banner": {
+  "src": "/assets/work/enable/E1.png",
+  "alt": "Enable — brand mark"
+ },
+ "intro": "Enable is a knowledge platform for luxury travel agencies. It consolidates a dozen disconnected third-party systems into one model an advisor can actually ask a question of.",
+
+ "body": [
+  "I joined a small engineering team in 2026 to work at the product level: validating the customer hypothesis with a design partner agency, building the roadmap, writing specs, and shaping the first interface.",
+  "The design surface was not the priority on this contract, and the interesting work was underneath it. An advisor choosing a hotel is holding commission terms, program eligibility, negotiated amenities, partner reliability and a client's preferences in their head at once, because those five things live in five systems that do not speak to each other. Nothing can be recommended until the data is made operable.",
+  "So the core of the work was the knowledge layer: integrating heterogeneous sources into one model, extracting entities and the relationships between them into a schema that keeps evolving, and holding provenance on every field. Once that existed, the product could reach past search into the operational work that surrounds a trip."
+ ],
+
+ "meta": [
+  { "label": "Service", "tags": ["Product Design", "Product Strategy", "Design Engineering"] },
+  { "label": "Year", "tags": ["2026"] },
+  { "label": "Stack", "tags": ["Retrieval-augmented answers", "Entity extraction", "Schema design", "Permissions model"] }
+ ],
+
+ "skills": [
+  "Technical B2B product design",
+  "Information architecture",
+  "Schema and data modelling",
+  "Product strategy"
+ ],
+
+ "details": [
+  {
+   "label": "Context",
+   "text": "Luxury travel runs on relationships and on paperwork. A single booking touches consortium portals, itinerary builders, booking platforms, shared drives, email and a CRM, and the terms that determine what the advisor earns and what the traveller receives are scattered across all of them. The industry's answer has been more tools. Each new tool adds a source and <strong>subtracts from the coherence of the whole</strong>."
+  },
+  {
+   "label": "Problem",
+   "text": "A general assistant pointed at this data fails in the most expensive way available: it answers <strong>confidently and wrongly</strong>. In a business where quoting a lapsed commission rate or a withdrawn amenity costs real money and real trust, a plausible answer is worse than no answer. The product could not be a chat window over a document pile. It needed a definition of what an answer <em>is</em>."
+  },
+  {
+   "label": "Approach",
+   "text": "We wrote that definition first and made it the contract the whole product answers to. An answer ships with <strong>citations, a visible freshness stamp, and a confidence label</strong>, or it says <strong>\"I don't know\"</strong>. Nothing crosses the permission boundary of the person asking. Everything else, every feature and every integration, had to serve that contract or wait."
+  },
+  {
+   "label": "Build",
+   "text": "Underneath sits a <strong>three-tier hierarchy</strong>: a canonical baseline the platform maintains, an organisation layer of policy and negotiated terms, and a personal layer of private working notes. The most sensitive records are <strong>personal by default</strong> and shared only by explicit act. The rule that makes it hold: <strong>a higher layer never silently overwrites a lower one</strong>. Changes are explicit and attributable, always."
+  },
+  {
+   "label": "System",
+   "text": "Extraction turns documents into linked entities: products, people, itineraries and partner programmes, plus the links between them. Every extracted field stays attributable to <strong>what, where and when</strong>. Capability then climbs a ladder rather than arriving at once: grounded answers over documents, then structured retrieval over entities, then orchestration on top. Each rung needs the one below it to be trustworthy first."
+  },
+  {
+   "label": "Detail",
+   "text": "Sources disagree constantly. The portal says one commission rate, the intranet says another, the booking platform says a third. The tempting fix is to rank the sources and auto-resolve. We refused it. Conflicts <strong>surface both values and require a human decision</strong>, and the decision is then stored at the correct layer so the same conflict is not re-litigated. Ranking would have been faster to build and would have quietly manufactured wrong answers."
+  },
+  {
+   "label": "Iteration",
+   "text": "Time-bound notices, a renovation, a paused amenity, a rate change, first shipped with an expiry date, which is the obvious design. It was wrong. An advisory that expires while the underlying problem is still live turns the system into a <strong>confident source of stale truth</strong>, which is the exact failure the answer contract exists to prevent. We removed auto-expiry, made closure a deliberate act, and added a review prompt for notices going stale. <strong>Slightly noisier, and never quietly wrong.</strong>"
+  },
+  {
+   "label": "Outcome",
+   "text": "The clearest decisions were the refusals. We turned down a <strong>2.3 million property inventory feed</strong>, because at the luxury end volume is not coverage, it is noise, and a curated directory the advisors trust beats an exhaustive one they do not. We declined a dependency on an external provenance service and built the extraction ourselves, so the trust story stayed ours to keep. Operations stay <strong>integration-first</strong> rather than becoming an all-in-one suite. And ranking is deliberately deferred: the product surfaces every signal, commission, eligibility, amenity, preference, and <strong>refuses to weight them</strong> until there is enough usage to make a ranking mean something. What is left is the part nobody else was holding: the <strong>structuring and semantic layer</strong>, the thing that knows where information lives, what context surrounds it, and how far to trust it."
+  }
+ ],
+
+ "_REVIEW_FLAGS": [
+  "CONTRACT: confirm a public case study is permitted at all, and whether the product name and enablevic.com can appear. Everything below assumes yes; if not, the page can run fully unnamed.",
+  "CLIENT: the design partner agency is unnamed throughout, deliberately. Naming them needs their written consent, not just yours.",
+  "DATES: '2026' only. Your email to Marc said six months. Set the real range before publishing.",
+  "ATTRIBUTION: body says 'I joined a small engineering team' and uses 'we' for team decisions. Other entries use 'us/we' for the studio. Reconcile — and do not claim sole authorship of the roadmap, which the source describes as collaborative.",
+  "ITERATION: built from the documented no-auto-expire decision and its stated reasoning. I did NOT see evidence that expiry actually shipped first and was then removed. If it never shipped, rewrite as a decision rather than a reversal.",
+  "OMITTED ON PURPOSE: partner criticism, client commercial figures, investor material, named individuals, unreleased roadmap items, competitor mapping, traveller data.",
+  "ASSET: /assets/work/enable/E1.png does not exist yet.",
+  "*** FACTUAL ERROR IN 'Outcome' — the prototype repo DOES build an itinerary builder (ItineraryBuilderSidebar, ItineraryBuilderTimeline, ItineraryDetail, Kanban/List/Card views, ProductSearchPanel). The roadmap contradicts itself: the Apr 22 scope note says no itinerary builder, Phase 3 specifies one. The build resolved it toward building. DO NOT PUBLISH the Outcome paragraph as written."
+ ]
+}
