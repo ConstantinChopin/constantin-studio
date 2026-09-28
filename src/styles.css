@@ -95,6 +95,12 @@
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
+/* past the 1440 composition the site scales with the window instead of padding
+   out: the root size holds at the browser default up to 1440px wide
+   (100vw / 90 = 16px there), then grows with it until 1920px wide (21.33px), so
+   every rem — the type, the index column, the panel measure and its inset —
+   keeps its 1440 proportions */
+html { font-size: clamp(100%, 100vw / 90, 133.33%); }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 
 /* scroll, but without the scrollbar chrome */
