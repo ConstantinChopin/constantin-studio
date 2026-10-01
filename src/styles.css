@@ -89,6 +89,9 @@
   --glyph-gap: 0.3rem;
   --glyph-title-drop: 1.5px;
   --ease: cubic-bezier(0.2, 0, 0, 1);
+  /* the capsule height — the breadcrumb, pager and View site pills. in rem
+     (34px at the 16px root) so the chrome scales with the type past 1440 */
+  --capsule: 2.125rem;
 }
 
 /* ---- Base --------------------------------------------------------------- */
@@ -321,7 +324,7 @@ body.home { padding: 0; }
     display: inline-flex;
     align-items: center;
     /* both header capsules share one height */
-    height: 34px;
+    height: var(--capsule);
     padding: 0 1.15em;
     border-radius: 999px;
     /* the serif face, but sized down near the panel pills so the breadcrumb reads
@@ -355,20 +358,20 @@ body.home { padding: 0; }
   /* optical: the serif crumbs centre high on the capsule's line box — settle
      the text (only the text, never the pill) half a pixel down onto its true
      optical centre */
-  .viewport-title > * { position: relative; top: 0.5px; }
+  .viewport-title > * { position: relative; top: 0.03125rem; }
   /* both arrows share one fully-round pill at the capsule height — material
      comes from the glass contract; only layout lives here */
   .viewport-actions {
     justify-self: end;
     display: inline-flex;
     align-items: stretch;
-    height: 34px;
+    height: var(--capsule);
     border-radius: 999px;
     overflow: hidden;
   }
   .viewport-btn {
     flex: 0 0 auto;
-    width: 30px;
+    width: 1.875rem;
     /* fill the capsule's height so the chevron centres on its true middle */
     height: 100%;
     display: grid;
@@ -384,7 +387,7 @@ body.home { padding: 0; }
   /* a small tactile press */
   .viewport-btn:active { transform: scale(0.96); }
   @media (prefers-reduced-motion: reduce) { .viewport-btn:active { transform: none; } }
-  .viewport-btn svg { width: 15px; height: 15px; display: block; stroke-width: 1.8; }
+  .viewport-btn svg { width: 0.9375rem; height: 0.9375rem; display: block; stroke-width: 1.8; }
   /* the fullscreen control swaps between an expand and a contract glyph */
   .viewport-btn .ico-exit { display: none; }
   body.viewport-fs .viewport-fullscreen .ico-enter { display: none; }
@@ -529,9 +532,9 @@ body.home { padding: 0; }
     z-index: 5;
     margin-bottom: 0;
     /* the capsules hug the panel corner — a tight, even inset. iOS bar items
-       sit ~16pt off the edge; 14px sits just under that, nesting into the
+       sit ~16pt off the edge; 14px (0.875rem) sits just under that, nesting into the
        frame's opened-up radius rather than floating with a roomy margin */
-    padding: 14px;
+    padding: 0.875rem;
     background: transparent;
     /* the empty middle of the bar lets clicks through to the page */
     pointer-events: none;
@@ -941,7 +944,7 @@ body.home { padding: 0; }
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
-  height: 34px;
+  height: var(--capsule);
   padding: 0 1.05em;
   font-family: var(--serif);
   font-size: 0.72rem;
@@ -954,7 +957,7 @@ body.home { padding: 0; }
 }
 /* the same optical settle as the breadcrumb crumbs, so both capsules' text sits
    on one baseline */
-.viewport-site span { position: relative; top: 0.5px; }
+.viewport-site span { position: relative; top: 0.03125rem; }
 .viewport-site:focus-visible { outline: none; box-shadow: var(--glass-edge), var(--glass-shadow), var(--focus-ring, 0 0 0 3px rgba(17,15,15,0.14)); }
 /* the layout rule sets display, so the hidden attribute needs restating */
 .viewport-site[hidden] { display: none; }
