@@ -1,0 +1,247 @@
+{
+  "lede": "Lightnote lets a team train an image model on its own pictures and make new images in that style, on a canvas instead of the command line. It was the second product I designed at PageNineteen, an applied AI lab in London. Its first users were the lab’s own team, and the lab released it open source in 2026.",
+  "textBlocks": true,
+  "matte": "#151515",
+  "facts": [
+    {
+      "label": "Role",
+      "value": "Led product design, working directly with the founders"
+    },
+    {
+      "label": "How long",
+      "value": "To confirm (the tag says 2024)",
+      "todo": true
+    },
+    {
+      "label": "Team",
+      "value": "A founding team of six, out of a South Park Commons residency"
+    },
+    {
+      "label": "How we defined success",
+      "value": "The lab’s team could train and run its own image models without writing code, and the canvas and the command line stayed one product."
+    },
+    {
+      "label": "What we achieved",
+      "value": "The lab did its own training and image work in the canvas, and released the toolkit as open source in 2026. Every box calls the same function as its command, so the two never drifted apart."
+    }
+  ],
+  "hero": {
+    "video": "/assets/work/lightnote/hero-film.mp4",
+    "poster": "/assets/work/lightnote/hero-film-poster.webp",
+    "alt": "Lightnote's film. Four lamp photographs are selected on the canvas and gathered into a set. Pressing Run lifts them into threads that carry their file names into a Train LoRA box, which comes out as a trained style called fixtures. In a Text to Image box someone types a lounge chair in TOK style, and four chairs are made in the style of the lamps. The best two are saved as the next set. Then the app draws in around the canvas, and the same steps are added as boxes, wired together and run."
+  },
+  "overview": [
+    {
+      "label": "The problem",
+      "hero": {
+        "src": "/assets/work/lightnote/terminal.webp",
+        "alt": "A terminal with four commands: lightnote train submit with the images lamp-1.jpg to lamp-4.jpg, the trigger TOK and the name fixtures; lightnote train status; lightnote train result, which prints the trained model's address; and lightnote flux-generate with the prompt a lounge chair in TOK style and the same address after --lora. A dashed line labelled Copied by hand joins the printed address to the place it is pasted.",
+        "caption": "Training a style before the canvas, as the README shows it: send the pictures, check the job, fetch the model, then copy its address by hand into the command that uses it."
+      },
+      "blocks": [
+        {
+          "milestone": "The lab’s toolkit could train an image model on a few of a team’s own pictures and make new images in that style, but only by typing commands. The lab wanted its whole team to do this work, not only the people who code."
+        },
+        {
+          "stats": [
+            {
+              "label": "Training needed code at every step",
+              "value": "23 commands",
+              "text": "typed into a terminal, and up to four of them to train one style, with the model’s address copied by hand from one to the next.",
+              "source": "<a href=\"https://github.com/pendulum-ai/lightnote#command-reference\" target=\"_blank\" rel=\"noopener\">The Lightnote README</a>"
+            },
+            {
+              "label": "Two ways to describe the same work",
+              "value": "3 model families",
+              "text": "Stability, Flux and SDXL each had options of their own. An interface with its own words on top would have given a team of six two products describing the same work, and every change made twice."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Design approach",
+      "hero": {
+        "src": "/assets/work/lightnote/command-box.webp",
+        "alt": "The command lightnote train submit, with its options --images, --name \"fixtures\" and --trigger \"TOK\", beside Lightnote's Train LoRA box. A line joins each option to the part of the box it fills: the images to the Set input, the name to LoRA name, and the trigger to Trigger word. The box's LoRA output, marked with a diamond, is at its top right.",
+        "caption": "The training command beside the box that runs it. Each option is a field of the box, and the box's output carries the trained model on to the next box, where the terminal needed it copied by hand."
+      },
+      "blocks": [
+        {
+          "milestone": "We designed the canvas in the command line’s own words. Each box is one command and its fields are that command’s options, so the canvas and the command line stay one product."
+        },
+        {
+          "context": [
+            {
+              "label": "What we focused on, and why",
+              "value": "One kind of box for every command",
+              "text": "An early version gave each model family its own panel. It looked richer, but three models ended up with three ways of saying the same thing. So we rebuilt it around one box that calls the same function as its command: a trigger word typed into a box does exactly what the --trigger option does."
+            },
+            {
+              "label": "How we scoped it",
+              "value": "To write: what was in the first version, what was left out, and why.",
+              "todo": true
+            },
+            {
+              "label": "How we learned",
+              "value": "To write: who we talked to or watched (the lab’s team, interviews, research), and what it changed.",
+              "todo": true
+            },
+            {
+              "label": "How we worked",
+              "value": "To write: how design moved from Figma iterations to engineering, and how hand-off worked.",
+              "todo": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "What we built",
+      "hero": {
+        "video": "/assets/work/lightnote/film-tabs.mp4",
+        "poster": "/assets/work/lightnote/film-tabs-poster.webp",
+        "device": true,
+        "alt": "The three tabs of Lightnote in turn: the canvas with four lamp pictures selected and the bar offering Create set; the workflow with the training and image boxes joined by wires; and Runs, with run 14’s four images, its settings and its log. The tab bar at the foot of each screen shows which tab is open.",
+        "caption": "The three tabs in turn: the canvas to gather pictures, the workflow to train a style and make images, and Runs to look back at what each run made."
+      },
+      "blocks": [
+        {
+          "milestone": "Three tabs that make one loop: gather pictures on the canvas, train a style and make new images in the workflow, and keep the best as the next set."
+        },
+        {
+          "sub": "One small system behind every surface"
+        },
+        {
+          "p": "The pictures carry the colour, and each colour, shape and movement in the interface means one thing: cream marks an action, blue what is selected, and red only a failure. Its 66 components cover every state from Waiting to Failed, built from one typeface, three corner sizes and spacing in steps of 4."
+        },
+        {
+          "figure": {
+            "src": "/assets/work/lightnote/system.webp",
+            "alt": "The Lightnote design system on one dark board of eleven cells, with no labels. A small workflow: Load Set with four lamps wired into Train LoRA, running at step 840 of 1,500, and on into Text to Image, where William Heller is typing the prompt, with the node palette at the bottom. The colours as slats, from the near-black surfaces to cream, blue, red and the two people. The wordmark, the typeface at its sizes and the corners. Ports by shape in their states and wires in theirs. The Sets panel with a set's menu open, four lamps selected with the bar beneath them, and William's selection on a chair. The command palette. Buttons, a switch, checkboxes, a segmented control and a slider. Fields, including a seed and one with an error. The list of runs, an image being generated, run states and a log. Image tiles ready, selected, failed and waiting, the Stop button with the time left and the zoom controls. Two toasts, keyboard keys, people and badges.",
+            "caption": "Key primitives and components on one board, each a real part of the design system with real content."
+          }
+        },
+        {
+          "sub": "A set is made by selecting, not by typing file names"
+        },
+        {
+          "p": "Drag round a few pictures on the canvas and a bar offers to make them a set. Selecting builds the same list of images the training command expects, so the toolkit gets exactly what the command line would have sent."
+        },
+        {
+          "figure": {
+            "video": "/assets/work/lightnote/film-select.mp4",
+            "poster": "/assets/work/lightnote/film-select-poster.webp",
+            "alt": "Four lamp photographs on the dark canvas. The pointer drags a selection round them, they are outlined in blue, and a cream bar rises beneath them: 4 images, Arrange, Delete and Create set.",
+            "caption": "On the canvas, dragging round four pictures selects them, and a bar offers to make them a set."
+          }
+        },
+        {
+          "sub": "A wire carries the set in and the trained style out"
+        },
+        {
+          "p": "The training box asks only for a name and a trigger word, and shows its progress while it works. Connection points have shapes, a square for pictures, a diamond for a model and a circle for a value, and only matching shapes join, so anything you can wire will run."
+        },
+        {
+          "figure": {
+            "video": "/assets/work/lightnote/film-train-model.mp4",
+            "poster": "/assets/work/lightnote/film-train-poster.webp",
+            "alt": "Four pictures run as threads along a wire into the Train LoRA box, which counts its steps and the time left, and the trained style leaves the box on a wire to the next box.",
+            "caption": "The film draws the training as the pictures’ own threads running into the box, and the trained style leaving it on a wire."
+          }
+        },
+        {
+          "sub": "Each image has its place before it is made"
+        },
+        {
+          "p": "You write a prompt in a box instead of typing a command. The box knows how many images are coming, so the canvas lays out a tile for each one at once, and each tile fills in as its image arrives."
+        },
+        {
+          "figure": {
+            "video": "/assets/work/lightnote/film-generate.mp4",
+            "poster": "/assets/work/lightnote/film-generate-poster.webp",
+            "alt": "The fixtures style arrives on a wire at the LoRA input of a Text to Image box, whose prompt reads a lounge chair in TOK style. The box runs, its output wire splits into four, and four tiles appear, each marked Generating, then fill in with four lounge chairs in the style of the lamps.",
+            "caption": "The trained style arrives on a wire, the prompt asks for a lounge chair in its style, and four tiles fill in as the images are made."
+          }
+        },
+        {
+          "sub": "The best results become the next set"
+        },
+        {
+          "p": "Pick the best images and save them as a set, and the loop starts again. A saved set is an ordinary set, so the same training box takes it with the same settings, and a style gets better from one round to the next."
+        },
+        {
+          "figure": {
+            "src": "/assets/work/lightnote/generations.webp",
+            "alt": "Three generations on one canvas, left to right. Six lamp photographs, Generation 1, are wired into a Train LoRA box and a Text to Image box, which make four chairs, Generation 2. Two of the chairs are selected, and William Heller's cursor is beside them. They are wired into a second Train LoRA and Text to Image, which make six new objects, Generation 3, with Constantin Chopin's cursor beside them.",
+            "caption": "The loop on one canvas. Each generation trains a style, the style makes new pictures, and the best of them become the next set."
+          }
+        },
+        {
+          "sub": "One layout for each part of the loop"
+        },
+        {
+          "p": "Three tabs sit at the foot of every layout, so moving round the loop is always one click: the canvas to gather, the workflow to train and make, and Runs to look back and keep what worked."
+        },
+        {
+          "figure": {
+            "label": "Workflow",
+            "journeys": [
+              {
+                "title": "Wire the steps together",
+                "answers": "In the terminal, each command stood on its own.",
+                "subtitle": "The workflow lays the commands out as boxes joined by wires, with the tool and its layers on the left and a preview of the result, with its Run button, on the right. Two people can work in it at once.",
+                "src": "/assets/work/lightnote/workflow.webp",
+                "device": true,
+                "alt": "Lightnote's workflow. Load Set, holding the Modern Fixtures set, is wired into Train LoRA. Load LoRA and Text to Image, with the prompt Modern chair, fluid forms, abstract, are selected together, and Text to Image is wired into Save Images. On the left, the tool card My first tool with its layers; on the right, a preview of the result with Run LoRA, about 2 minutes. Constantin Chopin's and William Heller's cursors are both on the canvas, and the bar at the bottom offers Group, Bypass, Delete and Run for the two selected boxes."
+              }
+            ]
+          }
+        },
+        {
+          "figure": {
+            "label": "Runs",
+            "journeys": [
+              {
+                "title": "See where a run stopped",
+                "subtitle": "Runs keeps every run with the images it made, its settings and its log. The box that failed says why and offers the fix. The boxes after it are marked as skipped, so nothing looks finished that is not.",
+                "src": "/assets/work/lightnote/failed-run.webp",
+                "device": true,
+                "alt": "A workflow after a failed run. The Load LoRA box is outlined in red and says that Modern Fixtures LoRA is missing from Models, so the run stopped there, with Show log and Choose a LoRA beneath. The Text to Image box after it is marked as skipped, and a notice reads Run 15 stopped at Load LoRA.",
+                "answers": "A workflow runs several steps in a row, so a failure has to say which one."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "What we learned",
+      "blocks": [
+        {
+          "milestone": "Success meant the lab’s own team could train and run its models without writing code, and that the canvas and the command line stayed one product. There were no outside users yet, so this is what we could measure."
+        },
+        {
+          "results": [
+            {
+              "label": "Could the team work without code?",
+              "value": "Yes",
+              "text": "The lab did its own training and image work in the canvas, and released the toolkit as open source in 2026."
+            },
+            {
+              "label": "Did the two stay one product?",
+              "value": "Yes",
+              "text": "Every box calls the same function as its command, so the canvas and the command line never drifted apart."
+            }
+          ]
+        },
+        {
+          "sub": "What I would do next"
+        },
+        {
+          "todo": "DRAFT from an earlier session, not shown until Constantin keeps, changes or cuts it: With outside users, these are the first things I would measure. 1. How long it takes from choosing pictures to a trained style that someone goes on to use. 2. How many trained styles are used again after the first day. 3. How often the images kept from a run become the next set, since that loop is what the product is built around. 4. How many runs fail, and at which box, starting with missing keys and missing files. Together they follow the loop: getting a style, using it again, feeding the results back in, and recovering when a run goes wrong."
+        }
+      ]
+    }
+  ]
+}

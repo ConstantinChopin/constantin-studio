@@ -1,0 +1,181 @@
+{
+  "lede": "Parable reads the tools a large company already works in, such as Slack, Salesforce, Workday, GitHub and Jira, and shows where the work goes, what it costs and which of it could be automated. When I joined as its only product designer in September 2025, the product already existed and had a look of its own, but no rules underneath it.",
+  "textBlocks": true,
+  "facts": [
+    {
+      "label": "Role",
+      "value": "Sole product designer, asked to lead the work rather than build to a set specification: the customer journey, prototypes in Figma and in code, the app’s visual direction and its design system"
+    },
+    {
+      "label": "How long",
+      "value": "From September 2025 into 2026",
+      "note": "To confirm: the end date. Constantin’s case study only places the design system work in the first quarter of 2026."
+    },
+    {
+      "label": "Team",
+      "value": "A company of about twenty, with engineers and no other designer. I worked with the founders, and in code with the front-end engineer."
+    },
+    {
+      "label": "How we defined success",
+      "value": "Screens that product managers and Parable’s own AI can put together from shared parts, without the product drifting further from itself, measured against five targets set for the work."
+    },
+    {
+      "label": "What we achieved",
+      "value": "The foundation shipped, with the most important components built on it: colours cut from about 60 to 18, spacing values from 24 to 13, and chart colours from more than 50 to 12."
+    }
+  ],
+  "hero": {
+    "src": "/assets/work/parable/website.webp",
+    "device": true,
+    "alt": "Parable's website: “A dashboard for company-wide operational observability”. Below the headline, the product answers what a sales team worked on in the third quarter of 2025, and shows $1.2M of potential savings from automating its permit approval process."
+  },
+  "overview": [
+    {
+      "label": "The problem",
+      "blocks": [
+        {
+          "milestone": "Parable wanted its screens to be put together from shared parts, by product managers and by its own AI, instead of being drawn one by one. But the product had a look and no rules underneath it. With no designer on staff, engineers filled each gap as it came up, and every sprint made the product less consistent."
+        },
+        {
+          "stats": [
+            {
+              "label": "No shared rules, so every sprint added new colours and sizes",
+              "value": "About 60 colours",
+              "text": "in five palettes, alongside 24 spacing values and more than 50 colours in charts alone. An AI can only build good screens if the parts come with clear rules about which choices are allowed, and here there were none.",
+              "source": "Our audit of the product"
+            },
+            {
+              "label": "The same data had to serve an executive and an engineer",
+              "value": "One number, or every row",
+              "text": "An executive wants one clear number, and an engineer wants every row behind it, sometimes down to where it came from. Screens built from shared parts needed a rule for how much each one shows, and a way to go deeper without leaving the page."
+            }
+          ]
+        },
+        {
+          "todo": "Picture: this section has no picture yet. A still of the audit, the inherited palettes and spacing values before the cut, would open it well."
+        }
+      ],
+      "parked": true
+    },
+    {
+      "label": "Design approach",
+      "blocks": [
+        {
+          "milestone": "We focused on the parts every screen is built from. Parable had a look but no system beneath it, so the job was to build one that a person, or Parable’s own AI, could put screens together from and still end up with a Parable product."
+        },
+        {
+          "context": [
+            {
+              "label": "What we focused on, and why",
+              "value": "The system beneath the screens",
+              "text": "The company’s goal for the first quarter of 2026 was called System Maturity. It rested on the belief that in a product driven by AI, building blocks that fit together matter more than fixed paths through the product. As the product turns into a conversation, the system, not any one screen, is what keeps its quality. Put plainly, the aim was to stop each team’s own style from showing up in the interface."
+            },
+            {
+              "label": "How we scoped it",
+              "value": "The foundation first, the automatic check later",
+              "text": "We designed an automatic check that would test a screen against the rules before it ships, and chose not to build it yet. For a company of about twenty people, the shipped foundation was worth more than a checker. The time to build it is the day Parable’s AI starts sending screens it put together itself to customers."
+            },
+            {
+              "label": "How we learned",
+              "value": "An audit of what the product already used",
+              "text": "We went through the colours, spacing values and chart colours already in the product, and found that about 53% of the values were redundant. That showed how far the product had drifted, and how much of it could simply go."
+            },
+            {
+              "label": "How we worked",
+              "value": "The look in Figma, then the parts in code with the front-end engineer",
+              "text": "I set the visual direction in Figma and handed it to engineering as the tone to build to, then prototyped in code with the front-end engineer, so the most important components were designed and built side by side. The system sits inside the path Parable already uses for new work: the team’s own use first, then Labs for early trials, then Previews, and finally parts that every team shares."
+            }
+          ]
+        },
+        {
+          "todo": "How we learned: was there any user research, such as interviews, or watching customers or the team use the product? If so, add it to this box. If not, the audit stays as the only learning step."
+        }
+      ],
+      "parked": true
+    },
+    {
+      "label": "What we built",
+      "blocks": [
+        {
+          "milestone": "We set the look first, then built the system beneath it: a short list of values, one setting for how dense a screen is, four layers of detail that open in place, and rules that get stricter as a part matures."
+        },
+        {
+          "sub": "One look, set first on three real screens"
+        },
+        {
+          "p": "Engineers had been filling gaps with their own choices. Three real screens, designed in Figma, set one calm, dark look with serif headings for everything else: the product as the market sees it, a report being read, and the AI answering with its sources and the cost worked out."
+        },
+        {
+          "sub": "Fewer colours and sizes, each with a name and a job"
+        },
+        {
+          "p": "Each list was cut to a few values, each with a name and a job: five palettes became three, about 60 colours became 18, spacing went from 24 values to 13 and chart colours from more than 50 to 12. A person or the AI building a screen picks from the list instead of adding a value."
+        },
+        {
+          "sub": "How dense a screen is, set once for the whole screen"
+        },
+        {
+          "p": "Density was first a setting on each component, so a compact table inside a comfortable card disagreed with itself. We moved it to the container that holds the screen: sparse, comfortable or compact sets the padding, gaps, type size and depth of everything inside, and each level keeps a minimum of empty space."
+        },
+        {
+          "sub": "Four layers of detail, opened without leaving the page"
+        },
+        {
+          "p": "Every answer opens in up to four layers on the same page: the answer, an explanation, the detail behind it, and its source, down to the database query behind the number. An executive can stop at the answer, and an engineer can go all the way down."
+        },
+        {
+          "sub": "Rules a machine can check, stricter as a part matures"
+        },
+        {
+          "p": "The rules are written as structured layers a machine can check, not as paragraphs of guidance. They get stricter as a part moves from Labs to Preview to Stable, so new parts can be tried freely and only parts that pass every rule reach every team."
+        },
+        {
+          "todo": "Pictures: none of these steps has a picture yet. The three density levels side by side, and one answer opened through its four layers, would show the two main decisions."
+        }
+      ],
+      "parked": true
+    },
+    {
+      "label": "What we learned",
+      "blocks": [
+        {
+          "milestone": "Success meant screens that product managers and Parable’s own AI can put together from shared parts, without the product drifting further from itself. It was measured against five targets: a complete set of components an AI can safely build from, design that matches the code with the code as the final word, layouts designed for phones first, themes customers can control, and accessibility to the WCAG AA standard."
+        },
+        {
+          "results": [
+            {
+              "label": "Do screens now choose from a short list?",
+              "value": "Yes",
+              "text": "The foundation shipped: colours went from about 60 to 18, spacing values from 24 to 13, and chart colours from more than 50 to 12."
+            },
+            {
+              "label": "Do design and code match?",
+              "value": "For the first components",
+              "text": "The most important components were designed and built side by side, on the shipped foundation."
+            },
+            {
+              "label": "Can engineers build new components without waiting on design?",
+              "value": "Not yet shown",
+              "text": "That is what the foundation is for, but I have no result to report yet."
+            },
+            {
+              "label": "Phones, themes and accessibility",
+              "value": "To confirm: where the other three targets stand (layouts for phones first, themes customers can control, and WCAG AA), and whether any of them were checked",
+              "todo": true
+            }
+          ]
+        },
+        {
+          "sub": "What I would do next"
+        },
+        {
+          "p": "Next, I would build the automatic check, on the day Parable’s AI starts sending screens it put together itself to customers, so each screen is tested against the rules before anyone sees it."
+        },
+        {
+          "todo": "DRAFT, not shown until Constantin confirms: two more next steps that follow from the five targets rather than from his case study. 1. Measure how often engineers put a new component together without waiting on design, since that is the result the foundation was built for. 2. Check the three targets that have no result yet: layouts for phones first, themes customers can control, and the WCAG AA accessibility standard."
+        }
+      ],
+      "parked": true
+    }
+  ]
+}

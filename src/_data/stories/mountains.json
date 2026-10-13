@@ -1,0 +1,156 @@
+{
+  "lede": "Mountains is a seed-stage luxury technology house: a studio that builds for the luxury industry, and a fund that invests in it. I designed its brand system and its landing page, where a watercolour mountain is painted live in the browser.",
+  "textBlocks": true,
+  "facts": [
+    {
+      "label": "Role",
+      "value": "Contract designer. Designed the brand system and the web surfaces."
+    },
+    {
+      "label": "How long",
+      "value": "August to September 2026"
+    },
+    {
+      "label": "Team",
+      "value": "To confirm: who else was on the work, by role",
+      "todo": true
+    },
+    {
+      "label": "How we defined success",
+      "value": "A small design system that could carry both the quality of a luxury brand and the positioning of a technology company."
+    },
+    {
+      "label": "What we achieved",
+      "value": "An animated watercolour mountain, painted live in the browser, and the design system it is built on."
+    }
+  ],
+  "hero": {
+    "video": "/assets/work/mountains/landing.mp4",
+    "device": true,
+    "poster": "/assets/work/mountains/landing-poster.jpg",
+    "alt": "The Mountains landing page in use: the mark and the statement over the painted mountain, walking through Mountains, Technology and Capital, opening a page and returning to the painting."
+  },
+  "overview": [
+    {
+      "label": "The problem",
+      "blocks": [
+        {
+          "milestone": "Companies at the intersection of luxury and technology need a brand aesthetic of their own. It has to be crafted beyond the ready-made design system libraries that most software companies use."
+        },
+        {
+          "stats": [
+            {
+              "label": "A watercolour painted live, in the browser",
+              "value": "Paint that behaves like paint",
+              "text": "Watercolour is transparent: each wash darkens what lies under it, edges soften where the paper is wet, and white is bare paper. The browser has to work this out on the graphics card for every position of a moving sun, without slowing the page."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Design approach",
+      "blocks": [
+        {
+          "milestone": "We focused on a design system small enough to hold in one hand, built around the painting, that could carry both the quality of a luxury brand and the positioning of a technology company."
+        },
+        {
+          "figure": {
+            "phones": [
+              {
+                "src": "/assets/work/mountains/reference-1.webp",
+                "alt": "A watercolour mountain painted in a few loose strokes of grey and peach on bare white paper, the paper itself standing for the snow and the light."
+              },
+              {
+                "src": "/assets/work/mountains/reference-2.webp",
+                "alt": "A watercolour of steep peaks in one blue, the snow left as bare paper and the shadows laid in cool washes, with mist rising between the ridges."
+              },
+              {
+                "src": "/assets/work/mountains/reference-3.webp",
+                "alt": "A watercolour valley with blue mountains above a band of white mist, and green meadows, pines and cabins below it."
+              }
+            ]
+          }
+        },
+        {
+          "todo": "Still to write for Design approach: How we worked: To write: how you worked with Mountains (who you reported to, how often you showed work, how decisions were approved), and whether the design was made in Figma, in code, or both."
+        }
+      ]
+    },
+    {
+      "label": "What we built",
+      "hero": {
+        "video": "/assets/work/mountains/mark.mp4",
+        "poster": "/assets/work/mountains/mark-poster.jpg",
+        "alt": "The Mountains mark arriving square by square on the painted sky.",
+        "caption": "The Mountains mark arriving square by square on the painted sky."
+      },
+      "blocks": [
+        {
+          "p": "We built a watercolour painting engine, the brand system around it, and the web surfaces that say what Mountains is, what it does and why. The system is deliberately small: one palette taken from the painting, two typefaces, one height for every control and one easing curve for every movement. Every film below is recorded from the site’s own code."
+        },
+        {
+          "figure": {
+            "journeys": [
+              {
+                "title": "The mark",
+                "answers": "This gives the brand a look of its own: the mark joins a grid of squares to the painting.",
+                "subtitle": "A staircase of squares, seven rows high, set out cell by cell on an eleven-by-eleven grid, then laid square by square on the painting’s sky.",
+                "video": "/assets/work/mountains/construction.mp4",
+                "poster": "/assets/work/mountains/construction-poster.jpg",
+                "alt": "The Mountains mark set out cell by cell on an eleven-by-eleven grid, a staircase of squares seven rows high."
+              },
+              {
+                "title": "The watercolour engine",
+                "answers": "This answers the problem: the painting follows what paint does, not how it looks.",
+                "subtitle": "It runs as code on the graphics card. The shadow is not drawn: it is calculated from the shape of the mountain and a sun that travels across the sky, then laid down in a few washes. The faces the sun reaches are left as bare paper, which is how a watercolour shows light.",
+                "video": "/assets/work/mountains/painting.mp4",
+                "poster": "/assets/work/mountains/painting-poster.jpg",
+                "alt": "The mountain painted live, its shadow calculated from a travelling sun and laid down in washes."
+              },
+              {
+                "title": "The web surfaces",
+                "answers": "This is the one page the system had to prove itself on.",
+                "subtitle": "Three moments, Mountains, Technology and Capital, say what the company is, what it does and why. Each has its own statement and its own button, set in DM Sans and Space Mono, and one switch moves between them.",
+                "video": "/assets/work/mountains/statement.mp4",
+                "poster": "/assets/work/mountains/statement-poster.jpg",
+                "alt": "The statement changing through the landing page’s three moments: “Mountains. A Luxury Technology house.” with the button How we define luxury; “We build what this industry is missing, and we bring in the rest.” with What we own; and “We invest where we can do the work ourselves.” with How we invest."
+              },
+              {
+                "title": "The landing page on a phone",
+                "subtitle": "Nothing is left out on a phone. The switch stays at the top, the painting fills the tall screen, and the longer statements take a third line.",
+                "video": "/assets/work/mountains/landing-phone.mp4",
+                "poster": "/assets/work/mountains/landing-phone-poster.jpg",
+                "alt": "The Mountains landing page on a phone, with the painted mountain filling the screen. The switch at the top moves from Mountains to Technology to Capital and back: “Mountains. A Luxury Technology house.” with How we define luxury, “We build what this industry is missing, and we bring in the rest.” with What we own, and “We invest where we can do the work ourselves.” with How we invest."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "What we learned",
+      "blocks": [
+        {
+          "milestone": "Success meant a small design system that could carry both the quality of a luxury brand and the positioning of a technology company. We have no numbers from visitors yet, so this is what we can show."
+        },
+        {
+          "results": [
+            {
+              "label": "What we achieved",
+              "value": "The landing page is live",
+              "text": "Its three moments, Mountains, Technology and Capital, are built on this system.",
+              "source": "<a href=\"https://mountains-2kw.pages.dev/\" target=\"_blank\" rel=\"noopener\">The live landing page</a>"
+            }
+          ]
+        },
+        {
+          "sub": "What I would do next"
+        },
+        {
+          "todo": "To write: what you would do next. A draft to confirm: find out how the brand reads to the people Mountains builds for and invests in, and carry the system to a second surface."
+        }
+      ]
+    }
+  ]
+}

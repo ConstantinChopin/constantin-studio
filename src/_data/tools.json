@@ -1,0 +1,7 @@
+{
+  "enable": ["Figma", "Claude Code"],
+  "parable": ["Figma"],
+  "pendulum": ["Figma"],
+  "replika": ["iOS", "Android"],
+  "lightnote": ["Flux", "SDXL", "LoRA"]
+}

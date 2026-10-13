@@ -1,0 +1,27 @@
+{
+  "names": {
+    "strategy": "Strategy",
+    "product": "Product",
+    "systems": "Systems",
+    "engineering": "Engineering",
+    "brand": "Brand",
+    "tools": "Tools and technology"
+  },
+  "tags": {
+    "Zero to one": "strategy",
+    "Rapid prototyping": "strategy",
+    "Enterprise UX": "product",
+    "Consumer mobile": "product",
+    "AI interfaces": "product",
+    "Creative tooling": "product",
+    "Multimodal search": "product",
+    "Memory interfaces": "product",
+    "Design systems": "systems",
+    "Micro design system": "systems",
+    "AI-operable components": "systems",
+    "Design engineering": "engineering",
+    "Painted WebGL": "engineering",
+    "Brand identity": "brand",
+    "Motion": "brand"
+  }
+}

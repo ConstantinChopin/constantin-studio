@@ -42,8 +42,15 @@
      worst-case backdrop, so it never goes clearer than this. */
   --glass-blur: 18px;
   --glass-filter: blur(var(--glass-blur)) saturate(1.8) brightness(1.04);
+  /* the panel is far larger than a capsule, so the same blur leaves the cloud
+     pixels readable through it. a heavier blur melts them into a faint haze */
+  --panel-blur: 48px;
+  --panel-filter: blur(var(--panel-blur)) saturate(1.8) brightness(1.04);
   --glass-tint: color-mix(in srgb, #ffffff 46%, color-mix(in srgb, var(--paper) 62%, transparent));
   --glass-tint-fallback: color-mix(in srgb, #ffffff 55%, color-mix(in srgb, var(--paper) 90%, transparent));
+  /* the panel's own glass: the capsules' white, thinner (64% against their 79%),
+     so the page shows through the panel and through the frames inside it */
+  --panel-tint: color-mix(in srgb, var(--paper) 64%, transparent);
   --glass-edge:
     inset 0 1px 1px rgba(255, 255, 255, 0.9),
     inset 0 -1px 1px rgba(255, 255, 255, 0.35),
@@ -100,10 +107,12 @@
 html { -webkit-text-size-adjust: 100%; }
 /* past the 1440 composition the site scales with the window instead of padding
    out: the root size holds at the browser default up to 1440px wide
-   (100vw / 90 = 16px there), then grows with it until 1920px wide (21.33px), so
+   (100vw / 90 = 16px there), then grows with it until 2560px wide (28.44px), so
    every rem — the type, the index column, the panel measure and its inset —
-   keeps its 1440 proportions */
-html { font-size: clamp(100%, 100vw / 90, 133.33%); }
+   keeps its 1440 proportions. It stopped at 1920 at first, which left a
+   2560-wide window with the panel's column marooned in wide side gaps
+   (2026-10-04) */
+html { font-size: clamp(100%, 100vw / 90, 177.78%); }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 
 /* scroll, but without the scrollbar chrome */
@@ -269,10 +278,13 @@ body.home { padding: 0; }
        and lift all pulled from the one --glass-* contract, so the window and the
        capsules that float over it read as one glass family. (this deliberately
        softens the site's "content is paper, chrome is glass" rule for the shell;
-       the prose and stills inside still paint opaque over it.) */
-    background: var(--glass-tint);
-    -webkit-backdrop-filter: var(--glass-filter);
-    backdrop-filter: var(--glass-filter);
+       the pictures inside still paint opaque over it, but their frames are a
+       thin tint, so the glass shows through them.) its tint is thinner than the
+       capsules' (--panel-tint) and its blur heavier, --panel-blur, so the clouds
+       behind it fade to a haze. */
+    background: var(--panel-tint);
+    -webkit-backdrop-filter: var(--panel-filter);
+    backdrop-filter: var(--panel-filter);
     border: 0;
     /* the corner shape only reads if there is arc enough to shape it — at the
        old 10px no curvature was legible at this size. on the scale
@@ -280,23 +292,32 @@ body.home { padding: 0; }
        squarer, so the Apple corner is squircle, not a larger exponent. */
     /* a very softly rounded panel corner — well past the concentric point with
        the capsules, for a soft, window-like frame */
-    border-radius: 46px;
+    --panel-radius: 46px;
+    border-radius: var(--panel-radius);
     corner-shape: squircle;
     overflow: hidden;
     box-shadow: var(--glass-edge), var(--glass-shadow);
+    /* the header's inset round its capsules, shared with the hero beneath it */
+    --bar-pad: 0.875rem;
   }
-  /* the window header — project name at left, project nav at right, a shade
-     warmer than the paper body so it reads as chrome */
+  /* the window header — the breadcrumb at left, the view switch in the true
+     centre, the project nav at right. two equal side columns hold the centre;
+     when the panel is too narrow for that, the right side keeps its width and
+     the switch gives way to the left rather than covering it */
   .viewport-bar {
     /* sits at the top of the scroll content and moves up with it as you scroll */
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
     gap: 0.5rem;
     margin-bottom: 1.5rem;
     background: transparent;
     border-bottom: 0;
   }
+  .viewport-bar .viewport-title { grid-column: 1; justify-self: start; }
+  .viewport-bar .viewport-views { grid-column: 2; }
+  .viewport-bar .viewport-end { grid-column: 3; justify-self: end; }
+  .viewport-end { display: flex; align-items: center; gap: 0.5rem; }
   /* the type glyph of the open entry, cloned from its shelf label and sized
      to sit in the toolbar — same glyph, same gap to its title as the index
      shelf labels */
@@ -447,10 +468,11 @@ body.home { padding: 0; }
   }
   .viewport::-webkit-scrollbar { width: 0; height: 0; }
   .canvas-set {
-    /* one inset shared by every band, so text, pills and the stills all hang
-       from the same left edge — set to match the left column's .page padding so
-       the two panels' content share one side margin */
-    --canvas-pad: 1.7rem;
+    /* one inset shared by every band, so text, pills and the pictures all hang
+       from the same left edge. it only shows where the panel is narrower than
+       the measure; there it leaves room enough that a picture sits well inside
+       its grey frame rather than near its edge */
+    --canvas-pad: 2.5rem;
     /* the column is capped to one fixed measure and centred in the panel; the
        width is calibrated so that, centred, its left edge lands under the
        project title (after the "/") in the breadcrumb at the desktop width */
@@ -534,7 +556,7 @@ body.home { padding: 0; }
     /* the capsules hug the panel corner — a tight, even inset. iOS bar items
        sit ~16pt off the edge; 14px (0.875rem) sits just under that, nesting into the
        frame's opened-up radius rather than floating with a roomy margin */
-    padding: 0.875rem;
+    padding: var(--bar-pad);
     background: transparent;
     /* the empty middle of the bar lets clicks through to the page */
     pointer-events: none;
@@ -785,7 +807,10 @@ body.home { padding: 0; }
 
   body.detail-open .split { grid-template-columns: 0fr var(--index-w) 1fr 0fr; }
   body.detail-open .pane-index { animation: index-shift 0.6s var(--ease); }
-  body.detail-open .pane-detail { opacity: 1; filter: blur(0); pointer-events: auto; }
+  /* the open pane ends on filter: none, not blur(0). any filter on it, even a
+     zero blur, walls the panel's glass off from the page behind, and the
+     clouds would show through it sharp instead of blurred */
+  body.detail-open .pane-detail { opacity: 1; filter: none; pointer-events: auto; }
 
   @keyframes index-shift {
     0%   { filter: blur(0); }
@@ -805,6 +830,8 @@ body.home { padding: 0; }
    chip live here, outside the width queries; the queries above (desktop) and
    below (mobile) carry ONLY layout — reading measure, stacking, inset — never
    the type or the pill. Change the look once, here. */
+/* the title sits on its own line with its tags beneath it, both hung from the
+   column's left edge */
 .canvas-head {
   display: flex;
   flex-direction: column;
@@ -836,6 +863,37 @@ body.home { padding: 0; }
   gap: 0.3rem;
 }
 .canvas-keywords .pill { font-size: 0.72rem; }
+/* in the panel, the title's tags take the frames' grey */
+.viewport .canvas-keywords .pill { background: var(--frame-base); }
+/* a tag is coloured by the kind of work it names (src/_data/tagKinds.json):
+   strategy in amber, product in periwinkle, systems in sage, engineering in sky,
+   brand in rose, and the tools and technology used in a pale glass. each is a
+   soft two-tone gradient with a faint blurred glow of itself behind it, so the
+   tags read as a lit surface rather than flat chips */
+.pill.pill-k {
+  position: relative;
+  isolation: isolate;
+  color: var(--ink);
+  background: var(--pill-fill);
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, 0.7), 0 0 0 0.5px var(--pill-edge);
+}
+.pill.pill-k::before {
+  content: "";
+  position: absolute;
+  inset: 3px 8px;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--pill-fill);
+  filter: blur(7px);
+  opacity: 0.7;
+}
+.viewport .canvas-keywords .pill.pill-k { background: var(--pill-fill); }
+.pill-strategy { --pill-fill: linear-gradient(120deg, rgba(247, 218, 168, 0.8), rgba(242, 192, 158, 0.7)); --pill-edge: rgba(176, 120, 60, 0.18); }
+.pill-product { --pill-fill: linear-gradient(120deg, rgba(200, 208, 250, 0.8), rgba(224, 200, 246, 0.7)); --pill-edge: rgba(96, 92, 190, 0.16); }
+.pill-systems { --pill-fill: linear-gradient(120deg, rgba(190, 230, 204, 0.8), rgba(182, 224, 224, 0.7)); --pill-edge: rgba(60, 130, 100, 0.16); }
+.pill-engineering { --pill-fill: linear-gradient(120deg, rgba(182, 214, 246, 0.8), rgba(200, 228, 248, 0.7)); --pill-edge: rgba(50, 110, 170, 0.16); }
+.pill-brand { --pill-fill: linear-gradient(120deg, rgba(247, 200, 214, 0.8), rgba(245, 204, 190, 0.7)); --pill-edge: rgba(170, 80, 100, 0.16); }
+.pill-tools { --pill-fill: linear-gradient(120deg, rgba(255, 255, 255, 0.85), rgba(234, 231, 228, 0.8)); --pill-edge: rgba(17, 15, 15, 0.12); }
 .canvas-keywords .pill-year { color: var(--ink); }
 
 /* a discreet pill — meta tags (service, year, stack) and enumerated facts */
@@ -920,7 +978,8 @@ body.home { padding: 0; }
 .viewport-back,
 .viewport-title,
 .viewport-actions,
-.viewport-site {
+.viewport-site,
+.viewport-views-pill {
   background: var(--glass-tint);
   backdrop-filter: var(--glass-filter);
   -webkit-backdrop-filter: var(--glass-filter);
@@ -934,6 +993,7 @@ body.home { padding: 0; }
   .viewport-title,
   .viewport-actions,
   .viewport-site,
+  .viewport-views-pill,
   .viewport { background: var(--glass-tint-fallback); }
 }
 
@@ -958,9 +1018,63 @@ body.home { padding: 0; }
 /* the same optical settle as the breadcrumb crumbs, so both capsules' text sits
    on one baseline */
 .viewport-site span { position: relative; top: 0.03125rem; }
+/* the chevrons are centred on their capsules, but the type beside them sits a
+   little high, leaving room under its baseline. a half-pixel lift (at the base
+   size), the same step as the text's own settle, brings them level by eye;
+   matching the capital letters exactly (1.5px) read as too high */
+.viewport-btn svg,
+.viewport-back svg { position: relative; top: -0.03125rem; }
 .viewport-site:focus-visible { outline: none; box-shadow: var(--glass-edge), var(--glass-shadow), var(--focus-ring, 0 0 0 3px rgba(17,15,15,0.14)); }
 /* the layout rule sets display, so the hidden attribute needs restating */
 .viewport-site[hidden] { display: none; }
+
+/* the view switch — Overview and Case study, centred in the header and riding
+   the top of the panel with it. one glass capsule, a twin to the breadcrumb;
+   the view being read is inverted on a chip of the site's ink, so it reads as
+   chosen before you press the other. shown only
+   for a project with a case study. */
+.viewport-views {
+  display: flex;
+  justify-content: center;
+}
+/* the header lets clicks through its empty parts; so does the switch's row on
+   a phone, where it spans the width — only the capsule itself takes them */
+.viewport-bar .viewport-views { pointer-events: none; }
+.viewport-views[hidden] { display: none; }
+.viewport-views-pill {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 2px;
+  box-sizing: border-box;
+  height: var(--capsule);
+  padding: 3px;
+  pointer-events: auto;
+}
+.viewport-view {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 1.05em;
+  border-radius: 999px;
+  font-family: var(--serif);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--muted);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color 0.2s var(--ease), background-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.viewport-view:hover { color: var(--ink); }
+.viewport-view.is-selected,
+.viewport-view.is-selected:hover {
+  color: rgba(255, 255, 255, 0.92);
+  background: #2a2727;
+}
+/* the same optical settle as the breadcrumb crumbs, so the switch's text sits
+   on the breadcrumb's baseline */
+.viewport-view span { position: relative; top: 0.03125rem; }
+/* a paper gap inside the ring, so it reads on the dark chip as well as the glass */
+.viewport-view:focus-visible { outline: none; box-shadow: 0 0 0 1.5px var(--paper), 0 0 0 3px rgba(17, 15, 15, 0.4); }
+@media (prefers-reduced-motion: reduce) { .viewport-view { transition: none; } }
 
 /* ---- the lightbox — the rail square is a crop, so opening restores the shot
    whole: contained, never cropped, over a dimmed page. ---- */
@@ -1081,10 +1195,28 @@ body.lightbox-open { overflow: hidden; }
    Mountains takes its own Payne's indigo */
 .lnk[data-id="pagenineteen"].is-active { color: #6f66c8; }
 .lnk[data-id="mountains"].is-active { color: #353d59; }
+/* Enable takes the umber of its own Today area — the prototype's home colour */
+.lnk[data-id="enable"].is-active { color: #553826; }
 /* every paragraph in the index keeps the same breath — the header stack's
    0.55rem is the reference */
 .prose-block { margin-top: 0.55rem; }
 
+/* the recent-work lines — the client sentence's list, one project to a line
+   in the bio's own voice. no bullets; a line too long for the column wraps
+   under its own text (hanging indent), never under the project's name. */
+.work-lines {
+  list-style: none;
+  margin: 0.2rem 0 0;
+  padding: 0;
+  font-size: var(--text);
+  line-height: 1.5;
+  color: var(--muted);
+}
+.work-lines li {
+  padding-left: 1em;
+  text-indent: -1em;
+  text-wrap: pretty;
+}
 /* small rubricated glyphs before each shelf label — the studio's instruments,
    drawn in the muted tier: an armillary sphere, a pair of dividers, a letter */
 .glyph {
@@ -2174,6 +2306,7 @@ body.essay {
 
   .viewport {
     --canvas-pad: 1.25rem;
+    --bar-pad: 0.8rem;
     display: flex;
     flex-direction: column;
     min-height: 100%;
@@ -2187,13 +2320,18 @@ body.essay {
     top: 0;
     z-index: 3;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.6rem;
-    padding: 0.8rem var(--canvas-pad);
+    padding: var(--bar-pad) var(--canvas-pad);
     background: transparent;
     pointer-events: none;
   }
   .viewport-bar > * { pointer-events: auto; }
+  /* a phone's header row is full with the back button, breadcrumb and nav, so
+     the view switch takes a centred row of its own just beneath them */
+  .viewport-bar .viewport-views { order: 1; flex: 0 0 100%; }
+  .viewport-end { flex: 0 0 auto; display: flex; align-items: center; gap: 0.6rem; }
   /* material comes from the global glass contract; only layout lives here */
   .viewport-back {
     display: grid;
@@ -2378,3 +2516,919 @@ body.essay {
   aspect-ratio: 3 / 2;
 }
 /* the wide tile keeps its 3:2 at the squares height at every width, and scrolls with them */
+
+/* ═══ FRAMES ═════════════════════════════════════════════════════════════════
+   A project with a `frame` ratio in studio.json locks every still into that
+   rectangle instead of the square: desktop products are shown whole, at their
+   screens' own shape (Enable's are 1440×900 captures, so 16:10). Each frame is
+   as wide as the text column, so the first lines up with the text above it and
+   the next peeks in from the right, and it never stands taller than 62% of the
+   window. Scrolling, snapping and the lightbox are the rail's own. */
+.canvas-gallery.is-frames .rail-item,
+.canvas-gallery.is-frames .rail-item:first-child:nth-last-child(odd) {
+  flex: 0 0 var(--frame-w);
+  width: var(--frame-w);
+  aspect-ratio: var(--rail-ratio, 16 / 10);
+}
+@media (min-width: 64rem) {
+  .canvas-gallery.is-frames {
+    --frame-w: min(var(--content-max, 46.5rem), 100cqw - 2 * var(--rail-inset), 62vh * (var(--rail-ratio, 16 / 10)));
+  }
+}
+@media (max-width: 63.999rem) {
+  /* on a phone the frame takes the square's width, leaving the next one peeking */
+  .canvas-gallery.is-frames { --frame-w: min(82cqw, 40rem); }
+}
+
+/* ═══ STORY ══════════════════════════════════════════════════════════════════
+   A project with a file in _data/stories/ reads as one vertical story instead
+   of the gallery: the hero, the facts row, then sections — a mono label, the
+   text, and its pictures. Every picture sits in the same 4:3 frame of soft
+   grey, wider than the text, and floats on it as a card; a film made on that
+   grey fills it. A picture we don't have yet is a marked frame that says what's
+   needed. Type comes from the site's existing roles. */
+
+/* every picture's frame runs past the text column, out to the panel's own edges
+   less 0.25rem (4px at 1440) a side on the desktop panel, the hero's own inset,
+   or 0.5rem on a phone, where the hero takes that too, so the grey is a wide band
+   and the picture floats on it at about the column's width. the panel is the measuring
+   container; its width is read once, on the set, and passed down as a fixed
+   length, so a figure that measures itself (a drawing) still gets the panel's.
+   the column is centred in the panel, so half the difference places the frame */
+@property --panel-w { syntax: "<length>"; inherits: true; initial-value: 0px; }
+/* every frame is the same 4:3, the small tiles of a grid too, so pictures and
+   text fall into one even beat down the page. near square, but short enough that
+   a whole frame and the text after it fit in the window at 1440 by 900 */
+.viewport { container-type: inline-size; --frame-inset: 0.5rem; --frame-ratio: 4 / 3; }
+/* the one soft grey across the site's frames, pull quotes, caption bands and
+   detail boxes: a warm mid grey at 6%, so the panel's glass shows through it.
+   the grey is darker than it looks, because only a little of it lands; over
+   white it reads as #f7f6f6. a frame whose picture was made on the older flat
+   grey keeps that grey, opaque (see .story-frame) */
+.viewport {
+  --frame-base: rgba(140, 130, 120, 0.06);
+  --frame-radius: 24px;
+  /* one corner for every picture and film inside a frame: a floating still or
+     film, a desktop screen, a small part in a row */
+  --media-radius: 10px;
+  /* and one thin edge round each of them: a soft hairline in the site's ink, a
+     shade firmer than --rule */
+  --media-edge: rgba(17, 15, 15, 0.1);
+  --media-edge-w: 0.5px;
+}
+/* on the desktop panel every frame sits the hero's 0.25rem in from the panel's
+   sides, and its corners follow the panel's curve the same 0.25rem in */
+@media (min-width: 64rem) {
+  .viewport {
+    --frame-inset: 0.25rem;
+    --frame-radius: calc(var(--panel-radius) - var(--frame-inset));
+  }
+}
+/* the text column's width, the same sum at both breakpoints: the measure, or
+   the panel less its side padding where the panel is narrower. the picture or
+   film inside a frame is held to it, so its edges line up with the text */
+.canvas-set {
+  --panel-w: 100cqw;
+  --col-w: min(var(--content-max, 46.5rem), var(--panel-w) - 2 * var(--canvas-pad, 2.5rem));
+}
+.story-fig > .story-frame,
+.story-still > .story-frame,
+.story-journey > .story-frame {
+  width: calc(var(--panel-w) - 2 * var(--frame-inset));
+  margin-left: calc(50% - var(--panel-w) / 2 + var(--frame-inset));
+}
+/* on a phone the hero opens the page 0.5rem under the header's capsules, pulled
+   up through the header's own padding beneath them */
+.story-fig.story-hero { margin: calc(var(--frame-inset) - var(--bar-pad)) 0 var(--band-gap, 2.1rem); }
+@media (max-width: 63.999rem) {
+  /* the head below it brings its own padding on a phone */
+  .story-fig.story-hero { margin-bottom: 0.9rem; }
+}
+
+@media (min-width: 64rem) {
+  /* on the desktop panel it rises under the header itself, a cover for the
+     project held just 0.25rem (4px at 1440) off the panel's top and sides, and
+     the header's capsules float over its grey. the header is one row of
+     capsules, so its height is known. its corners sit in the panel's, so they
+     follow the panel's curve, the same 0.25rem in */
+  .story-fig.story-hero {
+    --hero-inset: 0.25rem;
+    margin-top: calc(var(--hero-inset) - 2 * var(--bar-pad) - var(--capsule));
+  }
+  .story-fig.story-hero > .story-frame {
+    width: calc(var(--panel-w) - 2 * var(--hero-inset));
+    margin-left: calc(50% - var(--panel-w) / 2 + var(--hero-inset));
+    border-radius: calc(var(--panel-radius) - var(--hero-inset));
+  }
+  /* the hero sits under the header itself, so the set needs no top padding */
+  .canvas-set.is-story { padding-top: 0; }
+  /* the head band already sets the gap above the facts row */
+  .canvas-set.is-story .canvas-margin { margin-top: 0; }
+}
+@media (max-width: 63.999rem) {
+  .story { padding: 0 var(--canvas-pad); }
+}
+
+/* the overview opens, under the title, with one sentence on what the project is
+   and who it is for, set as a pull quote; the details follow one band gap below,
+   with no rule above them */
+.story-milestone.story-lede { margin-top: 0; }
+@media (max-width: 63.999rem) {
+  .story-milestone.story-lede { margin-top: 1rem; }
+}
+.canvas-set.is-story .canvas-margin { border-top: 0; padding-top: 0; }
+.canvas-set.is-story .story-lede + .canvas-margin { margin-top: var(--band-gap, 2.1rem); }
+/* the same row of details inside a section, under its pull quote: within the
+   story column's own inset, the text after it a gap below */
+.canvas-set.is-story .story .canvas-margin { margin-top: 1.1rem; }
+.canvas-set.is-story .story .story-label + .canvas-margin { margin-top: 0; }
+.story .canvas-margin + .story-p,
+.story .canvas-margin + .story-list { margin-top: 1.1rem; }
+@media (max-width: 63.999rem) {
+  .story .canvas-margin { padding-left: 0; padding-right: 0; }
+}
+/* in a story each detail is a box of the frames' grey, two to a row (one on a
+   narrow phone), the boxes in a row as tall as the tallest. the row runs as wide
+   as the frames and the pull quote, the frame inset from the panel's sides, the
+   boxes 0.25rem (4px at 1440) apart and the same under a pull quote. each box's
+   padding is the pull quote's, so its text starts where the prose does. the
+   label and its text are both at the body size: the label in the grey, the text
+   under it in ink */
+.canvas-set.is-story .canvas-margin {
+  --quote-pad: calc((var(--panel-w) - 2 * var(--frame-inset) - var(--col-w)) / 2);
+  width: calc(var(--panel-w) - 2 * var(--frame-inset));
+  margin-left: calc(50% - var(--panel-w) / 2 + var(--frame-inset));
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25rem;
+}
+/* an odd count keeps every fact: the last box takes the whole row */
+.canvas-set.is-story .margin-note.is-wide { grid-column: 1 / -1; }.canvas-set.is-story .story-milestone + .canvas-margin { margin-top: 0.25rem; }
+@media (max-width: 30rem) {
+  .canvas-set.is-story .canvas-margin { grid-template-columns: minmax(0, 1fr); }
+}
+.canvas-set.is-story .margin-note {
+  /* the pull quote's own padding, so the grey holds its text the same way in a
+     quote and in a box */
+  padding: clamp(1.15rem, var(--quote-pad), 3.5rem) var(--quote-pad);
+  /* the frames' and pull quotes' own corner */
+  border-radius: var(--frame-radius);
+  corner-shape: squircle;
+  background: var(--frame-base);
+}
+.canvas-set.is-story .margin-label {
+  font-family: var(--serif);
+  font-size: var(--text);
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--muted);
+}
+.canvas-set.is-story .margin-value {
+  margin-top: 0.15rem;
+  font-size: var(--text);
+  line-height: 1.5;
+  color: var(--ink);
+}
+/* where a detail's number comes from, under it, its link underlined, in the
+   caption's small grey voice */
+.margin-source { margin-top: 0.35rem; }
+.canvas-set.is-story .margin-source {
+  margin-top: 0.5rem;
+  font-size: var(--text);
+  color: var(--muted);
+}
+.margin-source a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color 0.2s var(--ease);
+}
+.margin-source a:hover { text-decoration-color: currentColor; }
+.story-sub + .story-fig { margin-top: 0.9rem; }
+
+/* the case study has no facts row or hero above it, so its first section sits
+   one band gap under the head, as the overview's facts row does */
+.story-view[data-view="case-study"] .story-section:first-child { margin-top: var(--band-gap, 2.1rem); }
+@media (min-width: 64rem) {
+  .story-view[data-view="case-study"] .story-section:first-child { margin-top: 0; }
+}
+/* switching views, the new one settles in */
+.story-view.is-entering { animation: story-view-in 0.35s var(--ease) both; }
+@keyframes story-view-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* a section break is the studio mark in a soft grey, centred in the panel, a
+   size down from the index's own (24px against 32px), then the section's
+   title set as the project's own title is (.canvas-headline): the serif at the
+   body size and full ink. the pull quote follows straight under it */
+/* the mark sits optically centred in its break: the same gap above it as below
+   it, one and a half band gaps. where the neighbour is a line of text, the gap
+   is measured to the text itself, not its line box: a title under the mark is
+   trimmed to its capitals, a paragraph ending the section above to its baseline
+   (text-box; a browser without it just shows a little more air on that side) */
+.story-section { --break-gap: calc(var(--band-gap, 2.1rem) * 1.5); margin-top: var(--break-gap); }
+.story-divider { display: block; margin: 0 0 var(--break-gap); }
+.story-divider + .story-label { text-box: trim-start cap alphabetic; }
+.story-section > :is(.story-p, .story-list, .story-source):last-child { text-box: trim-end cap alphabetic; }
+.story-divider .brand-mark {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  color: rgba(17, 15, 15, 0.25);
+}
+/* a section's hero follows its mark, and the title follows the hero as the
+   project's title follows the page's hero */
+.story-fig.story-section-hero { margin: 0 0 var(--band-gap, 2.1rem); }
+.story-label {
+  margin: 0 0 0.75rem;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--text);
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: var(--ink);
+}
+/* a long read, so the text sits at full ink rather than the muted body voice */
+.story-p,
+.story-list,
+.story-milestone-text {
+  font-family: var(--serif);
+  font-size: var(--text);
+  line-height: 1.58;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+.story-p { margin: 0.75rem 0 0; }
+/* where a figure in the text comes from: the caption's small grey voice, under
+   the paragraphs it supports, with the source linked */
+.story-source {
+  margin: 0.75rem 0 0;
+  font-family: var(--serif);
+  font-size: var(--text);
+  line-height: 1.5;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+.story-source a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color 0.2s var(--ease);
+}
+.story-source a:hover { text-decoration-color: currentColor; }
+
+/* key journeys, stacked at every width. each opens with its picture, then its
+   title in ink, then its text at the body size in the grey */
+.story-journeys {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 2.75rem;
+}
+.story-journey { margin: 0; }
+.story-journey-title {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--text);
+  line-height: 1.45;
+  color: var(--ink);
+}
+.story-journey-sub {
+  margin: 0.3rem 0 0;
+  font-family: var(--serif);
+  font-size: var(--text);
+  line-height: 1.58;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+/* the title sits a short gap under its picture */
+.story-journey > .story-frame + .story-journey-title { margin-top: 1.1rem; }
+/* one rule for ink and grey on every project page: titles, pull quotes, a
+   section's own paragraphs and lists, and each detail's answer are in ink; the
+   text that explains a title or a picture (an entry's text, captions, sources,
+   keys, a detail's label) is in the grey. so an entry's text is grey throughout,
+   under its dark title, with no sentence of it in ink */
+.story-journey-problem { color: inherit; }
+.story-label + .story-p,
+.story-label + .story-list,
+.story-label + .canvas-margin { margin-top: 0; }
+.story-list { margin: 0.75rem 0 0; padding-left: 1.15rem; }
+.story-list li + li { margin-top: 0.4rem; }
+.story-list li::marker { color: var(--faint); }
+.story-p strong,
+.story-list strong { font-weight: 500; }
+/* a command-line option named in the prose, in the site's mono, a size down */
+.story-p code,
+.story-list code { font-family: var(--mono); font-size: 0.82em; white-space: nowrap; }
+/* a decision's own heading, and the line that says what it answers */
+.story-sub {
+  margin: 2.4rem 0 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--text);
+  line-height: 1.45;
+  color: var(--ink);
+}
+.story-label + .story-sub { margin-top: 0; }
+/* what a decision answers, a line straight under its heading */
+.story-sub + .story-p { margin-top: 0.4rem; }
+/* a pull quote, the section's point in a sentence or two, read at a glance: a
+   band of the frames' soft grey as wide as the picture frames, the quote at the
+   prose's own size in full ink. its side padding is the gap between the band and
+   the text column, so the quote's lines are as wide as the prose and the
+   pictures. above and below, the same padding, so the text floats in the band
+   as a picture floats in its frame, but held between 1.15rem and 3.5rem
+   (56px at 1440): on a very wide panel the side gap grows large, and the band
+   would grow tall with it */
+.story-milestone {
+  --quote-pad: calc((var(--panel-w) - 2 * var(--frame-inset) - var(--col-w)) / 2);
+  width: calc(var(--panel-w) - 2 * var(--frame-inset));
+  margin: 1.6rem 0 0 calc(50% - var(--panel-w) / 2 + var(--frame-inset));
+  padding: clamp(1.15rem, var(--quote-pad), 3.5rem) var(--quote-pad);
+  /* the frames' own corner and grey, so the quote and the pictures read as one family */
+  border-radius: var(--frame-radius);
+  corner-shape: squircle;
+  background: var(--frame-bg, var(--frame-base));
+  color: var(--ink);
+}
+.story-milestone-kicker {
+  margin: 0 0 0.45rem;
+  font-family: var(--mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.story-milestone-text { margin: 0; color: var(--ink); }
+/* the text-block trial (a story with `textBlocks`, Lightnote first, 12 Oct): each
+   run of text between pictures is one block of the frames' grey, as wide as the
+   frames and padded as a pull quote is, so the page reads picture, text,
+   picture. every tile in a section (block, quote, details, picture) stacks
+   0.25rem (4px at 1440) apart. inside a box the title is in ink and the text
+   under it in the grey: a detail's label over its answer, a step's heading over
+   its paragraphs. (dark quotes were tried the same day and turned down) */
+.canvas-set.is-blocks .story-block {
+  --quote-pad: calc((var(--panel-w) - 2 * var(--frame-inset) - var(--col-w)) / 2);
+  width: calc(var(--panel-w) - 2 * var(--frame-inset));
+  margin: 0.25rem 0 0 calc(50% - var(--panel-w) / 2 + var(--frame-inset));
+  padding: clamp(1.15rem, var(--quote-pad), 3.5rem) var(--quote-pad);
+  border-radius: var(--frame-radius);
+  corner-shape: squircle;
+  background: var(--frame-base);
+}
+.canvas-set.is-blocks .story-block > :first-child { margin-top: 0; }
+.canvas-set.is-blocks .margin-label,
+.canvas-set.is-blocks .story-block .story-sub { color: var(--ink); }
+.canvas-set.is-blocks .margin-value,
+.canvas-set.is-blocks .story-milestone-text,
+.canvas-set.is-blocks .story-block .story-p,
+.canvas-set.is-blocks .story-block .story-list { color: var(--muted); }
+.canvas-set.is-blocks .story-section > .story-milestone,
+.canvas-set.is-blocks .story-section > .story-block,
+.canvas-set.is-blocks .story-section > .story-fig:not(.story-section-hero),
+.canvas-set.is-blocks .story-section > .canvas-margin { margin-top: 0.25rem; }
+.canvas-set.is-blocks .story-section > .story-label + * { margin-top: 0; }
+/* only picture frames and text boxes: the project's title and tags open the
+   first box, and each section's title opens the box under it, in ink, a short
+   gap above the box's own text. the box follows its picture, or the section
+   mark, at the same 0.25rem as every other tile */
+.canvas-set.is-blocks .story-lede > .canvas-head { margin: 0 0 1.1rem; padding: 0; }
+.canvas-set.is-blocks .story-milestone > .story-label,
+.canvas-set.is-blocks .story-block > .story-label { margin: 0 0 0.6rem; color: var(--ink); }
+.canvas-set.is-blocks .story-block > .story-label:only-child { margin-bottom: 0; }
+.canvas-set.is-blocks .story-fig.story-hero,
+.canvas-set.is-blocks .story-fig.story-section-hero { margin-bottom: 0; }
+.canvas-set.is-blocks .story-section > .story-divider + * { margin-top: 0; }
+.canvas-set.is-blocks .story-milestone.story-lede { margin-top: 0.25rem; }
+/* a section's statement and the boxes under it, when the boxes come to an odd
+   number, share one grid of two: the statement takes the first cell, so no box
+   is left alone in a row. the boxes' own list steps aside (display: contents) and
+   each box is a cell of the shared grid */
+.canvas-set.is-blocks .story-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25rem;
+  width: calc(var(--panel-w) - 2 * var(--frame-inset));
+  margin: 0.25rem 0 0 calc(50% - var(--panel-w) / 2 + var(--frame-inset));
+}
+.canvas-set.is-blocks .story-section > .story-divider + .story-row { margin-top: 0; }
+.canvas-set.is-blocks .story-row > .story-milestone { width: auto; margin: 0; }
+/* text boxes that would otherwise meet one above the other, set side by side two
+   to a row in one band (storyOrder's `band`), as tall as each other; an odd last
+   box runs the row's full width */
+.canvas-set.is-blocks .story-band {
+  /* the boxes' own padding, as a row of details has it */
+  --quote-pad: calc((var(--panel-w) - 2 * var(--frame-inset) - var(--col-w)) / 2);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25rem;
+  width: calc(var(--panel-w) - 2 * var(--frame-inset));
+  margin: 0.25rem 0 0 calc(50% - var(--panel-w) / 2 + var(--frame-inset));
+}
+.canvas-set.is-blocks .story-section > .story-divider + .story-band { margin-top: 0; }
+.canvas-set.is-blocks .story-band > * { width: auto; margin: 0; }
+.canvas-set.is-blocks .story-band > .is-wide { grid-column: 1 / -1; }
+@media (max-width: 30rem) {
+  .canvas-set.is-blocks .story-band { grid-template-columns: minmax(0, 1fr); }
+}
+.canvas-set.is-blocks .story-row > .canvas-margin { display: contents; }
+@media (max-width: 30rem) {
+  .canvas-set.is-blocks .story-row { grid-template-columns: minmax(0, 1fr); }
+}
+/* a step that shows a feature: its picture, then the text box that explains it,
+   stacked at every width, the box 0.25rem under its frame. a key journey is drawn
+   the same way, its title and text in a box under its picture. (side by side on
+   the desktop panel was tried on 13 Oct 2026 and undone the same day: "lets go
+   back to stacking images and text on top of each other") */
+.canvas-set.is-blocks .story-step > .story-fig { margin: 0; }
+.canvas-set.is-blocks .story-section > .story-step,
+.canvas-set.is-blocks .story-journeys > li + li { margin-top: 0.25rem; }
+.canvas-set.is-blocks .story-fig.is-journeys + .story-fig.is-journeys { margin-top: 0.25rem; }
+.canvas-set.is-blocks .story-journeys { gap: 0; }
+.canvas-set.is-blocks .story-step > .story-block { margin-top: 0; }
+/* the box may come before its picture (storyOrder's `flip`), so the gap goes
+   between whichever two tiles meet */
+.canvas-set.is-blocks .story-step > .story-fig + .story-block,
+.canvas-set.is-blocks .story-step > .story-frame + .story-block,
+.canvas-set.is-blocks .story-step > .story-block + .story-fig,
+.canvas-set.is-blocks .story-step > .story-block + .story-frame { margin-top: 0.25rem; }
+/* text with no heading of its own joins the box before it (storyOrder, 13 Oct);
+   in a statement's box it reads in the statement's grey */
+.canvas-set.is-blocks .story-milestone > .story-p,
+.canvas-set.is-blocks .story-milestone > .story-list { margin: 0.9rem 0 0; color: var(--muted); }
+/* each section opens with one, straight under its label: the section's point, for a
+   reader skimming from quote to quote and stopping at the designs */
+.story-label + .story-milestone { margin-top: 0; }
+.story-milestone + .story-p,
+.story-milestone + .story-list,
+.story-milestone + .story-sub { margin-top: 1.1rem; }
+
+
+.story-fig { margin: 1.5rem 0 0; }
+/* a group of pictures is named as a heading in the text is, not with a label
+   of its own */
+.story-fig-label {
+  margin: 0 0 0.9rem;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--text);
+  line-height: 1.45;
+  color: var(--ink);
+}
+.story-fig + .story-fig { margin-top: 1.1rem; }
+/* journeys grouped by the step of the build they belong to: each group opens on
+   its step's label, and the groups sit as far apart as the journeys inside them */
+.story-fig.is-journeys + .story-fig.is-journeys { margin-top: 2.75rem; }
+/* a step's still sits above its films, as far from them as they are from each other */
+.story-still { margin: 0 0 2.75rem; }
+/* a film made on the frame's grey is shown whole, on that same grey, whatever
+   the frame's shape */
+.story-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.story-frame {
+  position: relative;
+  aspect-ratio: var(--frame-ratio, 16 / 9);
+  overflow: hidden;
+  background: var(--frame-bg, var(--frame-base));
+  /* one radius across every frame and pull quote on the site */
+  border-radius: var(--frame-radius);
+  corner-shape: squircle;
+}
+/* a film or still made on the grey fills its frame, and was captured on the
+   older grey (#f3f1ef), so its frame and any caption band under it keep that
+   grey, and the picture meets the frame's side bands without a seam */
+.story-frame:has(> .story-video),
+.story-frame:has(> .story-shot:not(.is-card, .is-device)),
+.story-frame:has(> .story-video) + .story-cap,
+.story-frame:has(> .story-shot:not(.is-card, .is-device)) + .story-cap {
+  --frame-bg: #f3f1ef;
+}
+
+/* a picture with its caption: the two sit together as one group, centred in
+   the frame, the caption a short gap under the picture and as wide as the text
+   column. the frame keeps its 4:3 and grows only when the caption needs more
+   room (on a phone, say); the picture is never smaller than it is without one */
+.story-frame.has-cap {
+  --frame-span: calc(var(--panel-w) - 2 * var(--frame-inset));
+  display: grid;
+  align-content: center;
+  row-gap: 0.75rem;
+  padding: calc(var(--frame-span) * 0.05) calc((var(--frame-span) - var(--col-w)) / 2);
+  overflow: visible;
+}
+.story-frame.has-cap > .story-shot,
+.story-frame.has-cap > .story-float {
+  position: relative;
+  inset: auto;
+  padding: 0;
+}
+/* the still is as wide as the text column, or narrower if that would make it
+   taller than the picture area of a 4:3 frame. its shape (--ratio, set on the
+   image by the page) holds its place before it loads */
+.story-frame.has-cap > .story-shot.is-card img {
+  width: min(100%, var(--frame-span) * 0.65 * (var(--ratio, 16 / 10)));
+  height: auto;
+  aspect-ratio: var(--ratio);
+}
+.story-frame.has-cap > .story-float { container-type: inline-size; }
+.story-frame.has-cap > .story-float .story-video {
+  width: min(100cqw, var(--frame-span) * 0.65 * (var(--ratio, 16 / 9)), 100cqw * 9 / 16 * var(--ratio, 16 / 9));
+}
+.story-frame.has-cap > .story-cap { margin: 0; }
+/* a square or upright picture stands narrower than the text column, so its
+   caption is centred under it rather than hanging from the column's left edge.
+   on a phone the picture fills the column and the caption stays to the left */
+@media (min-width: 64rem) {
+  .story-frame.has-cap.is-upright > .story-cap { text-align: center; }
+}
+
+/* on a phone the frame is barely wider than the text, so a 4:3 frame leaves a
+   wide band of grey above and below a landscape picture and a sliver at its
+   sides. there, a picture or film that floats on the grey sets the frame's
+   height instead: the frame hugs it with the same gap on every side as at its
+   sides. a shot too tall for the screen is held to 80% of its height and
+   centred. films made on the grey (which fill their frame) and drawings keep
+   their shape */
+@media (max-width: 63.999rem) {
+  .story-frame:has(> .story-shot.is-card, > .story-float, > .story-shot.is-device) {
+    aspect-ratio: auto;
+  }
+  .story-frame:not(.has-cap) > .story-shot.is-card,
+  .story-frame:not(.has-cap) > .story-float,
+  .story-frame:not(.has-cap) > .story-shot.is-device {
+    position: relative;
+    inset: auto;
+    /* a button shrinks to its content in the flow; it takes the frame's width */
+    width: 100%;
+    padding: calc((100% - var(--col-w)) / 2);
+  }
+  .story-frame > .story-float { container-type: inline-size; }
+  .story-frame > .story-float .story-video { width: 100%; }
+  .story-frame > .story-shot.is-card img {
+    width: min(100%, 80svh * (var(--ratio, 16 / 10)));
+    height: auto;
+    aspect-ratio: var(--ratio);
+  }
+  .story-frame.has-cap { padding: calc((var(--frame-span) - var(--col-w)) / 2); }
+}
+/* a studio drawing, set inline, floats on the frame's grey like any picture: cut
+   to its own content, as wide as the text column, its height from its shape, and
+   centred with its key and caption. its cards' soft shadows may fall past its edge */
+.story-drawing svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+/* under it, inside the frame, a key to the few symbols it uses, at the body size. when the figure is
+   phone-narrow the labels inside the drawing are too small to read, so they
+   give way to numbers, and the numbers are listed under the key */
+.story-fig.is-drawing { container-type: inline-size; }
+.story-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--serif);
+  font-size: var(--text);
+  line-height: 1.5;
+  color: var(--muted);
+}
+.story-key-item { display: inline-flex; align-items: center; gap: 0.45rem; }
+.story-key-mark { flex: none; width: 22px; height: 14px; color: rgba(17, 15, 15, 0.45); }
+.story-calls { display: none; }
+@container (max-width: 520px) {
+  .story-drawing .dw-text { display: none; }
+  .story-drawing .dw-num { display: inline; }
+  .story-calls {
+    display: grid;
+    gap: 0.3rem;
+    margin: 0.7rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--serif);
+    font-size: var(--text);
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .story-calls li { display: flex; align-items: baseline; gap: 0.55rem; }
+  .story-call-n {
+    flex: none;
+    display: inline-grid;
+    place-items: center;
+    width: 1.35rem;
+    height: 1.35rem;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    font-size: 0.62rem;
+    transform: translateY(-0.05rem);
+  }
+  .story-call-note { color: var(--muted); }
+}
+.story-shot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+.story-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* a shot floats as a card on the grey, shown whole, whatever its shape: as wide
+   as the text column, or as tall as the frame allows if that comes first (a
+   phone's screen, say) */
+.story-shot.is-card { padding: 5% calc((100% - var(--col-w)) / 2); }
+.story-shot.is-card img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: var(--media-radius);
+  /* the shadow follows the picture's own outline, so a screen cut out with its
+     rounded corners (a phone, say) casts it from those corners. drop-shadow's
+     blur is half box-shadow's for the same softness */
+  filter: drop-shadow(0 1px 1px rgba(24, 18, 12, 0.06)) drop-shadow(0 8px 12px rgba(24, 18, 12, 0.09));
+}
+/* a still of a product on its own dark canvas (Lightnote's) gets a margin of that
+   canvas inside its card, so its parts never run to the picture's edge. only
+   stills: a film's background changes as it plays, so a margin round it shows as
+   a band, and a film fills its card. light wireframes, on their own white, are
+   left as they are (a figure with `"matte": false` marks its frames .no-matte) */
+.has-matte .story-frame:not(.no-matte) .story-shot.is-card img {
+  padding: 8%;
+  background: var(--matte);
+}
+/* a film floats the same way, at its poster's shape (--ratio, set on the video
+   by the page): as wide as the text column, but never taller than a 16:9 film
+   that wide, so a square film (Mountains') stands as tall as the wide ones
+   around it, centred, rather than filling the frame's height */
+.story-float {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5% calc((100% - var(--col-w)) / 2);
+  container-type: size;
+}
+.story-float .story-video {
+  width: min(100cqw, 100cqh * var(--ratio, 16 / 9), 100cqw * 9 / 16 * var(--ratio, 16 / 9));
+  height: auto;
+  aspect-ratio: var(--ratio, 16 / 9);
+  object-fit: cover;
+  border-radius: var(--media-radius);
+  filter: drop-shadow(0 1px 1px rgba(24, 18, 12, 0.06)) drop-shadow(0 8px 12px rgba(24, 18, 12, 0.09));
+}
+
+/* a row of parts of one component in one frame, each cropped whole from the product
+   with its own interface (a box may also carry a name beneath it). on a phone a
+   row of more than three breaks into threes, and the frame grows to hold them */
+.story-boxes {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 1rem 2%;
+  /* the row runs as wide as the text column */
+  padding: 0 calc((100% - var(--col-w)) / 2);
+}
+/* the boxes share the row: --n, how many there are, is set on the row by the page.
+   wide boxes ask for fewer to a row (--per-row) and wrap onto a second */
+.story-boxes { --cols: var(--per-row, var(--n, 5)); }
+.story-box { margin: 0; flex: 0 0 calc((100% - (var(--cols) - 1) * 2%) / var(--cols)); min-width: 0; }
+.story-box img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--media-radius);
+  filter: drop-shadow(0 1px 1px rgba(24, 18, 12, 0.06)) drop-shadow(0 6px 9px rgba(24, 18, 12, 0.09));
+}
+.story-box figcaption {
+  margin: 0.5rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+}
+@media (max-width: 40rem) {
+  .story-frame:has(> .story-boxes) { aspect-ratio: auto; }
+  .story-boxes { position: static; padding: 1.4rem calc((100% - var(--col-w)) / 2); gap: 0.8rem 4%; }
+  .story-box { flex-basis: calc((100% - (min(var(--cols), 3) - 1) * 4%) / min(var(--cols), 3)); }
+  /* wide boxes go two to a row on a phone */
+  .story-boxes.is-wide .story-box { flex-basis: 48%; }
+}
+
+/* phone screens side by side in one 4:3 frame, each floating whole as a card on
+   the grey with its name beneath in the boxes' mono. a screen stands as tall as
+   a lone shot does in its frame (the frame's width less 5% above and below),
+   less room for its name, so the pair keeps the size one phone had alone */
+.story-phones {
+  --span: calc(var(--panel-w) - 2 * var(--frame-inset));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0 calc(var(--span) * 0.06);
+  /* the row stays within the text column, like any picture */
+  padding-inline: calc((var(--span) - var(--col-w)) / 2);
+}
+/* each picture stands as tall as a lone phone screen would, unless the row would
+   then run past the text column (three paintings, say): then all of them take the
+   one height at which the row fits (--rsum, the sum of their widths over their
+   heights, and --n, how many, are set on the frame by the page) */
+.story-phone {
+  margin: 0;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.story-phone > .story-shot.is-card {
+  position: relative;
+  inset: auto;
+  padding: 0;
+}
+.story-phone > .story-shot.is-card img {
+  width: auto;
+  height: min(calc(var(--span) * 0.65 - 1.5rem), calc((var(--col-w) - (var(--n, 2) - 1) * var(--span) * 0.06) / var(--rsum, 1)));
+  max-width: none;
+  max-height: none;
+}
+.story-phone figcaption {
+  margin: 0.7rem 0 0;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+/* on a phone the frame hugs the pair instead: the two screens share the text
+   column's width, and the frame is as tall as they are */
+@media (max-width: 63.999rem) {
+  .story-phones {
+    aspect-ratio: auto;
+    align-items: flex-start;
+    gap: 0 5%;
+    padding: calc((100% - var(--col-w)) / 2);
+  }
+  .story-phone { flex: 1 1 0; min-width: 0; }
+  .story-phone > .story-shot.is-card { width: 100%; }
+  .story-phone > .story-shot.is-card img { width: 100%; height: auto; }
+}
+
+/* a diagram and a document in one frame: the diagram takes the left three
+   fifths, the document stands beside it as a card, both shown whole */
+.story-pair .story-shot:nth-child(1) { inset: 4% 38% 4% 2%; }
+.story-pair .story-shot:nth-child(2) { inset: 7% 4% 7% 64%; padding: 0; }
+
+/* a set of pictures (the advisor's tools, a run of layouts) is never a grid:
+   every picture takes the full width in its own frame with its caption inside,
+   and the frames stack 0.25rem (4px at 1440) apart, as the detail boxes do */
+.story-fig > .story-frame + .story-frame { margin-top: 0.25rem; }
+
+/* the desktop frame, one across every project: a whole website or app screen,
+   still or film (`device` in the story data), is framed as a screen, a one-pixel
+   soft grey edge with rounded corners and a soft shadow, so the product reads as
+   one screen rather than floating loose in the frame. no browser bar and no
+   laptop body; a film recorded with its own window bar is cropped to the screen
+   first. as wide as the text column in a frame; its edge and shadow are sized in
+   the shot's own width (cqw). close crops, phone screens and films made on the
+   grey keep their own treatment. clicking a still opens the plain shot */
+.story-shot.is-device { container-type: inline-size; padding: 0; }
+.device { display: block; width: var(--col-w, 78cqw); }
+.device-screen {
+  display: block;
+  /* the shared media edge: a half-pixel ring, very soft, round the shot, then
+     the screen's soft shadow */
+  box-shadow: 0 0 0 var(--media-edge-w) var(--media-edge), 0 1.2cqw 3cqw rgba(24, 18, 12, 0.12);
+  border-radius: var(--media-radius);
+}
+.story-shot.is-device .device-screen img,
+.story-shot.is-device .device-screen .story-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--media-radius);
+  object-fit: initial;
+}
+/* a film in the screen holds its poster's shape (--ratio, set by the page) before
+   it loads, and is not a zoom target */
+.story-shot.is-device .device-screen .story-video { aspect-ratio: var(--ratio, 16 / 10); object-fit: cover; }
+div.story-shot { cursor: auto; }
+/* a floating still or film carries the same thin edge as a desktop screen, half
+   a pixel, very soft, outside the picture and following its corner. phone screens and the
+   small parts in a row are left without: their files have their own rounded
+   corners cut in, which a square edge would not follow */
+.story-frame:not(.story-phones) > .story-shot.is-card img,
+.story-float .story-video {
+  /* a ring of shadow rather than an outline: Chrome rounds an outline thinner
+     than a pixel up to a whole one */
+  box-shadow: 0 0 0 var(--media-edge-w) var(--media-edge);
+}
+/* a step's first picture sits above the step's heading: the step break falls
+   before the picture, and the heading follows it at a short gap */
+.story-fig.leads-step { margin-top: 2.4rem; }
+.story-fig.leads-step + .story-sub { margin-top: 1.1rem; }
+
+.story-shot:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+
+/* a caption is the one small text that stays: the small body size, in the grey,
+   so it reads as a note on the picture rather than part of the story */
+.story-cap {
+  margin: 0.6rem 0 0;
+  font-family: var(--serif);
+  font-size: var(--small);
+  line-height: 1.5;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+/* a caption under a picture that fills its frame (a drawing, a film made on the
+   grey) sits in the picture's grey: the frame runs on below its 4:3 as a band of
+   the same flat grey (the figure passes a frame's own grey down to it), square
+   where the two meet, and the caption's lines hang from the text column, as wide
+   as the prose. a picture that floats takes its caption inside (.has-cap) */
+.story-frame:not(.is-needed):has(+ .story-cap:not(.is-note)) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.story-frame:not(.is-needed) + .story-cap:not(.is-note) {
+  --cap-pad: calc((var(--panel-w) - 2 * var(--frame-inset) - var(--col-w)) / 2);
+  width: calc(var(--panel-w) - 2 * var(--frame-inset));
+  margin: 0 0 0 calc(50% - var(--panel-w) / 2 + var(--frame-inset));
+  padding: 0 var(--cap-pad) 1.5rem;
+  border-radius: 0 0 var(--frame-radius) var(--frame-radius);
+  corner-shape: squircle;
+  background: var(--frame-bg, var(--frame-base));
+}
+
+/* a picture we don't have yet. it keeps the frame's shape, but may grow on a
+   phone so its description is never cut off. */
+.story-frame.is-needed {
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    repeating-linear-gradient(135deg, rgba(17, 15, 15, 0.035) 0 1px, transparent 1px 11px),
+    rgba(17, 15, 15, 0.03);
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+.story-needed {
+  margin: 0;
+  max-width: 30rem;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  text-align: center;
+}
+.story-flag {
+  font-family: var(--mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--mark);
+}
+.story-needed-title {
+  font-family: var(--serif);
+  font-size: var(--text);
+  line-height: 1.4;
+  color: var(--ink);
+}
+.story-needed-note {
+  font-family: var(--serif);
+  font-size: var(--small);
+  line-height: 1.5;
+  color: var(--muted);
+  text-wrap: pretty;
+}

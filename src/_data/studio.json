@@ -237,22 +237,135 @@
           ]
         },
         {
-          "id": "pagenineteen",
-          "title": "PageNineteen",
-          "desc": "Two zero-to-one products for an applied multimodal lab.",
-          "href": "#pagenineteen",
-          "site": "https://pagenineteen.ai/",
-          "banner": {
-            "src": "/assets/work/pendulum/P1.png",
-            "alt": "PageNineteen — the lab's two products"
-          },
-          "intro": "Page Nineteen is an applied multimodal AI lab in London — a founding team of six out of a South Park Commons residency, working with R/GA, WPP and Kering. Their Python toolkit could already see, tag, train and generate; at stake was whether that engine became a product. We led product design zero to one on both of the lab's surfaces: Pendulum, a multimodal semantic-search platform, and Lightnote, the creative toolkit that followed it.",
-          "body": [
-            "Pendulum came first. In September 2024 the founders brought us in to take it from a thesis with no interface to a working product: we prototyped early, moving from wireframes to working demos within weeks, and tested them in calls drawn from a personal network. It indexed, organized and retrieved millions of images and documents for downstream generative workflows.",
-            "The obstacle was evidence. Users leaned in, but the signal would not carry investors, and to push on was to spend real engineering capital on an unproven bet. The call was to set the direction down before that capital was spent — and that decision was the deliverable, because the real function of zero to one is to learn cheaply.",
-            "Lightnote began weeks after the pivot, when the lab needed its own fine-tuning tooling. The brief arrived as a UI problem: put panels over the model calls. The real problem was grammar. The <code>CLI</code> already spoke a complete language of sets, processes and runs, and an interface with a vocabulary of its own would have forked the product in two. An early direction gave each model family a bespoke panel — richer on screen, and three dialects of one language.",
-            "We rebuilt around one node form with flags as fields, so models differ only in their parameters. Parity is enforced by the API, not by discipline: a trigger word lands in the same call as its <code>--trigger</code> flag, and nothing drifts. The lab did its own work in the canvas we delivered. Operations later paused at the investors' call, and in 2026 Page Nineteen released the toolkit open source under <code>MIT</code>."
+          "id": "enable",
+          "title": "Enable VIC",
+          "desc": "Enterprise intelligence for luxury travel.",
+          "href": "#enable",
+          "frame": "16 / 10",
+          "meta": [
+            {
+              "label": "Service",
+              "tags": [
+                "Product Design",
+                "Design Engineering"
+              ]
+            },
+            {
+              "label": "Year",
+              "tags": [
+                "2026"
+              ]
+            },
+            {
+              "label": "Stack",
+              "tags": [
+                "Working prototype",
+                "Permissioned data model",
+                "Automated design checks"
+              ]
+            }
           ],
+          "skills": [
+            "Zero to one",
+            "Enterprise UX",
+            "AI interfaces",
+            "Design engineering"
+          ],
+          "railReady": true,
+          "rail": [
+            {
+              "src": "/assets/work/enable/briefing.webp",
+              "alt": "The briefing — one advisor's day in a paragraph: departures, overdue commissions, and the one hotel not to book, with its reason."
+            },
+            {
+              "src": "/assets/work/enable/ask.webp",
+              "alt": "Ask — “Is the spa at Maison Léandre open?” answered from an agency notice, with every source behind the answer listed beside it."
+            },
+            {
+              "src": "/assets/work/enable/itinerary.webp",
+              "alt": "A Kyoto itinerary — each hotel shows what it pays and what the client gets: 11% commission, kaiseki on the first night, late check-out."
+            },
+            {
+              "src": "/assets/work/enable/traveller.webp",
+              "alt": "A client's preferences — each one shows where it came from and how sure Enable is, and the profile stays private until it is shared."
+            },
+            {
+              "src": "/assets/work/enable/review.webp",
+              "alt": "Confirming a hotel record — Enable reads each field from the agency's sheet and shows how sure it is; doubtful values are held out of answers."
+            },
+            {
+              "src": "/assets/work/enable/record.webp",
+              "alt": "A hotel record in three layers — public facts, the agency's own decisions, and an advisor's personal notes, each with its source."
+            },
+            {
+              "src": "/assets/work/enable/sketches.webp",
+              "alt": "The first build — paper sketches, then grey boxes, then the screens of a chat-first app."
+            }
+          ],
+          "cardShot": 0
+        },
+        {
+          "id": "lightnote",
+          "title": "Lightnote",
+          "desc": "An open-source canvas for training image models.",
+          "href": "#lightnote",
+          "site": "https://github.com/pendulum-ai/lightnote",
+          "siteLabel": "View code",
+          "frame": "16 / 10",
+          "meta": [
+            {
+              "label": "Service",
+              "tags": [
+                "Product Design"
+              ]
+            },
+            {
+              "label": "Year",
+              "tags": [
+                "2024"
+              ]
+            },
+            {
+              "label": "Stack",
+              "tags": [
+                "CLIP",
+                "Stability AI",
+                "Flux",
+                "SDXL",
+                "LoRA",
+                "FastAPI"
+              ]
+            }
+          ],
+          "skills": [
+            "Zero to one",
+            "Creative tooling",
+            "AI interfaces"
+          ],
+          "railReady": true,
+          "rail": [
+            {
+              "src": "/assets/work/lightnote/canvas.webp",
+              "alt": "Lightnote's canvas: four lamp photographs selected, the bar beneath them offering to create a set, and the sets Modern fixtures, Hieros and Aratea listed on the left."
+            },
+            {
+              "src": "/assets/work/lightnote/command-box.webp",
+              "alt": "The command lightnote train submit beside Lightnote's Train LoRA box, each option of the command joined to the field it fills."
+            },
+            {
+              "src": "/assets/work/lightnote/runs.webp",
+              "alt": "Lightnote's Runs tab: every run listed with its images, and one run open with the settings it used and its log."
+            }
+          ],
+          "cardShot": 0
+        },
+        {
+          "id": "pendulum",
+          "title": "Pendulum",
+          "desc": "Search across millions of images, videos and documents.",
+          "href": "#pendulum",
+          "site": "https://pagenineteen.ai/",
+          "frame": "16 / 10",
           "meta": [
             {
               "label": "Service",
@@ -273,108 +386,31 @@
                 "CLIP",
                 "Voyage",
                 "Vision API",
-                "Modal",
-                "Stability AI",
-                "Flux",
-                "SDXL",
-                "LoRA",
-                "FastAPI"
+                "Modal"
               ]
             }
           ],
           "skills": [
             "Zero to one",
             "Rapid prototyping",
-            "Multimodal search",
-            "Creative tooling"
-          ],
-          "details": [
-            {
-              "label": "Context",
-              "text": "Page Nineteen is an applied multimodal AI lab in London — a founding team of six, fresh from a South Park Commons residency. We led <strong>product design zero to one</strong>, working directly with the founders. Their Python toolkit could already <strong>see, tag, train, and generate</strong>; at stake was whether that engine became a product."
-            },
-            {
-              "label": "Problem",
-              "text": "The brief arrived as a UI problem: put panels over the model calls. We reframed it — Lightnote was a <strong>grammar problem</strong>. The <code>CLI</code> already spoke a complete language of <strong>sets, processes, and runs</strong>; an interface that invented its own vocabulary would have forked the product in two."
-            },
-            {
-              "label": "Approach",
-              "text": "The canvas was a <strong>running prototype</strong> against the live engine, never static frames — sketch became code and stayed there. <strong>Selection became the primary gesture</strong>: gather four images, and the bar offers to fold them into a set. One continuous artifact, first sketch to shipped surface."
-            },
-            {
-              "label": "Build",
-              "text": "A canvas over the toolkit's <code>FastAPI</code> layer — the same endpoints the CLI wraps, so <strong>parity is enforced by the API, not by discipline</strong>. A trigger word typed into a node lands in the same call as its <code>--trigger</code> flag; nothing is duplicated, so <strong>nothing drifts</strong>."
-            },
-            {
-              "label": "System",
-              "text": "The language is <strong>deliberately small</strong>: a near-black field, one warm cream primary reserved for action, blue only for live selection, one grotesque at one weight, every surface at one radius. <strong>Five tokens and one gesture</strong> — the whole system fits on a single board."
-            },
-            {
-              "label": "Detail",
-              "text": "The cream action bar <strong>exists only while something is selected</strong> — the interface answers the hand rather than waiting to be configured. It is the toolkit's one warm move, kept for the moment of decision."
-            },
-            {
-              "label": "Iteration",
-              "text": "An early direction gave each model family its own bespoke panel — richer on screen, but it broke the grammar: <strong>three models, three dialects</strong>. Rebuilt around <strong>one node form, flags as fields</strong>, letting models differ only in their parameters."
-            },
-            {
-              "label": "Outcome",
-              "text": "Shipped and <strong>open source under <code>MIT</code></strong> — the engine and its canvas grammar are public at <a href=\"https://github.com/pendulum-ai/lightnote\">github.com/pendulum-ai/lightnote</a>, and the same grammar now carries the lab's LoRA training and generation end to end."
-            }
+            "Multimodal search"
           ],
           "railReady": true,
           "rail": [
             {
-              "src": "/assets/work/pendulum/P1.png",
-              "alt": "Pendulum — the wordmark on a pale field."
+              "src": "/assets/work/pendulum/home.webp",
+              "alt": "Pendulum's home: documents, folders, images and suggestions held in one place, with a question box at the bottom."
             },
             {
-              "src": "/assets/work/pendulum/P2.png",
-              "alt": "The home canvas — documents, folders, images and smart suggestions held in one multimodal field."
+              "src": "/assets/work/pendulum/ask.webp",
+              "alt": "A question asked in plain words, answered across images, video and documents."
             },
             {
-              "src": "/assets/work/pendulum/P4.png",
-              "alt": "A document open with its related assets alongside — shared, and annotated in place with an @mention."
-            },
-            {
-              "src": "/assets/work/pendulum/P5.png",
-              "alt": "A natural-language query resolved across images, video and documents, with artifacts attached to the ask."
-            },
-            {
-              "src": "/assets/work/lightnote/L1.png",
-              "alt": "Lightnote — the wordmark on the near-black field."
-            },
-            {
-              "src": "/assets/work/lightnote/L2.png",
-              "alt": "The canvas — four images gathered under a live selection, the cream bar offering to fold them into a set."
-            },
-            {
-              "src": "/assets/work/lightnote/L3.png",
-              "alt": "The sets panel — Modern fixtures, Hieros and Aratea, a set's context menu open over the selection."
-            },
-            {
-              "src": "/assets/work/lightnote/L4.png",
-              "alt": "The workflow graph — a set loaded into Train LoRA, its trigger word typed into the node as a field."
+              "src": "/assets/work/pendulum/related.webp",
+              "alt": "A document open in Pendulum, with its related images and files alongside, shared and annotated with a mention."
             }
           ],
-          "margin": [
-            {
-              "label": "Role",
-              "value": "Product designer, 0→1"
-            },
-            {
-              "label": "Clients",
-              "value": "R/GA, WPP, Kering"
-            },
-            {
-              "label": "Products",
-              "value": "Pendulum, Lightnote"
-            },
-            {
-              "label": "Outcome",
-              "value": "Direction set down; toolkit open source"
-            }
-          ]
+          "cardShot": 0
         },
         {
           "id": "mountains",

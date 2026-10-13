@@ -19,18 +19,21 @@ ogUrl: "https://constantin.studio"
            materializes into a pill on hover — held while its project is open. #}
         <header>
           {% include "brand-mark.njk" %}
-          <h1 class="name">Creativity, Craft, Computation</h1>
-          <p class="bio-line">constantin.studio is a product design studio led by <a class="lnk" href="https://www.linkedin.com/in/constantinchopin">Constantin Chopin</a>, founder of <a class="lnk" href="https://constantin.world">constantin.world</a> and faculty at <a class="lnk" href="https://www.artcenter.edu">ArtCenter College of Design</a>.</p>
-          {# the client sentence names recent work rather than sorting it into
-             categories — the shelf grows faster than the taxonomy does. each
-             name opens one panel: PageNineteen is the parent of Pendulum and
-             Lightnote, so its panel carries both products' stills. #}
-          <p class="bio-line">We work with ambitious teams building AI-native products and brands. Recent work includes: <a class="lnk" data-id="mountains" href="#mountains">Mountains</a>, a Luxury Technology House; <a class="lnk" data-id="replika" href="#replika">Replika</a>, the AI companion app with 30M users; <a class="lnk" data-id="pagenineteen" href="#pagenineteen">PageNineteen</a>, an applied multimodal lab; <a class="lnk" data-id="parable" href="#parable">Parable</a>, the system of record for enterprise operations.</p>
+          <h1 class="name">constantin.studio</h1>
+          <p class="bio-line">Product design studio led by <a class="lnk" href="https://www.linkedin.com/in/constantinchopin">Constantin Chopin</a>, founder of <a class="lnk" href="https://constantin.world">constantin.world</a>, and faculty at <a class="lnk" href="https://www.artcenter.edu">ArtCenter College of Design</a>.</p>
+          {# the work, one project to a line: its name opens its project's panel,
+             and a few words after it say what it is. PageNineteen's two products
+             each have their own, since each has its own story and its own film #}
+          <p class="bio-line">Helping ambitious teams design their products and brands.</p>
+          <ul class="work-lines">
+            <li><a class="lnk" data-id="mountains" href="#mountains">Mountains</a>, brand system for a luxury tech house</li>
+            <li><a class="lnk" data-id="enable" href="#enable">Enable</a>, enterprise intelligence for luxury travel</li>
+            <li><a class="lnk" data-id="replika" href="#replika">Replika</a>, consumer AI companionship</li>
+            <li><a class="lnk" data-id="parable" href="#parable">Parable</a>, intelligence layer for the enterprise</li>
+            <li><a class="lnk" data-id="lightnote" href="#lightnote">Lightnote</a>, canvas for training image models</li>
+            <li><a class="lnk" data-id="pendulum" href="#pendulum">Pendulum</a>, enterprise search for creative teams</li>
+          </ul>
         </header>
-
-        {# how we work — the three crafts are the future process pages (Story,
-           Surface, System); each noun phrase gets its link when its page exists #}
-        <p class="bio-line prose-block">The studio operates at the intersection of three crafts: the stories brands tell, the products people use, and the systems that run beneath them both. We are drawn to the work that is hardest, move fast across mediums, and sweat over the details.</p>
 
         {# mobile only — each project stands as a title card in a stack beneath
            the prose: a product shot, the name, its one-line description, and a
@@ -49,11 +52,11 @@ ogUrl: "https://constantin.studio"
              width, so the desktop shelf and the panel's pager keep their own
              order. negative values rise above the unordered cards. #}
           <a class="entry-card" href="#{{ e.id }}"{% if e.cardOrder is defined %} style="order: {{ e.cardOrder }}"{% endif %}>
-            {% if e.railReady and shot %}<img class="entry-card-shot" src="{{ shot.src }}" alt="{{ shot.alt }}" loading="lazy" />{% endif %}
+            {% if e.railReady and shot %}<img class="entry-card-shot" src="{{ shot.src }}" alt="{{ shot.alt }}" loading="lazy"{% if e.frame %} style="aspect-ratio: {{ e.frame }}"{% endif %} />{% endif %}
             <span class="entry-card-text">
               <span class="entry-card-name">{{ e.title }}</span>
               <span class="entry-card-desc">{{ e.desc }}</span>
-              <span class="canvas-keywords">{% for s in e.skills %}{% if loop.index <= 2 %}<span class="pill">{{ s }}</span>{% endif %}{% endfor %}{% for m in e.meta %}{% if m.label == "Year" and m.tags[0] != "—" %}<span class="pill pill-year">{{ m.tags[0] }}</span>{% endif %}{% endfor %}</span>
+              <span class="canvas-keywords">{% for s in e.skills %}{% if loop.index <= 2 %}{% set k = tagKinds.tags[s] %}<span class="pill{% if k %} pill-k pill-{{ k }}{% endif %}">{{ s }}</span>{% endif %}{% endfor %}{% for m in e.meta %}{% if m.label == "Year" and m.tags[0] != "—" %}<span class="pill pill-year">{{ m.tags[0] }}</span>{% endif %}{% endfor %}</span>
             </span>
           </a>
           {% endif %}{% endfor %}{% endfor %}
@@ -69,38 +72,349 @@ ogUrl: "https://constantin.studio"
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg>
           </button>
           <span class="viewport-title" data-vp-title></span>
-          <nav class="viewport-actions" aria-label="Projects">
-            <button class="viewport-btn" type="button" data-vp-prev aria-label="Previous project">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg>
-            </button>
-            <button class="viewport-btn" type="button" data-vp-next aria-label="Next project">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
-            </button>
+          {# the two views of a story, centred in the header. shown only when the
+             open project has a case study; the panel script points the links at
+             it and marks the one being read. #}
+          <nav class="viewport-views" data-vp-views aria-label="Views of this project" hidden>
+            <span class="viewport-views-pill">
+              <a class="viewport-view" data-view="overview" href="#"><span>Overview</span></a>
+              <a class="viewport-view" data-view="case-study" href="#"><span>Case study</span></a>
+            </span>
           </nav>
-          {# opens the live product site of the open project; shown only when the
-             entry carries a `site` URL in studio.json (wired by the panel script) #}
-          <a class="viewport-site" data-vp-site target="_blank" rel="noopener" hidden>
-            <span>View site</span>
-          </a>
+          <div class="viewport-end">
+            <nav class="viewport-actions" aria-label="Projects">
+              <button class="viewport-btn" type="button" data-vp-prev aria-label="Previous project">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg>
+              </button>
+              <button class="viewport-btn" type="button" data-vp-next aria-label="Next project">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+              </button>
+            </nav>
+            {# opens the live product site of the open project; shown only when the
+               entry carries a `site` URL in studio.json (wired by the panel script).
+               an entry can rename it with `siteLabel` #}
+            <a class="viewport-site" data-vp-site target="_blank" rel="noopener" hidden>
+              <span>View site</span>
+            </a>
+          </div>
         </header>
+        {# one picture in a story, never two side by side. every kind sits in a
+           4:3 frame: a looping video, a screen, a screenshot floating as a
+           card, a diagram
+           with a document beside it in one frame (`pair`), a grid of small
+           framed screenshots each with its own caption (`grid`), a studio
+           drawing set inline so its labels take the site's type (`drawing`),
+           or a marked frame for a picture we don't have yet (`needs`), which
+           says what's needed until it lands. #}
+        {# one shot, on its own in the 4:3 frame's light grey: a film or a still.
+           every shot floats whole on the grey as a card, a film at its poster's
+           shape, so each picture sits on the same soft ground. only a shot made on
+           that grey itself (`onGrey`, Enable's films) fills the frame, since the
+           grey is already in it. a full screen of the product is framed as a
+           screen (`device`). #}
+        {# a caption passed in (cap) sits inside the frame with the picture, the two
+           centred together as one group #}
+        {% macro storyShot(m, cap) %}
+        {% if m.boxes %}
+        {# a set of small parts of one component, in a row in one frame, each cropped
+           whole from the product with its own interface: Replika's five arcs, say #}
+        <div class="story-frame">
+          <div class="story-boxes{% if m.perRow %} is-wide{% endif %}" style="--n: {{ m.boxes.length }}{% if m.perRow %}; --per-row: {{ m.perRow }}{% endif %}">
+            {% for b in m.boxes %}
+            <figure class="story-box"><img src="{{ b.src }}" alt="{{ b.alt or b.label }}" loading="lazy" />{% if b.label %}<figcaption>{{ b.label }}</figcaption>{% endif %}</figure>
+            {% endfor %}
+          </div>
+        </div>
+        {% elif m.phones %}
+        {# phone screens side by side in one frame, each floating whole as a card
+           on the grey with its name beneath, so two views of the app read as a
+           pair rather than each alone in a wide frame #}
+        {# their widths side by side at one height, so the row can be sized to fit
+           the text column: the sum of each picture's width over its height #}
+        {% set ratios = [] %}{% for p in m.phones %}{% set sz = p.src | shotSize %}{% if sz %}{% set _ = ratios.push(sz.w / sz.h) %}{% endif %}{% endfor %}
+        <div class="story-frame story-phones" style="--n: {{ m.phones | length }}; --rsum: {{ ratios | sum if ratios.length else 1 }}">
+          {% for p in m.phones %}
+          {% set size = p.src | shotSize %}
+          <figure class="story-phone">
+            <button class="story-shot is-card" type="button" data-full="{{ p.src }}" data-cap="{{ p.alt }}"><img src="{{ p.src }}" alt="{{ p.alt }}" loading="lazy"{% if size %} width="{{ size.w }}" height="{{ size.h }}" style="--ratio: {{ size.w }} / {{ size.h }}"{% endif %} /></button>
+            {% if p.label %}<figcaption>{{ p.label }}</figcaption>{% endif %}
+          </figure>
+          {% endfor %}
+        </div>
+        {% elif m.device and not m.video %}
+        {% set size = m.src | shotSize %}
+        <div class="story-frame has-device{% if cap %} has-cap{% endif %}"{% if m.bg %} style="--frame-bg: {{ m.bg }}"{% endif %}>
+          <button class="story-shot is-device" type="button" data-full="{{ m.src }}" data-cap="{{ m.caption or m.alt }}"><span class="device"><span class="device-screen"><img src="{{ m.src }}" alt="{{ m.alt or m.caption }}" loading="lazy"{% if size %} width="{{ size.w }}" height="{{ size.h }}"{% endif %} /></span></span></button>
+          {% if cap %}<p class="story-cap">{{ cap }}</p>{% endif %}
+        </div>
+        {% elif m.video %}
+        {% set size = m.poster | shotSize %}
+        {% set film %}<video class="story-video" src="{{ m.video }}"{% if m.poster %} poster="{{ m.poster }}"{% endif %} muted loop playsinline autoplay preload="metadata" aria-label="{{ m.alt or m.caption or m.subtitle }}"{% if size and not m.onGrey %} style="--ratio: {{ size.w }} / {{ size.h }}"{% endif %}></video>{% endset %}
+        {% if m.device %}
+        {# a film of a whole desktop screen wears the same screen outline as a
+           still of one #}
+        <div class="story-frame has-device{% if cap %} has-cap{% endif %}"{% if m.bg %} style="--frame-bg: {{ m.bg }}"{% endif %}>
+          <div class="story-shot is-device"><span class="device"><span class="device-screen">{{ film | safe }}</span></span></div>
+          {% if cap %}<p class="story-cap">{{ cap }}</p>{% endif %}
+        </div>
+        {% else %}
+        <div class="story-frame{% if cap %} has-cap{% endif %}{% if size and size.w <= size.h %} is-upright{% endif %}"{% if m.bg %} style="--frame-bg: {{ m.bg }}"{% endif %}>
+          {% if m.onGrey %}{{ film | safe }}{% else %}<div class="story-float">{{ film | safe }}</div>{% endif %}
+          {% if cap %}<p class="story-cap">{{ cap }}</p>{% endif %}
+        </div>
+        {% endif %}
+        {% else %}
+        {# the still's own size, so a frame that hugs it holds its shape before
+           the picture loads #}
+        {% set size = m.src | shotSize %}
+        <div class="story-frame{% if cap %} has-cap{% endif %}{% if m.matte === false %} no-matte{% endif %}{% if size and size.w <= size.h %} is-upright{% endif %}"{% if m.bg %} style="--frame-bg: {{ m.bg }}"{% endif %}>
+          <button class="story-shot{% if not m.onGrey %} is-card{% endif %}" type="button" data-full="{{ m.src }}" data-cap="{{ m.caption or m.alt }}"><img src="{{ m.src }}" alt="{{ m.alt or m.caption }}" loading="lazy"{% if size %} width="{{ size.w }}" height="{{ size.h }}" style="--ratio: {{ size.w }} / {{ size.h }}"{% endif %} /></button>
+          {% if cap %}<p class="story-cap">{{ cap }}</p>{% endif %}
+        </div>
+        {% endif %}
+        {% endmacro %}
+        {# one piece of a section's text: a paragraph, a step heading, the line that
+           says what a decision answers, a list, or where a figure comes from #}
+        {% macro storyText(b) %}
+        {% if b.p %}<p class="story-p">{{ b.p | safe }}</p>
+        {% elif b.sub %}<h4 class="story-sub">{{ b.sub }}</h4>
+        {% elif b.answers %}<p class="story-p">{{ b.answers }}</p>
+        {% elif b.list %}<ul class="story-list">{% for li in b.list %}<li>{{ li | safe }}</li>{% endfor %}</ul>
+        {% elif b.source %}<p class="story-source">{{ b.source | safe }}</p>
+        {% endif %}
+        {% endmacro %}
+        {# `blocks`: the story keeps all its text in boxes (`textBlocks`) #}
+        {% macro storyFigure(f, cls, blocks) %}
+        {# a single picture or a drawing takes its caption inside its frame; a set
+           of pictures or a film made on the grey keeps it below #}
+        {% set capIn = f.caption and not (f.journeys or f.needs or f.pair or f.grid or f.boxes or f.onGrey) %}
+        <figure class="story-fig{% if f.drawing %} is-drawing{% endif %}{% if f.journeys %} is-journeys{% endif %}{% if cls %} {{ cls }}{% endif %}"{% if f.bg %} style="--frame-bg: {{ f.bg }}"{% endif %}>
+          {# a group's name stood loose between boxes; where all text is in boxes,
+             each journey's own box says what it shows, so the name is left off #}
+          {% if f.label and not (blocks and f.journeys) %}<p class="story-fig-label">{{ f.label }}</p>{% endif %}
+          {% if f.journeys %}
+          {# key journeys, stacked: each a title, then a line that names the part of
+             the problem it answers (in ink) and what it does about it, then its
+             film, looping like the page's other films #}
+          {# a step can open on one still: its key component, close up and at rest,
+             before the films show it in use #}
+          {% if f.still %}
+          {# a picture floating on the grey takes its caption inside the frame; one
+             made on the grey fills it, so its caption sits in a band below #}
+          <div class="story-still">
+            {{ storyShot(f.still, f.still.caption if not f.still.onGrey else "") }}
+            {% if f.still.caption and f.still.onGrey %}<p class="story-cap">{{ f.still.caption }}</p>{% endif %}
+          </div>
+          {% endif %}
+          <ol class="story-journeys">
+            {% for j in f.journeys %}
+            {% set pic = j.src or j.video or j.phones or j.boxes %}
+            <li class="story-journey{% if blocks and pic %} story-step{% endif %}">
+              {# the picture first, then its title and text, as a section opens on
+                 its hero before its title. a journey can be text alone, when the
+                 frame before it shows it too (a pair of phone screens, say). where
+                 all text is in boxes, the title and text are a box with the picture #}
+              {% if blocks %}{% set jbox %}<div class="story-block"><h4 class="story-sub">{{ j.title }}</h4>{% if j.answers or j.subtitle %}<p class="story-p">{% if j.answers %}{{ j.answers }} {% endif %}{{ j.subtitle }}</p>{% endif %}{% if loop.last %}{% for t in f.outro %}{{ storyText(t) }}{% endfor %}{% endif %}</div>{% endset %}{% endif %}
+              {# where all text is in boxes, a journey's box comes before its picture when
+                 a picture has just been shown (`flip`, from storyOrder), so pictures and
+                 boxes alternate #}
+              {% if blocks and j.flip %}{{ jbox | safe }}{% endif %}
+              {% if pic %}{{ storyShot(j) }}{% endif %}
+              {% if blocks %}{% if not j.flip %}{{ jbox | safe }}{% endif %}
+              {% else %}
+              <h4 class="story-journey-title">{{ j.title }}</h4>
+              {% if j.answers or j.subtitle %}<p class="story-journey-sub">{% if j.answers %}<span class="story-journey-problem">{{ j.answers }}</span> {% endif %}{{ j.subtitle }}</p>{% endif %}
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ol>
+          {% elif f.needs %}
+          <div class="story-frame is-needed">
+            <p class="story-needed">
+              <span class="story-flag">{{ f.needs }}</span>
+              <span class="story-needed-title">{{ f.title }}</span>
+              {% if f.note %}<span class="story-needed-note">{{ f.note }}</span>{% endif %}
+            </p>
+          </div>
+          {% elif f.drawing %}
+          {# a drawing's labels give way to numbers when the figure is phone-narrow,
+             and the numbers are listed here, from _data/drawings.json, which the
+             drawing script writes alongside the drawings. the key of symbols it
+             also writes is not shown (removed 13 Oct 2026) #}
+          {% set meta = f.drawing | drawingMeta %}
+          {# the drawing floats on the frame's grey like any picture, as wide as the
+             text, with its caption inside the frame under it #}
+          <div class="story-frame story-drawing has-cap">
+            {{ f.drawing | inlineSvg | safe }}
+          {% if meta and meta.calls.length %}
+          <ol class="story-calls">
+            {% for c in meta.calls %}<li><span class="story-call-n">{{ c.n }}</span><span>{{ c.label }}{% if c.note %}<span class="story-call-note"> · {{ c.note }}</span>{% endif %}</span></li>{% endfor %}
+          </ol>
+          {% endif %}
+            {% if f.caption %}<p class="story-cap">{{ f.caption }}</p>{% endif %}
+          </div>
+          {% elif f.pair %}
+          <div class="story-frame story-pair"{% if f.bg %} style="--frame-bg: {{ f.bg }}"{% endif %}>
+            <button class="story-shot" type="button" data-full="{{ f.pair[0].src }}" data-cap="{{ f.pair[0].alt }}"><img src="{{ f.pair[0].src }}" alt="{{ f.pair[0].alt }}" loading="lazy" /></button>
+            <button class="story-shot is-card" type="button" data-full="{{ f.pair[1].src }}" data-cap="{{ f.pair[1].alt }}"><img src="{{ f.pair[1].src }}" alt="{{ f.pair[1].alt }}" loading="lazy" /></button>
+          </div>
+          {% elif f.grid %}
+          {# a set of pictures: every picture takes the full width, each in its
+             own frame with its own caption inside, the frames stacked close #}
+          {% for g in f.grid %}
+          {{ storyShot({ src: g.src, alt: g.alt, caption: g.caption, device: f.device, matte: f.matte }, g.caption) }}
+          {% endfor %}
+          {% else %}{{ storyShot(f, f.caption if capIn else "") }}
+          {% endif %}
+          {# under a set of pictures, the figure's caption is a note on the whole
+             set, so it sits below the last frame rather than joining it #}
+          {% if f.caption and not capIn %}<figcaption class="story-cap{% if f.grid %} is-note{% endif %}">{{ f.caption }}</figcaption>{% endif %}
+        </figure>
+        {% endmacro %}
+        {# a row of details, the page's one quiet list of facts: under the title,
+           and in a section wherever a few short facts are needed. the first
+           confirmed ones, four at most in a section and six under the title
+           (`max`); each a small label over its text, a number read on into the
+           sentence it begins (`value`, `text`), and where it comes from if it
+           says #}
+        {# the boxes go two to a row. an odd count never drops a fact: the last box,
+           or a box on its own, runs the row's full width, so no box is left alone in
+           half a row. `before` counts cells already in the row's grid ahead of the
+           boxes (a statement beside them), which can even the count out #}
+        {% macro storyDetails(items, max, before) %}
+        {% set shown = items | rejectattr("todo") %}
+        {% set n = shown | length %}
+        {% if n > (max or 4) %}{% set n = max or 4 %}{% endif %}
+        <dl class="canvas-margin">
+          {% for d in shown %}{% if loop.index <= n %}
+          <div class="margin-note{% if loop.index == n and (n + (before or 0)) % 2 == 1 %} is-wide{% endif %}">
+            <dt class="margin-label">{{ d.label }}</dt>
+            <dd class="margin-value">{{ d.value | safe }}{% if d.text %}{% set first = d.text | first %}{{ ". " if first != (first | lower) else " " }}{{ d.text | safe }}{% endif %}</dd>
+            {% if d.source %}<dd class="margin-value margin-source">{{ d.source | safe }}</dd>{% endif %}
+          </div>
+          {% endif %}{% endfor %}
+        </dl>
+        {% endmacro %}
         {% for shelf in studio.shelves %}{% for e in shelf.entries %}{% if e.rail %}
-        <div class="canvas-set" data-id="{{ e.id }}" data-title="{{ e.title }}" data-category="{{ shelf.label }}" data-site="{{ e.site }}" hidden>
+        {# a project with a file in _data/stories/ reads as a story instead of a
+           gallery: its facts, then sections of text with their pictures, one
+           vertical scroll. the others keep the gallery until their story lands. #}
+        {% set story = stories[e.id] %}
+        {# a story whose product works on its own dark canvas names that canvas's
+           colour (`matte`), and each of its pictures gets a margin of it #}
+        <div class="canvas-set{% if story %} is-story{% endif %}{% if story and story.matte %} has-matte{% endif %}{% if story and story.textBlocks %} is-blocks{% endif %}"{% if story and story.matte %} style="--matte: {{ story.matte }}"{% endif %} data-id="{{ e.id }}" data-title="{{ e.title }}" data-category="{{ shelf.label }}" data-site="{{ e.site }}"{% if e.siteLabel %} data-site-label="{{ e.siteLabel }}"{% endif %} hidden>
+
+          {# a story opens on its hero, the product in use, just under the header's
+             buttons and above the title, in either view #}
+          {% if story and story.hero %}{{ storyFigure(story.hero, "story-hero") }}{% endif %}
 
           {# the canvas stacks three bands: a metadata row (capability pills left,
              service · year right), the stills, then the body text beneath. the
              rail is the flexible band — it absorbs whatever height the text
              doesn't need, so copy and image can never collide. #}
-          {# the head band — the project title with its keyword run trailing on
-             the same line, hung from the shared left inset above the stills #}
-          <div class="canvas-head">
+          {# the head band — the project title with its keyword run beneath it,
+             hung from the shared left inset above the stills #}
+          {% set headHtml %}<div class="canvas-head">
             <h2 class="canvas-headline">{{ e.title }}</h2>
-            <p class="canvas-keywords">{% for s in e.skills %}<span class="pill">{{ s }}</span>{% endfor %}{% for m in e.meta %}{% if m.label == "Year" and m.tags[0] != "—" %}<span class="pill pill-year">{{ m.tags[0] }}</span>{% endif %}{% endfor %}</p>
+            {# each tag is coloured by the kind of work it names (tagKinds.json), and
+               the tools and technology used follow it (tools.json) #}
+            <p class="canvas-keywords">{% for s in e.skills %}{% set k = tagKinds.tags[s] %}<span class="pill{% if k %} pill-k pill-{{ k }}{% endif %}"{% if k %} title="{{ tagKinds.names[k] }}"{% endif %}>{{ s }}</span>{% endfor %}{% for tl in tools[e.id] %}<span class="pill pill-k pill-tools" title="{{ tagKinds.names.tools }}">{{ tl }}</span>{% endfor %}{% for m in e.meta %}{% if m.label == "Year" and m.tags[0] != "—" %}<span class="pill pill-year">{{ m.tags[0] }}</span>{% endif %}{% endfor %}</p>
+          </div>{% endset %}
+          {# a story with `textBlocks` has only picture frames and text boxes: its
+             title and tags sit inside the opening box instead #}
+          {% if not (story and story.textBlocks) %}{{ headHtml | safe }}{% endif %}
+
+          {% if story %}
+          {# every story is one page (`overview`): a line on what the project is,
+             the header's details, then its sections: a label, its text, and its
+             pictures, every picture in a 4:3 frame. a story can still carry a
+             second view (`caseStudy`), switched from the panel's header, but none
+             does since Enable became one page on 12 October 2026. anything the
+             data still marks `todo` (a fact, a result, a passage) stays off the
+             page until it is confirmed. #}
+          {% set views = [{ "key": "overview", "sections": story.overview }, { "key": "case-study", "sections": story.caseStudy }] %}
+          {% for v in views %}{% if v.sections %}
+          <div class="story-view" data-view="{{ v.key }}"{% if not loop.first %} hidden{% endif %}>
+            {% if v.key == "overview" %}
+            {# under the title: what the project is in one pull quote, then the
+               basics a reader looks for first, in this order: role, how long,
+               team, stage, what success meant, what we achieved. six at most, so
+               the answers come before the story rather than at its end #}
+            {% if story.lede %}<aside class="story-milestone story-lede">{% if story.textBlocks %}{{ headHtml | safe }}{% endif %}<p class="story-milestone-text">{{ story.lede }}</p></aside>{% endif %}
+            {% if story.facts %}{{ storyDetails(story.facts, 6) }}{% endif %}
+            {% endif %}
+            <div class="story">
+              {# every section keeps one order: its hero (a film if there is one,
+                 else a still), then its title, its pull quote, its copy, then any
+                 further pictures and text #}
+              {# a section marked `parked` stays in the data but off the page #}
+              {% for s in v.sections | rejectattr("parked") %}
+              {# a picture leads what it belongs to: each step's first picture is
+                 lifted above the step's heading. the section's own picture (its hero,
+                 or its first picture before any step) leads it above the title, except
+                 where all text is in boxes: there the section opens on its title box
+                 and storyOrder puts the picture straight after it #}
+              {% set order = s.blocks | storyOrder(s.hero, story.textBlocks) %}
+              {% set lead = order.lead %}
+              <section class="story-section{% if s.hero or lead %} has-hero{% endif %}">
+                {# every section opens on the studio mark, the break between it
+                   and the one before, then its hero if it has one #}
+                <span class="story-divider" aria-hidden="true">{% include "brand-mark.njk" %}</span>
+                {% if not story.textBlocks %}{% if s.hero %}{{ storyFigure(s.hero, "story-section-hero") }}{% elif lead %}{{ storyFigure(lead.figure, "story-section-hero") }}{% endif %}{% endif %}
+                {% set titleHtml %}<h3 class="story-label">{{ s.label }}</h3>{% endset %}
+                {% if not story.textBlocks %}{{ titleHtml | safe }}{% endif %}
+                {% for b in order.blocks %}
+                {# a story with `textBlocks` gathers each run of text into one block,
+                   and the section title goes inside the first box under it: the
+                   quote, the first text block, or a box of its own #}
+                {# one title per box: a first box that has a heading of its own leaves
+                   the section's title a box of its own above it #}
+                {% set titleIn = story.textBlocks and loop.first %}
+                {% set c0 = b.band[0] if b.band else null %}
+                {% set titleShares = b.milestone or b.row or (b.group and not b.group[0].sub) or (c0 and (c0.milestone or (c0.group and not c0.group[0].sub))) %}
+                {% if titleIn and not titleShares %}<div class="story-block">{{ titleHtml | safe }}</div>{% endif %}
+                {% if b.group %}<div class="story-block">{% if titleIn and titleShares %}{{ titleHtml | safe }}{% endif %}{% for t in b.group %}{{ storyText(t) }}{% endfor %}</div>
+                {# a step's picture with the text box that explains it under it, and a
+                   section's statement in one grid with an odd number of boxes beside it
+                   (paired by storyOrder in .eleventy.js) #}
+                {% elif b.step %}{% set box %}<div class="story-block">{% for t in b.step.group %}{{ storyText(t) }}{% endfor %}</div>{% endset %}<div class="story-step{% if b.step.flip %} is-flipped{% endif %}">{% if b.step.flip %}{{ box | safe }}{% endif %}{{ storyFigure(b.step.figure, "leads-step", true) }}{% if not b.step.flip %}{{ box | safe }}{% endif %}</div>
+                {# text boxes that would meet, set side by side two to a row, so no two
+                   are ever one above the other (storyOrder's `band`); an odd last box
+                   runs the row's full width #}
+                {% elif b.band %}<div class="story-band">{% for c in b.band %}{% set wide = loop.last and (b.band | length) % 2 == 1 %}
+                  {% if c.milestone %}<aside class="story-milestone{% if wide %} is-wide{% endif %}">{% if titleIn and loop.first %}{{ titleHtml | safe }}{% endif %}<p class="story-milestone-text">{{ c.milestone.milestone | safe }}</p>{% for t in c.milestone.more %}{{ storyText(t) }}{% endfor %}</aside>
+                  {% elif c.group %}<div class="story-block{% if wide %} is-wide{% endif %}">{% if titleIn and loop.first and not c.group[0].sub %}{{ titleHtml | safe }}{% endif %}{% for t in c.group %}{{ storyText(t) }}{% endfor %}</div>
+                  {% elif c.detail %}{% set d = c.detail %}<dl class="margin-note{% if wide %} is-wide{% endif %}"><dt class="margin-label">{{ d.label }}</dt><dd class="margin-value">{{ d.value | safe }}{% if d.text %}{% set first = d.text | first %}{{ ". " if first != (first | lower) else " " }}{{ d.text | safe }}{% endif %}</dd>{% if d.source %}<dd class="margin-value margin-source">{{ d.source | safe }}</dd>{% endif %}</dl>
+                  {% endif %}{% endfor %}</div>
+                {% elif b.row %}<div class="story-row"><aside class="story-milestone">{% if titleIn %}{{ titleHtml | safe }}{% endif %}<p class="story-milestone-text">{{ b.row.milestone.milestone | safe }}</p>{% for t in b.row.milestone.more %}{{ storyText(t) }}{% endfor %}</aside>{{ storyDetails(b.row.items, 4, 1) }}</div>
+                {% elif b.p or b.sub or b.answers or b.list or b.source %}{{ storyText(b) }}
+                {% elif b.milestone %}<aside class="story-milestone">{% if titleIn %}{{ titleHtml | safe }}{% endif %}{% if b.kicker %}<p class="story-milestone-kicker">{{ b.kicker }}</p>{% endif %}<p class="story-milestone-text">{{ b.milestone | safe }}</p>{% for t in b.more %}{{ storyText(t) }}{% endfor %}</aside>
+                {# every set of short facts in a section is a row of details, as under
+                   the title: the numbers behind the problem, what success meant and
+                   how it was checked (`context`), what a decision means for the
+                   product and the engineering (`tiles`), and the results #}
+                {% elif b.context %}{{ storyDetails(b.context) }}
+                {% elif b.insight %}{{ storyDetails(b.insight) }}
+                {% elif b.stats %}{{ storyDetails(b.stats) }}
+                {% elif b.tiles %}{{ storyDetails(b.tiles) }}
+                {% elif b.todo %}{# still to write: kept in the data, never shown #}
+                {% elif b.results %}{{ storyDetails(b.results) }}
+                {% elif b.figure %}{{ storyFigure(b.figure, "leads-step" if b.leadsStep else "", story.textBlocks) }}
+                {% endif %}
+                {% endfor %}
+              </section>
+              {% endfor %}
+            </div>
           </div>
+          {% endif %}{% endfor %}
+          {% else %}
 
           {# a project shows its real stills once `railReady` is set in studio.json;
              until its square assets land it holds flat grey placeholders, which
-             are inert — with no image there is nothing to open. #}
-          <div class="canvas-gallery" role="list" aria-label="{{ e.title }} — stills">
+             are inert — with no image there is nothing to open. an entry with a
+             `frame` ratio locks every still into that rectangle instead of the
+             square — desktop products shown whole, at their screens' own shape. #}
+          <div class="canvas-gallery{% if e.frame %} is-frames{% endif %}"{% if e.frame %} style="--rail-ratio: {{ e.frame }}"{% endif %} role="list" aria-label="{{ e.title }} — stills">
             {% if e.railReady %}{% for a in e.rail %}
             <button class="rail-item{% if a.wide %} is-wide{% endif %}" type="button" role="listitem" data-full="{{ a.src }}" data-cap="{{ a.alt }}">
               {% if a.video %}<video class="rail-video" src="{{ a.video }}" poster="{{ a.poster or a.src }}" muted loop playsinline autoplay preload="metadata" aria-label="{{ a.alt }}"></video>{% else %}<img src="{{ a.src }}" alt="{{ a.alt }}" loading="lazy" />{% endif %}
@@ -131,6 +445,7 @@ ogUrl: "https://constantin.studio"
             {% if e.intro %}<p class="canvas-intro">{{ e.intro | safe }}</p>{% endif %}
             {% for p in e.body %}<p class="canvas-para">{{ p | safe }}</p>{% endfor %}
           </div>
+          {% endif %}
         </div>
         {% endif %}{% endfor %}{% endfor %}
       </div>
@@ -159,9 +474,16 @@ ogUrl: "https://constantin.studio"
       var nextBtn = document.querySelector('[data-vp-next]');
       var backBtn = document.querySelector('[data-vp-back]');
       var siteBtn = document.querySelector('[data-vp-site]');
+      var viewsNav = document.querySelector('[data-vp-views]');
+      var viewLinks = viewsNav ? Array.prototype.slice.call(viewsNav.querySelectorAll('[data-view]')) : [];
+      var vpEl = document.querySelector('.viewport');
+      var pdEl = document.querySelector('.pane-detail');
       var liveId = null;
+      var liveView = null;
+      // where the reader was in each view of the open project, so switching back returns there
+      var viewScroll = {};
       // a still in motion is a muted loop; with reduced motion preferred it rests on its poster
-      if (reduce) Array.prototype.forEach.call(document.querySelectorAll('.rail-video'), function (v) { v.removeAttribute('autoplay'); v.pause(); });
+      if (reduce) Array.prototype.forEach.call(document.querySelectorAll('.rail-video, .story-video'), function (v) { v.removeAttribute('autoplay'); v.pause(); });
 
       // each image fades in the moment it decodes (they lazy-load when a set is
       // shown), so nothing pops in
@@ -225,22 +547,69 @@ ogUrl: "https://constantin.studio"
       }
 
       // the "View site" capsule links to the open project's live site — shown
-      // only when the entry carries a `site` URL, hidden otherwise
+      // only when the entry carries a `site` URL, hidden otherwise; an entry's
+      // own `siteLabel` renames it
+      var siteLabelEl = siteBtn ? siteBtn.querySelector('span') : null;
       function setSite(id) {
         if (!siteBtn) return;
-        var url = (sets[id] && sets[id].dataset.site) || '';
+        var d = sets[id] ? sets[id].dataset : {};
+        var url = d.site || '';
+        if (siteLabelEl) siteLabelEl.textContent = d.siteLabel || 'View site';
         if (url) { siteBtn.href = url; siteBtn.hidden = false; }
         else { siteBtn.removeAttribute('href'); siteBtn.hidden = true; }
       }
 
-      function open(id) {
+      // the hash names the project and, after a slash, the view: #enable is its
+      // overview, #enable/case-study its case study
+      function parseHash() {
+        var parts = decodeURIComponent(location.hash.slice(1)).split('/');
+        return { id: parts[0], view: parts[1] === 'case-study' ? 'case-study' : 'overview' };
+      }
+      // the panel scrolls itself on desktop; on a phone the page around it does
+      function scroller() { return mq.matches ? vpEl : pdEl; }
+
+      // show one view of a story and mark it in the header switch. a project
+      // without a case study has no views, and the switch stays hidden
+      function setView(id, view) {
+        var set = sets[id];
+        var views = set ? Array.prototype.slice.call(set.querySelectorAll('.story-view')) : [];
+        var hasCase = views.some(function (v) { return v.dataset.view === 'case-study'; });
+        if (viewsNav) viewsNav.hidden = !hasCase;
+        if (!views.length) { liveView = null; return; }
+        if (!hasCase) view = 'overview';
+        viewLinks.forEach(function (a) {
+          var on = a.dataset.view === view;
+          a.href = '#' + id + (a.dataset.view === 'case-study' ? '/case-study' : '');
+          a.classList.toggle('is-selected', on);
+          if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+        });
+        if (view === liveView) return;
+        var sc = scroller();
+        var switching = liveView !== null;
+        if (switching && sc) viewScroll[liveView] = sc.scrollTop;
+        views.forEach(function (v) {
+          var on = v.dataset.view === view;
+          v.hidden = !on;
+          v.classList.toggle('is-entering', on && switching && !reduce);
+        });
+        if (sc) sc.scrollTop = viewScroll[view] || 0;
+        liveView = view;
+      }
+
+      function open(id, view) {
         if (!sets[id]) return false;             // any project with a plate set opens, whether or not the prose links it
+        view = view || 'overview';
         document.body.classList.add('detail-open');
         setActive(byId[id]);
         setSite(id);
+        // the same project in another view: swap the view in place
+        if (liveId === id) { setView(id, view); return true; }
+        // another project starts on its overview, from the top
+        viewScroll = {};
+        liveView = null;
         // switching between projects: soften the outgoing one out, crossfade the
         // breadcrumb, then swap and let the new one cascade in
-        if (liveId && liveId !== id && !reduce) {
+        if (liveId && !reduce) {
           var out = sets[liveId];
           if (out) out.classList.add('is-exiting');
           if (titleEl) titleEl.classList.add('is-swapping');
@@ -249,17 +618,19 @@ ogUrl: "https://constantin.studio"
             if (titleEl) titleEl.classList.remove('is-swapping');
             buildCrumb(id);
             showSet(id);
+            setView(id, view);
           }, 150);
         } else {
           buildCrumb(id);
           showSet(id);
+          setView(id, view);
         }
         liveId = id;
         return true;
       }
       // step to the previous / next project in the header nav
       function go(delta) {
-        var cur = decodeURIComponent(location.hash.slice(1));
+        var cur = parseHash().id;
         var i = order.indexOf(cur);
         if (i < 0) i = order.indexOf(defaultId);
         if (i < 0) i = 0;
@@ -290,15 +661,15 @@ ogUrl: "https://constantin.studio"
       });
 
       window.addEventListener('hashchange', function () {
-        var id = decodeURIComponent(location.hash.slice(1));
-        if (sets[id]) { open(id); return; }
+        var h = parseHash();
+        if (sets[h.id]) { open(h.id, h.view); return; }
         // no project in the hash: desktop keeps its default open, mobile closes
         if (mq.matches) { if (defaultId) open(defaultId); } else clear();
       });
 
       function sync() {
-        var id = decodeURIComponent(location.hash.slice(1));
-        if (sets[id]) { open(id); return; }
+        var h = parseHash();
+        if (sets[h.id]) { open(h.id, h.view); return; }
         // desktop is never empty; mobile lands on the index
         if (mq.matches) { if (defaultId) open(defaultId); else clear(); } else clear();
       }
@@ -327,7 +698,7 @@ ogUrl: "https://constantin.studio"
         if (lbReturn) { lbReturn.focus(); lbReturn = null; }
       }
       document.addEventListener('click', function (e) {
-        var item = e.target.closest && e.target.closest('.rail-item');
+        var item = e.target.closest && e.target.closest('.rail-item, .story-shot');
         if (item) { openLightbox(item); return; }
         if (!lb || lb.hidden) return;
         // the backdrop and the close control dismiss; the figure itself does not

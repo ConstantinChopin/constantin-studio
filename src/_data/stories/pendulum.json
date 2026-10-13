@@ -1,0 +1,239 @@
+{
+  "lede": "Pendulum was a search tool for the very large libraries that creative companies keep: you ask for something in plain words, and it finds the images, videos and documents that match. It was the first product I designed at PageNineteen, an applied AI lab in London, and there was no product yet, so we tested it as working demos before spending real engineering money, and set it aside after the test.",
+  "textBlocks": true,
+  "facts": [
+    {
+      "label": "Role",
+      "value": "Led product design from the first idea, working directly with the founders"
+    },
+    {
+      "label": "How long",
+      "value": "From September 2024, with working demos within weeks",
+      "note": "To confirm: when Pendulum was set aside, so the end date or the length can be added."
+    },
+    {
+      "label": "Team",
+      "value": "A founding team of six, out of a South Park Commons residency"
+    },
+    {
+      "label": "How we defined success",
+      "value": "A clear answer before spending real engineering money: did people want this enough to convince investors?"
+    },
+    {
+      "label": "What we achieved",
+      "value": "Working demos within weeks, tested in calls with people from our own network. People leaned in, but not enough to convince investors, so the lab set Pendulum aside before the engineering money was spent, and started Lightnote a few weeks later."
+    }
+  ],
+  "hero": {
+    "video": "/assets/work/pendulum/world-film.mp4",
+    "poster": "/assets/work/pendulum/world-film-poster.webp",
+    "alt": "Pendulum's film. A library of pictures, documents, folders and videos floats in the dark under the line Find anything. Instantly. Three questions are asked in the bar: mountains at night, candlelight in old stone rooms, and that essay on how ideas spread. Each time the same files move, and the closest match comes nearest the bar, marked with the reason it matched. Someone opens the essay, the files settle into Pendulum's grid with the best match top left, and the reading panel opens with the matching sentence shaded."
+  },
+  "overview": [
+    {
+      "label": "The problem",
+      "blocks": [
+        {
+          "milestone": "Creative work starts from fragments: a photograph, a piece of music, an old campaign, a line in a brief. The ideas come from the links between them. But creative teams keep their files in folders, sorted by name and date, and the links are lost."
+        },
+        {
+          "figure": {
+            "drawing": "/assets/work/pendulum/schematics/folder-vs-mosaic.svg",
+            "caption": "The same six files: in a folder, sorted by name, and in Pendulum, ordered by the question, the closest file top left."
+          }
+        },
+        {
+          "stats": [
+            {
+              "label": "Folders don’t work the way creative people think",
+              "value": "A folder sorts files by name and date",
+              "text": "Creative people work by association, across projects and kinds of file, so the file they need is often one whose name they don’t know."
+            },
+            {
+              "label": "Today’s tools find a file, but not what it connects to",
+              "value": "We studied the asset libraries and mood-board apps creative teams use",
+              "text": "They store and show files well. None of them shows how a picture, a song and a film relate, or links the team’s own files to what is on the web."
+            }
+          ]
+        },
+        {
+          "figure": {
+            "src": "/assets/work/pendulum/research-tools.webp",
+            "onGrey": true,
+            "bg": "var(--frame-base)",
+            "alt": "Four tools creative teams use, from our research: Cosmos, a profile of saved images sorted into collections; Air, a library of assets with folders, filters and usage rights; Playbook, media sorted by when it was uploaded; and Soot, a cloud of pictures arranged by similarity with a box to type what you want to see."
+          }
+        },
+        {
+          "stats": [
+            {
+              "label": "Product-market fit had not been found",
+              "value": "A lab of six",
+              "text": "Building it fully would have meant spending real engineering money on a guess. The first job was to find out, quickly and cheaply, whether people wanted it enough to convince investors."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Design approach",
+      "blocks": [
+        {
+          "milestone": "We treated the first version as a test, not a launch. The question was whether people wanted it enough to convince investors, so we built working demos within weeks and showed them in calls, before spending real engineering money."
+        },
+        {
+          "context": [
+            {
+              "label": "What we focused on, and why",
+              "value": "Only the core idea",
+              "text": "One box to ask for anything in plain words, across images, videos and documents, with the results shown as pictures first. The AI finds and links the files a team already has, rather than making new ones."
+            }
+          ]
+        },
+        {
+          "todo": "How we learned: how many people or calls were in the test, who they were (their roles, not their names), and what leaning in looked like in practice."
+        },
+        {
+          "todo": "How we worked: who built the working demos, and how the design was handed to them."
+        },
+        {
+          "todo": "From the research board, not on the page yet: the board planned interviews, personas, jobs to be done and a task analysis. Say which of these happened before or after the test, and the page can name them."
+        }
+      ]
+    },
+    {
+      "label": "What we built",
+      "blocks": [
+        {
+          "milestone": "In the demos we tested, a library was laid out like a gallery wall, with one place to ask for anything in it. After the test, I designed the rest of the product in its own design system: bringing a library in, finding a file by describing it, and asking a question."
+        },
+        {
+          "p": "The screens below follow one example: a designer gathering pictures for a mountain hotel’s winter campaign."
+        },
+        {
+          "sub": "One small system behind every screen"
+        },
+        {
+          "p": "It is dark first, so the work carries the colour, with one faint accent for what Pendulum is holding or saying. What you read is set in a serif and what you operate in a sans, six text styles in all, and every screen has a light version too."
+        },
+        {
+          "figure": {
+            "video": "/assets/work/pendulum/cards-film.mp4",
+            "poster": "/assets/work/pendulum/cards-film-poster.webp",
+            "alt": "Pendulum's four card types in a loop, the dark theme sweeping across the light one and back, so for a moment each card is half light and half dark: a picture of a night cliff, the document Mountains Ethos with its first lines fading out, the folder Abstract forms with three stacked pictures, and a smart suggestion reading Help me write up creative directions for this event."
+          }
+        },
+        {
+          "sub": "One box to ask for anything"
+        },
+        {
+          "p": "One box at the bottom of every screen asks for anything, the idea the tested demos were built around. Documents, folders, images and suggestions sit together on the home screen, so one question reaches all of them."
+        },
+        {
+          "figure": {
+            "src": "/assets/work/pendulum/journey-home.webp",
+            "device": true,
+            "alt": "Pendulum’s home in the dark theme: the library in five columns, with documents, folders, images and smart suggestions together under the title Library, 2.3 million files from 3 sources, and the search bar closed at the bottom of the screen."
+          }
+        },
+        {
+          "figure": {
+            "label": "Journey 1. Bring your library in",
+            "journeys": [
+              {
+                "title": "Connect the places where files already live",
+                "subtitle": "Pendulum reads a team’s files where they already are, so nobody has to move them first. Dropbox and Google Drive are connected, Gmail is being read, and each file keeps its sharing, so people only find what they could already open.",
+                "src": "/assets/work/pendulum/journey-connect.webp",
+                "device": true,
+                "alt": "Pendulum’s Sources panel beside the library. Dropbox and Google Drive are connected and up to date, Gmail is being read with 768 of 1,240 new files already searchable, and Slack, Frame.io, Figma and a browser extension for Chrome are offered. A line at the foot says each file keeps its sharing."
+              }
+            ]
+          }
+        },
+        {
+          "figure": {
+            "label": "Journey 2. Find it by describing it",
+            "journeys": [
+              {
+                "title": "Open the search from the bar at the bottom",
+                "subtitle": "Every control sits in one bar at the bottom of the screen. Opening it shows recent searches, colours from the library, files opened lately and questions to ask Pendulum.",
+                "src": "/assets/work/pendulum/journey-search.webp",
+                "device": true,
+                "alt": "The search bar open at the bottom of the screen, with the library dimmed behind it. Above the bar are recent searches such as mountains at night, colours taken from the library, recently viewed files, and two questions to ask Pendulum, such as What have we written about mountains before?"
+              },
+              {
+                "title": "Get an honest answer when nothing is close",
+                "subtitle": "When nothing is close, Pendulum says so instead of giving a confident wrong answer. It suggests shorter searches, offers to ask the photo desk, and shows the nearest files faded.",
+                "src": "/assets/work/pendulum/journey-nothing.webp",
+                "device": true,
+                "alt": "A search for a red vintage car on a coast road. Pendulum says nothing in the library is close, suggests three shorter searches, and offers to ask the photo desk. Below, the nearest files are shown faded, labelled as not close enough to count as results."
+              }
+            ]
+          }
+        },
+        {
+          "figure": {
+            "label": "Journey 3. Ask, and see where the answer came from",
+            "journeys": [
+              {
+                "title": "See the files at once, before the answer is written",
+                "subtitle": "A written answer is only useful if it can be checked. The conversation sits on the left and the files that answer it on the right, shown at once, while Pendulum names what it is reading.",
+                "src": "/assets/work/pendulum/journey-ask-reading.webp",
+                "device": true,
+                "alt": "Ask mode. On the left, the question What have we written about mountains before? with Pendulum’s steps: the library searched, 2.3 million files in 0.4 seconds, then 14 documents being read, the first three named. On the right, the files for the question, already ranked, while the answer is still being written."
+              },
+              {
+                "title": "Read an answer that names its sources",
+                "subtitle": "Every claim in the answer carries a number, and the same numbers sit on the files on the right. There is no confidence score. The sources are shown instead.",
+                "src": "/assets/work/pendulum/journey-ask-answer.webp",
+                "device": true,
+                "alt": "Pendulum answering What have we written about mountains before? in a conversation on the left. Each claim in the answer carries a citation number, the three sources sit above it, and on the right the same numbers sit on the files the answer is built from."
+              },
+              {
+                "title": "Open a source at the exact sentence",
+                "subtitle": "Pressing a citation opens the document it came from, with the sentence the answer used shaded. The question, the cited files and the source sit side by side.",
+                "src": "/assets/work/pendulum/journey-ask-source.webp",
+                "device": true,
+                "alt": "Citation 1 opened. The conversation stays on the left, the three cited files sit in a column in the middle, and the document Mountains Ethos is open in a reading panel on the right, with the sentence the answer used shaded."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "What we learned",
+      "blocks": [
+        {
+          "milestone": "Success meant a clear answer before spending real engineering money: did people want Pendulum enough to convince investors?"
+        },
+        {
+          "results": [
+            {
+              "label": "Did we get an answer before spending engineering money?",
+              "value": "Yes",
+              "text": "Working demos were ready within weeks and tested in calls with people from our own network, and the lab made its decision before the engineering money was spent."
+            },
+            {
+              "label": "Did people want it enough to convince investors?",
+              "value": "No",
+              "text": "People leaned in, but not enough to convince investors, so the lab set Pendulum aside and started Lightnote a few weeks later."
+            }
+          ]
+        },
+        {
+          "todo": "Results: how many people or calls the test had, and when Pendulum was set aside."
+        },
+        {
+          "sub": "What I would do next"
+        },
+        {
+          "todo": "DRAFT from an earlier session, not shown until Constantin keeps, changes or cuts it: There was no usage data yet. Had Pendulum gone ahead, these are the first things I would have measured. 1. How often a search ends with someone using what it found: opening it, sharing it or putting it into new work. 2. How long it takes to find a file someone knows exists, compared with the folders they use today. 3. How many searches find nothing useful, and what people were asking for. 4. Whether teams still come back every week after the first month. The first two say whether searching this way is useful and faster than the folders. The last two say where it lets people down, and whether they keep coming back anyway."
+        },
+        {
+          "todo": "Confirm these four measures are ones you would choose. They were suggested when the page was first written, not taken from the project."
+        }
+      ]
+    }
+  ]
+}

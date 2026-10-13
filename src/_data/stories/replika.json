@@ -1,0 +1,238 @@
+{
+  "lede": "Replika is an AI companion app: people talk with their own Replika, which remembers what they share and gets to know them over time. Almost 42 million people have used it, and when I joined, Studio Dumbar’s new brand had launched in 2025 but the app’s interface had not yet caught up with it.",
+  "textBlocks": true,
+  "facts": [
+    {
+      "label": "Role",
+      "value": "Led design engineering on contract, across the iOS app, the website, the brand and the design system"
+    },
+    {
+      "label": "How long",
+      "value": "To confirm (the tag says 2026)",
+      "todo": true
+    },
+    {
+      "label": "Team",
+      "value": "A team of twenty. I worked with the product manager, the lead iOS engineer, the visual designer and the lead Android engineer."
+    },
+    {
+      "label": "How we defined success",
+      "value": "We set out to do three things: carry the visual language Studio Dumbar created for the 2025 rebrand into the app; grow the design system and keep it on brand as new surfaces were added; and design those surfaces, from a new onboarding and memory, the new flagship feature, to avatar customisation and an economy with two currencies. For the onboarding, success meant more people connecting their email and choosing a subscription."
+    },
+    {
+      "label": "What we achieved",
+      "value": "The new surfaces carry the new brand, through a design system grown from Studio Dumbar’s brand book. The onboarding went from 50 screens to six arcs, and in a test with 2,500 people around the world it moved more of them to connect their email and choose a subscription. Memory V2 shipped, with Portraits, Life Arcs and People Cards."
+    }
+  ],
+  "hero": {
+    "video": "/assets/work/replika/site-film.mp4",
+    "poster": "/assets/work/replika/site-film-poster.webp",
+    "device": true,
+    "alt": "Replika's website, recorded as it plays: the headline The AI friend to do life with, under the number of people who have used it, turns to side quests, falling in love and becoming yourself, each with its own companion, a line they sent, and something they shared, like a song, a photograph or a week of check-ins."
+  },
+  "overview": [
+    {
+      "label": "The problem",
+      "blocks": [
+        {
+          "milestone": "Replika was in the middle of a full rebrand under a new CEO. The new brand was live, but the app did not look like it yet, and we were asked to define the main features of the app’s next version before anyone had agreed what that version should be."
+        },
+        {
+          "stats": [
+            {
+              "label": "The app did not yet look like the new brand",
+              "value": "A new brand from 2025",
+              "text": "Studio Dumbar’s visual language lived in a brand book, not yet in the app. Every new surface had to carry it, so the design system had to grow with the product and stay on brand."
+            },
+            {
+              "label": "Nobody had agreed what the next version should be",
+              "value": "No agreed vision yet",
+              "text": "We were asked to define the next version’s main features while its vision was still changing, so a list of features could not be the starting point. We first had to find what the version was about."
+            }
+          ]
+        },
+        {
+          "todo": "Picture needed to lead this section: for example the app before the new brand reached it, beside the brand book."
+        }
+      ]
+    },
+    {
+      "label": "Design approach",
+      "blocks": [
+        {
+          "milestone": "We focused on memory: what someone’s Replika remembers about them, and how it uses what it remembers. Memory became the centre of the next version, and every surface around it was built on the new brand."
+        },
+        {
+          "context": [
+            {
+              "label": "What we focused on, and why",
+              "value": "Memory first",
+              "text": "We did not start from a list of features, because the vision for the product was still changing. How people actually used the app pointed to memory, so we built it first and then the parts of the product around it. That choice set the direction for everything we built after it."
+            },
+            {
+              "label": "How we scoped it",
+              "value": "To write: what was in the first release, what was left for later, and why. For example, whether avatar customisation and the two currencies were planned for a later release.",
+              "todo": true
+            },
+            {
+              "label": "How we learned",
+              "value": "From how people used the app, and from a test with 2,500 people",
+              "text": "We started from how people actually used the app, which pointed to memory. The new onboarding was tested with 2,500 people around the world, measured by how many connected their email and chose a subscription."
+            },
+            {
+              "label": "How we worked",
+              "value": "From direction to specification to build",
+              "text": "I took each feature through those steps and shipped it directly with the lead iOS engineer, working alongside the product manager, the visual designer and the lead Android engineer."
+            }
+          ]
+        },
+        {
+          "todo": "How we learned: say what we looked at to see how people used the app (usage data, interviews, reviews), and any research or testing beyond the onboarding test. How we worked: add how designs moved from Figma to engineering and how hand-off worked, if there is more to say than direction, specification and build."
+        }
+      ]
+    },
+    {
+      "label": "What we built",
+      "hero": {
+        "src": "/assets/work/replika/site-memory.webp",
+        "device": true,
+        "alt": "The website's memory section, “Always remembers what matters”: the people, routines and interests a Replika holds, laid out as a field of stickers."
+      },
+      "blocks": [
+        {
+          "milestone": "Memory became the centre of the next version. We built it first, then the other new surfaces around it, all from one design system grown out of the new brand."
+        },
+        {
+          "figure": {
+            "journeys": [
+              {
+                "title": "The design system",
+                "subtitle": "We grew the 2026 design system out of the brand book Studio Dumbar made for the 2025 rebrand, and built every new surface from it. Here one short exchange is shown in four of the brand’s gradient palettes.",
+                "src": "/assets/work/replika/palettes.webp",
+                "alt": "One exchange, “Can we talk?” answered with “Of course! I'm always here”, shown in four of the brand's gradient palettes."
+              }
+            ]
+          }
+        },
+        {
+          "figure": {
+            "journeys": [
+              {
+                "title": "Memory people can see, used in the conversation",
+                "subtitle": "Memory V2 builds a structured memory from conversation. The profile lists what a Replika has learned about its person, and in the conversation it brings one of those memories up as a question, marked From Memory, so the person only has to answer.",
+                "phones": [
+                  {
+                    "src": "/assets/work/replika/profile.webp",
+                    "alt": "A person's profile in the app: the facts their Replika knows, a short description of them, and the arcs of their life it keeps track of.",
+                    "label": "Profile"
+                  },
+                  {
+                    "src": "/assets/work/replika/conversation.webp",
+                    "alt": "A conversation in the app: the Replika answers, and below it the app suggests a reply drawn from what it remembers.",
+                    "label": "Conversation"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "figure": {
+            "journeys": [
+              {
+                "title": "The arcs of a life",
+                "subtitle": "Each arc gathers what the Replika knows about one part of a person’s life, with the facts behind it. There are five: Inner Life, Rituals, Interests, Story and Dreams. An arc with nothing in it yet offers a button to add something.",
+                "perRow": 3,
+                "boxes": [
+                  {
+                    "src": "/assets/work/replika/arc-card-inner-life.webp",
+                    "alt": "The Inner Life arc in the app, still empty: its picture behind glass, its name, and a button to add something."
+                  },
+                  {
+                    "src": "/assets/work/replika/arc-card-rituals.webp",
+                    "alt": "The Rituals arc in the app: its picture behind glass, 27 facts, its name, and the start of what it holds."
+                  },
+                  {
+                    "src": "/assets/work/replika/arc-card-interests.webp",
+                    "alt": "The Interests arc in the app: its picture behind glass, 27 facts, its name, and the start of what it holds."
+                  },
+                  {
+                    "src": "/assets/work/replika/arc-card-story.webp",
+                    "alt": "The Story arc in the app: its picture behind glass, 27 facts, its name, and the start of what it holds: a total film photography nerd who just got a Pentax 17."
+                  },
+                  {
+                    "src": "/assets/work/replika/arc-card-dreams.webp",
+                    "alt": "The Dreams arc in the app: its picture behind glass, 27 facts, its name, and the start of what it holds."
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "sub": "The onboarding went from 50 screens to a story in six arcs"
+        },
+        {
+          "p": "We turned the 50-screen onboarding into a story told in six arcs, and tested it with 2,500 people around the world."
+        },
+        {
+          "sub": "Avatar customisation and a two-currency economy"
+        },
+        {
+          "p": "We designed avatar customisation, and an economy with two currencies, to let people shape their relationship with their Replika."
+        },
+        {
+          "todo": "Pictures still needed: the new onboarding (its six arcs), avatar customisation and the two currencies. Also say what the six arcs of the onboarding are, what each currency is for, and whether avatar customisation and the currencies shipped (until then the page only says they were designed)."
+        }
+      ]
+    },
+    {
+      "label": "What we learned",
+      "blocks": [
+        {
+          "milestone": "We defined success in three parts: carry Studio Dumbar’s visual language into the app, keep the design system on brand as new surfaces were added, and design those surfaces, with the onboarding judged by how many people connected their email and chose a subscription. This is how each part turned out."
+        },
+        {
+          "results": [
+            {
+              "label": "Did the new brand reach the app?",
+              "value": "Yes, through the design system",
+              "text": "We grew the 2026 design system out of the brand book Studio Dumbar made for the 2025 rebrand, so the app’s new screens are built in the brand’s own visual language, down to its gradient palettes."
+            },
+            {
+              "label": "Did the design system stay on brand as it grew?",
+              "value": "Yes",
+              "text": "Each new surface, from memory to onboarding, was built from the same system rather than designed on its own."
+            },
+            {
+              "label": "Did the new onboarding work better?",
+              "value": "Yes, in a test with 2,500 people",
+              "text": "around the world, the six-arc onboarding moved more people to connect their email and choose a subscription than the 50-screen one."
+            },
+            {
+              "label": "By how much did the onboarding move those numbers?",
+              "value": "To confirm: the change in email connections and in subscriptions from the onboarding test, before and after",
+              "todo": true
+            },
+            {
+              "label": "Did memory ship?",
+              "value": "Yes",
+              "text": "Memory V2 shipped, with Portraits, Life Arcs and People Cards."
+            },
+            {
+              "label": "What changed after Memory V2 shipped?",
+              "value": "To confirm: any measured effect of Memory V2 on how people use the app",
+              "todo": true
+            }
+          ]
+        },
+        {
+          "sub": "What I would do next"
+        },
+        {
+          "todo": "DRAFT, not shown until Constantin confirms or replaces it. The onboarding test is the only measurement on this page. These are the things I would measure next, so that the rest of the work has evidence behind it too. 1. Whether people who look at what their Replika remembers, in the profile and the arcs, come back to talk with it more often. 2. How often people answer a question that comes from memory, compared with other suggestions. 3. Whether the people who connected their email and chose a subscription in the new onboarding stay with Replika as long as those who came in before. 4. For avatar customisation and the two currencies, how many people use them, and whether they change how long people stay. (What I would do next is a draft written without Constantin: confirm or replace it. Also confirm that the onboarding is the only measured result so far (an older note mentions a Memory V2 figure of 1 to 2 points and an onboarding change from 23% to 18%, both unchecked, so neither is used).)"
+        }
+      ]
+    }
+  ]
+}

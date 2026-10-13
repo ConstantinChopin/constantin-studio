@@ -1,0 +1,863 @@
+{
+  "/assets/work/enable/drawings/steps.svg": {
+    "key": [
+      {
+        "mark": "moves",
+        "text": "Arrow: which way it moves"
+      }
+    ],
+    "calls": [
+      {
+        "n": 1,
+        "label": "Lead",
+        "note": ""
+      },
+      {
+        "n": 2,
+        "label": "First email",
+        "note": ""
+      },
+      {
+        "n": 3,
+        "label": "First call",
+        "note": ""
+      },
+      {
+        "n": 4,
+        "label": "Idea and proposal",
+        "note": ""
+      },
+      {
+        "n": 5,
+        "label": "Presentation",
+        "note": ""
+      },
+      {
+        "n": 6,
+        "label": "Commitment",
+        "note": ""
+      },
+      {
+        "n": 7,
+        "label": "Invoice",
+        "note": ""
+      },
+      {
+        "n": 8,
+        "label": "Trip upload",
+        "note": ""
+      },
+      {
+        "n": 9,
+        "label": "Concierge prep",
+        "note": ""
+      },
+      {
+        "n": 10,
+        "label": "Before the trip",
+        "note": ""
+      },
+      {
+        "n": 11,
+        "label": "After the trip",
+        "note": ""
+      },
+      {
+        "n": 12,
+        "label": "The proposal",
+        "note": "what the client receives at step 5"
+      },
+      {
+        "n": 13,
+        "label": "Our focus",
+        "note": ""
+      },
+      {
+        "n": 14,
+        "label": "Later steps",
+        "note": ""
+      }
+    ]
+  },
+  "/assets/work/enable/drawings/feed.svg": {
+    "key": [
+      {
+        "mark": "checked",
+        "text": "Gold: information the agency has checked and trusts"
+      },
+      {
+        "mark": "moves",
+        "text": "Arrow: which way it moves"
+      }
+    ],
+    "calls": [
+      {
+        "n": 1,
+        "label": "Six systems",
+        "note": "portal, booking, itinerary, drive, email and CRM"
+      },
+      {
+        "n": 2,
+        "label": "One hotel's record",
+        "note": "read by every screen"
+      },
+      {
+        "n": 3,
+        "label": "Four screens",
+        "note": "briefing, ask, itinerary and client profile"
+      },
+      {
+        "n": 4,
+        "label": "One shared place",
+        "note": "a checked record for each hotel, client and trip"
+      }
+    ]
+  },
+  "/assets/work/enable/drawings/layers.svg": {
+    "key": [
+      {
+        "mark": "checked",
+        "text": "Gold: information the agency has checked and trusts"
+      }
+    ],
+    "calls": [
+      {
+        "n": 1,
+        "label": "One hotel record",
+        "note": ""
+      },
+      {
+        "n": 2,
+        "label": "Advisor's notes",
+        "note": "seen only by the advisor, until they share them"
+      },
+      {
+        "n": 3,
+        "label": "The agency's deals",
+        "note": "commission and extras, seen only inside the agency"
+      },
+      {
+        "n": 4,
+        "label": "Public facts",
+        "note": "seen by every agency"
+      }
+    ]
+  },
+  "/assets/work/enable/drawings/conflict.svg": {
+    "key": [
+      {
+        "mark": "checked",
+        "text": "Gold: information the agency has checked and trusts"
+      },
+      {
+        "mark": "moves",
+        "text": "Arrow: which way it moves"
+      },
+      {
+        "mark": "unused",
+        "text": "Open ring: a value nobody used"
+      }
+    ],
+    "calls": [
+      {
+        "n": 1,
+        "label": "Booking platform",
+        "note": "an old rate"
+      },
+      {
+        "n": 2,
+        "label": "Partner portal",
+        "note": "the signed terms"
+      },
+      {
+        "n": 3,
+        "label": "Manual entry",
+        "note": "not confirmed"
+      },
+      {
+        "n": 4,
+        "label": "Advisor's choice",
+        "note": ""
+      },
+      {
+        "n": 5,
+        "label": "Commission",
+        "note": "chosen and confirmed"
+      },
+      {
+        "n": 6,
+        "label": "One hotel record",
+        "note": ""
+      }
+    ]
+  },
+  "/assets/work/enable/drawings/curation.svg": {
+    "key": [
+      {
+        "mark": "checked",
+        "text": "Gold: information the agency has checked and trusts"
+      },
+      {
+        "mark": "moves",
+        "text": "Arrow: which way it moves"
+      }
+    ],
+    "calls": [
+      {
+        "n": 1,
+        "label": "Rankings",
+        "note": ""
+      },
+      {
+        "n": 2,
+        "label": "Reviews",
+        "note": ""
+      },
+      {
+        "n": 3,
+        "label": "Destination",
+        "note": ""
+      },
+      {
+        "n": 4,
+        "label": "Price",
+        "note": ""
+      },
+      {
+        "n": 5,
+        "label": "About 3,000",
+        "note": "hotels advisors recognise"
+      },
+      {
+        "n": 6,
+        "label": "2.3 million",
+        "note": "properties from one supplier, not to scale"
+      }
+    ]
+  },
+  "/assets/work/enable/schematics/steps.svg": {
+    "key": [
+      {
+        "mark": "moves",
+        "text": "Arrow: which way it moves"
+      }
+    ],
+    "calls": [
+      {
+        "n": 1,
+        "label": "Lead",
+        "note": ""
+      },
+      {
+        "n": 2,
+        "label": "First email",
+        "note": ""
+      },
+      {
+        "n": 3,
+        "label": "First call",
+        "note": ""
+      },
+      {
+        "n": 4,
+        "label": "Idea and proposal",
+        "note": ""
+      },
+      {
+        "n": 5,
+        "label": "Presentation",
+        "note": ""
+      },
+      {
+        "n": 6,
+        "label": "Commitment",
+        "note": ""
+      },
+      {
+        "n": 7,
+        "label": "Invoice",
+        "note": ""
+      },
+      {
+        "n": 8,
+        "label": "Trip upload",
+        "note": ""
+      },
+      {
+        "n": 9,
+        "label": "Concierge prep",
+        "note": ""
+      },
+      {
+        "n": 10,
+        "label": "Before the trip",
+        "note": ""
+      },
+      {
+        "n": 11,
+        "label": "After the trip",
+        "note": ""
+      },
+      {
+        "n": 12,
+        "label": "Our focus",
+        "note": "first contact to the proposal"
+      },
+      {
+        "n": 13,
+        "label": "Later steps",
+        "note": ""
+      },
+      {
+        "n": 14,
+        "label": "The proposal",
+        "note": "what the client receives at step 5"
+      }
+    ]
+  },
+  "/assets/work/enable/schematics/feed.svg": {
+    "key": [
+      {
+        "mark": "checked",
+        "text": "Gold: information the agency has checked and trusts"
+      },
+      {
+        "mark": "moves",
+        "text": "Arrow: which way it moves"
+      }
+    ],
+    "calls": [
+      {
+        "n": 1,
+        "label": "Six systems",
+        "note": ""
+      },
+      {
+        "n": 2,
+        "label": "Portal",
+        "note": ""
+      },
+      {
+        "n": 3,
+        "label": "Booking",
+        "note": ""
+      },
+      {
+        "n": 4,
+        "label": "Itinerary builder",
+        "note": ""
+      },
+      {
+        "n": 5,
+        "label": "Drive",
+        "note": ""
+      },
+      {
+        "n": 6,
+        "label": "Email",
+        "note": ""
+      },
+      {
+        "n": 7,
+        "label": "CRM",
+        "note": ""
+      },
+      {
+        "n": 8,
+        "label": "One shared place",
+        "note": "a checked record for each hotel, client and trip"
+      },
+      {
+        "n": 9,
+        "label": "Records",
+        "note": ""
+      },
+      {
+        "n": 10,
+        "label": "Briefing",
+        "note": ""
+      },
+      {
+        "n": 11,
+        "label": "Ask",
+        "note": ""
+      },
+      {
+        "n": 12,
+        "label": "Itinerary",
+        "note": ""
+      },
+      {
+        "n": 13,
+        "label": "Client profile",
+        "note": ""
+      },
+      {
+        "n": 14,
+        "label": "Screens",
+        "note": ""
+      }
+    ]
+  },
+  "/assets/work/enable/schematics/layers.svg": {
+    "key": [
+      {
+        "mark": "checked",
+        "text": "Gold: information the agency has checked and trusts"
+      }
+    ],
+    "calls": [
+      {
+        "n": 1,
+        "label": "One hotel record",
+        "note": ""
+      },
+      {
+        "n": 2,
+        "label": "The advisor",
+        "note": ""
+      },
+      {
+        "n": 3,
+        "label": "A colleague",
+        "note": ""
+      },
+      {
+        "n": 4,
+        "label": "Another agency",
+        "note": ""
+      },
+      {
+        "n": 5,
+        "label": "Advisor's notes",
+        "note": "private notes, shared by choice"
+      },
+      {
+        "n": 6,
+        "label": "The agency's deals",
+        "note": "commission and extras"
+      },
+      {
+        "n": 7,
+        "label": "Public facts",
+        "note": "facts every agency shares"
+      }
+    ]
+  },
+  "/assets/work/enable/schematics/conflict.svg": {
+    "key": [
+      {
+        "mark": "checked",
+        "text": "Gold: information the agency has checked and trusts"
+      },
+      {
+        "mark": "moves",
+        "text": "Arrow: which way it moves"
+      },
+      {
+        "mark": "unused",
+        "text": "Open ring: a value nobody used"
+      }
+    ],
+    "calls": [
+      {
+        "n": 1,
+        "label": "Partner portal",
+        "note": "the signed terms"
+      },
+      {
+        "n": 2,
+        "label": "Booking platform",
+        "note": "an old rate"
+      },
+      {
+        "n": 3,
+        "label": "Manual entry",
+        "note": "not confirmed"
+      },
+      {
+        "n": 4,
+        "label": "The advisor",
+        "note": "chooses; the system never does"
+      },
+      {
+        "n": 5,
+        "label": "One hotel record",
+        "note": ""
+      }
+    ]
+  },
+  "/assets/work/enable/schematics/curation.svg": {
+    "key": [
+      {
+        "mark": "checked",
+        "text": "Gold: information the agency has checked and trusts"
+      },
+      {
+        "mark": "moves",
+        "text": "Arrow: which way it moves"
+      }
+    ],
+    "calls": [
+      {
+        "n": 1,
+        "label": "2.3 million",
+        "note": "properties from one supplier"
+      },
+      {
+        "n": 2,
+        "label": "Rankings",
+        "note": ""
+      },
+      {
+        "n": 3,
+        "label": "Reviews",
+        "note": ""
+      },
+      {
+        "n": 4,
+        "label": "Destination",
+        "note": ""
+      },
+      {
+        "n": 5,
+        "label": "Price",
+        "note": ""
+      },
+      {
+        "n": 6,
+        "label": "About 3,000",
+        "note": "hotels advisors recognise"
+      }
+    ]
+  },
+  "/assets/work/enable/schematics/model.svg": {
+    "key": [
+      {
+        "mark": "checked",
+        "text": "Gold: information the agency has checked and trusts"
+      }
+    ],
+    "calls": [
+      {
+        "n": 1,
+        "label": "Hotel",
+        "note": ""
+      },
+      {
+        "n": 2,
+        "label": "Programme terms",
+        "note": ""
+      },
+      {
+        "n": 3,
+        "label": "Programme",
+        "note": ""
+      },
+      {
+        "n": 4,
+        "label": "Offer",
+        "note": ""
+      },
+      {
+        "n": 5,
+        "label": "Note",
+        "note": ""
+      },
+      {
+        "n": 6,
+        "label": "Traveller",
+        "note": ""
+      },
+      {
+        "n": 7,
+        "label": "Trip",
+        "note": ""
+      },
+      {
+        "n": 8,
+        "label": "Trip line",
+        "note": ""
+      },
+      {
+        "n": 9,
+        "label": "Every value",
+        "note": ""
+      },
+      {
+        "n": 10,
+        "label": "The link that matters",
+        "note": ""
+      }
+    ]
+  },
+  "/assets/work/enable/schematics/build.svg": {
+    "key": [
+      {
+        "mark": "checked",
+        "text": "Gold: information the agency has checked and trusts"
+      },
+      {
+        "mark": "moves",
+        "text": "Arrow: which way it moves"
+      }
+    ],
+    "calls": [
+      {
+        "n": 1,
+        "label": "Agency knowledge",
+        "note": "an agency's documents, hotels, programmes, commissions and extras, as checked records"
+      },
+      {
+        "n": 2,
+        "label": "The client",
+        "note": "profile and history read from the agency's booking system, completed by the advisor"
+      },
+      {
+        "n": 3,
+        "label": "The ideal trip",
+        "note": "drafted from the client's history, with the best commission and extras"
+      },
+      {
+        "n": 4,
+        "label": "Booking",
+        "note": "asked, held and confirmed from the trip"
+      },
+      {
+        "n": 5,
+        "label": "The order we built it in",
+        "note": ""
+      }
+    ]
+  },
+  "/assets/work/enable/schematics/loop.svg": {
+    "key": [
+      {
+        "mark": "moves",
+        "text": "Arrow: which way it moves"
+      }
+    ],
+    "calls": [
+      {
+        "n": 1,
+        "label": "Call",
+        "note": "twice a week, with the founder and advisors"
+      },
+      {
+        "n": 2,
+        "label": "Decide",
+        "note": "the problem, evidence, the option turned down"
+      },
+      {
+        "n": 3,
+        "label": "Build",
+        "note": "in the working prototype"
+      },
+      {
+        "n": 4,
+        "label": "Check",
+        "note": "the code, every screen, and a cold read"
+      },
+      {
+        "n": 5,
+        "label": "Use",
+        "note": "a new version for the advisors"
+      },
+      {
+        "n": 6,
+        "label": "Every week, sometimes twice",
+        "note": ""
+      }
+    ]
+  },
+  "/assets/work/pendulum/schematics/folders.svg": {
+    "key": [],
+    "calls": [
+      {
+        "n": 1,
+        "label": "Winter brief",
+        "note": "a document"
+      },
+      {
+        "n": 2,
+        "label": "Peaks at night",
+        "note": "a photograph"
+      },
+      {
+        "n": 3,
+        "label": "Mountain essay",
+        "note": "a document"
+      },
+      {
+        "n": 4,
+        "label": "Corridor shoot",
+        "note": "photographs"
+      },
+      {
+        "n": 5,
+        "label": "Ridge sound",
+        "note": "a recording"
+      },
+      {
+        "n": 6,
+        "label": "Lobby film",
+        "note": "a film"
+      },
+      {
+        "n": 7,
+        "label": "On the web",
+        "note": "a night series"
+      }
+    ]
+  },
+  "/assets/work/pendulum/schematics/process.svg": {
+    "key": [],
+    "calls": [
+      {
+        "n": 1,
+        "label": "Preparation and launch",
+        "note": "gather what exists"
+      },
+      {
+        "n": 2,
+        "label": "Explore",
+        "note": "make sense of it"
+      },
+      {
+        "n": 3,
+        "label": "Transition",
+        "note": "shape it and share it"
+      },
+      {
+        "n": 4,
+        "label": "Define the context",
+        "note": ""
+      },
+      {
+        "n": 5,
+        "label": "Set expectations",
+        "note": ""
+      },
+      {
+        "n": 6,
+        "label": "Ideate",
+        "note": ""
+      },
+      {
+        "n": 7,
+        "label": "Resolve",
+        "note": ""
+      },
+      {
+        "n": 8,
+        "label": "Deliver",
+        "note": ""
+      },
+      {
+        "n": 9,
+        "label": "Evolve",
+        "note": ""
+      },
+      {
+        "n": 10,
+        "label": "The team’s library",
+        "note": "everything the steps have left behind"
+      }
+    ]
+  },
+  "/assets/work/pendulum/schematics/scope.svg": {
+    "key": [],
+    "calls": [
+      {
+        "n": 1,
+        "label": "Tested in the demos",
+        "note": ""
+      },
+      {
+        "n": 2,
+        "label": "Search every kind of file",
+        "note": "pictures, films, sound, text"
+      },
+      {
+        "n": 3,
+        "label": "A visual workspace",
+        "note": "every file shown as a picture"
+      },
+      {
+        "n": 4,
+        "label": "Designed after the test",
+        "note": ""
+      },
+      {
+        "n": 5,
+        "label": "Bring files in",
+        "note": "from where they already live"
+      },
+      {
+        "n": 6,
+        "label": "Tag and sort by itself",
+        "note": "subjects, colours, moods"
+      },
+      {
+        "n": 7,
+        "label": "Work on it together",
+        "note": "shared folders and replies"
+      },
+      {
+        "n": 8,
+        "label": "Left out",
+        "note": ""
+      },
+      {
+        "n": 9,
+        "label": "Export to design software",
+        "note": "Photoshop, Illustrator"
+      }
+    ]
+  },
+  "/assets/work/pendulum/schematics/folder-vs-mosaic.svg": {
+    "key": [],
+    "calls": [
+      {
+        "n": 1,
+        "label": "In a folder",
+        "note": "sorted by name and date"
+      },
+      {
+        "n": 2,
+        "label": "In Pendulum",
+        "note": "ordered by the question, closest first"
+      },
+      {
+        "n": 3,
+        "label": "Peaks at night",
+        "note": "a photograph both words matched"
+      },
+      {
+        "n": 4,
+        "label": "Winter brief",
+        "note": "a document asks for peaks at night"
+      },
+      {
+        "n": 5,
+        "label": "Mountain essay",
+        "note": "a document about mountains"
+      },
+      {
+        "n": 6,
+        "label": "Corridor shoot",
+        "note": "photographs the same night light"
+      },
+      {
+        "n": 7,
+        "label": "Ridge sound",
+        "note": "a recording from a mountain ridge"
+      },
+      {
+        "n": 8,
+        "label": "Lobby film",
+        "note": "a film furthest away"
+      }
+    ]
+  }
+}

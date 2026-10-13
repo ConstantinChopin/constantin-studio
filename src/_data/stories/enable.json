@@ -1,0 +1,349 @@
+{
+  "lede": "Enable VIC helps luxury travel advisors plan each client’s trip from that client’s history, with the best commission for the advisor and the best extras for the client, and book it in the same place. It has been in use at our design partner, a luxury agency, since October 2026.",
+  "textBlocks": true,
+  "facts": [
+    {
+      "label": "Role",
+      "value": "Lead product designer"
+    },
+    {
+      "label": "How long",
+      "value": "Six months of design, to the first delivery in October 2026"
+    },
+    {
+      "label": "Team",
+      "value": "A fractional CTO, a product manager, and two software engineers, one on the back end and some of the infrastructure, one on the front end. Our design partner was a luxury agency and its advisors."
+    },
+    {
+      "label": "How we defined success",
+      "value": "Creating the first data model for luxury travel, giving the industry the shared structure it was missing: what a hotel, a programme, an offer, a client and a trip are, and how they connect. And designing the key screens that any advisor or agency owner could use to run their business on it."
+    },
+    {
+      "label": "What we achieved",
+      "value": "Our design partner signed, and Enable VIC became a product any agency can buy. By the agency’s estimate, the same trips earn 15% more commission, and proposals take half the time."
+    }
+  ],
+  "hero": {
+    "src": "/assets/work/enable/screen-record.webp",
+    "device": true,
+    "alt": "Maison Léandre's record in Enable VIC, as an advisor sees it: the hotel in Paris 4e, with three photographs; the agency's notice that the spa is closed until 15 September; the facts Enable shares with every agency, each with its source and when it was last checked, like the address from the Enable directory, verified in May; and a summary beside them: three sources disagree on the Atelier commission, pool hours are unverified for 96 days and a promotion has 16 days left, with a button to resolve the three sources.",
+    "reshoot": {
+      "src": "/assets/work/enable/record-hero.webp"
+    }
+  },
+  "overview": [
+    {
+      "label": "The problem",
+      "blocks": [
+        {
+          "milestone": "Travel advisors earn their money from commission. A proposal that sells matches four things: what the client loves, a good commission, good extras for the client, and a room free on their dates. Each lives in a different tool, so one proposal takes about 72 hours, unpaid unless the client buys."
+        },
+        {
+          "stats": [
+            {
+              "label": "Every agency has this problem, not only our design partner",
+              "value": "20,000 advisors",
+              "text": "at 1,200 agencies in 58 countries sell $35 billion of travel a year through Virtuoso alone, one of several partner programmes. Travel and tourism added $11.6 trillion to the world economy in 2025.",
+              "source": "<a href=\"https://www.journaldespalaces.com/en/pressrelease-75614-united-states-rewards-tourism-virtuoso-2025-community-awards-recognise-top-advisors-and-partners-for-outstanding-impact-in-specific-travel-niches.html\" target=\"_blank\" rel=\"noopener\">Virtuoso, August 2025</a> and <a href=\"https://wttc.org/research/economic-impact\" target=\"_blank\" rel=\"noopener\">World Travel &amp; Tourism Council</a>"
+            }
+          ]
+        },
+        {
+          "figure": {
+            "journeys": [
+              {
+                "src": "/assets/work/enable/tool-intranet.webp",
+                "alt": "The agency’s intranet: a post with the 2026 hotel and cruise launches, including the Four Seasons Resort and Residences Red Sea at Shura Island, beside notices on air desk fees and an updated commission policy, over a photograph of a beach. Contact details and names are hidden.",
+                "title": "The agency’s intranet announces new hotels and rules",
+                "answers": "Here it announces the Four Seasons at Shura Island, opening in 2027, beside a new rule on unclaimed commissions.",
+                "subtitle": "Each post sits among many, and nothing links it to the clients or trips it affects.",
+                "device": true
+              },
+              {
+                "src": "/assets/work/enable/hotel-note.webp",
+                "alt": "An advisor’s note on the Four Seasons Red Sea at Shura Island: ask for an overwater room, because the garden ones are a long walk from anything; sell it for diving, not as a spa trip; it would suit one family and not another, who would find it too remote; and the launch rate might be 20%, to confirm with the rep, from an email somewhere in the inbox.",
+                "title": "The advisor’s notes hold what they really think",
+                "answers": "Only the note says to ask for an overwater room, and which clients the hotel suits.",
+                "subtitle": "Nobody else can see it, and its rate waits on an email “somewhere in my inbox”. We reconstructed it from the notes advisors keep."
+              },
+              {
+                "src": "/assets/work/enable/tool-email.webp",
+                "alt": "A partner programme’s email in the advisor’s inbox: Latest news, offers and upcoming departures from Virtuoso cruise partners, sent by Virtuoso Cruise News, with its Cruise News banner.",
+                "title": "Partner programmes send their offers by email",
+                "answers": "A hotel can be booked through several programmes, such as Virtuoso, and the programme decides the advisor’s commission and the client’s extras.",
+                "subtitle": "Offers that change both arrive in the inbox, among newsletters like this one, and expire.",
+                "device": true
+              },
+              {
+                "src": "/assets/work/enable/tool-booking.webp",
+                "alt": "The booking system: a dense screen of flights between two cities over six days, with fares, cabins and what each fare includes.",
+                "title": "The booking system is where trips are booked",
+                "answers": "Availability and prices live here, in a screen of their own.",
+                "subtitle": "The client’s tastes and the agency’s notes on each hotel are not here, so the advisor carries them over by hand.",
+                "device": true
+              },
+              {
+                "src": "/assets/work/enable/tool-itinerary.webp",
+                "alt": "An itinerary builder on a laptop and a phone, beside a printed proposal for an adventure trip, each with a space for the agency’s logo.",
+                "title": "The itinerary builder makes the proposal the client sees",
+                "answers": "It turns the chosen trip into a proposal with photographs and a day-by-day plan.",
+                "subtitle": "The advisor fills it in from what they found in all the other tools, by hand, on every trip."
+              },
+              {
+                "src": "/assets/work/enable/tool-client-app.webp",
+                "alt": "A client trip app on two phones: a list of trips, and a river cruise itinerary prepared for a couple, with their travel consultant’s name and ways to reach them.",
+                "title": "The client app shows the traveller their trip",
+                "answers": "It is the one tool the client sees, with the finished trip and how to reach their advisor.",
+                "subtitle": "Getting there took every tool above, joined up by the advisor by hand."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Design approach",
+      "blocks": [
+        {
+          "milestone": "Finding information was never the problem. Knowing which information to trust, and who was allowed to see it, was. So we designed the data model before any screen."
+        },
+        {
+          "sub": "One shared place, fed by the tools the agency already has"
+        },
+        {
+          "p": "The advisor used to join up separate tools by hand. Instead, the agency’s systems feed one checked record for each hotel, client and trip, and every screen in Enable VIC reads from it."
+        },
+        {
+          "figure": {
+            "drawing": "/assets/work/enable/schematics/feed.svg"
+          }
+        },
+        {
+          "sub": "Every value says where it came from, and who owns it"
+        },
+        {
+          "p": "Our first build answered from the open web, and advisors said it was no use. So every value now carries its source, when it was last checked and one owner: Enable, the agency or one advisor."
+        },
+        {
+          "figure": {
+            "drawing": "/assets/work/enable/schematics/model.svg"
+          }
+        },
+        {
+          "sub": "Each person sees only what they are allowed to see"
+        },
+        {
+          "p": "Commissions and notes are sensitive. An advisor’s notes stay private until they share them, the agency’s deals stay inside the agency, and the facts about each hotel are shared by every agency."
+        },
+        {
+          "figure": {
+            "drawing": "/assets/work/enable/schematics/layers.svg"
+          }
+        },
+        {
+          "sub": "We prioritised what was most valuable to advisors"
+        },
+        {
+          "p": "Each step was chosen for the value it gave advisors. The agency’s knowledge came first, because everything else draws on it, then the client, the trip and booking. Together they cover the four things a proposal matches. We delivered the first step in October 2026."
+        },
+        {
+          "figure": {
+            "drawing": "/assets/work/enable/schematics/build.svg"
+          }
+        },
+        {
+          "sub": "Advisors used a new version every week"
+        },
+        {
+          "p": "Twice a week we spoke with the founder and advisors, and I decided each change and why. Claude Code built it in the working prototype, checks tested every screen, and two advisors tried each step on their own clients first."
+        },
+        {
+          "figure": {
+            "drawing": "/assets/work/enable/schematics/loop.svg"
+          }
+        },
+        {
+          "todo": "How we scoped it, the smaller first version: the Deel panel asked whether a smaller first version could have come first, and named one, forwarding commission offers by email. Constantin said on the call that with the team we had, we could not build both at once. Needs his own words before it goes on the page: whether we weighed that option at the time, why we turned it down, and what choosing the larger scope taught us."
+        }
+      ]
+    },
+    {
+      "label": "What we built",
+      "blocks": [
+        {
+          "milestone": "An advisor used to put each proposal together by hand, from tools that don’t connect: what the client loves, what the hotel pays, what the client gets, and whether the room is held. Enable VIC has three areas, Today, Clients and Knowledge, and each surface in them takes over part of that work."
+        },
+        {
+          "figure": {
+            "journeys": [
+              {
+                "src": "/assets/work/enable/screen-briefing.webp",
+                "device": true,
+                "alt": "R. Devane's morning briefing for Friday 28 August. It opens with a few sentences about her day, including that Hôtel Verlaine must not be booked until further notice, then lists four overdue commissions. Beside it, the first of six cards, marked critical, says to take Hôtel Verlaine off L. Grandin's shortlist, because the agency closed it to bookings after water damage, with a button to open the trip.",
+                "reshoot": {
+                  "video": "/assets/work/enable/film-closed-hotel.mp4",
+                  "poster": "/assets/work/enable/film-closed-hotel-poster.webp",
+                  "onGrey": true
+                },
+                "title": "The briefing says what to deal with first",
+                "answers": "An advisor works on several clients at once, with news arriving from every tool.",
+                "subtitle": "The briefing opens the day with a short note about all of them, then the first thing to act on."
+              },
+              {
+                "src": "/assets/work/enable/screen-notifications.webp",
+                "device": true,
+                "alt": "R. Devane’s notifications, nine shown, the most serious first: a critical notice that blocks a hotel she has shortlisted, Hôtel Verlaine; a cancellation not yet acknowledged; a hotel on L. Grandin’s Paris trip that goes against her stated taste; three sources that disagree on a commission rate at Maison Léandre; a commission 12 days overdue; and an incentive that closes for booking in 9 days. Filters above sort them into open, actioned and deferred, and by records, commissions and travellers.",
+                "title": "Notifications keep every change in one list",
+                "answers": "Offers that change a commission arrive by email and expire.",
+                "subtitle": "Every change to the advisor’s clients, hotels and commissions lands here, the most serious first, and stays open until someone deals with it."
+              },
+              {
+                "src": "/assets/work/enable/screen-profile.webp",
+                "device": true,
+                "alt": "S. Marchetti's client profile, as her advisor, R. Devane, sees it. Each of her six preferences shows where it came from and when, with a bar for how sure Enable is: classic interiors, from an email in May 2026; no rooms above the third floor, from R. Devane's own note in April; travels with a small dog, from TripSuite in February; kaiseki over French dining, from a call in January, now marked as confirmed by R. Devane today; no feather pillows, from TripSuite in March; and late checkout where possible, from an email in February. Below them, the suggestion inferred from her trip history reads as discarded by R. Devane. Beside them, a sharing panel says that only her advisor can read the profile.",
+                "reshoot": {
+                  "video": "/assets/work/enable/film-client-profile.mp4",
+                  "poster": "/assets/work/enable/film-client-profile-poster.webp",
+                  "onGrey": true
+                },
+                "title": "A client’s profile says what they love, and where that came from",
+                "answers": "Preferences were scattered across notes, emails and the booking system.",
+                "subtitle": "Each preference shows where and when it was learned. Past trips and spending are read from the booking system, never copied."
+              },
+              {
+                "src": "/assets/work/enable/screen-itineraries.webp",
+                "device": true,
+                "alt": "R. Devane’s itineraries, eight trips, soonest departure first. Each row gives the trip, the client, the places, the dates, what needs attention and its status: Lisbon in 3 days, with a strike day not booked; Kyoto and Kansai in 12 days, with four nights and no stay; the Amalfi coast, with none of two lines confirmed; and L. Grandin’s Paris anniversary in 96 days, with Hôtel Verlaine closed to bookings.",
+                "title": "Every trip in one list, with what is holding each one up",
+                "answers": "An advisor plans many trips at once.",
+                "subtitle": "Every trip is listed soonest departure first, with the one thing that needs attention, such as nights with no hotel or a hotel the agency has closed."
+              },
+              {
+                "src": "/assets/work/enable/screen-trip-draft.webp",
+                "device": true,
+                "alt": "L. Grandin's Paris anniversary trip, 3 to 7 December, just drafted by Enable VIC from her profile and the agency's records: seven lines, each marked as a suggestion, and a note that nothing is asked of anyone until the advisor keeps it. Maison Léandre's line is open beside the trip: the Atelier programme, with daily breakfast for two and an upgrade on arrival, 12% commission on EUR 4,600, and why Enable suggested it, including that Hôtel Verlaine was left out because the agency closed it to bookings and its style is contemporary. Under that are the buttons Keep, Swap and Remove.",
+                "reshoot": [
+                  {
+                    "video": "/assets/work/enable/film-trip-draft.mp4",
+                    "poster": "/assets/work/enable/film-trip-draft-poster.webp",
+                    "onGrey": true
+                  },
+                  {
+                    "video": "/assets/work/enable/film-programme.mp4",
+                    "poster": "/assets/work/enable/film-programme-poster.webp",
+                    "onGrey": true
+                  }
+                ],
+                "title": "Each hotel on a trip shows its commission and its extras",
+                "answers": "The programme decides what the advisor earns and what the client gets.",
+                "subtitle": "Enable VIC drafts the trip from the client’s profile and the agency’s records, and switching a hotel’s programme works out both again."
+              },
+              {
+                "src": "/assets/work/enable/screen-booking.webp",
+                "device": true,
+                "alt": "L. Grandin's anniversary trip after the hotel's reply has been accepted. Maison Léandre's line reads confirmed, reference ML-4471, accepted by R. Devane. It is booked on Atelier's winter offer: daily breakfast for two, an upgrade on arrival and champagne in the room, at 14% commission on EUR 4,600, which is EUR 644. Its history shows the request to confirm and the hotel's reply. The trip's opening sentence now says three of eight lines are confirmed, with a projected commission of EUR 644, and the first day lists the stay as confirmed.",
+                "reshoot": {
+                  "video": "/assets/work/enable/film-booking.mp4",
+                  "poster": "/assets/work/enable/film-booking-poster.webp",
+                  "onGrey": true
+                },
+                "title": "Booking happens on the trip’s line",
+                "answers": "Whether a room was held or confirmed lived in emails with each hotel.",
+                "subtitle": "The request is drafted from the trip, and the hotel’s reply comes back onto the line. Nothing is sent or confirmed until the advisor says so."
+              },
+              {
+                "src": "/assets/work/enable/screen-knowledge.webp",
+                "device": true,
+                "alt": "The agency’s Knowledge, 14 documents, newest first. Each row gives the document, where it came from, when it was updated and who can read it: Atelier’s Paris winter offer, from email today, private to the advisor; an announcement, New in Kyoto for autumn, for the whole agency; a Patagonia operator comparison, uploaded for the Paris desk; the Kyoto ryokan briefing, from the agency’s old intranet; and the Atelier Collection terms, from the agency’s Drive. Filters sort them by Drive, email, intranet, uploads and announcements.",
+                "title": "The agency’s documents in one place, each with who can read it",
+                "answers": "The agency’s information sat in an intranet, shared drives and inboxes.",
+                "subtitle": "Each document says where it came from and who can read it. Enable VIC builds hotel records and answers from them."
+              },
+              {
+                "src": "/assets/work/enable/screen-confirm.webp",
+                "device": true,
+                "alt": "Hotel Sereno Kyoto, a new record proposed from a supplier’s spreadsheet on the agency’s Drive, as the agency owner, M. Keller, sees it. No existing record matches it, so confirming creates one. Each field read from the spreadsheet, the name, legal entity, city, country, neighbourhood and address, shows the cell it came from, a bar for how cleanly it was read, and buttons to confirm or fix it. Beside them, a review panel counts none of 14 fields confirmed and 3 held, and says the rate, commission, programme and description stay held and out of answers.",
+                "title": "New records are read from documents, and a person confirms them",
+                "answers": "Most of that information was unstructured: spreadsheets, emails and notes.",
+                "subtitle": "Enable VIC proposes a record field by field, each with the cell it was read from. The agency owner confirms or fixes each one."
+              },
+              {
+                "src": "/assets/work/enable/screen-programmes.webp",
+                "device": true,
+                "alt": "The programmes on Maison Léandre’s record. The hotel sits in two partner programmes, and the commission and what guests get depend on the one a booking is made under. Under Atelier: three commissions from three sources, 12% from the partner portal, 10% from TripSuite and 14% from a manual entry, marked as disagreeing, with a button to resolve them; paid within 45 days of departure; an upgrade credit as an incentive, with 16 days left; daily breakfast for two and an upgrade on arrival for the guests; the agency’s own negotiated perk, a EUR 100 property credit; what the advisor gets; and how to book it. Beside it, the record’s summary lists what still needs a person.",
+                "title": "A hotel’s record sets out what each programme pays and gives",
+                "answers": "Commissions and extras were spread across partner portals and hotel emails.",
+                "subtitle": "For each programme, the record shows the commission, the client’s extras and how to book, each with its source, and says when sources disagree."
+              },
+              {
+                "src": "/assets/work/enable/screen-sources.webp",
+                "device": true,
+                "alt": "Maison Léandre's record, as the agency owner, M. Keller, sees it, with the three values for the Atelier commission open side by side: 12% from the partner portal, Atelier Collection's signed terms, which three of four sources agree with; 10% from TripSuite's rate feed, a superseded rate; and 14% from a manual entry that nothing else supports. The product says it will not pick one. She has chosen the partner portal's 12% and typed her reason, that the partner portal is Atelier's own published rate, and the button reads Keep 12%.",
+                "reshoot": {
+                  "video": "/assets/work/enable/film-sources-disagree.mp4",
+                  "poster": "/assets/work/enable/film-sources-disagree-poster.webp",
+                  "onGrey": true
+                },
+                "title": "When sources disagree, the agency owner decides",
+                "answers": "Separate tools often give different values for the same thing.",
+                "subtitle": "The record shows them side by side and won’t pick one itself. The owner keeps one and writes why, and the others stay on record."
+              },
+              {
+                "src": "/assets/work/enable/screen-ask.webp",
+                "device": true,
+                "alt": "The question tool in Enable VIC. Asked whether the Musée Rodin is open on Mondays, it says it can't find that in the agency's sources and won't guess, and offers to look on the open web; its one check failed because nothing in the agency's sources matched. The advisor chose to look on the open web, and the answer, that the museum is open Tuesday to Sunday and closed on Mondays, is marked as from the open web, with a reminder to check it before telling the client. The Sources column beside it lists the Musée Rodin website, read today. Above, the end of the earlier answer about the spa at Maison Léandre shows that it came from an open agency notice.",
+                "reshoot": {
+                  "video": "/assets/work/enable/film-questions.mp4",
+                  "poster": "/assets/work/enable/film-questions-poster.webp",
+                  "onGrey": true
+                },
+                "title": "Ask once, instead of searching every tool",
+                "answers": "Finding one fact meant looking through several tools.",
+                "subtitle": "Answers come from the agency’s records first, with their sources. When those don’t cover it, Enable VIC offers to look on the open web and marks what it finds."
+              }
+            ]
+          }
+        },
+        {
+          "todo": "Not shown, at Constantin's word on 13 Oct: Commissions, the Money area's ledger of what each booking owes the advisor (commission chasing exists only in the prototype). Also not shown: Connections (one connected mailbox, too bare to show), the owner's publish queue and the owner's briefing."
+        }
+      ]
+    },
+    {
+      "label": "What we learned",
+      "blocks": [
+        {
+          "milestone": "Success meant creating the first data model for luxury travel, the structure the industry was missing, and designing the key screens any advisor or agency owner could run their business on."
+        },
+        {
+          "results": [
+            {
+              "label": "Did it become a product?",
+              "value": "Yes",
+              "text": "Our design partner signed, and Enable VIC became a product any agency can buy."
+            },
+            {
+              "label": "Do advisors earn more?",
+              "value": "15% more",
+              "text": "commission on the same trips, by the agency’s estimate."
+            },
+            {
+              "label": "Do proposals take less time?",
+              "value": "Half the time",
+              "text": "to make a proposal, by the agency’s estimate."
+            }
+          ]
+        },
+        {
+          "sub": "What I would do next"
+        },
+        {
+          "p": "Next, I would let advisors design itinerary previews and send them to clients straight from the app, and build the VIC client app, the mobile experience for the advisor’s own clients."
+        },
+        {
+          "todo": "Two lessons, in Constantin’s own words. Not written yet."
+        }
+      ]
+    }
+  ]
+}

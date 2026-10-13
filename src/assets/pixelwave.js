@@ -18,6 +18,8 @@
  * room, fraction of H — keep lanes' yc±thickness/2 from touching to preserve rule 1),
  * width (base cloud width css px), gap (min clear space between clouds css px),
  * speed (drift px/s), maxTone (0..2 darkness cap). Global: evolve = billow rate.
+ * Add ?tune to the page address for a panel of sliders over the global settings
+ * (cloud-tuner.js); it copies out the values to write back into CONFIG.
  * React note: run the IIFE body inside useEffect; on cleanup cancelAnimationFrame
  * and remove the resize listener so hot-reload doesn't stack loops.
  */
@@ -37,17 +39,35 @@
       { yc: 0.68, thickness: 0.17, width: 470, gap: 150, speed: 13, maxTone: 2 },
       { yc: 0.88, thickness: 0.17, width: 540, gap: 170, speed: 16, maxTone: 2 }  // lowest, biggest, darkest, fastest
     ],
-    pixelSize: 6,     // css px per cell — minimal, fine grain
-    intensity: 0.30,  // 0..1 opacity of the tones — keep low behind text
-    speed:     1,     // global drift multiplier (0 = frozen sky)
-    evolve:    1,     // billow rate of the cloud forms (0 = static shapes)
-    gap:       1,     // css px gap between cells
-    fadeLeft:  460,   // px: dissolve clouds over the leftmost N px (protect the reading column)
+    pixelSize: 3,     // css px per cell — as fine as maxCells allows; big windows coarsen it
+    intensity: 0.32,  // 0..1 opacity of the tones — keep low behind text
+    speed:     2.7,   // global drift multiplier (0 = frozen sky)
+    evolve:    1.4,   // billow rate of the cloud forms (0 = static shapes)
+    gap:       2,     // css px trimmed from each side of a cell: the square drawn is cell − 2·gap
+    fadeLeft:  380,   // px: dissolve clouds over the leftmost N px (protect the reading column)
     refCell:   22,    // interior noise sampled against this fixed grid
     maxCells:  28000, // grid-resolution cap; auto-coarsens past this on very large screens
-    fps:       30
+    fps:       30,
+    // shape and spread — every lane is scaled by these, and the no-overlap rule
+    // still holds at any value: spacing is worked out from the widest cloud
+    sizeMin:     1.04, // smallest cloud, as a share of its lane's width
+    sizeMax:     1.68, // largest cloud
+    sizeSkew:    1.35, // above 1 leans towards small clouds, below 1 towards large
+    widthScale:  0.7,  // every lane's cloud width
+    heightScale: 1,    // puffiness: how tall a cloud stands for its width (capped by its lane)
+    spacing:     1.15, // every lane's clear gap between clouds
+    emptyChance: 0,    // share of cloud slots left empty, so the sky clumps and clears
+    darkness:    -0.06 // shifts every cloud lighter (below 0) or darker (above 0)
   };
   // ———————————————————————————
+
+  // ?tune opens a panel of sliders over the page for adjusting the sky live
+  if (/[?&]tune\b/.test(location.search)) {
+    window.PixelClouds = { CONFIG, defaults: JSON.parse(JSON.stringify(CONFIG)) };
+    const s = document.createElement('script');
+    s.src = '/assets/cloud-tuner.js';
+    document.body.appendChild(s);
+  }
 
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let DPR = Math.min(window.devicePixelRatio || 1, 1.5) || 1;
@@ -110,14 +130,14 @@
 
     // per-cloud size spread — big and small clouds share a lane, so no two
     // neighbours read as the same stamp. skew<1 biases toward smaller clouds.
-    const SIZE_MIN = 0.60, SIZE_MAX = 1.18, SIZE_SKEW = 1.35;
+    const SIZE_MIN = CONFIG.sizeMin, SIZE_MAX = Math.max(CONFIG.sizeMin, CONFIG.sizeMax), SIZE_SKEW = CONFIG.sizeSkew;
 
     for (let li = 0; li < LANES.length; li++) {
       const ln  = LANES[li];
       const off = t * ln.speed * DPR;
-      const cwBase = ln.width * DPR;
+      const cwBase = ln.width * CONFIG.widthScale * DPR;
       const cwMax  = cwBase * 1.12 * SIZE_MAX;   // widest archetype × widest size = the true maximum
-      const gapPx  = ln.gap * DPR;
+      const gapPx  = ln.gap * CONFIG.spacing * DPR;
       const per    = cwMax + gapPx;              // spacing accounts for the widest cloud -> no same-lane overlap
       const jMax   = gapPx * 0.42;               // horizontal jitter; 2·jMax < gap so a gap can never close
       const chhCap = ln.thickness * H * 0.30;    // keep cloud inside its lane band
@@ -126,13 +146,13 @@
 
       for (let i = i0; i <= i1; i++) {
         // leave some slots empty so the sky clumps and clears rather than marching
-        if (hash(i * 1.93 + 5.1, li * 6.7 + 2.3) < 0.12) continue;
+        if (hash(i * 1.93 + 5.1, li * 6.7 + 2.3) < CONFIG.emptyChance) continue;
         const r1 = hash(i * 7.3,        li * 13.1 + 1.7);
         const r3 = hash(i * 11.3 + 9.1, li * 5.3  + 3.9);
         const T = TYPES[Math.min(TYPES.length - 1, Math.floor(hash(i * 2.13 + 0.7, li * 3.9 + 0.3) * TYPES.length))];
         const size = SIZE_MIN + (SIZE_MAX - SIZE_MIN) * Math.pow(r1, SIZE_SKEW); // more small, few large
         const cw  = cwBase * T.wMul * size;            // <= cwMax
-        const chh = Math.min(cw * 0.34, chhCap) * T.hMul;
+        const chh = Math.min(cw * 0.34 * CONFIG.heightScale, chhCap) * T.hMul;
         const jx  = (hash(i * 3.7 + 0.2, li * 8.3 + 1.1) - 0.5) * 2 * jMax; // break the regular spacing
         const x0  = i * per - off + jx;
         if (x0 > W || x0 + cw < 0) continue;
@@ -187,7 +207,7 @@
             }
             if (d <= 0) continue;
             const n = fbm(px / REF * 0.5 + tv * 0.06 + i * 3.1, py / REF * 0.5 - tv * 0.04 + li * 7.7) - 0.5;
-            const darkness = 0.28 * d + 0.52 * vf + 0.26 * n;
+            const darkness = 0.28 * d + 0.52 * vf + 0.26 * n + CONFIG.darkness;
             let ti = darkness < 0.34 ? 0 : darkness < 0.60 ? 1 : 2;
             if (ti > ln.maxTone) ti = ln.maxTone;    // high clouds stay soft
             let alpha = k;

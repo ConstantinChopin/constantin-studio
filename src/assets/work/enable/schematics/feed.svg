@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="70 140 1138 466" role="img" aria-labelledby="fd-t fd-d" class="dw">
+<title id="fd-t">What goes in, and what reads from it</title>
+<desc id="fd-d">Six systems, portal, booking, the itinerary builder, drive, email and CRM, feed one bus into the shared place inside Enable, which holds a checked record for each hotel, client and trip. Every screen, the hotel records, the briefing, ask, itinerary and client profile, reads from that same place.</desc>
+<defs>
+<filter id="fd-lift" filterUnits="userSpaceOnUse" x="0" y="0" width="1280" height="720"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="rgb(24,18,12)" flood-opacity="0.06"/><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="rgb(24,18,12)" flood-opacity="0.06"/></filter>
+<marker id="fd-arrow" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M1.2 1.4L8.8 5L1.2 8.6Z" fill="rgba(17,15,15,0.34)" stroke="rgba(17,15,15,0.34)" stroke-width="1" stroke-linejoin="round"/></marker><marker id="fd-arrow-gold" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M1.2 1.4L8.8 5L1.2 8.6Z" fill="rgb(143,119,54)" stroke="rgb(143,119,54)" stroke-width="1" stroke-linejoin="round"/></marker>
+</defs>
+<g class="dw-text"><text x="72" y="215" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.38)">SIX SYSTEMS</text></g>
+<g class="dw-num" display="none"><circle cx="98" cy="210" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="98" y="221" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">1</text></g>
+<rect x="70" y="235" width="190" height="34" rx="9" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#fd-lift)"/>
+<g class="dw-text"><text x="165" y="257" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">PORTAL</text></g>
+<g class="dw-num" display="none"><circle cx="165" cy="252" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="165" y="263" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">2</text></g>
+<rect x="70" y="283" width="190" height="34" rx="9" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#fd-lift)"/>
+<g class="dw-text"><text x="165" y="305" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">BOOKING</text></g>
+<g class="dw-num" display="none"><circle cx="165" cy="300" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="165" y="311" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">3</text></g>
+<rect x="70" y="331" width="190" height="34" rx="9" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#fd-lift)"/>
+<g class="dw-text"><text x="165" y="353" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">ITINERARY BUILDER</text></g>
+<g class="dw-num" display="none"><circle cx="165" cy="348" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="165" y="359" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">4</text></g>
+<rect x="70" y="379" width="190" height="34" rx="9" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#fd-lift)"/>
+<g class="dw-text"><text x="165" y="401" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">DRIVE</text></g>
+<g class="dw-num" display="none"><circle cx="165" cy="396" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="165" y="407" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">5</text></g>
+<rect x="70" y="427" width="190" height="34" rx="9" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#fd-lift)"/>
+<g class="dw-text"><text x="165" y="449" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">EMAIL</text></g>
+<g class="dw-num" display="none"><circle cx="165" cy="444" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="165" y="455" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">6</text></g>
+<rect x="70" y="475" width="190" height="34" rx="9" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#fd-lift)"/>
+<g class="dw-text"><text x="165" y="497" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">CRM</text></g>
+<g class="dw-num" display="none"><circle cx="165" cy="492" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="165" y="503" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">7</text></g>
+<path d="M260 252L310 252" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="310" cy="252" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M260 300L310 300" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="310" cy="300" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M260 348L310 348" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="310" cy="348" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M260 396L310 396" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="310" cy="396" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M260 444L310 444" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="310" cy="444" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M260 492L310 492" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="310" cy="492" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M310 252L310 492" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M310 372L428 372" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#fd-arrow)"/>
+<rect x="396" y="140" width="812" height="466" rx="20" fill="rgba(17,19,22,0.04)"/>
+<text x="418" y="170" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.38)">ENABLE</text>
+<rect x="430" y="196" width="320" height="352" rx="14" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#fd-lift)"/>
+<g class="dw-text"><text x="452" y="230" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">ONE SHARED PLACE</text><text x="452" y="249" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.55)">a checked record for each</text><text x="452" y="268" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.55)">hotel, client and trip</text></g>
+<g class="dw-num" display="none"><circle cx="478" cy="225" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="478" y="236" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">8</text></g>
+<text x="452" y="343" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.55)">HOTELS</text>
+<rect x="560" y="326" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<rect x="594" y="326" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<rect x="628" y="326" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<rect x="662" y="326" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<rect x="696" y="326" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<text x="730" y="343" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.38)">…</text>
+<line x1="452" y1="372" x2="728" y2="372" stroke="rgba(17,15,15,0.12)" stroke-width="1"/>
+<text x="452" y="411" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.55)">CLIENTS</text>
+<rect x="560" y="394" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<rect x="594" y="394" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<rect x="628" y="394" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<rect x="662" y="394" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<rect x="696" y="394" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<text x="730" y="411" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.38)">…</text>
+<line x1="452" y1="440" x2="728" y2="440" stroke="rgba(17,15,15,0.12)" stroke-width="1"/>
+<text x="452" y="479" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.55)">TRIPS</text>
+<rect x="560" y="462" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<rect x="594" y="462" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<rect x="628" y="462" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<rect x="662" y="462" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<rect x="696" y="462" width="26" height="24" rx="6" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<text x="730" y="479" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.38)">…</text>
+<path d="M750 372L830 372" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="830" cy="372" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M830 256L830 488" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M830 256L948 256" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#fd-arrow)"/>
+<circle cx="830" cy="256" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<rect x="950" y="234" width="220" height="44" rx="10" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#fd-lift)"/>
+<circle cx="964" cy="246" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<circle cx="974" cy="246" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<circle cx="984" cy="246" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<g class="dw-text"><text x="1060" y="265" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">RECORDS</text></g>
+<g class="dw-num" display="none"><circle cx="1060" cy="260" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="1060" y="271" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">9</text></g>
+<path d="M830 314L948 314" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#fd-arrow)"/>
+<rect x="950" y="292" width="220" height="44" rx="10" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#fd-lift)"/>
+<circle cx="964" cy="304" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<circle cx="974" cy="304" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<circle cx="984" cy="304" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<g class="dw-text"><text x="1060" y="323" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">BRIEFING</text></g>
+<g class="dw-num" display="none"><circle cx="1060" cy="318" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="1060" y="329" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">10</text></g>
+<path d="M830 372L948 372" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#fd-arrow)"/>
+<rect x="950" y="350" width="220" height="44" rx="10" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#fd-lift)"/>
+<circle cx="964" cy="362" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<circle cx="974" cy="362" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<circle cx="984" cy="362" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<g class="dw-text"><text x="1060" y="381" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">ASK</text></g>
+<g class="dw-num" display="none"><circle cx="1060" cy="376" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="1060" y="387" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">11</text></g>
+<path d="M830 430L948 430" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#fd-arrow)"/>
+<rect x="950" y="408" width="220" height="44" rx="10" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#fd-lift)"/>
+<circle cx="964" cy="420" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<circle cx="974" cy="420" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<circle cx="984" cy="420" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<g class="dw-text"><text x="1060" y="439" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">ITINERARY</text></g>
+<g class="dw-num" display="none"><circle cx="1060" cy="434" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="1060" y="445" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">12</text></g>
+<path d="M830 488L948 488" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#fd-arrow)"/>
+<circle cx="830" cy="488" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<rect x="950" y="466" width="220" height="44" rx="10" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#fd-lift)"/>
+<circle cx="964" cy="478" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<circle cx="974" cy="478" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<circle cx="984" cy="478" r="2.6" fill="rgba(17,15,15,0.14)"/>
+<g class="dw-text"><text x="1060" y="497" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">CLIENT PROFILE</text></g>
+<g class="dw-num" display="none"><circle cx="1060" cy="492" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="1060" y="503" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">13</text></g>
+<g class="dw-text"><text x="952" y="214" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.38)">SCREENS</text></g>
+<g class="dw-num" display="none"><circle cx="978" cy="209" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="978" y="220" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">14</text></g>
+</svg>

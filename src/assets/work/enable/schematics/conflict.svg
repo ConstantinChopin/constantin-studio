@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="80 150 1100 370" role="img" aria-labelledby="cf-t cf-d" class="dw">
+<title id="cf-t">Three sources disagreeing about one value</title>
+<desc id="cf-d">Three sources give a different commission for the same hotel: the partner portal says 12%, the signed terms; the booking platform says 10%, an old rate; a manual entry says 14%, not confirmed. A selector that only the advisor moves rests on the partner portal, and 12% goes into the record's commission field, in gold. The other two are not used. The system never picks on its own.</desc>
+<defs>
+<filter id="cf-lift" filterUnits="userSpaceOnUse" x="0" y="0" width="1280" height="720"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="rgb(24,18,12)" flood-opacity="0.06"/><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="rgb(24,18,12)" flood-opacity="0.06"/></filter>
+<marker id="cf-arrow" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M1.2 1.4L8.8 5L1.2 8.6Z" fill="rgba(17,15,15,0.34)" stroke="rgba(17,15,15,0.34)" stroke-width="1" stroke-linejoin="round"/></marker><marker id="cf-arrow-gold" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M1.2 1.4L8.8 5L1.2 8.6Z" fill="rgb(143,119,54)" stroke="rgb(143,119,54)" stroke-width="1" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="80" y="200" width="270" height="64" rx="12" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#cf-lift)"/>
+<g class="dw-text"><text x="100" y="226" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">PARTNER PORTAL</text><text x="100" y="245" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.55)">the signed terms</text></g>
+<g class="dw-num" display="none"><circle cx="126" cy="221" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="126" y="232" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">1</text></g>
+<text x="330" y="241" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="24" fill="rgba(17,15,15,0.82)">12%</text>
+<path d="M350 232L450 232Q460 232 460 242L460 312.5Q460 322.5 470 322.5L547.3 322.5" fill="none" stroke="rgb(143,119,54)" stroke-width="1.2" stroke-linecap="round"/>
+<rect x="80" y="328" width="270" height="64" rx="12" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#cf-lift)"/>
+<g class="dw-text"><text x="100" y="354" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">BOOKING PLATFORM</text><text x="100" y="373" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.55)">an old rate</text></g>
+<g class="dw-num" display="none"><circle cx="126" cy="349" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="126" y="360" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">2</text></g>
+<text x="330" y="369" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="24" fill="rgba(17,15,15,0.82)">10%</text>
+<path d="M350 360L460 360Q460 360 460 360L460 360Q460 360 460 360L540 360" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="540" cy="360" r="4.5" fill="#ffffff" stroke="rgba(17,15,15,0.34)" stroke-width="1.2"/>
+<rect x="80" y="456" width="270" height="64" rx="12" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#cf-lift)"/>
+<g class="dw-text"><text x="100" y="482" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">MANUAL ENTRY</text><text x="100" y="501" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.55)">not confirmed</text></g>
+<g class="dw-num" display="none"><circle cx="126" cy="477" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="126" y="488" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">3</text></g>
+<text x="330" y="497" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="24" fill="rgba(17,15,15,0.82)">14%</text>
+<path d="M350 488L450 488Q460 488 460 478L460 407.5Q460 397.5 470 397.5L547.3 397.5" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="547.3" cy="397.5" r="4.5" fill="#ffffff" stroke="rgba(17,15,15,0.34)" stroke-width="1.2"/>
+<path d="M547.3 322.5A100 100 0 0 0 547.3 397.5" fill="none" stroke="rgba(17,15,15,0.12)" stroke-width="1.2" stroke-dasharray="1 4" stroke-linecap="round"/>
+<circle cx="547.3" cy="322.5" r="2.8" fill="rgb(143,119,54)"/>
+<line x1="640" y1="360" x2="547.3" y2="322.5" stroke="rgb(143,119,54)" stroke-width="2.6" stroke-linecap="round"/>
+<circle cx="640" cy="360" r="5" fill="#ffffff" stroke="rgb(143,119,54)" stroke-width="2"/>
+<rect x="450" y="150" width="300" height="60" rx="12" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#cf-lift)"/>
+<g class="dw-text"><text x="600" y="176" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">THE ADVISOR</text><text x="600" y="195" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.55)">chooses; the system never does</text></g>
+<g class="dw-num" display="none"><circle cx="600" cy="171" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="600" y="182" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">4</text></g>
+<path d="M593.6 212L593.6 333.3" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#cf-arrow)"/>
+<path d="M645 360L778 360" fill="none" stroke="rgb(143,119,54)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#cf-arrow-gold)"/>
+<rect x="780" y="165" width="400" height="292" rx="14" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#cf-lift)"/>
+<g class="dw-text"><text x="802" y="197" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">ONE HOTEL RECORD</text></g>
+<g class="dw-num" display="none"><circle cx="828" cy="192" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="828" y="203" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">5</text></g>
+<line x1="802" y1="273" x2="1158" y2="273" stroke="rgba(17,15,15,0.12)" stroke-width="1"/>
+<text x="806" y="249" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.55)">HOTEL</text>
+<rect x="1030" y="240" width="120" height="8" rx="4" fill="rgba(17,19,22,0.06)"/>
+<line x1="802" y1="331" x2="1158" y2="331" stroke="rgba(17,15,15,0.12)" stroke-width="1"/>
+<text x="806" y="307" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.55)">PROGRAMME</text>
+<rect x="1030" y="298" width="120" height="8" rx="4" fill="rgba(17,19,22,0.06)"/>
+<rect x="792" y="336" width="376" height="48" rx="9" fill="#f6f0de" stroke="rgba(143,119,54,0.45)" stroke-width="1"/>
+<text x="806" y="365" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">COMMISSION</text>
+<text x="1150" y="368" text-anchor="end" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="24" fill="rgba(17,15,15,0.82)">12%</text>
+<text x="806" y="423" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.55)">EXTRAS</text>
+<rect x="1030" y="414" width="120" height="8" rx="4" fill="rgba(17,19,22,0.06)"/>
+</svg>

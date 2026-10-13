@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="44 34 1092 630" role="img" aria-labelledby="pr-t pr-d" class="dw">
+<title id="pr-t">How a creative project uses its files</title>
+<desc id="pr-d">Six steps of a creative project, in order: define the context and set expectations, which is when people gather what exists; ideate, resolve and deliver, when they make sense of it; and evolve, when they shape it and share it. Every step leaves files in the team’s library, and a line from the library runs back to every step, because any step can use them again.</desc>
+<defs>
+<filter id="pr-lift" filterUnits="userSpaceOnUse" x="0" y="0" width="1280" height="720"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="rgb(24,18,12)" flood-opacity="0.06"/><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="rgb(24,18,12)" flood-opacity="0.06"/></filter>
+<marker id="pr-arrow" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M1.2 1.4L8.8 5L1.2 8.6Z" fill="rgba(17,15,15,0.34)" stroke="rgba(17,15,15,0.34)" stroke-width="1" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="60" y="50" width="600" height="164" rx="20" fill="rgba(17,19,22,0.04)"/>
+<g class="dw-text"><text x="82" y="80" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.55)">PREPARATION AND LAUNCH</text><text x="82" y="99" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.55)">gather what exists</text></g>
+<g class="dw-num" display="none"><circle cx="108" cy="75" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="108" y="86" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">1</text></g>
+<rect x="60" y="230" width="600" height="234" rx="20" fill="rgba(17,19,22,0.04)"/>
+<g class="dw-text"><text x="82" y="260" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.55)">EXPLORE</text><text x="82" y="279" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.55)">make sense of it</text></g>
+<g class="dw-num" display="none"><circle cx="108" cy="255" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="108" y="266" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">2</text></g>
+<rect x="60" y="480" width="600" height="94" rx="20" fill="rgba(17,19,22,0.04)"/>
+<g class="dw-text"><text x="82" y="510" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.55)">TRANSITION</text><text x="82" y="529" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.55)">shape it and share it</text></g>
+<g class="dw-num" display="none"><circle cx="108" cy="505" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="108" y="516" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">3</text></g>
+<rect x="360" y="80" width="260" height="44" rx="9" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#pr-lift)"/>
+<text x="376" y="107" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.38)">01</text>
+<g class="dw-text"><text x="414" y="107" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">DEFINE THE CONTEXT</text></g>
+<g class="dw-num" display="none"><circle cx="440" cy="102" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="440" y="113" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">4</text></g>
+<path d="M490 126L490 149" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#pr-arrow)"/>
+<rect x="360" y="150" width="260" height="44" rx="9" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#pr-lift)"/>
+<text x="376" y="177" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.38)">02</text>
+<g class="dw-text"><text x="414" y="177" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">SET EXPECTATIONS</text></g>
+<g class="dw-num" display="none"><circle cx="440" cy="172" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="440" y="183" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">5</text></g>
+<path d="M490 196L490 259" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#pr-arrow)"/>
+<rect x="360" y="260" width="260" height="44" rx="9" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#pr-lift)"/>
+<text x="376" y="287" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.38)">03</text>
+<g class="dw-text"><text x="414" y="287" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">IDEATE</text></g>
+<g class="dw-num" display="none"><circle cx="440" cy="282" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="440" y="293" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">6</text></g>
+<path d="M490 306L490 329" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#pr-arrow)"/>
+<rect x="360" y="330" width="260" height="44" rx="9" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#pr-lift)"/>
+<text x="376" y="357" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.38)">04</text>
+<g class="dw-text"><text x="414" y="357" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">RESOLVE</text></g>
+<g class="dw-num" display="none"><circle cx="440" cy="352" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="440" y="363" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">7</text></g>
+<path d="M490 376L490 399" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#pr-arrow)"/>
+<rect x="360" y="400" width="260" height="44" rx="9" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#pr-lift)"/>
+<text x="376" y="427" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.38)">05</text>
+<g class="dw-text"><text x="414" y="427" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">DELIVER</text></g>
+<g class="dw-num" display="none"><circle cx="440" cy="422" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="440" y="433" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">8</text></g>
+<path d="M490 446L490 509" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#pr-arrow)"/>
+<rect x="360" y="510" width="260" height="44" rx="9" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#pr-lift)"/>
+<text x="376" y="537" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.38)">06</text>
+<g class="dw-text"><text x="414" y="537" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">EVOLVE</text></g>
+<g class="dw-num" display="none"><circle cx="440" cy="532" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="440" y="543" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">9</text></g>
+<path d="M620 102L720 102" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="720" cy="102" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M620 172L720 172" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="720" cy="172" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M620 282L720 282" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="720" cy="282" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M620 352L720 352" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="720" cy="352" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M620 422L720 422" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="720" cy="422" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M620 532L720 532" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="720" cy="532" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M720 102L720 532" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M720 307L798 307" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#pr-arrow)"/>
+<text x="732" y="90" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.38)">each step leaves files</text>
+<rect x="800" y="252" width="320" height="110" rx="14" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1" filter="url(#pr-lift)"/>
+<g class="dw-text"><text x="822" y="292" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" letter-spacing="1.55" fill="rgba(17,15,15,0.82)">THE TEAM’S LIBRARY</text><text x="822" y="311" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.55)">everything the steps</text><text x="822" y="330" text-anchor="start" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.55)">have left behind</text></g>
+<g class="dw-num" display="none"><circle cx="848" cy="287" r="26" fill="#ffffff" stroke="rgba(17,15,15,0.1)" stroke-width="1.2"/><text x="848" y="298" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="30" fill="rgba(17,15,15,0.82)">10</text></g>
+<path d="M960 362L960 608Q960 618 950 618L340 618Q330 618 330 608L330 102" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M330 102L358 102" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#pr-arrow)"/>
+<circle cx="330" cy="102" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M330 172L358 172" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#pr-arrow)"/>
+<circle cx="330" cy="172" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M330 282L358 282" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#pr-arrow)"/>
+<circle cx="330" cy="282" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M330 352L358 352" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#pr-arrow)"/>
+<circle cx="330" cy="352" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M330 422L358 422" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#pr-arrow)"/>
+<circle cx="330" cy="422" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<path d="M330 532L358 532" fill="none" stroke="rgba(17,15,15,0.34)" stroke-width="1.2" stroke-linecap="round" marker-end="url(#pr-arrow)"/>
+<circle cx="330" cy="532" r="2.8" fill="rgba(17,15,15,0.34)"/>
+<text x="645" y="644" text-anchor="middle" font-family="'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="rgba(17,15,15,0.38)">any step can use them again</text>
+</svg>
