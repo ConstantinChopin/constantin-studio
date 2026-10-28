@@ -1,135 +1,18 @@
 {
+  "contact": {
+    "email": "constantinchopindesign@gmail.com",
+    "cv": "/cv.pdf"
+  },
   "shelves": [
     {
       "label": "Projects",
       "glyph": "projects",
       "entries": [
         {
-          "id": "replika",
-          "title": "Replika",
-          "desc": "Consumer AI companionship.",
-          "href": "/projects/replika/",
-          "site": "https://replika.com/",
-          "banner": {
-            "src": "/assets/work/replika/R1.png",
-            "alt": "Replika — brand mark"
-          },
-          "intro": "Replika is the AI companion, with 42 million users worldwide. In 2026, midway through a full rebrand under a new CEO, the company brought us in to lead design engineering: a flat team of twenty, working across iOS, web, brand, and the design system.",
-          "body": [
-            "The brief was to define the flagship features of the product's next era. We carried each one from direction to spec to build, shipping directly with the lead iOS developer.",
-            "The harder question was what that era should be. The rebrand was live and the vision still in motion, so we did not start from features. We followed how people actually used the product, and the use pointed to one reframe: memory is the product. That call set the direction for everything after it.",
-            "Memory V2 grew into Portraits, Life Arcs, and People Cards, each built on structured memory drawn from conversation. Alongside it we shipped the 2026 design system grown from the brand book, a 40-screen onboarding recast as a six-act narrative, and the dual-currency economy through which users shape the relationship."
-          ],
-          "meta": [
-            {
-              "label": "Service",
-              "tags": [
-                "Design Engineering"
-              ]
-            },
-            {
-              "label": "Year",
-              "tags": [
-                "2026"
-              ]
-            },
-            {
-              "label": "Stack",
-              "tags": [
-                "—"
-              ]
-            }
-          ],
-          "skills": [
-            "Design engineering",
-            "Design systems",
-            "Consumer mobile",
-            "Memory interfaces"
-          ],
-          "details": [
-            {
-              "label": "Context",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            },
-            {
-              "label": "Problem",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            },
-            {
-              "label": "Approach",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            },
-            {
-              "label": "Build",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            },
-            {
-              "label": "System",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            },
-            {
-              "label": "Detail",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            },
-            {
-              "label": "Iteration",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            },
-            {
-              "label": "Outcome",
-              "text": "Placeholder — this section will be written as the case study is filled in."
-            }
-          ],
-          "railReady": true,
-          "rail": [
-            {
-              "src": "/assets/work/replika/R1.png",
-              "alt": "Replika — the wordmark on the cobalt field."
-            },
-            {
-              "src": "/assets/work/replika/R2.png",
-              "alt": "One exchange — “Can we talk?” answered — carried across four of the brand's gradient palettes."
-            },
-            {
-              "src": "/assets/work/replika/R3.png",
-              "alt": "The product site — “The AI friend to do life with”, a song passed into the conversation beside it."
-            },
-            {
-              "src": "/assets/work/replika/R4.png",
-              "alt": "The memory section — the people, routines and interests a Rep holds, laid out as a field of stickers."
-            },
-            {
-              "src": "/assets/work/replika/R7.png",
-              "alt": "The conversation itself — a Rep answering in the moment, and a suggested reply drawn from what it remembers."
-            },
-            {
-              "src": "/assets/work/replika/R5.png",
-              "alt": "A profile screen — facts, a characterisation, and the memory arcs a Rep keeps about a person."
-            }
-          ],
-          "margin": [
-            {
-              "label": "Role",
-              "value": "Contract design engineer"
-            },
-            {
-              "label": "Team",
-              "value": "Flat 20 · 4 design, 10 eng"
-            },
-            {
-              "label": "Shipped",
-              "value": "Memory V2, onboarding"
-            },
-            {
-              "label": "Reach",
-              "value": "42M users"
-            }
-          ]
-        },
-        {
           "id": "parable",
           "title": "Parable",
           "desc": "An intelligence layer for the enterprise.",
+          "line": "intelligence layer for the enterprise",
           "href": "/projects/parable/",
           "site": "https://www.askparable.com/",
           "banner": {
@@ -213,10 +96,15 @@
               "alt": "Parable — the wordmark on the plum field."
             },
             {
-              "src": "/assets/work/parable/PA2.png",
+              "src": "/assets/work/parable/PA2.webp",
               "alt": "The product site — an analytics layer for operational observability, the ask on the left and a costed work analysis on the right."
             }
           ],
+          "card": {
+            "src": "/assets/work/parable/stills/system-bento.webp",
+            "frame": "4 / 3",
+            "alt": "Parts of Parable’s design system in six cells: everyone at Acme as an orb of points, the type, the colours, Ponder’s answer, the controls, and the same points as a ranking."
+          },
           "margin": [
             {
               "label": "Role",
@@ -237,9 +125,189 @@
           ]
         },
         {
+          "id": "replika",
+          "title": "Replika",
+          "desc": "Consumer AI companionship.",
+          "line": "consumer AI companionship",
+          "href": "/projects/replika/",
+          "site": "https://replika.com/",
+          "banner": {
+            "src": "/assets/work/replika/R1.png",
+            "alt": "Replika — brand mark"
+          },
+          "intro": "Replika is the AI companion, with 42 million users worldwide. In 2026, midway through a full rebrand under a new CEO, the company brought us in to lead design engineering: a flat team of twenty, working across iOS, web, brand, and the design system.",
+          "body": [
+            "The brief was to define the flagship features of the product's next era. We carried each one from direction to spec to build, shipping directly with the lead iOS developer.",
+            "The harder question was what that era should be. The rebrand was live and the vision still in motion, so we did not start from features. We followed how people actually used the product, and the use pointed to one reframe: memory is the product. That call set the direction for everything after it.",
+            "Memory V2 grew into Portraits, Life Arcs, and People Cards, each built on structured memory drawn from conversation. Alongside it we shipped the 2026 design system grown from the brand book, a 40-screen onboarding recast as a six-act narrative, and the dual-currency economy through which users shape the relationship."
+          ],
+          "meta": [
+            {
+              "label": "Service",
+              "tags": [
+                "Design Engineering"
+              ]
+            },
+            {
+              "label": "Year",
+              "tags": [
+                "2026"
+              ]
+            },
+            {
+              "label": "Stack",
+              "tags": [
+                "—"
+              ]
+            }
+          ],
+          "skills": [
+            "Design engineering",
+            "Design systems",
+            "Consumer mobile",
+            "Memory interfaces"
+          ],
+          "details": [
+            {
+              "label": "Context",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Problem",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Approach",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Build",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "System",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Detail",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Iteration",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            },
+            {
+              "label": "Outcome",
+              "text": "Placeholder — this section will be written as the case study is filled in."
+            }
+          ],
+          "railReady": true,
+          "rail": [
+            {
+              "src": "/assets/work/replika/R1.png",
+              "alt": "Replika — the wordmark on the cobalt field."
+            },
+            {
+              "src": "/assets/work/replika/R2.webp",
+              "alt": "One exchange — “Can we talk?” answered — carried across four of the brand's gradient palettes."
+            },
+            {
+              "src": "/assets/work/replika/R3.png",
+              "alt": "The product site — “The AI friend to do life with”, a song passed into the conversation beside it."
+            },
+            {
+              "src": "/assets/work/replika/R4.png",
+              "alt": "The memory section — the people, routines and interests a Rep holds, laid out as a field of stickers."
+            },
+            {
+              "src": "/assets/work/replika/R7.png",
+              "alt": "The conversation itself — a Rep answering in the moment, and a suggested reply drawn from what it remembers."
+            },
+            {
+              "src": "/assets/work/replika/R5.png",
+              "alt": "A profile screen — facts, a characterisation, and the memory arcs a Rep keeps about a person."
+            }
+          ],
+          "margin": [
+            {
+              "label": "Role",
+              "value": "Contract design engineer"
+            },
+            {
+              "label": "Team",
+              "value": "Flat 20 · 4 design, 10 eng"
+            },
+            {
+              "label": "Shipped",
+              "value": "Memory V2, onboarding"
+            },
+            {
+              "label": "Reach",
+              "value": "42M users"
+            }
+          ]
+        },
+        {
+          "id": "lightnote",
+          "title": "Lightnote",
+          "desc": "An open-source canvas for training image models.",
+          "line": "canvas for training image models",
+          "href": "#lightnote",
+          "site": "https://github.com/pendulum-ai/lightnote",
+          "siteLabel": "View code",
+          "frame": "16 / 10",
+          "meta": [
+            {
+              "label": "Service",
+              "tags": [
+                "Product Design"
+              ]
+            },
+            {
+              "label": "Year",
+              "tags": [
+                "2024"
+              ]
+            },
+            {
+              "label": "Stack",
+              "tags": [
+                "CLIP",
+                "Stability AI",
+                "Flux",
+                "SDXL",
+                "LoRA",
+                "FastAPI"
+              ]
+            }
+          ],
+          "skills": [
+            "Zero to one",
+            "Creative tooling",
+            "AI interfaces"
+          ],
+          "railReady": true,
+          "rail": [
+            {
+              "src": "/assets/work/lightnote/canvas.webp",
+              "alt": "Lightnote's canvas: four lamp photographs selected, the bar beneath them offering to create a set, and the sets Modern fixtures, Hieros and Aratea listed on the left."
+            },
+            {
+              "src": "/assets/work/lightnote/command-box.webp",
+              "alt": "The command lightnote train submit beside Lightnote's Train LoRA box, each option of the command joined to the field it fills."
+            },
+            {
+              "src": "/assets/work/lightnote/runs.webp",
+              "alt": "Lightnote's Runs tab: every run listed with its images, and one run open with the settings it used and its log."
+            }
+          ],
+          "cardShot": 0
+        },
+        {
           "id": "enable",
           "title": "Enable VIC",
           "desc": "Enterprise intelligence for luxury travel.",
+          "line": "enterprise intelligence for luxury travel",
           "href": "#enable",
           "frame": "16 / 10",
           "meta": [
@@ -305,64 +373,10 @@
           "cardShot": 0
         },
         {
-          "id": "lightnote",
-          "title": "Lightnote",
-          "desc": "An open-source canvas for training image models.",
-          "href": "#lightnote",
-          "site": "https://github.com/pendulum-ai/lightnote",
-          "siteLabel": "View code",
-          "frame": "16 / 10",
-          "meta": [
-            {
-              "label": "Service",
-              "tags": [
-                "Product Design"
-              ]
-            },
-            {
-              "label": "Year",
-              "tags": [
-                "2024"
-              ]
-            },
-            {
-              "label": "Stack",
-              "tags": [
-                "CLIP",
-                "Stability AI",
-                "Flux",
-                "SDXL",
-                "LoRA",
-                "FastAPI"
-              ]
-            }
-          ],
-          "skills": [
-            "Zero to one",
-            "Creative tooling",
-            "AI interfaces"
-          ],
-          "railReady": true,
-          "rail": [
-            {
-              "src": "/assets/work/lightnote/canvas.webp",
-              "alt": "Lightnote's canvas: four lamp photographs selected, the bar beneath them offering to create a set, and the sets Modern fixtures, Hieros and Aratea listed on the left."
-            },
-            {
-              "src": "/assets/work/lightnote/command-box.webp",
-              "alt": "The command lightnote train submit beside Lightnote's Train LoRA box, each option of the command joined to the field it fills."
-            },
-            {
-              "src": "/assets/work/lightnote/runs.webp",
-              "alt": "Lightnote's Runs tab: every run listed with its images, and one run open with the settings it used and its log."
-            }
-          ],
-          "cardShot": 0
-        },
-        {
           "id": "pendulum",
           "title": "Pendulum",
           "desc": "Search across millions of images, videos and documents.",
+          "line": "enterprise search for creative teams",
           "href": "#pendulum",
           "site": "https://pagenineteen.ai/",
           "frame": "16 / 10",
@@ -416,6 +430,7 @@
           "id": "mountains",
           "title": "Mountains",
           "desc": "A micro design system for a luxury technology house.",
+          "line": "brand system for a luxury tech house",
           "href": "#mountains",
           "site": "https://mountains-2kw.pages.dev/",
           "intro": "Mountains is a luxury technology house: a studio that builds for the luxury industry, and a fund that invests in it. We gave it a micro design system, small enough to hold in one hand, and one surface to prove it on.",
@@ -456,7 +471,7 @@
           "railReady": true,
           "rail": [
             {
-              "src": "/assets/work/mountains/mark.png",
+              "src": "/assets/work/mountains/mark.webp",
               "video": "/assets/work/mountains/mark.mp4",
               "poster": "/assets/work/mountains/mark-poster.jpg",
               "alt": "The mark — a seven-row staircase in light inks, arriving square by square on the painting's sky."
@@ -509,8 +524,7 @@
               "value": "One easing curve"
             }
           ],
-          "cardShot": 0,
-          "cardOrder": -1
+          "cardShot": 0
         }
       ]
     },

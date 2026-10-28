@@ -22,16 +22,14 @@ ogUrl: "https://constantin.studio"
           <h1 class="name">constantin.studio</h1>
           <p class="bio-line">Product design studio led by <a class="lnk" href="https://www.linkedin.com/in/constantinchopin">Constantin Chopin</a>, founder of <a class="lnk" href="https://constantin.world">constantin.world</a>, and faculty at <a class="lnk" href="https://www.artcenter.edu">ArtCenter College of Design</a>.</p>
           {# the work, one project to a line: its name opens its project's panel,
-             and a few words after it say what it is. PageNineteen's two products
-             each have their own, since each has its own story and its own film #}
+             and a few words after it (`line`) say what it is. the list, the phone's
+             cards and the panel's arrows all follow studio.json's order, so the
+             first project there is the one desktop opens on #}
           <p class="bio-line">Helping ambitious teams design their products and brands.</p>
           <ul class="work-lines">
-            <li><a class="lnk" data-id="mountains" href="#mountains">Mountains</a>, brand system for a luxury tech house</li>
-            <li><a class="lnk" data-id="enable" href="#enable">Enable</a>, enterprise intelligence for luxury travel</li>
-            <li><a class="lnk" data-id="replika" href="#replika">Replika</a>, consumer AI companionship</li>
-            <li><a class="lnk" data-id="parable" href="#parable">Parable</a>, intelligence layer for the enterprise</li>
-            <li><a class="lnk" data-id="lightnote" href="#lightnote">Lightnote</a>, canvas for training image models</li>
-            <li><a class="lnk" data-id="pendulum" href="#pendulum">Pendulum</a>, enterprise search for creative teams</li>
+            {% for shelf in studio.shelves %}{% for e in shelf.entries %}{% if e.line %}
+            <li><a class="lnk" data-id="{{ e.id }}" href="#{{ e.id }}">{{ e.title | replace(" VIC", "") }}</a>, {{ e.line }}</li>
+            {% endif %}{% endfor %}{% endfor %}
           </ul>
         </header>
 
@@ -45,14 +43,12 @@ ogUrl: "https://constantin.studio"
           {% for shelf in studio.shelves %}{% for e in shelf.entries %}{% if e.rail %}
           {# the card's shot is the second still by default, the first being a
              brand plate for most projects; an entry can name another index
-             with `cardShot` when its opening still is the better thumbnail #}
-          {% set shot = e.rail[e.cardShot] if e.cardShot is defined else (e.rail[1] or e.rail[0]) %}
-          {# `cardOrder` lifts an entry in the phone's stack without touching the
-             shelf: the stack is a column flexbox and exists only at mobile
-             width, so the desktop shelf and the panel's pager keep their own
-             order. negative values rise above the unordered cards. #}
-          <a class="entry-card" href="#{{ e.id }}"{% if e.cardOrder is defined %} style="order: {{ e.cardOrder }}"{% endif %}>
-            {% if e.railReady and shot %}<img class="entry-card-shot" src="{{ shot.src }}" alt="{{ shot.alt }}" loading="lazy"{% if e.frame %} style="aspect-ratio: {{ e.frame }}"{% endif %} />{% endif %}
+             with `cardShot` when its opening still is the better thumbnail,
+             or give the card a picture of its own, at its own `frame`, with `card` #}
+          {% set shot = e.card or (e.rail[e.cardShot] if e.cardShot is defined else (e.rail[1] or e.rail[0])) %}
+          {% set ratio = e.card.frame if e.card else e.frame %}
+          <a class="entry-card" href="#{{ e.id }}">
+            {% if e.railReady and shot %}<img class="entry-card-shot" src="{{ shot.src }}" alt="{{ shot.alt }}" loading="lazy"{% if ratio %} style="aspect-ratio: {{ ratio }}"{% endif %} />{% endif %}
             <span class="entry-card-text">
               <span class="entry-card-name">{{ e.title }}</span>
               <span class="entry-card-desc">{{ e.desc }}</span>
@@ -452,6 +448,16 @@ ogUrl: "https://constantin.studio"
     </aside>
 
   </div>
+
+  {# the studio's contact, two glass capsules pinned to the bottom of the window
+     whatever is open, on desktop only: the CV to download, and an email to get
+     in touch. each shows only when studio.json's `contact` names it #}
+  {% if studio.contact %}
+  <nav class="contact-dock" aria-label="Contact">
+    {% if studio.contact.cv %}<a class="contact-link" href="{{ studio.contact.cv }}" download="Constantin-Chopin-CV.pdf"><span>Download CV</span></a>{% endif %}
+    {% if studio.contact.email %}<a class="contact-link" href="mailto:{{ studio.contact.email }}"><span>Get in touch</span></a>{% endif %}
+  </nav>
+  {% endif %}
 
   {# the lightbox — the still at full size, uncropped, over the page #}
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Still at full size" hidden>

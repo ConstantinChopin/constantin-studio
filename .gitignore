@@ -5,3 +5,7 @@ _site/
 # local tooling & throwaway build snapshots — not part of the site
 .claude/
 _site_check/
+
+# SILEX helmet work: large renders and 3D model files
+docs/silex/out/
+docs/silex/models/

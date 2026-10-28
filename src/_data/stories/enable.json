@@ -20,16 +20,14 @@
     },
     {
       "label": "What we achieved",
-      "value": "Our design partner signed, and Enable VIC became a product any agency can buy. By the agency’s estimate, the same trips earn 15% more commission, and proposals take half the time."
+      "value": "Our design partner signed, and Enable VIC became a product any agency can buy. The agency expects the same trips to earn 15% more commission, and proposals to take half the time. That is its own guess; we have not measured it yet."
     }
   ],
   "hero": {
-    "src": "/assets/work/enable/screen-record.webp",
+    "video": "/assets/work/enable/hero-tour.mp4",
+    "poster": "/assets/work/enable/hero-tour-poster.webp",
     "device": true,
-    "alt": "Maison Léandre's record in Enable VIC, as an advisor sees it: the hotel in Paris 4e, with three photographs; the agency's notice that the spa is closed until 15 September; the facts Enable shares with every agency, each with its source and when it was last checked, like the address from the Enable directory, verified in May; and a summary beside them: three sources disagree on the Atelier commission, pool hours are unverified for 96 days and a promotion has 16 days left, with a button to resolve the three sources.",
-    "reshoot": {
-      "src": "/assets/work/enable/record-hero.webp"
-    }
+    "alt": "Enable in use. The advisor's morning briefing flags an offer from this morning's Atelier email: Maison Léandre now pays 14% instead of 12%, with champagne in the room, and L. Grandin's anniversary stay there is held but not yet confirmed, so using the offer earns EUR 644 instead of EUR 552. The advisor opens the stay, reads the offer on the trip's hotel card, and chooses the offer's rate; the stay's terms change to 14% and EUR 644, with the champagne added, and the trip as a whole is worth EUR 644 more."
   },
   "overview": [
     {
@@ -324,13 +322,13 @@
             },
             {
               "label": "Do advisors earn more?",
-              "value": "15% more",
-              "text": "commission on the same trips, by the agency’s estimate."
+              "value": "The agency expects 15% more",
+              "text": "commission on the same trips. That is its own guess; we have not measured it yet."
             },
             {
               "label": "Do proposals take less time?",
-              "value": "Half the time",
-              "text": "to make a proposal, by the agency’s estimate."
+              "value": "The agency expects half the time",
+              "text": "to make a proposal. Again its own guess, not yet measured."
             }
           ]
         },

@@ -1,10 +1,10 @@
 {
-  "lede": "Replika is an AI companion app: people talk with their own Replika, which remembers what they share and gets to know them over time. Almost 42 million people have used it, and when I joined, Studio Dumbar’s new brand had launched in 2025 but the app’s interface had not yet caught up with it.",
+  "lede": "Replika is an AI companion app: people talk with their own Replika, which remembers what they share and gets to know them over time. About 30 million people have used it, and when I joined, Studio Dumbar’s new brand had launched in 2025 but the app’s interface had not yet caught up with it.",
   "textBlocks": true,
   "facts": [
     {
       "label": "Role",
-      "value": "Led design engineering on contract, across the iOS app, the website, the brand and the design system"
+      "value": "Lead product designer, on contract, across the iOS app, the website, the brand and the design system"
     },
     {
       "label": "How long",
@@ -17,11 +17,11 @@
     },
     {
       "label": "How we defined success",
-      "value": "We set out to do three things: carry the visual language Studio Dumbar created for the 2025 rebrand into the app; grow the design system and keep it on brand as new surfaces were added; and design those surfaces, from a new onboarding and memory, the new flagship feature, to avatar customisation and an economy with two currencies. For the onboarding, success meant more people connecting their email and choosing a subscription."
+      "value": "We set out to do three things: carry the visual language Studio Dumbar created for the 2025 rebrand into the app; grow the design system and keep it on brand as new surfaces were added; and design those surfaces, from a new onboarding and memory, the new flagship feature, to avatar customisation and an economy with two currencies. For the onboarding, success meant fewer people giving up before the end."
     },
     {
       "label": "What we achieved",
-      "value": "The new surfaces carry the new brand, through a design system grown from Studio Dumbar’s brand book. The onboarding went from 50 screens to six arcs, and in a test with 2,500 people around the world it moved more of them to connect their email and choose a subscription. Memory V2 shipped, with Portraits, Life Arcs and People Cards."
+      "value": "The new surfaces carry the new brand, through a design system grown from Studio Dumbar’s brand book. The onboarding went from about 40 screens to six arcs, and in a test with 2,500 people around the world, the share who gave up before the end fell from 23% to 18%. Memory V2 shipped, with Portraits, Life Arcs and People Cards."
     }
   ],
   "hero": {
@@ -77,7 +77,7 @@
             {
               "label": "How we learned",
               "value": "From how people used the app, and from a test with 2,500 people",
-              "text": "We started from how people actually used the app, which pointed to memory. The new onboarding was tested with 2,500 people around the world, measured by how many connected their email and chose a subscription."
+              "text": "We started from how people actually used the app, which pointed to memory. The new onboarding was tested with 2,500 people around the world, measured by how many gave up before the end."
             },
             {
               "label": "How we worked",
@@ -170,10 +170,10 @@
           }
         },
         {
-          "sub": "The onboarding went from 50 screens to a story in six arcs"
+          "sub": "The onboarding went from about 40 screens to a story in six arcs"
         },
         {
-          "p": "We turned the 50-screen onboarding into a story told in six arcs, and tested it with 2,500 people around the world."
+          "p": "We turned the onboarding, about 40 screens, into a story told in six arcs, and tested it with 2,500 people around the world."
         },
         {
           "sub": "Avatar customisation and a two-currency economy"
@@ -190,7 +190,7 @@
       "label": "What we learned",
       "blocks": [
         {
-          "milestone": "We defined success in three parts: carry Studio Dumbar’s visual language into the app, keep the design system on brand as new surfaces were added, and design those surfaces, with the onboarding judged by how many people connected their email and chose a subscription. This is how each part turned out."
+          "milestone": "We defined success in three parts: carry Studio Dumbar’s visual language into the app, keep the design system on brand as new surfaces were added, and design those surfaces, with the onboarding judged by how many people gave up before the end. This is how each part turned out."
         },
         {
           "results": [
@@ -206,13 +206,8 @@
             },
             {
               "label": "Did the new onboarding work better?",
-              "value": "Yes, in a test with 2,500 people",
-              "text": "around the world, the six-arc onboarding moved more people to connect their email and choose a subscription than the 50-screen one."
-            },
-            {
-              "label": "By how much did the onboarding move those numbers?",
-              "value": "To confirm: the change in email connections and in subscriptions from the onboarding test, before and after",
-              "todo": true
+              "value": "Yes",
+              "text": "In a test with 2,500 people around the world, 23% gave up before the end of the old onboarding, and 18% before the end of the six arcs."
             },
             {
               "label": "Did memory ship?",

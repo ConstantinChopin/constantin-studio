@@ -1,10 +1,10 @@
 {
-  "lede": "Parable reads the tools a large company already works in, such as Slack, Salesforce, Workday, GitHub and Jira, and shows where the work goes, what it costs and which of it could be automated. When I joined as its only product designer in September 2025, the product already existed and had a look of its own, but no rules underneath it.",
+  "lede": "Parable reads the tools a company already works in, and shows where the work goes, what it costs, and what AI could take on. It had been giving clients that insight as slide decks. I was its product designer, and designed its first product: three experiences, and the design system behind them.",
   "textBlocks": true,
   "facts": [
     {
       "label": "Role",
-      "value": "Sole product designer, asked to lead the work rather than build to a set specification: the customer journey, prototypes in Figma and in code, the app’s visual direction and its design system"
+      "value": "Product designer, the only one at Parable. A graphic designer made the company’s slide decks."
     },
     {
       "label": "How long",
@@ -13,11 +13,13 @@
     },
     {
       "label": "Team",
-      "value": "A company of about twenty, with engineers and no other designer. I worked with the founders, and in code with the front-end engineer."
+      "value": "A company of about twenty. I worked with the Director of product, who shaped what the product does, with the founders, and in code with the front-end engineer.",
+      "note": "To confirm: that the founders stay in this line beside the Director of product."
     },
     {
       "label": "How we defined success",
-      "value": "Screens that product managers and Parable’s own AI can put together from shared parts, without the product drifting further from itself, measured against five targets set for the work."
+      "value": "Screens that product managers and Parable’s own AI can put together from shared parts, without the product drifting further from itself, measured against five targets set for the work.",
+      "note": "To discuss with What we learned, at the end."
     },
     {
       "label": "What we achieved",
@@ -25,145 +27,173 @@
     }
   ],
   "hero": {
-    "src": "/assets/work/parable/website.webp",
+    "video": "/assets/work/parable/fragments/fragment-orb.mp4",
+    "poster": "/assets/work/parable/fragments/fragment-orb-poster.webp",
     "device": true,
-    "alt": "Parable's website: “A dashboard for company-wide operational observability”. Below the headline, the product answers what a sales team worked on in the third quarter of 2025, and shows $1.2M of potential savings from automating its permit approval process."
+    "alt": "Ponder, Parable’s assistant, greets John, the CEO, with Acme drawn as an orb of 2,496 points, one per person. He picks a question about Finance, and the orb flies into the conversation, thinks, and becomes the answer: first a ring of Finance’s work, then columns ranking the workflows to automate first, from invoice matching at $1.68M a year."
   },
   "overview": [
     {
       "label": "The problem",
       "blocks": [
         {
-          "milestone": "Parable wanted its screens to be put together from shared parts, by product managers and by its own AI, instead of being drawn one by one. But the product had a look and no rules underneath it. With no designer on staff, engineers filled each gap as it came up, and every sprint made the product less consistent."
+          "milestone": "Parable gave its clients insight as slide decks. Its own pipelines pulled in each client’s data, and people and AI put the decks together by hand. The next step was a product clients would use themselves."
         },
         {
           "stats": [
             {
-              "label": "No shared rules, so every sprint added new colours and sizes",
-              "value": "About 60 colours",
-              "text": "in five palettes, alongside 24 spacing values and more than 50 colours in charts alone. An AI can only build good screens if the parts come with clear rules about which choices are allowed, and here there were none.",
-              "source": "Our audit of the product"
+              "label": "Three people, three separate jobs",
+              "value": "CEO, operations, CTO",
+              "text": "The CEO asks a question, someone in operations builds the answer, and the CTO connects the company’s tools. Each needed their own experience, and all three had to feel like one product."
             },
             {
-              "label": "The same data had to serve an executive and an engineer",
-              "value": "One number, or every row",
-              "text": "An executive wants one clear number, and an engineer wants every row behind it, sometimes down to where it came from. Screens built from shared parts needed a rule for how much each one shows, and a way to go deeper without leaving the page."
+              "label": "One system for every version of the product",
+              "value": "One codebase",
+              "text": "The design system had to serve any version of the product, an experiment or the live one, whether a person or Parable’s own AI put the screen together."
             }
           ]
-        },
-        {
-          "todo": "Picture: this section has no picture yet. A still of the audit, the inherited palettes and spacing values before the cut, would open it well."
         }
-      ],
-      "parked": true
+      ]
     },
     {
       "label": "Design approach",
       "blocks": [
         {
-          "milestone": "We focused on the parts every screen is built from. Parable had a look but no system beneath it, so the job was to build one that a person, or Parable’s own AI, could put screens together from and still end up with a Parable product."
+          "milestone": "The Director of product shaped what the product does: Ponder, the assistant, and Parables, the answers people build. I built how it looks and moves, and the system underneath."
         },
         {
           "context": [
             {
               "label": "What we focused on, and why",
-              "value": "The system beneath the screens",
-              "text": "The company’s goal for the first quarter of 2026 was called System Maturity. It rested on the belief that in a product driven by AI, building blocks that fit together matter more than fixed paths through the product. As the product turns into a conversation, the system, not any one screen, is what keeps its quality. Put plainly, the aim was to stop each team’s own style from showing up in the interface."
-            },
-            {
-              "label": "How we scoped it",
-              "value": "The foundation first, the automatic check later",
-              "text": "We designed an automatic check that would test a screen against the rules before it ships, and chose not to build it yet. For a company of about twenty people, the shipped foundation was worth more than a checker. The time to build it is the day Parable’s AI starts sending screens it put together itself to customers."
-            },
-            {
-              "label": "How we learned",
-              "value": "An audit of what the product already used",
-              "text": "We went through the colours, spacing values and chart colours already in the product, and found that about 53% of the values were redundant. That showed how far the product had drifted, and how much of it could simply go."
+              "value": "The point cloud, made into the product",
+              "text": "Parable’s decks used a cloud of points as a simple picture of AI. I made it move and grow, so a company’s own people became every chart and the assistant’s body."
             },
             {
               "label": "How we worked",
-              "value": "The look in Figma, then the parts in code with the front-end engineer",
-              "text": "I set the visual direction in Figma and handed it to engineering as the tone to build to, then prototyped in code with the front-end engineer, so the most important components were designed and built side by side. The system sits inside the path Parable already uses for new work: the team’s own use first, then Labs for early trials, then Previews, and finally parts that every team shares."
+              "value": "Figma closed, everything in code",
+              "text": "The design system started in Figma. One goal was for design and code to match exactly."
             }
           ]
         },
         {
-          "todo": "How we learned: was there any user research, such as interviews, or watching customers or the team use the product? If so, add it to this box. If not, the audit stays as the only learning step."
+          "figure": {
+            "src": "/assets/work/parable/stills/early-product-frame.webp",
+            "device": true,
+            "alt": "An early Parable product frame titled Sales Team Performance: a ring of the team’s work, a strip of activity, a list of people, and $1.2M in potential savings, with a fine dust of points drifting behind the cards.",
+            "caption": "An early Parable product frame, not a deck slide. The points are only dust behind the cards."
+          }
+        },
+        {
+          "sub": "One point is one person"
+        },
+        {
+          "p": "Acme, the sample company on these screens, is 2,496 points, one for each person. The same points make every chart."
+        },
+        {
+          "figure": {
+            "video": "/assets/work/parable/art/art-pullback.mp4",
+            "poster": "/assets/work/parable/art/art-pullback-poster.webp",
+            "alt": "The camera starts on a single point, one field engineer, and pulls back through their team and department until all of Acme is in view: an orb of 2,496 points, one per person.",
+            "caption": "The camera pulls back from one field engineer to all of Acme."
+          }
+        },
+        {
+          "sub": "Ponder’s body is the company"
+        },
+        {
+          "p": "Ponder is drawn as the orb of Acme’s people. When it answers, the orb turns into the chart."
+        },
+        {
+          "figure": {
+            "video": "/assets/work/parable/art/art-becoming.mp4",
+            "poster": "/assets/work/parable/art/art-becoming-poster.webp",
+            "alt": "The orb of Acme’s people opens and its points fall into columns ranking Finance’s workflows to automate first, from invoice matching at $1.68M a year, then gather back into the orb.",
+            "caption": "The orb becomes a ranking of what Finance should automate first, then gathers back."
+          }
+        },
+        {
+          "sub": "Ponder shows what it’s doing"
+        },
+        {
+          "p": "With the same points, Ponder shows what it’s reading. A state is a movement and one line of text, never a new colour."
+        },
+        {
+          "figure": {
+            "video": "/assets/work/parable/art/art-reading.mp4",
+            "poster": "/assets/work/parable/art/art-reading-poster.webp",
+            "alt": "Ponder works on where AI is saving time in Customer Success. As its log reads Zendesk, then Gong, the people each tool covers light up in the orb: 390 people, then 119.",
+            "caption": "As Ponder reads each tool, the people it covers light up."
+          }
         }
-      ],
-      "parked": true
+      ]
     },
     {
       "label": "What we built",
       "blocks": [
         {
-          "milestone": "We set the look first, then built the system beneath it: a short list of values, one setting for how dense a screen is, four layers of detail that open in place, and rules that get stricter as a part matures."
+          "milestone": "Three people, three separate journeys, one system. John, the CEO, asks Ponder, in the film at the top of the page. Priya, in Finance, builds a Parable. Sam, the CTO, connects the tools."
         },
         {
-          "sub": "One look, set first on three real screens"
+          "sub": "One small system behind every screen"
         },
         {
-          "p": "Engineers had been filling gaps with their own choices. Three real screens, designed in Figma, set one calm, dark look with serif headings for everything else: the product as the market sees it, a report being read, and the AI answering with its sources and the cost worked out."
+          "p": "It’s a short list of parts with rules: colours with one job each, where violet means AI and pink means look here, one type scale, and sizes set by where a part sits, after Linear. The charts are parts too, all made of the same points. Every screen on this page is built from it: 189 tokens, one file of parts, nothing written by hand."
         },
         {
-          "sub": "Fewer colours and sizes, each with a name and a job"
+          "figure": {
+            "src": "/assets/work/parable/stills/system-bento.webp",
+            "alt": "Parts of Parable’s design system in six cells. Points: everyone at Acme as an orb, one point per person, with what each point colour means: ivory for the rest of the data, violet for AI, pink for look here, and a ghost for what Parable can’t see. Type: one scale, from a 36 point title in PP Editorial New down to a host name in code. Colours: the ground and the cream laid over it, ink at three strengths, Ponder’s violet drafting badge and a pink needs-attention flag. Ponder: a closed work log and an answer with a source pill. Controls: the Perception selector, buttons, a segmented control, tokens, badges, a key, a switch and a step row. And the same points again as a ranking of what Finance should automate first.",
+            "caption": "Parts of the system, drawn by the same code as every screen on this page."
+          }
         },
         {
-          "p": "Each list was cut to a few values, each with a name and a job: five palettes became three, about 60 colours became 18, spacing went from 24 values to 13 and chart colours from more than 50 to 12. A person or the AI building a screen picks from the list instead of adding a value."
+          "sub": "Priya builds a Parable"
         },
         {
-          "sub": "How dense a screen is, set once for the whole screen"
+          "p": "A Parable is a plan of steps, written as plain sentences. Ponder drafts it from Priya’s question and says what it assumed. She corrects it in her team’s own words, dragging Finance’s own workflows onto a step, then reads the result as a page."
         },
         {
-          "p": "Density was first a setting on each component, so a compact table inside a comfortable card disagreed with itself. We moved it to the container that holds the screen: sparse, comfortable or compact sets the padding, gaps, type size and depth of everything inside, and each level keeps a minimum of empty space."
+          "figure": {
+            "video": "/assets/work/parable/fragments/fragment-assembly.mp4",
+            "poster": "/assets/work/parable/fragments/fragment-assembly-poster.webp",
+            "device": true,
+            "alt": "Priya types her question and Ponder offers to draft it. Ponder drafts six steps one at a time and lists what it assumed, including its rule for repetitive work, and every step runs. She switches to Finance’s own Perception and drags its Workflows onto step 3: before she lets go, twelve bands of points regroup into the eight workflows Finance names itself, and the step loses Ponder’s mark. She drags Ranking onto the table Ponder proposed for step 5, and the points stand up as columns. View opens on page 3, What to automate first, with the plan as six sentences beside it.",
+            "caption": "Ponder drafts the plan, Priya corrects it, and the result opens as a page."
+          }
         },
         {
-          "sub": "Four layers of detail, opened without leaving the page"
+          "sub": "Sam connects the tools"
         },
         {
-          "p": "Every answer opens in up to four layers on the same page: the answer, an explanation, the detail behind it, and its source, down to the database query behind the number. An executive can stop at the answer, and an engineer can go all the way down."
+          "p": "Sam starts from a table of every tool Acme uses: what’s connected, what’s missing, and which are core, the tools a team does most of its work in. Then one product at a time, here Jira on Acme’s own servers, with exactly what Parable reads and what it never reads."
         },
         {
-          "sub": "Rules a machine can check, stricter as a part matures"
-        },
-        {
-          "p": "The rules are written as structured layers a machine can check, not as paragraphs of guidance. They get stricter as a part moves from Labs to Preview to Stable, so new parts can be tried freely and only parts that pass every rule reach every team."
-        },
-        {
-          "todo": "Pictures: none of these steps has a picture yet. The three density levels side by side, and one answer opened through its four layers, would show the two main decisions."
+          "figure": {
+            "device": true,
+            "grid": [
+              {
+                "src": "/assets/work/parable/stills/sam-tools.webp",
+                "alt": "Parable’s Connectors page: a table of the 214 tools Acme uses, grouped by status, with filters for all, core, connected, not connected and needs attention. Gong needs attention because its key was replaced. Four core tools are not connected yet, FieldPro, Jira, GitHub and HubSpot, each with what Parable would read and how much more of Acme it would see. Below them, the connected tools, from Okta and Google Workspace for everyone to Zendesk, NetSuite, Workday and Salesforce. Parable sees 45% of how Acme works now, and would see 85% with the four missing core tools.",
+                "caption": "Every tool in one table. Four core tools are still missing."
+              },
+              {
+                "src": "/assets/work/parable/stills/sam-jira.webp",
+                "alt": "Jira Data Center, on Acme’s own servers at jira.acme.internal. On the left, Atlassian’s products: Jira, which is core, with two instances, Cloud and Data Center, then Confluence and Jira Service Management, which are not. In the middle, the projects Parable reads (Installations, Permits, Crew scheduling), the archive it doesn’t, and the People team it never reads, by Acme’s rule; what it reads from each issue and what it never reads; and limits such as 12 months back, people shown as roles, and who can ask about it. On the right, the steps from way in to connected, a relay in Acme’s network, a read-only account, and 20,100 issues to read.",
+                "caption": "Jira on Acme’s own servers: which projects Parable reads, and what it never reads."
+              }
+            ]
+          }
         }
-      ],
-      "parked": true
+      ]
     },
     {
       "label": "What we learned",
       "blocks": [
         {
-          "milestone": "Success meant screens that product managers and Parable’s own AI can put together from shared parts, without the product drifting further from itself. It was measured against five targets: a complete set of components an AI can safely build from, design that matches the code with the code as the final word, layouts designed for phones first, themes customers can control, and accessibility to the WCAG AA standard."
+          "milestone": "Success meant screens that product managers and Parable’s own AI can put together from shared parts, without the product drifting further from itself. The foundation shipped. The first experience shown on this page is concept work, not shipped screens."
         },
         {
-          "results": [
-            {
-              "label": "Do screens now choose from a short list?",
-              "value": "Yes",
-              "text": "The foundation shipped: colours went from about 60 to 18, spacing values from 24 to 13, and chart colours from more than 50 to 12."
-            },
-            {
-              "label": "Do design and code match?",
-              "value": "For the first components",
-              "text": "The most important components were designed and built side by side, on the shipped foundation."
-            },
-            {
-              "label": "Can engineers build new components without waiting on design?",
-              "value": "Not yet shown",
-              "text": "That is what the foundation is for, but I have no result to report yet."
-            },
-            {
-              "label": "Phones, themes and accessibility",
-              "value": "To confirm: where the other three targets stand (layouts for phones first, themes customers can control, and WCAG AA), and whether any of them were checked",
-              "todo": true
-            }
-          ]
+          "todo": "Result to confirm: does each person get to their one thing on the first day? Whether the three journeys were put in front of a CTO, someone in operations or a CEO, and what happened."
         },
         {
           "sub": "What I would do next"
@@ -172,10 +202,9 @@
           "p": "Next, I would build the automatic check, on the day Parable’s AI starts sending screens it put together itself to customers, so each screen is tested against the rules before anyone sees it."
         },
         {
-          "todo": "DRAFT, not shown until Constantin confirms: two more next steps that follow from the five targets rather than from his case study. 1. Measure how often engineers put a new component together without waiting on design, since that is the result the foundation was built for. 2. Check the three targets that have no result yet: layouts for phones first, themes customers can control, and the WCAG AA accessibility standard."
+          "todo": "To discuss with Constantin at the end (20 October: \"we should have what we learned yes - lets discuss at the end\"). This section is carried over unchanged from the decisions draft."
         }
-      ],
-      "parked": true
+      ]
     }
   ]
 }

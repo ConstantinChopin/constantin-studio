@@ -27,6 +27,7 @@ module.exports = function (eleventyConfig) {
   // Static assets are copied verbatim — they need no templating.
   eleventyConfig.addPassthroughCopy("src/styles.css");
   eleventyConfig.addPassthroughCopy("src/favicon.svg");
+  eleventyConfig.addPassthroughCopy("src/cv.pdf");
   eleventyConfig.addPassthroughCopy("src/assets");
 
   // A studio drawing is set inline rather than as an <img>, so its labels can
